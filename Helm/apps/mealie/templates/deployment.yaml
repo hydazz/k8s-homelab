@@ -1,0 +1,91 @@
+---
+{{- with .Values.mealie }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mealie
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: mealie
+        app.kubernetes.io/name: mealie
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: mealie
+            app.kubernetes.io/name: mealie
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data
+            labels:
+                app.kubernetes.io/instance: mealie
+                app.kubernetes.io/name: mealie
+        spec:
+            containers:
+                -   name: mealie
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: TZ
+                            value: "Europe/Sofia"
+                        -   name: ALLOW_SIGNUP
+                            value: "true"
+                        -   name: MAX_WORKERS
+                            value: "1"
+                        -   name: WEB_CONCURRENCY
+                            value: "1"
+                        -   name: BASE_URL
+                            value: "{{ .baseUrl }}"
+
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /app/data
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    startupProbe:
+                        failureThreshold: 10
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+
+            restartPolicy: Always
+            volumes:
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: data-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: mealie
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: mealie
+        app.kubernetes.io/name: mealie
+    ports:
+        -   name: web
+            protocol: TCP
+            port: {{ .port }}
+
+{{- end }}

@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - aqua
+    - k8s-at-home
+    - metrics-server
+    - unofficial
+    - longhorn-system
+    - cert-manager
+    - ingress-nginx
+    - reflector
+    - velero
+    - botkube
+    - kube-vip
+    - kubereboot
+    - oneuptime
+    - lwolf-charts
+    - descheduler
+    - gabe565
+    - searxng
+    - go-ddns-controller
+    - metallb

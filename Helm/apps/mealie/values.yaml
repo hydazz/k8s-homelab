@@ -1,0 +1,13 @@
+---
+mealie:
+    replicas: 1
+    image: ghcr.io/mealie-recipes/mealie:v1.12.0
+    port: 9000
+    baseUrl: https://mealie.stefangenov.site
+    resources:
+        requests:
+            cpu: 10m
+            memory: 50Mi
+
+storage:
+    dataSize: 2Gi

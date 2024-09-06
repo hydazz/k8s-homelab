@@ -1,0 +1,94 @@
+---
+{{- with .Values.radarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: radarr
+        app.kubernetes.io/name: radarr
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: radarr
+            app.kubernetes.io/name: radarr
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config
+            labels:
+                app.kubernetes.io/instance: radarr
+                app.kubernetes.io/name: radarr
+        spec:
+            containers:
+                -   name: radarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config
+                            mountPath: /config
+                        -   name: downloads-data
+                            mountPath: /downloads
+                        -   name: movies-data-nfs
+                            mountPath: /tv
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+            restartPolicy: Always
+            volumes:
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: radarr-config-pvc
+                -   name: movies-data-nfs
+                    nfs:
+                        path: "/volume1/k3s/media/movies"
+                        server: "192.168.1.39"
+                -   name: downloads-data
+                    nfs:
+                        path: "/volume1/k3s/media/downloads"
+                        server: "192.168.1.39"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: radarr
+        app.kubernetes.io/name: radarr
+    ports:
+        -   name: radarr
+            protocol: TCP
+            port: {{ .port }}
+
+{{- end }}

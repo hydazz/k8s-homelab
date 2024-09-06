@@ -1,0 +1,116 @@
+---
+{{- with .Values.reactiveresume }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: reactiveresume
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: reactiveresume
+        app.kubernetes.io/name: reactiveresume
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: reactiveresume
+            app.kubernetes.io/name: reactiveresume
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/instance: reactiveresume
+                app.kubernetes.io/name: reactiveresume
+        spec:
+            containers:
+                {{- with .api }}
+                -   name: api
+                    image: {{ .image }}
+                    envFrom:
+                      - secretRef:
+                          name: app
+                      - secretRef:
+                          name: db
+                    env:
+                      - name: PUBLIC_FLAG_DISABLE_SIGNUPS
+                        value: "true"
+                    imagePullPolicy: IfNotPresent
+                    volumeMounts:
+                      - name: uploads
+                        mountPath: /app/server/dist/assets/uploads
+                    livenessProbe:
+                        initialDelaySeconds: 30
+                        failureThreshold: 5
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: api
+                            protocol: TCP
+                {{- end }}
+
+                {{- with .frontend }}
+                -   name: frontend
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                      - name: PUBLIC_FLAG_DISABLE_SIGNUPS
+                        value: "true"
+                      - name: PUBLIC_URL
+                        valueFrom:
+                          secretKeyRef:
+                            name: app
+                            key: PUBLIC_URL
+                      - name: PUBLIC_SERVER_URL
+                        valueFrom:
+                          secretKeyRef:
+                            name: app
+                            key: PUBLIC_SERVER_URL
+                    livenessProbe:
+                        initialDelaySeconds: 30
+                        failureThreshold: 5
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: frontend
+                            protocol: TCP
+                {{- end }}
+            volumes:
+                -   name: uploads
+                    persistentVolumeClaim:
+                        claimName: reactiveresume-uploads-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: reactiveresume
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: LoadBalancer
+    selector:
+        app.kubernetes.io/instance: reactiveresume
+        app.kubernetes.io/name: reactiveresume
+    ports:
+        -   name: frontend
+            protocol: TCP
+            port: {{ .frontend.port }}
+        -   name: api
+            protocol: TCP
+            port: {{ .api.port }}
+{{- end }}

@@ -1,0 +1,3 @@
+- [ ] Terraform
+- [ ] Migrate prometheus to using official operator
+- [ ] Loadbalancer for k3s control plane?

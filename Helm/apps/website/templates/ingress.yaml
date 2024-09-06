@@ -1,0 +1,40 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: website
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: My Website
+        gethomepage.dev/group: Personal
+        gethomepage.dev/icon: https://stefangenov.site/favicon.ico
+        gethomepage.dev/name: Website
+spec:
+    ingressClassName: nginx
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: website
+                                port:
+                                    number: {{ .Values.website.port }}
+        -   host: website.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: website
+                                port:
+                                    number: {{ .Values.website.port }}

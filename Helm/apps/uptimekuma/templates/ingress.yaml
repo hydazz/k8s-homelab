@@ -1,0 +1,49 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: uptimekuma
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Uptime Monitor
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: uptime-kuma
+        gethomepage.dev/name: Uptime Kuma
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: uptimekuma.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: uptimekuma
+                            port:
+                                number: {{ .Values.uptimekuma.port }}
+        - host: uptime.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: uptimekuma
+                            port:
+                                number: {{ .Values.uptimekuma.port }}
+        - host: uptimekuma.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: uptimekuma
+                            port:
+                                number: {{ .Values.uptimekuma.port }}

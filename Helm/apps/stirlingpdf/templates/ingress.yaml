@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: stirlingpdf
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Swiss Army Knife For PDFs
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: stirling-pdf
+        gethomepage.dev/name: Stirling-PDF
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: pdf.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: stirlingpdf
+                            port:
+                                number: {{ .Values.stirlingpdf.port }}

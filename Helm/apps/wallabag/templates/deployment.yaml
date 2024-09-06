@@ -1,0 +1,66 @@
+---
+{{- with .Values.wallabag }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: wallabag
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: wallabag
+        app.kubernetes.io/name: wallabag
+spec:
+    replicas: {{ .replicas }}
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: wallabag
+            app.kubernetes.io/name: wallabag
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/instance: wallabag
+                app.kubernetes.io/name: wallabag
+        spec:
+            restartPolicy: Always
+            containers:
+                -   name: wallabag
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+                    envFrom:
+                        -   secretRef:
+                                name: app
+                                optional: false
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: SYMFONY__ENV__DOMAIN_NAME
+                            value: {{ .domainName }}
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 60
+                        timeoutSeconds: 5
+                        httpGet:
+                            port: {{ .port }}
+                            path: /login
+                    startupProbe:
+                        failureThreshold: 10
+                        periodSeconds: 5
+                        httpGet:
+                            port: {{ .port }}
+                            path: /login
+{{- end }}

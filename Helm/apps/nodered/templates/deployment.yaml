@@ -1,0 +1,77 @@
+---
+{{- with .Values.nodered }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nodered
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: nodered
+        app.kubernetes.io/name: nodered
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: nodered
+            app.kubernetes.io/name: nodered
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data-config
+            labels:
+                app.kubernetes.io/instance: nodered
+                app.kubernetes.io/name: nodered
+        spec:
+            containers:
+                - name: nodered
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /data
+                      - name: nas
+                        mountPath: /nas
+                  livenessProbe:
+                      periodSeconds: 60
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      initialDelaySeconds: 10
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: nodered-pvc
+                - name: nas
+                  nfs:
+                    path: "/volume1/k3s"
+                    server: "192.168.1.39"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: nodered
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: nodered
+        app.kubernetes.io/name: nodered
+    ports:
+        - name: nodered
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}

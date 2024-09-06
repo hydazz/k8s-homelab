@@ -1,0 +1,32 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: changedetection
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Monitors changes to websites
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: changedetection-io
+        gethomepage.dev/name: ChangeDetection.io
+        gethomepage.dev/widget.type: changedetectionio
+        gethomepage.dev/widget.url: https://changedetection.stefangenov.site
+        gethomepage.dev/widget.key: 24f82bd47ffef64b0b533239ad38d945 # yeah, it's public, but it's not so secret
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: changedetection.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: changedetection
+                            port:
+                                number: {{ .Values.changedetection.port }}

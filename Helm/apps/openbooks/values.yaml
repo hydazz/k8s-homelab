@@ -1,0 +1,11 @@
+---
+openbooks:
+    image: ghcr.io/evan-buss/openbooks:4.5.0
+    port: 80
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
+storage:
+    configSize: 1Gi

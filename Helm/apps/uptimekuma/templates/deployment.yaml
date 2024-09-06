@@ -1,0 +1,74 @@
+---
+{{- with .Values.uptimekuma }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: uptimekuma
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: uptimekuma
+        app.kubernetes.io/name: uptimekuma
+spec:
+    replicas: {{ .replicas }}
+    strategy:
+      type: Recreate
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: uptimekuma
+            app.kubernetes.io/name: uptimekuma
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: app-data
+            labels:
+                app.kubernetes.io/instance: uptimekuma
+                app.kubernetes.io/name: uptimekuma
+        spec:
+            containers:
+                - name: uptimekuma
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /app/data
+                  livenessProbe:
+                      failureThreshold: 5
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 10
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: uptimekuma-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: uptimekuma
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: uptimekuma
+        app.kubernetes.io/name: uptimekuma
+    ports:
+        - name: uptimekuma
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}

@@ -1,0 +1,12 @@
+---
+nodered:
+    image: nodered/node-red:3.1.11-16
+    port: 1880
+    resources:
+        requests:
+            cpu: 100m
+            memory: 512Mi
+        limits:
+            memory: 2Gi
+storage:
+    configSize: 5Gi

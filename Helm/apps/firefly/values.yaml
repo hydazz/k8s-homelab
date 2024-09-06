@@ -1,0 +1,29 @@
+---
+firefly:
+    image: fireflyiii/core:version-6.1.10
+    port: 8080
+    appUrl: https://firefly.stefangenov.site
+    resources:
+        requests:
+            cpu: 10m
+            memory: 250Mi
+
+fireflybot:
+    image: cyxou/firefly-iii-telegram-bot:v2.1.0
+    resources:
+        requests:
+            cpu: 200m
+            memory: 500Mi
+
+postgres:
+    image: postgres:16.4
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
+storage:
+    configSize: 5Gi
+    botSessionSize: 2Gi
+    postgresSize: 10Gi

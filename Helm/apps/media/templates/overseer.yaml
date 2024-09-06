@@ -1,0 +1,83 @@
+---
+{{- with .Values.overseerr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: overseerr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: overseerr
+        app.kubernetes.io/name: overseerr
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: overseerr
+            app.kubernetes.io/name: overseerr
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
+            labels:
+                app.kubernetes.io/instance: overseerr
+                app.kubernetes.io/name: overseerr
+        spec:
+            containers:
+                -   name: overseerr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: overseer-config-pvc
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: overseerr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: overseerr
+        app.kubernetes.io/name: overseerr
+    ports:
+        -   name: overseerr
+            protocol: TCP
+            port: {{ .port }}
+
+{{- end }}

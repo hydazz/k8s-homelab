@@ -1,0 +1,49 @@
+---
+{{- with .Values.fireflybot }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: fireflybot
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: fireflybot
+        app.kubernetes.io/name: fireflybot
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: fireflybot
+            app.kubernetes.io/name: fireflybot
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: sessions
+            labels:
+                app.kubernetes.io/instance: fireflybot
+                app.kubernetes.io/name: fireflybot
+        spec:
+            containers:
+                -   name: fireflybot
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        - name: sessions
+                          mountPath: /home/node/app/sessions
+                    envFrom:
+                        - secretRef:
+                              name: bot-env
+
+            restartPolicy: Always
+            volumes:
+                -   name: sessions
+                    persistentVolumeClaim:
+                        claimName: firefly-bot-pvc
+
+{{- end }}

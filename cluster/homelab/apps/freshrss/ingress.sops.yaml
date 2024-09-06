@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: freshrss
+    namespace: freshrss
+    annotations:
+        gethomepage.dev/enabled: ENC[AES256_GCM,data:iVolMA==,iv:54UpP/BxO+jqLHiBMRRZXK3Moyt5JI6gVW2E0RESsyw=,tag:Cg9UJ3R+tqmLwc9N7QUoxA==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:8qY0p41BmFeXvg==,iv:gNFB8Pk/HjcGQ5PaMlWNzDSfkkwtfSqQGWCoihW1elQ=,tag:Tw0ClpwsEnIrCt5A285Fkw==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:X6mo0Lazg9bT,iv:QynTfEf6fXwc5N9mRf37fJG5D7qNbhDW8SYPvNwyjjE=,tag:JjyR45SCVn7QhzZRPErDRA==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:7f990yG5uic=,iv:C8mB5+mjsPIRZsOwtmtB8VoKPPxJY193CQWIyBnwx9Y=,tag:oX9G8w6ME1Gln/mHaena6w==,type:str]
+        gethomepage.dev/name: ENC[AES256_GCM,data:sUWWJL55YVpJ,iv:4vWDaA+bLXd1woMVfag/Yh01Md7Meb37PeYd08n7ku0=,tag:4x2lilNqfERwJ+WxsKlgHg==,type:str]
+        gethomepage.dev/widget.type: ENC[AES256_GCM,data:9uTHxJEpwlo=,iv:4ui3Tvceqh7nMI2GGicLivIBC68/LIQf6qzU08OU6bc=,tag:lzRoQrjo8cAkRoEKIPuQ9Q==,type:str]
+        gethomepage.dev/widget.url: ENC[AES256_GCM,data:LEWSJnIhuQlO1iNhrCLLBCQF0tCUIFgK9AHfVQqz8ddL,iv:9YsaL0SIQj+SwoLineXwoILbOVlz1rsd4cWWYKfylzA=,tag:6Tsqoyo6wA87/Eii3hp5RQ==,type:str]
+        gethomepage.dev/widget.username: ENC[AES256_GCM,data:XOeqtEgO,iv:gmqgiGpdq7xVkJBH2G29JLzi/HDAZE1Dbp02JxgUCh0=,tag:B4ON7P0F6+O0nudxeKa94w==,type:str]
+        gethomepage.dev/widget.password: ENC[AES256_GCM,data:FrKUfVaS3OoVRc8DKQhTIPqL+w==,iv:93EdydxNQ6pkHiSEsOFvGVpaTEyR74Ny2xHIgxOOedQ=,tag:ItZLiuRYB/nxahsjOwBbnA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtYlZzMVE5UW9TZUsxUHB0
+            Y0RxbWl5RGd5SXFJa1o5VlJqdk5HMmRIQVNBCm12cEpnNlBZODRQeWpKRThvUUZa
+            N3puOVJ4LzhQYUNFand1Z3F5RWhSOWcKLS0tIFJBN0hzVVdxa2JhZGYzQ2UrcDl0
+            bHRYMkdjeEJNVzRFOVNEclJOY1llNkUKmlouU8bGuGzIWad/XYi+FBztRwFlHza8
+            Rmqpv8yrGpZzTtc4smOb7wrg5GjhuBocmzcogGhA+PMh4Fj+dFak+w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-03-26T13:56:38Z"
+    mac: ENC[AES256_GCM,data:VwOWHAJvueg38jkWM4wHxvBLeAOS1erfHZFZJTnwnVBIuEfPbNZnd6o6BPt58D0G8lBqKGRU1QENW2Hble2GFcmJ4WAn6OZ6t+e74vkrAmVmziJJ0EzqApdnWKW1snj4O0hAcgxapwO8bTAePFD+XF968NH2sUAMjGtBzX148KU=,iv:AJ1P25Dce2O64dTJ9kuBzN2IYXceOyAn1hUDQAAe39o=,tag:LgzMvXCEg44QE6m61uMhLg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|annotations|)$
+    version: 3.8.1

@@ -1,0 +1,25 @@
+kube-titan ansible_host=192.168.4.2
+kube-discovery ansible_host=192.168.4.3
+kube-voyager ansible_host=192.168.4.4
+
+[master]
+kube-titan
+
+[workers]
+kube-titan
+kube-discovery
+kube-voyager
+
+[extra]
+# 192.168.1.213
+# 192.168.1.48
+# 192.168.1.113
+
+# This group has all the servers
+[all:children]
+master
+workers
+
+#Variables for all the servers
+[all:vars]
+ansible_user=root

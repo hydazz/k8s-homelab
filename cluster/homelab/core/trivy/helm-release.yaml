@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: trivy-operator
+    namespace: trivy-system
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: trivy-operator
+            version: 0.24.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: aqua
+                namespace: flux-system
+    values:
+      podAnnotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      trivy:
+        ignoreUnfixed: true
+      # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
+      # Targeting only my specific apps
+      targetNamespaces: "website,go-ddns-controller"

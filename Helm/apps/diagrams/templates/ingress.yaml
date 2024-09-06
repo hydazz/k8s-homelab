@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: diagrams
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Make diagrams in your browser
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: draw
+        gethomepage.dev/name: Diagrams
+spec:
+    ingressClassName: nginx
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: diagrams.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: diagrams
+                                port:
+                                    number: {{ .Values.diagrams.port }}

@@ -1,0 +1,21 @@
+---
+wallabag:
+    image: wallabag/wallabag:2.6.9
+    replicas: 1
+    port: 80
+    domainName: https://wallabag.stefangenov.site
+    resources:
+        requests:
+            cpu: 100m
+            memory: 500Mi
+
+postgres:
+    image: postgres:16.4
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
+storage:
+    postgresqlSize: 5Gi
