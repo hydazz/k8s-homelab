@@ -10,3 +10,4 @@ temp
 *.tfstate.backup
 .terraform
 docker-data
+private-*.yaml
