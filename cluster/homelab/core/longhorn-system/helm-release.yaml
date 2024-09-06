@@ -19,24 +19,9 @@ spec:
                 namespace: flux-system
     values:
         enablePSP: false
-        ingress:
-            enabled: true
-            host: longhorn.stefangenov.site
-            ingressClassName: nginx
-            tls: true
-            tlsSecret: ingress
-            annotations:
-                gethomepage.dev/enabled: "true"
-                gethomepage.dev/description: Block Storage For Kubernetes
-                gethomepage.dev/group: Storage
-                gethomepage.dev/icon: longhorn
-                gethomepage.dev/name: Longhorn
-                # type of authentication
-                nginx.ingress.kubernetes.io/auth-type: basic
-                # name of the secret that contains the user/password definitions
-                nginx.ingress.kubernetes.io/auth-secret: basic-auth
-                # message to display with an appropriate context why the authentication is required
-                nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - sgenov'
+        service:
+            ui:
+              type: LoadBalancer
         longhornManager:
             tolerations: 
               - key: "CriticalAddonsOnly"
