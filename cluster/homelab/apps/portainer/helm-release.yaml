@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: portainer
-      version: 2.20.3
+      version: 1.0.52
       sourceRef:
         kind: HelmRepository
         name: portainer-repo
@@ -30,3 +30,5 @@ spec:
         - secretName: portainer-tls
           hosts:
             - portainer.k3s.hyde.services
+    image:
+      tag: '2.20.3'
