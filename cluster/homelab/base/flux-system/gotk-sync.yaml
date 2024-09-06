@@ -8,10 +8,10 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: master
+    branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/Michaelpalacce/HomeLab
+  url: ssh://git@github.com/hydazz/k3s-homelab
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
