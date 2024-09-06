@@ -10,7 +10,7 @@
   ],
   "platform": "github",
   "username": "Renovate-Homelab[bot]",
-  "repositories": ["Michaelpalacce/HomeLab"],
+  "repositories": ["hydazz/k3s-homelab"],
   "enabled": true,
   "onboarding": false,
   "semanticCommits": "enabled",
