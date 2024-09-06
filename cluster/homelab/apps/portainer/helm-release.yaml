@@ -17,18 +17,11 @@ spec:
         name: portainer-repo
         namespace: flux-system
   values:
-    persistence:
-      enabled: true
-    ingress:
-      enabled: true
-      hosts:
-        - host: portainer.k3s.hyde.services
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: letsencrypt
-      tls:
-        - secretName: portainer-tls
-          hosts:
-            - portainer.k3s.hyde.services
+    service:
+      type: LoadBalancer
+    tls:
+      force: true
     image:
       tag: '2.20.3'
+    ingress:
+      enabled: false
