@@ -61,7 +61,7 @@ readarr:
             memory: 500Mi
 
 overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2
+    image: lscr.io/linuxserver/overseerr:2021.12.12
     port: 5055
     replicas: 1
     resources:
