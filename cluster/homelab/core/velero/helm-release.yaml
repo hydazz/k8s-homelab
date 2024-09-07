@@ -49,7 +49,7 @@ spec:
           default: true
           bucket: b2backup-k3s
           config:
-            region: eu-central-2
+            region: us-east-005
             s3ForcePathStyle: true
             s3Url: https://s3.us-east-005.backblazeb2.com
             checksumAlgorithm: ""
