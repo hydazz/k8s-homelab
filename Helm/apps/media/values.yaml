@@ -1,16 +1,15 @@
 ---
 storage:
     transmission:
-        config: 128Mb
-        downloads: 200Gi
+        config: 128Mi
     overseer:
-        config: 128Mb
+        config: 128Mi
     radarr:
         config: 2Gi
     sonarr:
         config: 1Gi
     prowlarr:
-        config: 256Mb
+        config: 256Mi
 
 flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
