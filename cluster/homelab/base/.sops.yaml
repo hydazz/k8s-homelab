@@ -2,20 +2,19 @@ creation_rules:
     # Secrets
   - path_regex: .*/*secret.sops.yaml
     encrypted_regex: ^(data|stringData|annotations|)$
-    pgp: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+    age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
 
     # Config Maps
   - path_regex: .*/*config.sops.yaml
     encrypted_regex: ^(data|stringData|annotations|)$
-    pgp: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+    age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
 
     # Ingress Hosts
   - path_regex: .*/*ingress.sops.yaml
     encrypted_regex: ^(rules|annotations|)$
-    pgp: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+    age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
 
     # helm-release
   - path_regex: .*/*helm-release.sops.yaml
     encrypted_regex: ^(values)$
-    pgp: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
-
+    age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
