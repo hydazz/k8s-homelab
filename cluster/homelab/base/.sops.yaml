@@ -1,5 +1,5 @@
 creation_rules:
-    # Secrets
+  # Secrets
   - path_regex: .*/*secret.sops.yaml
     encrypted_regex: ^(data|stringData|annotations|)$
     age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
@@ -17,4 +17,8 @@ creation_rules:
     # helm-release
   - path_regex: .*/*helm-release.sops.yaml
     encrypted_regex: ^(values)$
+    age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+
+  - path_regex: .*/*basic-auth.sops.yaml
+    encrypted_regex: ^(data|stringData|annotations|)$
     age: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
