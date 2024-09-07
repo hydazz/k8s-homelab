@@ -69,7 +69,7 @@ spec:
                     nfs:
                         path: "/mnt/Slow/Media"
                         server: "10.0.3.7"
-
+---
 apiVersion: v1
 kind: Service
 metadata:
