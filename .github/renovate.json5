@@ -74,17 +74,6 @@
       "datasourceTemplate": "helm"
     }
   ],
-  "customManagers": [
-    // regexManager to handle portainer image tag 
-    {
-      "fileMatch": ["^cluster/homelab/apps/portainer/helm-release.yaml$"],
-      "matchStrings": [
-        "image:\n *tag: '(?<currentValue>.+?)'\n"
-      ],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "portainer/portainer-ce"
-    },
-  ],
   "packageRules": [
     // setup datasources
     {

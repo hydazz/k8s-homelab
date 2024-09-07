@@ -17,6 +17,9 @@ spec:
         name: portainer-repo
         namespace: flux-system
   values:
+    image:
+      repository: portainer/portainer-ce
+      tag: 2.21.0
     service:
       type: ClusterIP
     tls:
@@ -35,5 +38,3 @@ spec:
         - hosts:
             - portainer.k3s.hyde.services
           secretName: ingress
-    image:
-      tag: '2.21.0'
