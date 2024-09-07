@@ -1,0 +1,72 @@
+---
+{{- with .Values.flaresolverr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaresolverr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: flaresolverr
+    app.kubernetes.io/name: flaresolverr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: flaresolverr
+      app.kubernetes.io/name: flaresolverr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: flaresolverr
+        app.kubernetes.io/name: flaresolverr
+    spec:
+      containers:
+        - name: flaresolverr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+          env:
+            - name: LOG_LEVEL
+              value: INFO
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          livenessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            httpGet:
+              path: /
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 5
+            timeoutSeconds: 2
+            httpGet:
+              path: /
+              port: {{ .port }}
+
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaresolverr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: flaresolverr
+    app.kubernetes.io/name: flaresolverr
+  ports:
+    - name: flaresolverr
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}

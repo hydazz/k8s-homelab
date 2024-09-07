@@ -1,0 +1,88 @@
+---
+{{- with .Values.lidarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: lidarr
+    app.kubernetes.io/name: lidarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: lidarr
+      app.kubernetes.io/name: lidarr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      labels:
+        app.kubernetes.io/instance: lidarr
+        app.kubernetes.io/name: lidarr
+    spec:
+      containers:
+        - name: lidarr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: nfs-media-data
+              mountPath: /data
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+      restartPolicy: Always
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: lidarr-config-pvc
+        - name: nfs-media-data
+          nfs:
+            path: "/mnt/Slow/Media"
+            server: "10.0.3.7"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lidarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: lidarr
+    app.kubernetes.io/name: lidarr
+  ports:
+    - name: lidarr
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}

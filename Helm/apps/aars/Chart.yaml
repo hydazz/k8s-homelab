@@ -3,8 +3,8 @@ apiVersion: v2
 appVersion: 1.0.0
 description: This chart is used to install different media services
 maintainers:
-    - email: sgenov94@gmail.com
-      name: Stefan Genov
-name: media
+    - email: alexanderhyde@icloud.com
+      name: Alex Hyde
+name: aars
 type: application
 version: 6.0.0

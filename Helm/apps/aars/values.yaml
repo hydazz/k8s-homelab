@@ -1,0 +1,37 @@
+---
+storage:
+  radarr:
+    config: 2Gi
+  sonarr:
+    config: 1Gi
+  prowlarr:
+    config: 256Mi
+
+flaresolverr:
+  image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+  port: 8191
+
+prowlarr:
+  replicas: 1
+  image: ghcr.io/linuxserver/prowlarr:1.23.1
+  port: 9696
+
+radarr:
+  image: ghcr.io/linuxserver/radarr:5.9.1
+  port: 7878
+
+sonarr:
+  image: ghcr.io/linuxserver/sonarr:4.0.9
+  port: 8989
+
+bazarr:
+  image: ghcr.io/linuxserver/bazarr:1.4.3
+  port: 6767
+
+lidarr:
+  image: ghcr.io/linuxserver/lidarr:2.5.3
+  port: 8686
+
+whisparr:
+  image: ghcr.io/imagegenius/whisparr:nightly
+  port: 6969

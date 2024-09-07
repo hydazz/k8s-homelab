@@ -1,0 +1,90 @@
+---
+{{- with .Values.whisparr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisparr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: whisparr
+    app.kubernetes.io/name: whisparr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: whisparr
+      app.kubernetes.io/name: whisparr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      labels:
+        app.kubernetes.io/instance: whisparr
+        app.kubernetes.io/name: whisparr
+    spec:
+      containers:
+        - name: whisparr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: nfs-media-data
+              mountPath: /data
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+      imagePullSecrets:
+        - name: ghcr-credentials
+      restartPolicy: Always
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: whisparr-config-pvc
+        - name: nfs-media-data
+          nfs:
+            path: "/mnt/Slow/Media"
+            server: "10.0.3.7"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisparr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: whisparr
+    app.kubernetes.io/name: whisparr
+  ports:
+    - name: whisparr
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}
