@@ -8,11 +8,7 @@
 	":separatePatchReleases",
 	"docker:enableMajor"
   ],
-  "platform": "github",
-  "username": "Renovate-Homelab[bot]",
-  "repositories": ["hydazz/k3s-homelab"],
   "enabled": true,
-  "onboarding": false,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
@@ -77,6 +73,17 @@
       ],
       "datasourceTemplate": "helm"
     }
+  ],
+  "customManagers": [
+    // regexManager to handle portainer image tag 
+    {
+      "fileMatch": ["^cluster/homelab/apps/portainer/helm-release.yaml$"],
+      "matchStrings": [
+        "image:\n *tag: '(?<currentValue>.+?)'\n"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "portainer/portainer"
+    },
   ],
   "packageRules": [
     // setup datasources
