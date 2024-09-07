@@ -6,6 +6,10 @@ storage:
     config: 1Gi
   prowlarr:
     config: 256Mi
+  whisparr:
+    config: 256Mi
+  lidarr:
+    config: 256Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21

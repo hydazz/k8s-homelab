@@ -91,3 +91,49 @@ spec:
                 name: radarr
                 port:
                   number: {{ .Values.radarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lidarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: ingress
+  rules:
+    - host: lidarr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: lidarr
+                port:
+                  number: {{ .Values.lidarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whisparr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: ingress
+  rules:
+    - host: whisparr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: whisparr
+                port:
+                  number: {{ .Values.whisparr.port }}
