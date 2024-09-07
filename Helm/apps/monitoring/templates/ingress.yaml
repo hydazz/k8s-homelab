@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: grafana.stefangenov.site
+        -   host: grafana.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -40,15 +40,15 @@ metadata:
         gethomepage.dev/icon: prometheus
         gethomepage.dev/name: Prometheus
         gethomepage.dev/widget.type: prometheus
-        gethomepage.dev/widget.url: https://prometheus.stefangenov.site
+        gethomepage.dev/widget.url: https://prometheus.k3s.hyde.services
 spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: prometheus.stefangenov.site
+        -   host: prometheus.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -68,10 +68,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: loki.stefangenov.site
+        -   host: loki.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix

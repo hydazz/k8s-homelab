@@ -19,9 +19,16 @@ spec:
                 namespace: flux-system
     values:
         enablePSP: false
-        service:
-            ui:
-              type: LoadBalancer
+        ingress:
+            enabled: true
+            host: longhorn.k3s.hyde.services
+            ingressClassName: nginx
+            tls: true
+            tlsSecret: ingress
+            annotations:
+                nginx.ingress.kubernetes.io/auth-type: basic
+                nginx.ingress.kubernetes.io/auth-secret: basic-auth
+                nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
         longhornManager:
             tolerations: 
               - key: "CriticalAddonsOnly"

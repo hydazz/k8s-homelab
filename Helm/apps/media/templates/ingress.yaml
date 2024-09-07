@@ -8,10 +8,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: flaresolverr.stefangenov.site
+        -   host: flaresolverr.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -31,10 +31,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: sonarr.stefangenov.site
+        -   host: sonarr.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -54,10 +54,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: prowlarr.stefangenov.site
+        -   host: prowlarr.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -78,10 +78,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: radarr.stefangenov.site
+        -   host: radarr.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -102,10 +102,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: overseerr.stefangenov.site
+        -   host: overseerr.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix
@@ -126,10 +126,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.k3s.hyde.services"
             secretName: ingress
     rules:
-        -   host: transmission.stefangenov.site
+        -   host: transmission.k3s.hyde.services
             http:
                 paths:
                     -   pathType: Prefix

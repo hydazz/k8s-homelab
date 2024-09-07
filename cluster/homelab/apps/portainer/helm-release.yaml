@@ -18,10 +18,22 @@ spec:
         namespace: flux-system
   values:
     service:
-      type: LoadBalancer
+      type: ClusterIP
     tls:
       force: true
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      hosts:
+        - host: portainer.k3s.hyde.services
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - hosts:
+            - portainer.k3s.hyde.services
+          secretName: ingress
     image:
       tag: '2.21.0'
-    ingress:
-      enabled: false

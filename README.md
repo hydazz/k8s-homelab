@@ -28,7 +28,7 @@ Image updates are done via Renovate Bot :robot:. Renovate bot does periodic scan
 
 # Accessing services ( ingress-nginx, cert-manager )
 Apps are currently exposed by ingress-nginx and have SSL certificates provided by cert-manager.
-A wildcard certificate is issued for my domain `*.stefangenov.site` and when the secret is created
+A wildcard certificate is issued for my domain `*.k3s.hyde.services` and when the secret is created
 it is replicated in all namespace as `ingress` to be consumed by the ingress resources. This replication is
 needed because `Let's encrypt` rate limits certificate requests. 
 
@@ -79,7 +79,7 @@ spec:
     values:
         ingress:
             enabled: true
-            host: longhorn.stefangenov.site
+            host: longhorn.k3s.hyde.services
             ingressClassName: nginx
             tls: true
             tlsSecret: ingress
@@ -97,7 +97,7 @@ This would be the same as:
     ~~~yaml
     ingress:
         enabled: true
-        host: longhorn.stefangenov.site
+        host: longhorn.k3s.hyde.services
         ingressClassName: nginx
         tls: true
         tlsSecret: ingress
