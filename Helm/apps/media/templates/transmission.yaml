@@ -40,9 +40,9 @@ spec:
                         -   name: PASS
                             value: {{ .password }}
                         -   name: PUID
-                            value: "1000"
+                            value: "1001"
                         -   name: GUID
-                            value: "1000"
+                            value: "1001"
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
@@ -55,8 +55,8 @@ spec:
                     volumeMounts:
                         -   name: transmission-data
                             mountPath: /config
-                        -   name: downloads-data
-                            mountPath: /downloads
+                        -   name: nfs-media-data
+                            mountPath: /data
                     livenessProbe:
                         failureThreshold: 5
                         initialDelaySeconds: 30
@@ -74,10 +74,10 @@ spec:
                 -   name: transmission-data
                     persistentVolumeClaim:
                         claimName: transmission-config-pvc
-                -   name: downloads-data
+                -   name: nfs-media-data
                     nfs:
-                        path: "/volume1/k3s/media/downloads"
-                        server: "192.168.1.39"
+                        path: "/mnt/Slow/Media"
+                        server: "10.0.3.7"
 
 ---
 

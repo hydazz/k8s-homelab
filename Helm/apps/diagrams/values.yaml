@@ -1,8 +1,0 @@
----
-diagrams:
-    image: jgraph/drawio:24.7.8
-    port: 8080
-    resources:
-        requests:
-            cpu: 10m
-            memory: 10Mi
