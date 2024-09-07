@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: velero
+      version: 7.1.5
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: flux-system
+  values:
+    image:
+      repository: velero/velero
+      tag: v1.14.1
+    upgradeCRDs: true
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.10.1
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    metrics:
+      enabled: true
+      scrapeInterval: 120s
+      scrapeTimeout: 30s
+    deployNodeAgent: true
+    credentials:
+      existingSecret: cloud-credentials-b2
+    configuration:
+      backupStorageLocation:
+        - name: default
+          provider: aws
+          default: true
+          bucket: b2backup-k3s
+          config:
+            region: eu-central-2
+            s3ForcePathStyle: true
+            s3Url: https://s3.us-east-005.backblazeb2.com
+            checksumAlgorithm: ""
+
+        - name: backblaze
+          provider: aws
+          default: false
+          bucket: b2backup-k3s
+          config:
+            region: us-east-005
+            s3ForcePathStyle: true
+            s3Url: https://s3.us-east-005.backblazeb2.com
+            checksumAlgorithm: ""
+      volumeSnapshotLocation:
+        - name: backblaze
+          provider: aws
+          config:
+            region: us-east-005

@@ -18,7 +18,5 @@ resources:
   - lwolf-charts
   - descheduler
   - gabe565
-  - searxng
-  - go-ddns-controller
   - metallb
   - portainer

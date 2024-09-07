@@ -10,3 +10,4 @@ resources:
     - kube-cleanup-operator
     - descheduler
     - metallb
+    - velero
