@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
-  - ../../registry-credentials
+  - ghcr-secret.sops.yaml

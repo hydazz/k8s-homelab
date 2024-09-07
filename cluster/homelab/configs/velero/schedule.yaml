@@ -8,7 +8,7 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - media
+          - aars
           - portainer
         snapshotVolumes: true
         ttl: 2190h0m0s
