@@ -5,3 +5,4 @@ resources:
   - cert-manager
   - portainer
   - media
+  - homepage
