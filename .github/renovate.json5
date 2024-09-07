@@ -82,7 +82,7 @@
         "image:\n *tag: '(?<currentValue>.+?)'\n"
       ],
       "datasourceTemplate": "docker",
-      "depNameTemplate": "portainer/portainer"
+      "depNameTemplate": "portainer/portainer-ce"
     },
   ],
   "packageRules": [
