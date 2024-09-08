@@ -5,4 +5,3 @@ resources:
   - helm-release.yaml
   - namespace.yaml
   - limit-egress.yaml
-  - secret.sops.yaml

@@ -39,7 +39,7 @@ spec:
               value: "1001"
             - name: VERSION
               value: "latest"
-            - name: PLEX_CLAIM
+            - name: PLEX_CLAIM # only needed on initial startup
               valueFrom:
                 secretKeyRef:
                   name: plex-claim-secret

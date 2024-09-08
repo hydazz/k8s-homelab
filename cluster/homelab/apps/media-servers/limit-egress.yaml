@@ -10,19 +10,17 @@ spec:
   policyTypes:
     - Egress
   egress:
-    # Allow DNS egress
     - to:
         - ipBlock:
-            cidr: 0.0.0.0/0 # Allow DNS everywhere
+            cidr: 0.0.0.0/0
       ports:
         - protocol: UDP
           port: 53
         - protocol: TCP
           port: 53
-    # Allow egress to HTTP and HTTPS everywhere
     - to:
         - ipBlock:
-            cidr: 0.0.0.0/0 # Allow HTTP/HTTPS egress everywhere
+            cidr: 0.0.0.0/0
       ports:
         - protocol: TCP
           port: 80
