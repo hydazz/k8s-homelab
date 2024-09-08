@@ -1,8 +1,8 @@
 ---
 storage:
   plex:
-    config: 2Gi
-    transcode: 2Gi
+    config: 8Gi
+    transcode: 8Gi
 
 plex:
   image: ghcr.io/linuxserver/plex

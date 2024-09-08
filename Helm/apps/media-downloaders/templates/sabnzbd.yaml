@@ -1,32 +1,32 @@
 ---
-{{- with .Values.plex }}
+{{- with .Values.sabnzbd }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: plex
+  name: sabnzbd
   namespace: {{ $.Release.Namespace }}
   labels:
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/name: plex
+    app.kubernetes.io/instance: sabnzbd
+    app.kubernetes.io/name: sabnzbd
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: plex
-      app.kubernetes.io/name: plex
+      app.kubernetes.io/instance: sabnzbd
+      app.kubernetes.io/name: sabnzbd
   template:
     metadata:
       annotations:
         backup.velero.io/backup-volumes: config
       labels:
-        app.kubernetes.io/instance: plex
-        app.kubernetes.io/name: plex
+        app.kubernetes.io/instance: sabnzbd
+        app.kubernetes.io/name: sabnzbd
     spec:
       containers:
-        - name: plex
+        - name: sabnzbd
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
           securityContext:
@@ -37,47 +37,34 @@ spec:
               value: "1001"
             - name: GUID
               value: "1001"
-            - name: NVIDIA_VISIBLE_DEVICES
-              value: "all"
-            - name: NVIDIA_DRIVER_CAPABILITIES
-              value: "video,compute,utility"
 {{- if .resources }}
           resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
           ports:
             - name: web
-              containerPort: {{ .ports.ingress.port }}
+              containerPort: {{ .port }}
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: transcode
-              mountPath: /transcode
             - name: nfs-media-data
-              mountPath: /media
+              mountPath: /data
           livenessProbe:
             failureThreshold: 5
             initialDelaySeconds: 30
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .ports.ingress.port }}
+              port: {{ .port }}
           startupProbe:
             failureThreshold: 10
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .ports.ingress.port }}
+              port: {{ .port }}
       restartPolicy: Always
-      nodeSelector:
-{{- if .force_gpu_node }}
-        nvidia.com/gpu.present: "true"
-{{- end }}
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: plex-config-pvc
-        - name: transcode
-          persistentVolumeClaim:
-            claimName: plex-transcode-pvc
+            claimName: sabnzbd-config-pvc
         - name: nfs-media-data
           nfs:
             path: "/mnt/Slow/Media"
@@ -87,36 +74,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: plex
+  name: sabnzbd
   namespace: {{ $.Release.Namespace }}
 spec:
-  type: ClusterIP
   selector:
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/name: plex
+    app.kubernetes.io/instance: sabnzbd
+    app.kubernetes.io/name: sabnzbd
   ports:
-    - name: web
+    - name: sabnzbd
       protocol: TCP
-      port: {{ .ports.ingress.port }}
-      targetPort: {{ .ports.ingress.port }}
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: plex-loadbalancer
-  namespace: {{ $.Release.Namespace }}
-spec:
-  type: LoadBalancer
-  selector:
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/name: plex
-  ports:
-{{- range .ports.loadbalancer }}
-    - name: {{ .name }}
       port: {{ .port }}
-      protocol: {{ .protocol }}
-      targetPort: {{ .port }}
-{{- end }}
+
 {{- end }}

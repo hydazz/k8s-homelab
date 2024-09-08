@@ -1,0 +1,18 @@
+---
+storage:
+  qbittorrent:
+    config: 32Mi
+  sabnzbd:
+    config: 64Mi
+
+qbittorrent:
+  image: ghcr.io/linuxserver/qbittorrent
+  port: 8089
+  nodeSelector:
+    kubernetes.io/hostname: "kube-discovery"
+  # kube-discovery has wireguard running: - traffic is routed via iptables
+  # - setup instructions
+
+sabnzbd:
+  image: ghcr.io/linuxserver/sabnzbd
+  port: 9831
