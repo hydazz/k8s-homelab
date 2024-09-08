@@ -2,8 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: homepage
-  namespace: homepage
+  name: plex
+  namespace: {{ $.Release.Namespace }}
 spec:
   ingressClassName: nginx
   tls:
@@ -11,13 +11,13 @@ spec:
         - "*.k3s.hyde.services"
       secretName: ingress
   rules:
-    - host: homepage.k3s.hyde.services
+    - host: plex.k3s.hyde.services
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: homepage
+                name: plex
                 port:
-                  number: 3000
+                  number: {{ .Values.plex.ports.ingress.port }}

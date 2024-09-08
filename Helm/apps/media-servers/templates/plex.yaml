@@ -1,0 +1,122 @@
+---
+{{- with .Values.plex }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: plex
+    app.kubernetes.io/name: plex
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: plex
+      app.kubernetes.io/name: plex
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      labels:
+        app.kubernetes.io/instance: plex
+        app.kubernetes.io/name: plex
+    spec:
+      containers:
+        - name: plex
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "video,compute,utility"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .ports.ingress.port }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: transcode
+              mountPath: /transcode
+            - name: nfs-media-data
+              mountPath: /data
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .ports.ingress.port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .ports.ingress.port }}
+      restartPolicy: Always
+      nodeSelector:
+{{- if .force_gpu_node }}
+        nvidia.com/gpu.present: "true"
+{{- end }}
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-config-pvc
+        - name: transcode
+          persistentVolumeClaim:
+            claimName: plex-transcode-pvc
+        - name: nfs-media-data
+          nfs:
+            path: "/mnt/Slow/Media"
+            server: "10.0.3.7"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: {{ $.Release.Namespace }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: plex
+    app.kubernetes.io/name: plex
+  ports:
+    - name: web
+      protocol: TCP
+      port: {{ .ports.ingress.port }}
+      targetPort: {{ .ports.ingress.port }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-loadbalancer
+  namespace: {{ $.Release.Namespace }}
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/instance: plex
+    app.kubernetes.io/name: plex
+  ports:
+{{- range .ports.loadbalancer }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      protocol: {{ .protocol }}
+      targetPort: {{ .port }}
+{{- end }}
+{{- end }}

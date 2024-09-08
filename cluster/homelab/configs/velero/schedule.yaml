@@ -8,7 +8,8 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - aars
+          - media-managers
+          - media-servers
         # - portainer velero wont backup its pvc for whatever reason
           - monitoring
         snapshotVolumes: true

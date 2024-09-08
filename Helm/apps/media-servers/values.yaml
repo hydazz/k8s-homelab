@@ -1,0 +1,37 @@
+---
+storage:
+  plex:
+    config: 2Gi
+    transcode: 2Gi
+
+plex:
+  image: ghcr.io/linuxserver/plex
+  ports:
+    ingress:
+      port: 32400 # TCP (required for Plex WebUI)
+    loadbalancer:
+      - name: dlna-udp
+        port: 1900
+        protocol: UDP # Access to the Plex DLNA Server
+      - name: bonjour-udp
+        port: 5353
+        protocol: UDP # Bonjour/Avahi network discovery
+      - name: roku-tcp
+        port: 8324
+        protocol: TCP # Controlling Plex for Roku via Plex Companion
+      - name: gdm-udp
+        port: 32410
+        protocol: UDP # GDM network discovery
+      - name: gdm-udp-2
+        port: 32412
+        protocol: UDP # GDM network discovery
+      - name: gdm-udp-3
+        port: 32413
+        protocol: UDP # GDM network discovery
+      - name: gdm-udp-4
+        port: 32414
+        protocol: UDP # GDM network discovery
+      - name: dlna-tcp
+        port: 32469
+        protocol: TCP # Access to the Plex DLNA Server
+  force_gpu_node: false # force plex to deploy on a node with a GPU

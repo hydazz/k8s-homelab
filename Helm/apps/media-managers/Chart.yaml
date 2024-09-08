@@ -1,10 +1,10 @@
 ---
 apiVersion: v2
 appVersion: 1.0.0
-description: This chart is used to install different media services
+description: This chart is used to install different media services and utilities
 maintainers:
     - email: alexanderhyde@icloud.com
       name: Alex Hyde
-name: aars
+name: media-managers
 type: application
-version: 6.0.0
+version: 6.0.1
