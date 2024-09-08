@@ -40,5 +40,3 @@ spec:
           secretName: ingress
     persistence:
       size: 128Mi
-    podAnnotations: 
-      backup.velero.io/backup-volumes: portainer
