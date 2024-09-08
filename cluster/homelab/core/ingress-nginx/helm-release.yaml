@@ -37,5 +37,8 @@ spec:
         use-forwarded-headers: "true"
         real-ip-header: "X-Forwarded-For"
         set-real-ip-from: "0.0.0.0/0"
+        proxy-set-headers: |
+          X-Real-IP $remote_addr;
+          X-Forwarded-For $proxy_add_x_forwarded_for;
       service:
         externalTrafficPolicy: Local
