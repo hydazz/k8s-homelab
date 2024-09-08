@@ -6,8 +6,6 @@ storage:
     config: 1Gi
   prowlarr:
     config: 256Mi
-  whisparr:
-    config: 256Mi
   lidarr:
     config: 256Mi
 
@@ -35,7 +33,3 @@ bazarr:
 lidarr:
   image: ghcr.io/linuxserver/lidarr:2.5.3
   port: 8686
-
-whisparr:
-  image: ghcr.io/imagegenius/whisparr:nightly
-  port: 6969

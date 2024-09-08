@@ -114,26 +114,3 @@ spec:
                 name: lidarr
                 port:
                   number: {{ .Values.lidarr.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: whisparr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - "*.k3s.hyde.services"
-      secretName: ingress
-  rules:
-    - host: whisparr.k3s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: whisparr
-                port:
-                  number: {{ .Values.whisparr.port }}
