@@ -4,12 +4,13 @@ metadata:
     name: general
     namespace: velero
 spec:
-    schedule: '00 07 * * *'
+    schedule: '00 01 * * *'
     template:
         hooks: {}
         includedNamespaces:
           - aars
-          - portainer
+        # - portainer velero wont backup its pvc for whatever reason
+          - monitoring
         snapshotVolumes: true
-        ttl: 2190h0m0s
+        ttl: 744h0m0s # 31 days
     useOwnerReferencesInBackup: false
