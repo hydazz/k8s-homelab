@@ -4,12 +4,6 @@ kind: Ingress
 metadata:
     name: lubelogger
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Car Logger
-        gethomepage.dev/group: Personal
-        gethomepage.dev/icon: lubelogger
-        gethomepage.dev/name: LubeLogger
 spec:
     ingressClassName: nginx
     tls:

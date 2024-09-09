@@ -24,15 +24,23 @@ spec:
                 app.kubernetes.io/name: changedetection
         spec:
             containers:
-                - name: browserless
+                - name: playwright-chrome
                   image: {{ .playwright.image }}
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - name: browserless
+                      - name: playwright-chrome
                         containerPort: {{ .playwright.port }}
                   env:
-                      - name: DEFAULT_LAUNCH_ARGS
-                        value: "--window-size=1920.1080"
+                      - name: SCREEN_WIDTH
+                        value: "1920"
+                      - name: SCREEN_HEIGHT
+                        value: "1024"
+                      - name: SCREEN_DEPTH
+                        value: "16"
+                      - name: MAX_CONCURRENT_CHROME_PROCESSES
+                        value: "10"
+                      - name: STATS_REFRESH_SECONDS
+                        value: "120"
                   resources: 
                       limits:
                           memory: 2Gi
@@ -50,29 +58,6 @@ spec:
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .playwright.port }}
-                - name: selenium
-                  image: {{ .selenium.image }}
-                  imagePullPolicy: IfNotPresent
-                  ports:
-                      - name: selenium
-                        containerPort: {{ .selenium.port }}
-                  resources: 
-                      limits:
-                          memory: 2Gi
-                  volumeMounts:
-                      - name: shm-empty
-                        mountPath: /dev/shm
-                  livenessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      tcpSocket:
-                          port: {{ .selenium.port }}
-                      timeoutSeconds: 2
-                  startupProbe:
-                      failureThreshold: 20
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .selenium.port }}
                 - name: changedetection
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
@@ -85,18 +70,16 @@ spec:
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: data-config
-                        mountPath: /datastore
+                        mountPath: /config
                   env:
                       - name: PUID
                         value: "1000"
                       - name: PGID
                         value: "1000"
-                      - name: TZ
-                        value: "Europe/Sofia"
+                      - name: LC_ALL
+                        value: "en_US.UTF-8"
                       - name: BASE_URL
                         value: "{{ .baseUrl }}"
-                      - name: WEBDRIVER_URL
-                        value: "http://localhost:{{ .selenium.port }}/wd/hub"
                       - name: PLAYWRIGHT_DRIVER_URL
                         value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
                   livenessProbe:
@@ -116,9 +99,6 @@ spec:
                 - name: data-config
                   persistentVolumeClaim:
                       claimName: changedetection-pvc
-                - name: shm-empty
-                  emptyDir:
-                      medium: Memory
                 - name: shm-empty-playwright
                   emptyDir:
                       medium: Memory

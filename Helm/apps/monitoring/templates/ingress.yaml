@@ -4,12 +4,6 @@ kind: Ingress
 metadata:
     name: grafana
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Monitoring
-        gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: grafana
-        gethomepage.dev/name: Grafana
 spec:
     ingressClassName: nginx
     tls:
@@ -33,14 +27,6 @@ kind: Ingress
 metadata:
     name: prometheus
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Monitoring
-        gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: prometheus
-        gethomepage.dev/name: Prometheus
-        gethomepage.dev/widget.type: prometheus
-        gethomepage.dev/widget.url: https://prometheus.k3s.hyde.services
 spec:
     ingressClassName: nginx
     tls:

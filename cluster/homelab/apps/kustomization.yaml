@@ -9,3 +9,4 @@ resources:
   - monitoring
   - uptime-kuma
   - unifi-protect-backup
+  - changedetection

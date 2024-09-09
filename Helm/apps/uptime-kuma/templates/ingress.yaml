@@ -4,12 +4,6 @@ kind: Ingress
 metadata:
     name: uptime-kuma
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Uptime Monitor
-        gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: uptime-kuma
-        gethomepage.dev/name: Uptime Kuma
 spec:
     ingressClassName: nginx
     tls:
