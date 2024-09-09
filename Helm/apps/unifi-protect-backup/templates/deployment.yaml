@@ -1,5 +1,5 @@
 ---
-{{- with .Values.unifi-protect-backup }}
+{{ with .Values.unifi-protect-backup }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -54,21 +54,21 @@ spec:
             value: "192.168.3.1"
           - name: UFP_USERNAME
             valueFrom:
-            secretKeyRef:
-              name: unifi-protect-credentials
-              key: UFP_USERNAME
+              secretKeyRef:
+                name: unifi-protect-credentials
+                key: UFP_USERNAME
           - name: UFP_PASSWORD
             valueFrom:
-            secretKeyRef:
-              name: unifi-protect-credentials
-              key: UFP_PASSWORD
-{{- if .resources }}
+              secretKeyRef:
+                name: unifi-protect-credentials
+                key: UFP_PASSWORD
+{{ if .resources }}
           resources:
 {{ toYaml .resources | indent 22 }}
-{{- end }}
+{{ end }}
           volumeMounts:
             - name: config
-            mountPath: /config
+              mountPath: /config
 
       restartPolicy: Always
       volumes:
@@ -76,4 +76,4 @@ spec:
           persistentVolumeClaim:
             claimName: unifi-protect-backup-pvc
 
-{{- end }}
+{{ end }}

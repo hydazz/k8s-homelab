@@ -5,3 +5,5 @@ resources:
   - helm-release.yaml
   - namespace.yaml
   - limit-egress.yaml
+  - ghcr-secret.sops.yaml
+  - secret-super-sops.yaml
