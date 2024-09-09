@@ -24,11 +24,11 @@ spec:
                 app.kubernetes.io/name: changedetection
         spec:
             containers:
-                - name: playwright-chrome
+                - name: browserless
                   image: {{ .playwright.image }}
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - name: playwright-chrome
+                      - name: browserless
                         containerPort: {{ .playwright.port }}
                   env:
                       - name: SCREEN_WIDTH
