@@ -18,7 +18,7 @@ spec:
     template:
         metadata:
             annotations:
-              backup.velero.io/backup-volumes: data-config
+              backup.velero.io/backup-volumes: appdata
             labels:
                 app.kubernetes.io/instance: changedetection
                 app.kubernetes.io/name: changedetection
@@ -98,7 +98,7 @@ spec:
             volumes:
                 - name: data-config
                   persistentVolumeClaim:
-                      claimName: changedetection-pvc
+                      claimName: changedetection-appdata-pvc
                 - name: shm-empty-playwright
                   emptyDir:
                       medium: Memory

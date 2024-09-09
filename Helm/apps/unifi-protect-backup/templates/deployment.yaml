@@ -1,4 +1,3 @@
----
 {{ with .Values.unifi-protect-backup }}
 
 apiVersion: apps/v1
@@ -10,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: unifi-protect-backup
     app.kubernetes.io/name: unifi-protect-backup
 spec:
-  replicas: {{ .replicas }}
+  replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -20,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        backup.velero.io/backup-volumes: config
+        backup.velero.io/backup-volumes: appdata
       labels:
         app.kubernetes.io/instance: unifi-protect-backup
         app.kubernetes.io/name: unifi-protect-backup
@@ -30,50 +29,48 @@ spec:
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
           env:
-          - name: PUID
-            value: "1001"
-          - name: GUID
-            value: "1001"
-          - name: EXPERIMENTAL_DOWNLOADER
-            value: "true"
-          - name: PURGE_INTERVAL
-            value: "1h"
-          - name: FILE_STRUCTURE_FORMAT
-            value: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
-          - name: DETECTION_TYPES
-            value: "person,vehicle,ring"
-          - name: SKIP_MISSING
-            value: "false"
-          - name: RCLONE_RETENTION
-            value: "1d"
-          - name: RCLONE_DESTINATION
-            value: "cloudflare:/unifi-protect"
-          - name: UFP_SSL_VERIFY
-            value: "false"
-          - name: UFP_ADDRESS
-            value: "192.168.3.1"
-          - name: UFP_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: unifi-protect-credentials
-                key: UFP_USERNAME
-          - name: UFP_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: unifi-protect-credentials
-                key: UFP_PASSWORD
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+            - name: EXPERIMENTAL_DOWNLOADER
+              value: "true"
+            - name: PURGE_INTERVAL
+              value: "1h"
+            - name: FILE_STRUCTURE_FORMAT
+              value: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
+            - name: DETECTION_TYPES
+              value: "person,vehicle,ring"
+            - name: SKIP_MISSING
+              value: "false"
+            - name: RCLONE_RETENTION
+              value: "1d"
+            - name: RCLONE_DESTINATION
+              value: "cloudflare:/unifi-protect"
+            - name: UFP_SSL_VERIFY
+              value: "false"
+            - name: UFP_ADDRESS
+              value: "192.168.3.1"
+            - name: UFP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: unifi-protect-credentials
+                  key: UFP_USERNAME
+            - name: UFP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: unifi-protect-credentials
+                  key: UFP_PASSWORD
 {{ if .resources }}
           resources:
 {{ toYaml .resources | indent 22 }}
 {{ end }}
           volumeMounts:
-            - name: config
+            - name: appdata
               mountPath: /config
-
       restartPolicy: Always
       volumes:
-        - name: config
+        - name: appdata
           persistentVolumeClaim:
-            claimName: unifi-protect-backup-pvc
-
+            claimName: unifi-protect-backup-appdata-pvc
 {{ end }}

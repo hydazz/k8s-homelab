@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        backup.velero.io/backup-volumes: config
+        backup.velero.io/backup-volumes: appdata
       labels:
         app.kubernetes.io/instance: prowlarr
         app.kubernetes.io/name: prowlarr
@@ -44,7 +44,7 @@ spec:
             - name: web
               containerPort: {{ .port }}
           volumeMounts:
-            - name: config
+            - name: appdata
               mountPath: /config
           livenessProbe:
             failureThreshold: 10
@@ -59,9 +59,9 @@ spec:
               port: {{ .port }}
       restartPolicy: Always
       volumes:
-        - name: config
+        - name: appdata
           persistentVolumeClaim:
-            claimName: prowlarr-config-pvc
+            claimName: prowlarr-appdata-pvc
 
 ---
 

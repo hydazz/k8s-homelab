@@ -1,0 +1,116 @@
+---
+{{- with .Values.unifi-protect-backup }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx
+  labels:
+    app.kubernetes.io/name: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx
+    spec:
+      containers:
+        - name: gotenberg
+          image: {{ .Values.gotenberg.image }}
+          ports:
+            - containerPort: 3000
+          args:
+            - gotenberg
+            - --chromium-disable-javascript=true
+            - --chromium-allow-list=file:///tmp/.*
+
+        - name: tika
+          image: {{ .Values.tika.image }}
+          ports:
+            - containerPort: 9998
+
+        - name: paperless-ngx
+          image: {{ .Values.paperless-ngx.image }}
+          ports:
+            - containerPort: {{ .Values.paperless-ngx.port }}
+          env:
+            - name: PAPERLESS_TIKA_ENABLED
+              value: "1"
+            - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
+              value: "http://localhost:3000"
+            - name: PAPERLESS_TIKA_ENDPOINT
+              value: "http://localhost:9998"
+            - name: PAPERLESS_DBENGINE
+              value: "mariadb"
+            - name: PAPERLESS_DBHOST
+              value: "192.168.3.9"
+            - name: PAPERLESS_DBNAME
+              value: "paperless"
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBPASS
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_SECRET_KEY
+            - name: PAPERLESS_CONSUMER_POLLING
+              value: "60"
+            - name: PAPERLESS_CONSUMPTION_DIR
+              value: "/data/media/Import"
+            - name: PAPERLESS_DATA_DIR
+              value: "/config"
+            - name: PAPERLESS_MEDIA_ROOT
+              value: "/data/media/Documents"
+            - name: PAPERLESS_OCR_LANGUAGE
+              value: "eng"
+            - name: PAPERLESS_REDIS
+              value: "redis://localhost:6379"
+            - name: PAPERLESS_TIME_ZONE
+              value: "Australia/Melbourne"
+            - name: PAPERLESS_URL
+              value: "https://paperless.hyde.services"
+            - name: USERMAP_GID
+              value: "1001"
+            - name: USERMAP_UID
+              value: "1001"
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+            - name: nfs-paperless-data
+              mountPath: /data/media
+
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: paperless-ngx-appdata-pvc
+        - name: nfs-paperless-data
+          nfs:
+            server: "192.168.3.7"
+            path: "/mnt/nfs/Picard/Public/Paperless"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: paperless-ngx
+spec:
+  selector:
+    app: paperless-ngx
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: {{ .Values.paperless-ngx.port }}
+
+{{- end }}

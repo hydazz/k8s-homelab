@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        backup.velero.io/backup-volumes: config
+        backup.velero.io/backup-volumes: appdata
       labels:
         app.kubernetes.io/instance: sonarr
         app.kubernetes.io/name: sonarr
@@ -45,7 +45,7 @@ spec:
             - name: web
               containerPort: {{ .port }}
           volumeMounts:
-            - name: config
+            - name: appdata
               mountPath: /config
             - name: nfs-media-data
               mountPath: /data
@@ -62,9 +62,9 @@ spec:
               port: {{ .port }}
       restartPolicy: Always
       volumes:
-        - name: config
+        - name: appdata
           persistentVolumeClaim:
-            claimName: sonarr-config-pvc
+            claimName: sonarr-appdata-pvc
         - name: nfs-media-data
           nfs:
             path: "/mnt/Slow/Media"

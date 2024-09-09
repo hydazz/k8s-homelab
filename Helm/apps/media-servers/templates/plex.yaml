@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        backup.velero.io/backup-volumes: config
+        backup.velero.io/backup-volumes: appdata
       labels:
         app.kubernetes.io/instance: plex
         app.kubernetes.io/name: plex
@@ -47,7 +47,7 @@ spec:
             - name: web
               containerPort: {{ .ports.ingress.port }}
           volumeMounts:
-            - name: config
+            - name: appdata
               mountPath: /config
             - name: transcode
               mountPath: /transcode
@@ -70,9 +70,9 @@ spec:
         nvidia.com/gpu.present: "true"
 {{- end }}
       volumes:
-        - name: config
+        - name: appdata
           persistentVolumeClaim:
-            claimName: plex-config-pvc
+            claimName: plex-appdata-pvc
         - name: transcode
           persistentVolumeClaim:
             claimName: plex-transcode-pvc

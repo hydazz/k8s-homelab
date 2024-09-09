@@ -20,7 +20,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: app-data
+                backup.velero.io/backup-volumes: appdata
             labels:
                 app.kubernetes.io/instance: uptime-kuma
                 app.kubernetes.io/name: uptime-kuma
@@ -37,7 +37,7 @@ spec:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
-                      - name: app-data
+                      - name: appdata
                         mountPath: /app/data
                   livenessProbe:
                       failureThreshold: 5
@@ -51,9 +51,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                - name: app-data
+                - name: appdata
                   persistentVolumeClaim:
-                      claimName: uptime-kuma-pvc
+                      claimName: uptime-kuma-appdata-pvc
 
 ---
 
