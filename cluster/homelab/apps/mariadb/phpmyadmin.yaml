@@ -3,26 +3,47 @@ kind: Deployment
 metadata:
   name: phpmyadmin
   namespace: mariadb
+  labels:
+    app.kubernetes.io/instance: phpmyadmin
+    app.kubernetes.io/name: phpmyadmin
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: phpmyadmin
+      app.kubernetes.io/instance: phpmyadmin
+      app.kubernetes.io/name: phpmyadmin
   template:
     metadata:
       labels:
-        app: phpmyadmin
+        app.kubernetes.io/instance: phpmyadmin
+        app.kubernetes.io/name: phpmyadmin
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin/phpmyadmin
+          image: phpmyadmin/phpmyadmin:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
           env:
             - name: PMA_HOST
               value: mariadb
             - name: PMA_PORT
               value: "3306"
-          ports:
-            - containerPort: 80
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 80
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 80
+          restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
@@ -54,7 +75,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: /
             backend:
               service:
                 name: phpmyadmin
