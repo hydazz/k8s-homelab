@@ -3,10 +3,6 @@ uptimekuma:
     image: louislam/uptime-kuma:1.23.13-debian
     replicas: 1
     port: 3001
-    resources:
-        requests:
-            cpu: 10m
-            memory: 512Mi
 
 storage:
-    size: 10Gi
+    size: 1Gi

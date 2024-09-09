@@ -41,7 +41,7 @@ spec:
       scrapeTimeout: 30s
     deployNodeAgent: true
     credentials:
-      existingSecret: cloud-credentials-b2
+      existingSecret: cloud-credentials-minio
     configuration:
       backupStorageLocation:
         - name: default

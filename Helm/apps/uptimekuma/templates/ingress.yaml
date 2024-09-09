@@ -27,23 +27,3 @@ spec:
                             name: uptimekuma
                             port:
                                 number: {{ .Values.uptimekuma.port }}
-        - host: uptime.k3s.hyde.services
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: uptimekuma
-                            port:
-                                number: {{ .Values.uptimekuma.port }}
-        - host: uptimekuma.k3s.hyde.services
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: uptimekuma
-                            port:
-                                number: {{ .Values.uptimekuma.port }}
