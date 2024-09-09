@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: uptimekuma-pvc
+    name: unifi-protect-backup-pvc
 spec:
     accessModes:
         - ReadWriteOnce

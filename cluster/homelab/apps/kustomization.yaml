@@ -7,4 +7,5 @@ resources:
   - media-managers
   - media-servers
   - monitoring
-  - uptimekuma
+  - uptime-kuma
+  - unifi-protect-backup

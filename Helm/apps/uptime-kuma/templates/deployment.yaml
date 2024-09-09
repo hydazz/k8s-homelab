@@ -1,32 +1,32 @@
 ---
-{{- with .Values.uptimekuma }}
+{{- with .Values.uptime-kuma }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: uptimekuma
+    name: uptime-kuma
     namespace: {{ $.Release.Namespace }}
     labels:
-        app.kubernetes.io/instance: uptimekuma
-        app.kubernetes.io/name: uptimekuma
+        app.kubernetes.io/instance: uptime-kuma
+        app.kubernetes.io/name: uptime-kuma
 spec:
     replicas: {{ .replicas }}
     strategy:
       type: Recreate
     selector:
         matchLabels:
-            app.kubernetes.io/instance: uptimekuma
-            app.kubernetes.io/name: uptimekuma
+            app.kubernetes.io/instance: uptime-kuma
+            app.kubernetes.io/name: uptime-kuma
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: app-data
             labels:
-                app.kubernetes.io/instance: uptimekuma
-                app.kubernetes.io/name: uptimekuma
+                app.kubernetes.io/instance: uptime-kuma
+                app.kubernetes.io/name: uptime-kuma
         spec:
             containers:
-                - name: uptimekuma
+                - name: uptime-kuma
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
@@ -53,21 +53,21 @@ spec:
             volumes:
                 - name: app-data
                   persistentVolumeClaim:
-                      claimName: uptimekuma-pvc
+                      claimName: uptime-kuma-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: uptimekuma
+    name: uptime-kuma
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app.kubernetes.io/instance: uptimekuma
-        app.kubernetes.io/name: uptimekuma
+        app.kubernetes.io/instance: uptime-kuma
+        app.kubernetes.io/name: uptime-kuma
     ports:
-        - name: uptimekuma
+        - name: uptime-kuma
           protocol: TCP
           port: {{ .port }}
 

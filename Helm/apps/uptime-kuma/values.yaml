@@ -1,5 +1,5 @@
 ---
-uptimekuma:
+uptime-kuma:
     image: louislam/uptime-kuma:1.23.13-debian
     replicas: 1
     port: 3001
