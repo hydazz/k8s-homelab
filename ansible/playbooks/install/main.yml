@@ -52,6 +52,7 @@
           - open-iscsi
           - nfs-common
           - jq
+          - cryptsetup
 
 - hosts:
     - master

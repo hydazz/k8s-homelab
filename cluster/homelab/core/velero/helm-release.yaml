@@ -47,24 +47,24 @@ spec:
         - name: default
           provider: aws
           default: true
-          bucket: b2backup-k3s
+          bucket: k3s
           config:
-            region: us-east-005
+            region: minio
             s3ForcePathStyle: true
-            s3Url: https://s3.us-east-005.backblazeb2.com
+            s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
 
-        - name: backblaze
+        - name: minio
           provider: aws
           default: false
-          bucket: b2backup-k3s
+          bucket: k3s
           config:
-            region: us-east-005
+            region: minio
             s3ForcePathStyle: true
-            s3Url: https://s3.us-east-005.backblazeb2.com
+            s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
       volumeSnapshotLocation:
-        - name: backblaze
+        - name: minio
           provider: aws
           config:
-            region: us-east-005
+            region: minio
