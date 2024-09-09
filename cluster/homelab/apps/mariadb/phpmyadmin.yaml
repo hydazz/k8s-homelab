@@ -43,7 +43,7 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: 80
-          restartPolicy: Always
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
