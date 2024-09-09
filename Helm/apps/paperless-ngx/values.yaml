@@ -11,4 +11,4 @@ tika:
 ---
 storage:
   paperless-ngx:
-    config: 128Mi
+    appdata: 128Mi

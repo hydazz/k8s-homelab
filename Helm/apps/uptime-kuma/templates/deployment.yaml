@@ -10,7 +10,7 @@ metadata:
         app.kubernetes.io/instance: uptime-kuma
         app.kubernetes.io/name: uptime-kuma
 spec:
-    replicas: {{ .replicas }}
+    replicas: 1
     strategy:
       type: Recreate
     selector:

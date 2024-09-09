@@ -3,4 +3,5 @@ unifi-protect-backup:
   image: ghcr.io/ep1cman/unifi-protect-backup:0.11.0
 
 storage:
-  size: 16Mi
+  unifi-protect-backup:
+    appdata: 16Mi

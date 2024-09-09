@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: grafana-pvc
+    name: grafana-appdata-pvc
 spec:
     accessModes:
         - ReadWriteOnce
@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: prometheus
+    name: prometheus-appdata-pvc
 spec:
     storageClassName: longhorn
     accessModes:
@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: loki-pvc
+    name: loki-appdata-pvc
 spec:
     accessModes:
         - ReadWriteMany
@@ -51,7 +51,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: loki-logs
+    name: loki-logs-pvc
 spec:
     storageClassName: longhorn
     accessModes:

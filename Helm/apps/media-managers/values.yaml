@@ -1,20 +1,19 @@
 ---
 storage:
   radarr:
-    config: 2Gi
+    appdata: 2Gi
   sonarr:
-    config: 1Gi
+    appdata: 1Gi
   prowlarr:
-    config: 256Mi
+    appdata: 256Mi
   lidarr:
-    config: 256Mi
+    appdata: 256Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
   port: 8191
 
 prowlarr:
-  replicas: 1
   image: ghcr.io/linuxserver/prowlarr:1.23.1
   port: 9696
 

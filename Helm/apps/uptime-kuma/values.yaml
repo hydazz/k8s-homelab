@@ -1,8 +1,8 @@
 ---
 uptime-kuma:
-    image: louislam/uptime-kuma:1.23.13-debian
-    replicas: 1
-    port: 3001
+  image: louislam/uptime-kuma:1.23.13-debian
+  port: 3001
 
 storage:
-    size: 1Gi
+  uptime-kuma:
+    appdata: 1Gi

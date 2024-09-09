@@ -47,12 +47,12 @@ spec:
                             memory: {{ .limits.memory }}
                     volumeMounts:
                         -   mountPath: /var/lib/grafana
-                            name: grafana
+                            name: appdata
 
             volumes:
-                -   name: grafana
+                -   name: appdata
                     persistentVolumeClaim:
-                        claimName: grafana-pvc
+                        claimName: grafana-appdata-pvc
 ---
 apiVersion: v1
 kind: Service

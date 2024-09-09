@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: prowlarr
     app.kubernetes.io/name: prowlarr
 spec:
-  replicas: {{ .replicas }}
+  replicas: 1
   strategy:
     type: Recreate
   selector:

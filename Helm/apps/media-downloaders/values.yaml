@@ -1,9 +1,9 @@
 ---
 storage:
   qbittorrent:
-    config: 32Mi
+    appdata: 32Mi
   sabnzbd:
-    config: 64Mi
+    appdata: 64Mi
 
 qbittorrent:
   image: ghcr.io/linuxserver/qbittorrent

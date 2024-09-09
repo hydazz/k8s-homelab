@@ -2,23 +2,23 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: qbittorrent-config-pvc
+  name: qbitorrent-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.qbittorrent.config }}
+      storage: {{ .Values.storage.qbittorrent.appdata }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabnzbd-config-pvc
+  name: sabnzbd-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.sabnzbd.config }}
+      storage: {{ .Values.storage.sabnzbd.appdata }}

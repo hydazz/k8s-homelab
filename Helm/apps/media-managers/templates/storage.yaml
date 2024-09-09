@@ -2,47 +2,47 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sonarr-config-pvc
+  name: sonarr-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.sonarr.config }}
+      storage: {{ .Values.storage.sonarr.appdata }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: radarr-config-pvc
+  name: radarr-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.radarr.config }}
+      storage: {{ .Values.storage.radarr.appdata }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: prowlarr-config-pvc
+  name: prowlarr-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.prowlarr.config }}
+      storage: {{ .Values.storage.prowlarr.appdata }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: lidarr-config-pvc
+  name: lidarr-appdata-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.lidarr.config }}
+      storage: {{ .Values.storage.lidarr.appdata }}

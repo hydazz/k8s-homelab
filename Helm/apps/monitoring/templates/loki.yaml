@@ -36,11 +36,11 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: app-config
+                        -   name: appdata
                             mountPath: /loki
-                        -   name: loki-logs
+                        -   name: logs
                             mountPath: /tmp/loki
-                        -   name: loki-config
+                        -   name: config
                             mountPath: /etc/loki/local-config.yaml
                             subPath: local-config.yaml
                     livenessProbe:
@@ -53,13 +53,13 @@ spec:
 
             restartPolicy: Always
             volumes:
-                -   name: app-config
+                -   name: appdata
                     persistentVolumeClaim:
-                        claimName: loki-pvc
-                -   name: loki-logs
+                        claimName: loki-appdata-pvc
+                -   name: logs
                     persistentVolumeClaim:
-                        claimName: loki-logs
-                -   name: loki-config
+                        claimName: loki-logs-pvc
+                -   name: config
                     configMap:
                         name: loki-config
 

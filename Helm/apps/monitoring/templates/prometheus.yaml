@@ -84,7 +84,7 @@ spec:
                     volumeMounts:
                         -   name: config-volume
                             mountPath: /etc/prometheus
-                        -   name: data
+                        -   name: appdata
                             mountPath: /prometheus
             restartPolicy: Always
             terminationGracePeriodSeconds: 0
@@ -92,9 +92,9 @@ spec:
                 -   name: config-volume
                     configMap:
                         name: prometheus-config
-                -   name: data
+                -   name: appdata
                     persistentVolumeClaim:
-                        claimName: prometheus
+                        claimName: prometheus-appdata-pvc
 
 ---
 
