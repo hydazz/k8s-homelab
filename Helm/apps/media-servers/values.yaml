@@ -1,7 +1,7 @@
 ---
 storage:
   plex:
-    config: 8Gi
+    appdata: 8Gi
     transcode: 8Gi
 
 plex:

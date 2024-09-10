@@ -9,7 +9,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.plex.config }}
+      storage: {{ .Values.storage.plex.appdata }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
