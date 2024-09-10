@@ -50,7 +50,7 @@ spec:
             - name: UFP_SSL_VERIFY
               value: "false"
             - name: UFP_ADDRESS
-              value: "192.168.3.1"
+              value: "192.168.4.1"
             - name: UFP_USERNAME
               valueFrom:
                 secretKeyRef:
