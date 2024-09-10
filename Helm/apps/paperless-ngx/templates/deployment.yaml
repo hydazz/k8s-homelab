@@ -1,6 +1,4 @@
 ---
-{{- with .Values.paperlessngx }}
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -118,5 +116,3 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: {{ .Values.paperlessngx.port }}
-
-{{- end }}
