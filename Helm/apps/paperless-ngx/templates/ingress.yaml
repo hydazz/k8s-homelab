@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: paperless
+  name: paperless-ngx
   namespace: {{ $.Release.Namespace }}
 spec:
   ingressClassName: nginx
@@ -18,6 +18,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: paperless
+                name: paperless-ngx
                 port:
                   number: {{ .Values.paperlessngx.port }}
