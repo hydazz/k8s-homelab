@@ -1,0 +1,234 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:GC4GiV1TfAFTBuEm6riPAkIqNHZ3MQ==,iv:+6pY3SgAZ7TSn/cWNEJe7eg3VpdbDQCkKy7zQXM/czg=,tag:VJgT3S6CMQodwOCdvcmfmA==,type:str]
+    namespace: cert-manager
+spec:
+    secretTemplate:
+        annotations:
+            reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: mariadb,portainer,longhorn-system,changedetection,lubelogger,media-downloaders,media-managers,monitoring,paperless-ngx,uptime-kuma
+    secretName: ENC[AES256_GCM,data:v/7htA7mZVm7crOT1p4uJ/PxTeqqsA==,iv:L2F+N8aiVbvgh/XO9dxpts0iRc7ah2ANdCqCQ3qWi74=,tag:hv9nYR03BLhQNbuaRjVwHg==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:sPfuHaLwvYeCCetPGg==,iv:kmnIDes1Wo8CxO/pDltuOY/et1w7EtJphPlf1ynzuCQ=,tag:gJxqkX/qnsisfyNhOBl62Q==,type:str]
+        - ENC[AES256_GCM,data:J+17UZ60ntQ4SZcmkr5O,iv:jYr0TnsvQNNz9tRy+byUr8cOki/vbZQ3xAyq1rpTlRY=,tag:g69m3s7e9SNWZ/G/zs3nRQ==,type:str]
+        - ENC[AES256_GCM,data:5wTsUAYPZjtrGtaXtoBaP1FHcw==,iv:TBSltwwMlKHEfSre6DGlmHi4DuQ0QAqaHl7Poi5kvWI=,tag:wnsConwJcVmV6drJdnDQiA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:Pe5LdfDKt1NMSmQPGDP/vLlqNS1mOx7J,iv:6sLinXAVdtsJvNjtaHwG9NEq/0QTg/Xq9dVbqfeC0tQ=,tag:uyh6CpDlyAOGz0Cu6ZutSg==,type:str]
+    namespace: cert-manager
+spec:
+    #secretTemplate:
+    #  annotations:
+    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretName: ENC[AES256_GCM,data:LYWWOi8Y2HZ9AVYqiKc7N6n3ibGcpudS,iv:FeEwqAgILT9pbwFVRdoRpsVbdy+WYfRDtTtmooXeoc0=,tag:OhiLHJllhNJ+3c2XNTjqrw==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:XFpG3PPOZz0VtL7Xyd/S,iv:hW61zPZkTiaQyYvJ4PXYdzSJ5pqItMJCfVazP4337mk=,tag:XtvKXT1FqBV08dR7FLZxBQ==,type:str]
+        - ENC[AES256_GCM,data:Cf0ukjCYHCAZAtK3sc+KiEA=,iv:YQY8wfJiAMJU4aVazCDKUfnDHcggUVZp5YEqhk9I0/Q=,tag:eyMmE4lkKHdRxLnis10+jQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:L5jTg6TE2wqMZlwb0jye2k7lu0z6/ME=,iv:RwYcl7xWoudnQIWqWGWK0MJY8OQaKgPcyHJngd2tUCQ=,tag:Ur2CxzR9ZHrPehPD7EyD9Q==,type:str]
+    namespace: cert-manager
+spec:
+    #secretTemplate:
+    #  annotations:
+    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretName: ENC[AES256_GCM,data:/JHsN3AjdWhJ+XXjJmqkV91bPMyTPK4=,iv:U1xwQ2Pv9FfOckA43ReZmBKNtyKrfDh7rFvUtPEXofM=,tag:tPAGH50qOkZmRNUfRNyGOg==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:WHE7Hsp1PzngGOFoi5o=,iv:4kXI5h//ms5ytp+HaeOKF833JTJgdK5iUuAJc+Dg82M=,tag:NoGYAEMQ8UEeTTJlGo03+w==,type:str]
+        - ENC[AES256_GCM,data:7odCdKpG87MdaR+2l5wmKw==,iv:uSFGMfBdgXlYVanMzFBPauwtPCyJjODZZ5nX16bYaD4=,tag:cHjfKlSVasy4HxBOH/QSGg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:K+cT94UtqRYZDAWzJcAPXyosGOL+hMQM,iv:YGW7eQKM51bHphtsOLwtCopOyjzI4U62NNr0Na+e+es=,tag:vyfZFosjoHDGBx7q5YI2oQ==,type:str]
+    namespace: cert-manager
+spec:
+    #secretTemplate:
+    #  annotations:
+    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretName: ENC[AES256_GCM,data:4EAJ3NJjqIYiKe9U+ecdEUWSpyVzfjzS,iv:oU+E7JO4ddw/pOUPXMCTUxpZaeq0O8YFcm3J9vJeitM=,tag:OZKcafQt8pAT69PnVPgA5g==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:43cpbzPUojbSvRjt8TkA,iv:cy7uwtpwnYZ8RBLK4z4s/8XESTJxRebTD8r23VFFcFI=,tag:K4SSHOm5eNaAE3r9MmqmVA==,type:str]
+        - ENC[AES256_GCM,data:ny/Z1Mqc78iaNyFwGSUjMDg=,iv:hWklPL6bRZFWonhZGYviSIoPDE64s3tZv9Jwpt/juu4=,tag:i7IZzdRkd4GXRBmNt4eJOg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:n7pqPuEkTMLVNaHzs/fa1BS/7ri0l2PP,iv:5OS7u9dToP8lvprteNrKUtre/jIuYt1su0dxXQ7IP1A=,tag:MWhkLDa8CSlKbPzbygUcyg==,type:str]
+    namespace: cert-manager
+spec:
+    #secretTemplate:
+    #  annotations:
+    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretName: ENC[AES256_GCM,data:d/m1d2wvoMlI0PUqzWPYqleXfIGe7ar9,iv:Fs5WmGKxvARcET2wUI/Jqv1dqEdzPUwm9adLzwDjFfw=,tag:H/OflgsZn7jL16hFU+xN3Q==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:I+umMBmm5mkQacLx+7UG,iv:RHKfeXfoQgz7tLh8M5CrvuHSO5Ld1laoXu17lZ/eAxU=,tag:p/zpdPHG7PPxqHUGt7JC1A==,type:str]
+        - ENC[AES256_GCM,data:JTUGftCakkYnBeQfGKuH4/I=,iv:wBOAnGJo+BixCQpZwIx4OLM6y+Ozj6thlmejPzIrhcg=,tag:euJAcbylFSvop23fg7jAiw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:OQ8UzFGBpJR5KEFzP6W3yh4QwZCE,iv:NupHIk5RS3f6Ro2ajpD78M3AQyAQbJdJYaUbBxL8QVg=,tag:nZps4z7rR2pD6eThxLVvbw==,type:str]
+    namespace: cert-manager
+spec:
+    #secretTemplate:
+    #  annotations:
+    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretName: ENC[AES256_GCM,data:vAEAQhSuUmm54aFfOxA7xtedd8WO,iv:7oyG4uE0UMeTLzpw0395art6M4p3UECfgXpxEdkQU/0=,tag:KqpGYT3Avrhw+lkGMTCGtA==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:l1F8CLyv3OPdm/e1,iv:eRjyl+fLDhafWimMLuySDP03OhgI3Ub3wTQJvGsm/W4=,tag:yGANqOhHqcT9ujc4V5rdpQ==,type:str]
+        - ENC[AES256_GCM,data:ywZghGWfz4rUfYq9iDo=,iv:jpLKK5APiel61EIfMH4UK87jPc4wT06TE7aHSKMDWs0=,tag:vyICAGscPWovfUfLkGyDBQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-10T13:03:02Z"
+    mac: ENC[AES256_GCM,data:dHkaheV2WH5SL08lsgt4suNgLMYW9dhXZYYzWBmW4+czecr91pQyBOwwqHlasjP4alP1b8yxFWLaMSU29U21jGoAc0kD6Qtq7ObmfusH2W515NWiwwKZHFbV1Dqe+cml0Yu6UYbAuTZvSORZOAuSaLMWSGT0kdqIQ+X/MM6mSIY=,iv:QLzt464R1sHkHd7j4sYyPO2Wf+XtmzFYYBJbf2Lha7k=,tag:aLfQlrOI/24mOrRUO8SLDg==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.0

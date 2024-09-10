@@ -6,6 +6,7 @@ metadata:
     annotations:
         reflector.v1.k8s.emberstack.com/reflection-auto-enabled: ENC[AES256_GCM,data:aCtn0A==,iv:IBr9Ar3MBOdiSisvwbNolrPHqeaUGV3Ifk7a4fXn0Kk=,tag:z7VhuWy/RAZgu/uNk8Iylw==,type:str]
         reflector.v1.k8s.emberstack.com/reflection-allowed: ENC[AES256_GCM,data:ZwY9Rw==,iv:scp3v/M8ks0S96wdNbupYcQPRQ38fqyLhiOkbf8icKA=,tag:uhiSKvL9ENdhA94rKZnfLw==,type:str]
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ENC[AES256_GCM,data:T9LnEnnUhaxXq0TCBXdr,iv:gK6g7j4q2DR4eHceCw0Dz/mHJGWlyohroN5jbINgekA=,tag:t+Cr9RWEMEDPWPDQGFzSAQ==,type:str]
 type: Opaque
 data:
     auth: ENC[AES256_GCM,data:YVTeFwgC3wVIWWM6BbIEAEhksW0N30B+Eyj30Qj7mNWVqpqg4LVJNoF49jC9B5rapsQO26P0pDU=,iv:prUfC35VvNChscHWqxrhmUdllM4g+8OpwKBy52sE+Rc=,tag:iUbtoAlje707xYdk7qu95w==,type:str]
@@ -24,8 +25,8 @@ sops:
             WWg2ZUVSbmUzaitsejlGbk1CeE1CR2sKwEiFKkF3nQTHN+XS9ewXx6I3iY8+ZU+D
             6yjPo2ixCmmD9XUKTeoW3gPnHxVJXL7PIRJ68xm4rN/ES2/He79H2w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-07T05:55:52Z"
-    mac: ENC[AES256_GCM,data:BLIM0Q1CgEm7sKMfB+qpOUQbnjvbjjuv9GweMsTQ3b3wc0Zuj7IW/tosslOi+EOpdKozEvWOllF4iAXs+Gxym0pJloMsY2dMrbRbYDtZnYOQpYm4FKXtzfEHMuGYqF+aMA8+p+0j8MJElpf0QerdcmyHA5v4QTtwbH0pF3LTOfA=,iv:5GiPz0GkfCErQsQuUKuu0FmPJwpJrxAMLocgC4dTIY8=,tag:GMmWe3hXMNbBArqJ1z4riQ==,type:str]
+    lastmodified: "2024-09-10T13:02:49Z"
+    mac: ENC[AES256_GCM,data:D4hvhTCNT87DfK10/DjTUIzfiUulLoidavgss6vrsQ2kAWEMxE1nkER2ubEvdfvxuWNN7fP2LYrXpBq3srXE3ZYWEXweliTtxJ1MV3mK3sio0Y1CDGribuEpPXpeaLZk2yqXAJdMdJCgR/PDp8BApgzdmHX7/7gjkTS2HOR4Tto=,iv:MkIN98ovzSfqjZlT0tyBl8/bl5felqPh6NgPN9GWMEI=,tag:dd8yy4tDQ1b8oWduQfa8vA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData|annotations|)$
     version: 3.9.0
