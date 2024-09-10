@@ -24,7 +24,7 @@ spec:
             host: longhorn.k3s.hyde.services
             ingressClassName: nginx
             tls: true
-            tlsSecret: ingress
+            tlsSecret: wildcard.hyde.services
             annotations:
                 nginx.ingress.kubernetes.io/auth-type: basic
                 nginx.ingress.kubernetes.io/auth-secret: basic-auth

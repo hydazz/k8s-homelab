@@ -69,7 +69,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: phpmyadmin.k3s.hyde.services
       http:

@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: flaresolverr.k3s.hyde.services
       http:
@@ -32,7 +32,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: sonarr.k3s.hyde.services
       http:
@@ -55,7 +55,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: prowlarr.k3s.hyde.services
       http:
@@ -79,7 +79,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: radarr.k3s.hyde.services
       http:
@@ -102,7 +102,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: lidarr.k3s.hyde.services
       http:

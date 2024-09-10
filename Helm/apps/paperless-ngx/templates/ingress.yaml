@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
         - "*.k3s.hyde.services"
-      secretName: ingress
+      secretName: wildcard.hyde.services
   rules:
     - host: paperless.k3s.hyde.services
       http:
