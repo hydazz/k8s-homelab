@@ -89,6 +89,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   selector:
     app.kubernetes.io/instance: plex
     app.kubernetes.io/name: plex
