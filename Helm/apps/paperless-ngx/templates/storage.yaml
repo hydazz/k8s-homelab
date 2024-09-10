@@ -9,4 +9,4 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.paperless-ngx.appdata }}
+      storage: {{ .Values.storage.paperlessngx.appdata }}

@@ -1,5 +1,5 @@
 ---
-{{- with .Values.unifi-protect-backup }}
+{{- with .Values.paperlessngx }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -32,10 +32,15 @@ spec:
           ports:
             - containerPort: 9998
 
-        - name: paperless-ngx
-          image: {{ .Values.paperless-ngx.image }}
+        - name: redis
+          image: redis:latest
           ports:
-            - containerPort: {{ .Values.paperless-ngx.port }}
+            - containerPort: 6379
+
+        - name: paperless-ngx
+          image: {{ .Values.paperlessngx.image }}
+          ports:
+            - containerPort: {{ .Values.paperlessngx.port }}
           env:
             - name: PAPERLESS_TIKA_ENABLED
               value: "1"
@@ -46,9 +51,17 @@ spec:
             - name: PAPERLESS_DBENGINE
               value: "mariadb"
             - name: PAPERLESS_DBHOST
-              value: "192.168.3.9"
+              value: "mariadb.mariadb.svc.cluster.local"
             - name: PAPERLESS_DBNAME
-              value: "paperless"
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBNAME
+            - name: PAPERLESS_DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBUSER
             - name: PAPERLESS_DBPASS
               valueFrom:
                 secretKeyRef:
@@ -71,10 +84,8 @@ spec:
               value: "eng"
             - name: PAPERLESS_REDIS
               value: "redis://localhost:6379"
-            - name: PAPERLESS_TIME_ZONE
-              value: "Australia/Melbourne"
             - name: PAPERLESS_URL
-              value: "https://paperless.hyde.services"
+              value: "https://paperless.k3s.hyde.services"
             - name: USERMAP_GID
               value: "1001"
             - name: USERMAP_UID
@@ -85,11 +96,6 @@ spec:
             - name: nfs-paperless-data
               mountPath: /data/media
 
-        - name: redis
-          image: redis:latest
-          ports:
-            - containerPort: 6379
-
       volumes:
         - name: appdata
           persistentVolumeClaim:
@@ -97,7 +103,7 @@ spec:
         - name: nfs-paperless-data
           nfs:
             server: "192.168.3.7"
-            path: "/mnt/nfs/Picard/Public/Paperless"
+            path: "/mnt/Fast/Public/Paperless"
 
 ---
 
@@ -111,6 +117,6 @@ spec:
   ports:
     - protocol: TCP
       port: 8000
-      targetPort: {{ .Values.paperless-ngx.port }}
+      targetPort: {{ .Values.paperlessngx.port }}
 
 {{- end }}

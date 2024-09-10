@@ -11,3 +11,4 @@ resources:
   - portainer
   - unifi-protect-backup
   - uptime-kuma
+  - paperless-ngx

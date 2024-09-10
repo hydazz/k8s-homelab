@@ -1,1 +1,1 @@
-This chart is used to install unifi-protect-backup
+This chart is used to install paperless-ngx

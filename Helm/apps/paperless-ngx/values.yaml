@@ -1,4 +1,4 @@
-paperless-ngx:
+paperlessngx:
   image: ghcr.io/paperless-ngx/paperless-ngx:2.12
   port: 8000
 
@@ -10,5 +10,5 @@ tika:
 
 ---
 storage:
-  paperless-ngx:
+  paperlessngx:
     appdata: 128Mi
