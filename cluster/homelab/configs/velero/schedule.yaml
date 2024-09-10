@@ -10,7 +10,6 @@ spec:
         includedNamespaces:
           - media-managers
           - media-servers
-        # - portainer velero wont backup its pvc for whatever reason
           - monitoring
         snapshotVolumes: true
         ttl: 744h0m0s # 31 days

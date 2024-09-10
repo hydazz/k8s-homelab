@@ -9,4 +9,4 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.uptime-kuma.appdata }}
+      storage: {{ .Values.storage.uptimekuma.appdata }}

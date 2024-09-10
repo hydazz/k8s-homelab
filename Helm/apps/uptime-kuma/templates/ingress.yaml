@@ -20,4 +20,4 @@ spec:
                         service:
                             name: uptime-kuma
                             port:
-                                number: {{ .Values.uptime-kuma.port }}
+                                number: {{ .Values.uptimekuma.port }}
