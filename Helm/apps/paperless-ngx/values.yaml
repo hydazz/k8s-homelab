@@ -8,7 +8,6 @@ gotenberg:
 tika:
   image: apache/tika:2.9.2.1
 
----
 storage:
   paperlessngx:
     appdata: 128Mi
