@@ -2,20 +2,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - k8s-at-home
-  - metrics-server
-  - unofficial
-  - longhorn-system
-  - cert-manager
-  - ingress-nginx
-  - reflector
-  - velero
+  - authentik
+  - bitnami
   - botkube
+  - cert-manager
+  - descheduler
+  - ingress-nginx
+  - k8s-at-home
   - kube-vip
   - kubereboot
-  - oneuptime
+  - longhorn-system
   - lwolf-charts
-  - descheduler
   - metallb
+  - metrics-server
+  - oneuptime
   - portainer
-  - bitnami
+  - reflector
+  - unofficial
+  - velero
