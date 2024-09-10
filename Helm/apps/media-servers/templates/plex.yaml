@@ -45,7 +45,7 @@ spec:
 {{- end }}
           ports:
             - name: web
-              containerPort: {{ .ports.ingress.port }}
+              containerPort: 32400
           volumeMounts:
             - name: appdata
               mountPath: /config
@@ -58,12 +58,12 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .ports.ingress.port }}
+              port: 32400
           startupProbe:
             failureThreshold: 10
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .ports.ingress.port }}
+              port: 32400
       restartPolicy: Always
       nodeSelector:
 {{- if .force_gpu_node }}
