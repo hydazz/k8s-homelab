@@ -25,6 +25,52 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: overseerr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: wildcard.hyde.services
+  rules:
+    - host: overseerr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: overseerr
+                port:
+                  number: {{ .Values.overseerr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bazarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: wildcard.hyde.services
+  rules:
+    - host: bazarr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: bazarr
+                port:
+                  number: {{ .Values.bazarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: sonarr
   namespace: {{ $.Release.Namespace }}
 spec:

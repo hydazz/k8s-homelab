@@ -1,0 +1,87 @@
+---
+{{- with .Values.bazarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: bazarr
+    app.kubernetes.io/name: bazarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: bazarr
+      app.kubernetes.io/name: bazarr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
+      labels:
+        app.kubernetes.io/instance: bazarr
+        app.kubernetes.io/name: bazarr
+    spec:
+      containers:
+        - name: bazarr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+            - name: nfs-media-data
+              mountPath: /data
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: bazarr-appdata-pvc
+        - name: nfs-media-data
+          nfs:
+            path: "/mnt/Slow/Media"
+            server: "10.0.3.7"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bazarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: bazarr
+    app.kubernetes.io/name: bazarr
+  ports:
+    - name: bazarr
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}
