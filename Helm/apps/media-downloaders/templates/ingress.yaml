@@ -41,6 +41,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: plex
+                name: sabnzbd
                 port:
                   number: {{ .Values.sabnzbd.port }}
