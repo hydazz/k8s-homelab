@@ -55,6 +55,8 @@ spec:
               value: "1001"
             - name: PGID
               value: "1001"
+            - name: TZ
+              value: "Australia/Melbourne"
 {{- if .resources }}
           resources:
 {{ toYaml .resources | indent 12 }}

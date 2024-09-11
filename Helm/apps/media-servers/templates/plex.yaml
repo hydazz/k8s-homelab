@@ -42,6 +42,8 @@ spec:
               value: "1001"
             - name: VERSION
               value: "latest"
+            - name: TZ
+              value: "Australia/Melbourne"
 {{- if .resources }}
           resources:
 {{ toYaml .resources | indent 13 }}

@@ -33,6 +33,8 @@ spec:
               value: "1001"
             - name: GUID
               value: "1001"
+            - name: TZ
+              value: "Australia/Melbourne"
             - name: EXPERIMENTAL_DOWNLOADER
               value: "true"
             - name: PURGE_INTERVAL

@@ -37,6 +37,12 @@ spec:
               value: "1001"
             - name: GUID
               value: "1001"
+            - name: TZ
+              value: "Australia/Melbourne"
+            - name: DOCKER_MODS
+              value: "ghcr.io/themepark-dev/theme.park:radarr"
+            - name: "TP_THEME"
+              value: "dracula"
 {{- if .resources }}
           resources:
 {{ toYaml .resources | indent 22 }}
