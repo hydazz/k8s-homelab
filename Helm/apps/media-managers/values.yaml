@@ -10,6 +10,8 @@ storage:
     appdata: 256Mi
   overseerr:
     appdata: 32Mi
+  bazarr:
+    appdata: 32Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
