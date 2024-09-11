@@ -12,3 +12,4 @@ resources:
   - unifi-protect-backup
   - uptime-kuma
   - paperless-ngx
+  - media-downloaders
