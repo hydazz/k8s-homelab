@@ -7,7 +7,7 @@ storage:
 
 qbittorrent:
   image: ghcr.io/binhex/arch-qbittorrentvpn:4.6.6-1-01
-  port: 8089
+  port: 8080
   nodeSelector:
     kubernetes.io/hostname: "k3s-discovery"
 
