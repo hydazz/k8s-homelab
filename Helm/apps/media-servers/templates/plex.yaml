@@ -44,7 +44,7 @@ spec:
               value: "latest"
 {{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
+{{ toYaml .resources | indent 13 }}
 {{- end }}
           ports:
             - name: web

@@ -36,3 +36,6 @@ plex:
         port: 32469
         protocol: TCP # Access to the Plex DLNA Server
   force_gpu_node: true # force plex to deploy on a node with a GPU
+  resources:
+    limits:
+      nvidia.com/gpu: 1
