@@ -9,10 +9,10 @@ qbittorrent:
   image: ghcr.io/binhex/arch-qbittorrentvpn:4.6.6-1-01
   port: 8089
   nodeSelector:
-    kubernetes.io/hostname: "kube-discovery"
+    kubernetes.io/hostname: "k3s-discovery"
 
 sabnzbd:
   image: ghcr.io/linuxserver/sabnzbd:4.3.3
   port: 9831
   nodeSelector:
-    kubernetes.io/hostname: "kube-discovery"
+    kubernetes.io/hostname: "k3s-discovery"
