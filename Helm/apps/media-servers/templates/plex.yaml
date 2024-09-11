@@ -25,6 +25,9 @@ spec:
         app.kubernetes.io/instance: plex
         app.kubernetes.io/name: plex
     spec:
+{{- if .force_gpu_node }}
+      runtimeClassName: nvidia
+{{- end }}
       containers:
         - name: plex
           image: {{ .image }}
@@ -66,9 +69,6 @@ spec:
               port: 32400
       restartPolicy: Always
       nodeSelector:
-{{- if .force_gpu_node }}
-        nvidia.com/gpu.present: "true"
-{{- end }}
       volumes:
         - name: appdata
           persistentVolumeClaim:
