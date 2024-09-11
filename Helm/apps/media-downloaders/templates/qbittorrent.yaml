@@ -27,7 +27,7 @@ spec:
     spec:
 {{- if .nodeSelector }}
       nodeSelector:
-        {{ toYaml .nodeSelector | indent 8 }}
+{{ toYaml .nodeSelector | indent 8 }}
 {{- end }}
       containers:
         - name: qbittorrent
@@ -45,6 +45,8 @@ spec:
               value: "custom"
             - name: VPN_CLIENT
               value: "wireguard"
+            - name: VPN_INPUT_PORTS
+              value: "54913"
             - name: LAN_NETWORK
               value: "192.168.0.0/16, 172.16.0.0/16, 10.96.0.0/12"
             - name: NAME_SERVERS
@@ -55,7 +57,7 @@ spec:
               value: "1001"
 {{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
+{{ toYaml .resources | indent 12 }}
 {{- end }}
           ports:
             - name: web

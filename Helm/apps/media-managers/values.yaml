@@ -8,10 +8,16 @@ storage:
     appdata: 256Mi
   lidarr:
     appdata: 256Mi
+  overseerr:
+    appdata: 32Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
   port: 8191
+
+overseerr:
+  image: ghcr.io/linuxserver/overseerr:1.33.2
+  port: 5055
 
 prowlarr:
   image: ghcr.io/linuxserver/prowlarr:1.23.1
