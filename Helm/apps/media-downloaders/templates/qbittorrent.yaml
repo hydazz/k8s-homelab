@@ -4,42 +4,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qbitorrent
+  name: qbittorrent
   namespace: {{ $.Release.Namespace }}
   labels:
-    app.kubernetes.io/instance: qbitorrent
-    app.kubernetes.io/name: qbitorrent
+    app.kubernetes.io/instance: qbittorrent
+    app.kubernetes.io/name: qbittorrent
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: qbitorrent
-      app.kubernetes.io/name: qbitorrent
+      app.kubernetes.io/instance: qbittorrent
+      app.kubernetes.io/name: qbittorrent
   template:
     metadata:
       annotations:
         backup.velero.io/backup-volumes: appdata
       labels:
-        app.kubernetes.io/instance: qbitorrent
-        app.kubernetes.io/name: qbitorrent
+        app.kubernetes.io/instance: qbittorrent
+        app.kubernetes.io/name: qbittorrent
     spec:
 {{- if .nodeSelector }}
       nodeSelector:
         {{ toYaml .nodeSelector | indent 8 }}
 {{- end }}
       containers:
-        - name: qbitorrent
+        - name: qbittorrent
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
           securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
+            privileged: true
+            capabilities:
+              add:
+                - sysctl net.ipv4.conf.all.src_valid_mark=1
           env:
+            - name: VPN_ENABLED
+              value: "yes"
+            - name: VPN_PROV
+              value: "custom"
+            - name: VPN_CLIENT
+              value: "wireguard"
+            - name: LAN_NETWORK
+              value: "192.168.0.0/16"
+            - name: NAME_SERVERS
+              value: "1.1.1.1"
             - name: PUID
               value: "1001"
-            - name: GUID
+            - name: PGID
               value: "1001"
 {{- if .resources }}
           resources:
@@ -68,7 +80,7 @@ spec:
       volumes:
         - name: appdata
           persistentVolumeClaim:
-            claimName: qbitorrent-appdata-pvc
+            claimName: qbittorrent-appdata-pvc
         - name: nfs-media-data
           nfs:
             path: "/mnt/Slow/Media"
@@ -78,14 +90,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: qbitorrent
+  name: qbittorrent
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
-    app.kubernetes.io/instance: qbitorrent
-    app.kubernetes.io/name: qbitorrent
+    app.kubernetes.io/instance: qbittorrent
+    app.kubernetes.io/name: qbittorrent
   ports:
-    - name: qbitorrent
+    - name: qbittorrent
       protocol: TCP
       port: {{ .port }}
 

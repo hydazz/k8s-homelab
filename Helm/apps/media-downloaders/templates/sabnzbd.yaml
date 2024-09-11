@@ -25,6 +25,10 @@ spec:
         app.kubernetes.io/instance: sabnzbd
         app.kubernetes.io/name: sabnzbd
     spec:
+{{- if .nodeSelector }}
+      nodeSelector:
+        {{ toYaml .nodeSelector | indent 8 }}
+{{- end }}
       containers:
         - name: sabnzbd
           image: {{ .image }}

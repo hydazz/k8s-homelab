@@ -5,6 +5,6 @@ description: This chart is used to install different media downloaders
 maintainers:
     - email: alexanderhyde@icloud.com
       name: Alex Hyde
-name: media-servers
+name: media-downloaders
 type: application
 version: 1.0.0
