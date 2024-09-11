@@ -78,7 +78,7 @@ spec:
             claimName: plex-transcode-pvc
         - name: nfs-media-data
           nfs:
-            path: "/mnt/Slow/Media"
+            path: "/mnt/Slow/Media/Plex Media"
             server: "10.0.3.7"
 
 ---
