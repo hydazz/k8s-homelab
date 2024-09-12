@@ -26,6 +26,18 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: tdarr-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.tdarr.appdata }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: prowlarr-appdata-pvc
 spec:
   accessModes:

@@ -1,0 +1,112 @@
+---
+{{- with .Values.tdarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: tdarr
+    app.kubernetes.io/name: tdarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: tdarr
+      app.kubernetes.io/name: tdarr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
+      labels:
+        app.kubernetes.io/instance: tdarr
+        app.kubernetes.io/name: tdarr
+    spec:
+{{- if .force_gpu_node }}
+      runtimeClassName: nvidia
+{{- end }}
+      containers:
+        - name: tdarr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+            - name: serverIP
+              value: "0.0.0.0"
+            - name: serverPort
+              value: "8266"
+            - name: webUIPort
+              value: "8265"
+            - name: internalNode
+              value: "true"
+            - name: inContainer
+              value: "true"
+            - name: nodeName
+              value: "Internal"
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "all"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 13 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /app/server
+            - name: appdata
+              mountPath: /app/configs
+            - name: appdata
+              mountPath: /app/logs
+            - name: nfs-media-data
+              mountPath: /media
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+      restartPolicy: Always
+      nodeSelector:
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: tdarr-appdata-pvc
+        - name: nfs-media-data
+          nfs:
+            path: "/mnt/Slow/Media/Plex Media"
+            server: "10.0.3.7"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: tdarr
+    app.kubernetes.io/name: tdarr
+  ports:
+    - name: tdarr
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}

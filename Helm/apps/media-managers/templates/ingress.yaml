@@ -48,6 +48,29 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: tdarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: wildcard.hyde.services
+  rules:
+    - host: tdarr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: tdarr
+                port:
+                  number: {{ .Values.tdarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: bazarr
   namespace: {{ $.Release.Namespace }}
 spec:
