@@ -49,7 +49,8 @@ spec:
             type: LoadBalancer
             externalTrafficPolicy: Local
         front:
-            hostPort: false
+            hostPort:
+                enabled: false
         tika:
             enabled: false
         clamav:
@@ -71,8 +72,8 @@ sops:
             cStUOEowZ1dUWVJQV3BlTkcrZDBEVk0KN1ttiF9/Cfx8jrtu6H6zagZqqYtfe1PU
             Pz5Leqxs+4bFAnJ17AFETITh44xHehC8QwShCGMRIUlHU0OeYxh+/Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-12T08:48:27Z"
-    mac: ENC[AES256_GCM,data:a0ez9+AZKtqjk1vvE0avaaZ15UKs3GXXEoa6ERHMLztQnYNnrHciv6SVWtM6w08YejwJ/wa8tWC8PnEZxPkEaKsP2hfkwKfy2SnbcZ3t520c3xDj/fJXygKhuCVunqPm9I5C1zL+shxtexuAFrT2sMzSuorDl0KkY9D9VJco7Lk=,iv:RbxXAmv1zeex+dKZqcySRtCCgzts5UmC9lZ6EkARaow=,tag:QxAWOywqvGXP82BtjLRSFA==,type:str]
+    lastmodified: "2024-09-12T08:53:10Z"
+    mac: ENC[AES256_GCM,data:UK3s2J+UQgIfmVjhOCdbGMsUh4++E/N0v01BuVdkarsjoxrf8edHsQYTm+9ExwrxCHhqEecDI+NdG+ZSHZHRZOxNoHa4VH6FeA13i4Pvn/OR8xiOVflRlr/pDqF7DuIAullRBxgMJsvY+iy6YcMoExHQRDp3NhuZkGoa+NYvBxM=,iv:K8qKN2qlfoyNPSj6mE5IyS4yvzgc6JvwodSH4fIbYfk=,tag:KSsSrh5pTT75BKDBcvaJeA==,type:str]
     pgp: []
     encrypted_regex: ^(hostnames)$
     version: 3.9.0
