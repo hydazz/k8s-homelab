@@ -1,81 +1,81 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: mailu
-  namespace: mailu
+    name: mailu
+    namespace: mailu
 spec:
-  interval: 5m
-  install:
-    createNamespace: true
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  upgrade:
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  chart:
-    spec:
-      chart: mailu
-      version: 2.1.1
-      interval: 5m
-      sourceRef:
-        kind: HelmRepository
-        name: mailu
-        namespace: flux-system
-  values:
-    domain: hyde.services
-    hostnames:
-      - ENC[AES256_GCM,data:24bhUmoe3A5F+ogYO+4f3EKh,iv:Ln2bdA+/6aTX22ql0AU3WH+dFSbBJ1o8ER672wHtY7g=,tag:6md/eg1ggtF06wAHJ1TPcg==,type:str]
-    initialAccount:
-      mode: ifmissing
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      existingSecret: wildcard.hyde.services
-    logLevel: INFO
-    timezone: Australia/Melbourne
-    limits:
-      authRatelimit:
-        ip: 100/minute;3600/hour
-        user: 100/day
-      messageSizeLimitInMegabytes: 200
-    persistence:
-      size: 1Gi
-    secretKey:
-      existingSecret: mailu-secrets
-    externalService:
-      enabled: true
-      type: LoadBalancer
-      externalTrafficPolicy: Local
-    front:
-      hostPort:
-        enabled: false
-    tika:
-      enabled: false
-    oletools:
-      enabled: false
-    clamav:
-      enabled: false
-    rspamd:
-      enabled: false
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: mailu
+            version: 2.1.1
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: mailu
+                namespace: flux-system
+    values:
+        domain: hyde.services
+        hostnames:
+            - ENC[AES256_GCM,data:24bhUmoe3A5F+ogYO+4f3EKh,iv:Ln2bdA+/6aTX22ql0AU3WH+dFSbBJ1o8ER672wHtY7g=,tag:6md/eg1ggtF06wAHJ1TPcg==,type:str]
+        initialAccount:
+            mode: ifmissing
+        ingress:
+            enabled: true
+            ingressClassName: nginx
+            existingSecret: wildcard.hyde.services
+        logLevel: INFO
+        timezone: Australia/Melbourne
+        limits:
+            authRatelimit:
+                ip: 100/minute;3600/hour
+                user: 100/day
+            messageSizeLimitInMegabytes: 200
+        persistence:
+            size: 1Gi
+        secretKey:
+            existingSecret: mailu-secrets
+        front:
+            hostPort:
+                enabled: false
+            externalService:
+                enabled: true
+                type: LoadBalancer
+                externalTrafficPolicy: Local
+        tika:
+            enabled: false
+        oletools:
+            enabled: false
+        clamav:
+            enabled: false
+        rspamd:
+            enabled: false
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
-  age:
-    - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCOFQ1NnFHcmd2amNrT1ZK
-        aTlqcHRpSkg0VHhERVJNaEtPL0FjcTFaZlNNCjNiYkFCSmpJWnBLMTJPRmU0M1Rs
-        S2FueEJRTFRpWjUrcDNkdWt0Z3BPUW8KLS0tIDNxK3NsR1FSc2R6S1c5dGs3QWFp
-        cStUOEowZ1dUWVJQV3BlTkcrZDBEVk0KN1ttiF9/Cfx8jrtu6H6zagZqqYtfe1PU
-        Pz5Leqxs+4bFAnJ17AFETITh44xHehC8QwShCGMRIUlHU0OeYxh+/Q==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2024-09-12T09:01:56Z"
-  mac: ENC[AES256_GCM,data:7veWo8bYUu+OCwoa7t/HnDSiHTgW/ac55+xFpxzbjbLbTF18eri1KGbF8KtITOzMdUxZdAMAhlG17fa4xiJDSiLgd/paYEyOS23p+2t0iLalCmdBZnUjg5HJ7OSAOIL6E2POYGpZYZhLEam9mqHbISAiyRuyw1DdHFJbPYDlxWk=,iv:PM3HlpWK9zfnNZEqmCYgsqEq6z/ctzfEtjgmYXmLDWA=,tag:t/IGpHQss/bvLK20CsBKiQ==,type:str]
-  pgp: []
-  encrypted_regex: ^(hostnames)$
-  version: 3.9.0
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCOFQ1NnFHcmd2amNrT1ZK
+            aTlqcHRpSkg0VHhERVJNaEtPL0FjcTFaZlNNCjNiYkFCSmpJWnBLMTJPRmU0M1Rs
+            S2FueEJRTFRpWjUrcDNkdWt0Z3BPUW8KLS0tIDNxK3NsR1FSc2R6S1c5dGs3QWFp
+            cStUOEowZ1dUWVJQV3BlTkcrZDBEVk0KN1ttiF9/Cfx8jrtu6H6zagZqqYtfe1PU
+            Pz5Leqxs+4bFAnJ17AFETITh44xHehC8QwShCGMRIUlHU0OeYxh+/Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-12T09:17:02Z"
+    mac: ENC[AES256_GCM,data:8rpKObm9SR07e8cFinAlk0pmlFCh8FT5PAWiRwESrsYX2dJTKRMjju8eu8/RqdRbkZc3lmmWe9H/AiHpM4/0yKomMj6VfXz0apXTxLB/TV+M5aeCiMSLZS/fJdut2aEB5RaXbKh6n1eUsX6TPqdAN5WgM0vf3J7bs4Bfar/vW/0=,iv:+I0wtWpe/8ji+dID5ivpDK3Uo6tzBAL9Z+3gAFVEZHw=,tag:kUA+/xxSGsZcOLkUvePuAg==,type:str]
+    pgp: []
+    encrypted_regex: ^(hostnames)$
+    version: 3.9.0
