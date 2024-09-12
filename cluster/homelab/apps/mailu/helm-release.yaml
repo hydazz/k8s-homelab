@@ -59,10 +59,13 @@ spec:
     clamav:
       enabled: false
     rspamd:
-      enabled: false
+      enabled: true
     webmail:
-      enabled: false
+      enabled: true
     redis:
+      enabled: true
       master:
+        enabled: true
         persistence:
+          enabled: true
           size: 128Mi
