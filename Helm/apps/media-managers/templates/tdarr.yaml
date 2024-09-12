@@ -25,9 +25,7 @@ spec:
         app.kubernetes.io/instance: tdarr
         app.kubernetes.io/name: tdarr
     spec:
-{{- if .force_gpu_node }}
       runtimeClassName: nvidia
-{{- end }}
       containers:
         - name: tdarr
           image: {{ .image }}

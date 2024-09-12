@@ -46,7 +46,6 @@ lidarr:
 tdarr:
   image: ghcr.io/haveagitgat/tdarr:2.24.05
   port: 8265
-  force_gpu_node: true
   resources:
     limits:
       nvidia.com/gpu: 1

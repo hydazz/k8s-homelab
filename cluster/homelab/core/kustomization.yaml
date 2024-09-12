@@ -10,3 +10,4 @@ resources:
   - metallb
   - reflector
   - velero
+  - gpu-operator
