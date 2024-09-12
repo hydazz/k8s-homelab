@@ -27,7 +27,6 @@ spec:
     domain: hyde.services
     hostnames:
       - mail.hyde.services
-      - mailu.k3s.hyde.services
     initialAccount:
       mode: ifmissing
     ingress:
