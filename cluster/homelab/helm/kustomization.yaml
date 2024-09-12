@@ -4,18 +4,13 @@ kind: Kustomization
 resources:
   - authentik
   - bitnami
-  - botkube
   - cert-manager
   - descheduler
   - ingress-nginx
-  - k8s-at-home
-  - kube-vip
-  - kubereboot
   - longhorn-system
   - lwolf-charts
   - metallb
   - metrics-server
-  - oneuptime
   - portainer
   - reflector
   - unofficial
