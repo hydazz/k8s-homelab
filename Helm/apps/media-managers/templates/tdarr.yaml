@@ -62,11 +62,11 @@ spec:
             - name: web
               containerPort: {{ .port }}
           volumeMounts:
-            - name: appdata
+            - name: server
               mountPath: /app/server
-            - name: appdata
+            - name: config
               mountPath: /app/configs
-            - name: appdata
+            - name: logs
               mountPath: /app/logs
             - name: nfs-media-data
               mountPath: /media
@@ -84,9 +84,15 @@ spec:
       restartPolicy: Always
       nodeSelector:
       volumes:
-        - name: appdata
+        - name: config
           persistentVolumeClaim:
-            claimName: tdarr-appdata-pvc
+            claimName: tdarr-config-pvc
+        - name: logs
+          persistentVolumeClaim:
+            claimName: tdarr-logs-pvc
+        - name: server
+          persistentVolumeClaim:
+            claimName: tdarr-server-pvc
         - name: nfs-media-data
           nfs:
             path: "/mnt/Slow/Media/Plex Media"

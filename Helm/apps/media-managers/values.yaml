@@ -13,7 +13,9 @@ storage:
   bazarr:
     appdata: 32Mi
   tdarr:
-    appdata: 2Gi
+    config: 4Mi
+    logs: 8Mi
+    server: 2Gi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
