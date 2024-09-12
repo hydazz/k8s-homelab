@@ -62,4 +62,6 @@ spec:
     webmail:
       enabled: false
     redis:
-      enabled: false
+      master:
+        persistence:
+          size: 128Mi
