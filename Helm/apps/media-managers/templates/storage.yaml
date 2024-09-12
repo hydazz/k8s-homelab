@@ -82,7 +82,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.tdarr.config }}
-      ---
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -94,7 +94,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.tdarr.logs }}
-      ---
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
