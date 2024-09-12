@@ -20,5 +20,5 @@ resources:
   - reflector
   - unofficial
   - velero
-  - mailu
+  - docker-mailserver
   - nvidia

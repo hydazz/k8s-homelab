@@ -13,4 +13,4 @@ resources:
   - uptime-kuma
   - paperless-ngx
   - media-downloaders
-  - mailu
+  - mailserver
