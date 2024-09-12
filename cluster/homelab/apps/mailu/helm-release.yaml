@@ -37,15 +37,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts:
-        - host: mailu.k3s.hyde.services
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-      tls:
-        - hosts:
-            - mailu.k3s.hyde.services
-          secretName: wildcard.hyde.services
+      existingSecret: wildcard.hyde.services
     logLevel: INFO
     timezone: Australia/Melbourne
     limits:
