@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        backup.velero.io/backup-volumes: appdata
+        backup.velero.io/backup-volumes: config,logs,server
       labels:
         app.kubernetes.io/instance: tdarr
         app.kubernetes.io/name: tdarr

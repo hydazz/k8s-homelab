@@ -43,6 +43,8 @@ spec:
     credentials:
       existingSecret: cloud-credentials-minio
     configuration:
+      extraEnvVars:
+        TZ: Australia/Melbourne
       backupStorageLocation:
         - name: default
           provider: aws
