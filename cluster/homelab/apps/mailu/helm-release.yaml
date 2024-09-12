@@ -34,6 +34,8 @@ spec:
       password:
         existingSecret: mailu-secrets
       existingSecretPasswordKey: password
+    ingress:
+      existingSecret: wildcard.hyde.services
     logLevel: INFO
     timezone: Australia/Melbourne
     limits:

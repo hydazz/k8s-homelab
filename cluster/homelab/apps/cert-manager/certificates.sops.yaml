@@ -8,7 +8,7 @@ spec:
         annotations:
             reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
             reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: mariadb,portainer,longhorn-system,changedetection,lubelogger,media-downloaders,media-managers,monitoring,paperless-ngx,uptime-kuma
+            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: mariadb,portainer,longhorn-system,changedetection,lubelogger,media-downloaders,media-managers,monitoring,paperless-ngx,uptime-kuma,mailu
     secretName: ENC[AES256_GCM,data:v/7htA7mZVm7crOT1p4uJ/PxTeqqsA==,iv:L2F+N8aiVbvgh/XO9dxpts0iRc7ah2ANdCqCQ3qWi74=,tag:hv9nYR03BLhQNbuaRjVwHg==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -32,8 +32,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -71,8 +71,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -110,8 +110,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -149,8 +149,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -188,8 +188,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -227,8 +227,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-10T13:07:55Z"
-    mac: ENC[AES256_GCM,data:ldMRw1oegD/wRXcP7HfyYBKgPriIotFoJL6aNczFwjXX54vQwED9A5Khb+Gk7L9tAWTID8DyWsiP8IGVs7Xts0EP/yP4pwFVGG+1GkatYjI69fI6CiAKx0mFL7udxh0E9spoiIXwd9lfY7U/qqFd5Gzk5SAuox1qoqw6Ug8qyik=,iv:1SiwgCQy48xkVCzAc1Kzk5No6h4Z0+qU/+zb29NiahM=,tag:RBET0+YkO1yWVnc74XBHGw==,type:str]
+    lastmodified: "2024-09-12T07:50:46Z"
+    mac: ENC[AES256_GCM,data:t4I2SJXrse02cxfBcE2nQGk3bTtgCQ6hC9GRr41uAHX6h+VUcMOBDdyF4NhlO7W9lFnKBJNl1IuWyrBs9hED8CPLDNy3oM6uzYFQV9oubG8Ufjc8jfKpY2vGpa4hy8sSK9c+T2NdI0Oaf0CobVzjwxrIDle/wB+rRMSpXdCbwRg=,iv:gjO6tU1GuG75HiYuUMGXcl3nPeyOJIWNkbRfCgNEaTE=,tag:2KDNiOW4c888j2U6CCjhkg==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
