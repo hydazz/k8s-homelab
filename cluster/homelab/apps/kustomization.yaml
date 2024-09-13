@@ -8,9 +8,9 @@ resources:
   - media-managers
   - media-servers
   - monitoring
-  - portainer
   - unifi-protect-backup
   - uptime-kuma
   - paperless-ngx
   - media-downloaders
   - mailserver
+  - authentik

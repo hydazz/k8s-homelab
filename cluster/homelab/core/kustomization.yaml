@@ -11,3 +11,4 @@ resources:
   - reflector
   - velero
   - gpu-operator
+  - portainer
