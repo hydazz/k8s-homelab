@@ -39,19 +39,19 @@ spec:
                 use_ssl: ENC[AES256_GCM,data:dA0tcx0=,iv:i8jxImWAQtdFFmQyDpUP+w4TkmHvGNG0f7U+9q1SQgI=,tag:Rtezs2hrE1xHIR/OKp0JnQ==,type:bool]
                 timeout: ENC[AES256_GCM,data:weU=,iv:p0zgOeNQjaYN4sYecucTku+P8CudCdBB3DBgKD5GUSo=,tag:yGR/ZgIJu6gXqbq+3l84Mg==,type:int]
                 from: ENC[AES256_GCM,data:mqSzv327uh2Pi6iwQGJ7oCGrhODv1g==,iv:fU2Fu2NMs5F1cYbN8AFSQ2b8L41pWU3dhd2g9godB1I=,tag:rXZ82duR9oFCSza9nFHbXw==,type:str]
-        server:
-            ingress:
-                enabled: ENC[AES256_GCM,data:tUk+yg==,iv:+qQRnHbuy2me40xrPj4/OnxXjwvdXqhzikcAYWW94nk=,tag:IXPSHfsAJ3pffgrrL4yUxw==,type:bool]
-                ingressClassName: ENC[AES256_GCM,data:eAMjOb27gNpfWjYldBg=,iv:qbJjeL2Bubd7fbtly6ePw0Mifkl2HlG+UABDpSiVEUs=,tag:fN+5oBPYdV15uO0b2fYNJQ==,type:str]
-                hosts:
-                    - host: ENC[AES256_GCM,data:IJwELgdcpJEUyxs5vOsR4qPR,iv:1tltfC6YVdyO1WdEEZe+Qu+YHuUEmU5GMFjl0XHH0sw=,tag:ep3hjwx0+kQp66YJSZithA==,type:str]
-                      paths:
-                        - path: ENC[AES256_GCM,data:pg==,iv:RNlWmIrjDExph5v1WCKe/QHz0lBHT4TzqT5s+BfusCE=,tag:jzHCHEr428hf8y/QrY2ivQ==,type:str]
-                          pathType: ENC[AES256_GCM,data:qDQwYPAXjSGzFiFojJKl6ZHBajUiZA==,iv:y7DpfZU/7iQEwrTU0oQFMzMSHA6JRgJrw8ErTXgY55w=,tag:wu4UJ92HHWFpXfdRbiUa/Q==,type:str]
-                tls:
-                    - hosts:
-                        - ENC[AES256_GCM,data:9WNG5JHs5egaro51OBKHW0ac,iv:dSO9jK1u0+/FhX5jBw8rdEhPAXhUSJDf8UxIXQUDnKM=,tag:hP1TkFPW28S6Fj5JiKN3fQ==,type:str]
-                      secretName: ENC[AES256_GCM,data:IdUTKHJHgwzVW8Np4sSYdoOkxr5ZXA==,iv:acIAej/MFC87zZodd5sHa2kfQjjZjxVnJ9uoQiAWCLY=,tag:60OvH6ixv1LiPsoR+6Lq0g==,type:str]
+            server:
+                ingress:
+                    enabled: ENC[AES256_GCM,data:3amYAA==,iv:r1Kd83+tXGFn3ExGR3nJHOAen4TLNcD8oc2SSaWLKVE=,tag:vQNojYlDphVNbkmuztHOUQ==,type:bool]
+                    ingressClassName: ENC[AES256_GCM,data:xc5LzaZKfCu5x0/0qR8=,iv:ZmXP2Oui5EKU0YvfgsbenVPEjXE/2ZTkTY+OW7JO92A=,tag:5RywH1FLuKXVs8DO/o4g6A==,type:str]
+                    hosts:
+                        - ENC[AES256_GCM,data:7JaqSnmrrhK2kCfHv5WehJRa,iv:gCULHenIT3hc5EbGJdM3LMEJerxt/nccclAeVb2PH2w=,tag:A7EsGJHmJhvxSHcAjyMAXA==,type:str]
+                    paths:
+                        - path: ENC[AES256_GCM,data:fA==,iv:fvYVHAIVRMk3okBffYGD+EMOq5/Q7YYf88DdQJteK/E=,tag:Z4dje7pKgIF6XI+qGDunmg==,type:str]
+                          pathType: ENC[AES256_GCM,data:TCq1Q1A8a2OqF0YHRTH3n6XAycdbWA==,iv:XAKEk1Opmf4uu8GVs5oZE8iscg22Vx2ohl7KKAX6Ung=,tag:w67f/JzKwG8xgRiAhqWtDg==,type:str]
+                    tls:
+                        - hosts:
+                            - ENC[AES256_GCM,data:qmsHpRl7/Gv5Ho4pZ4K8m0Dh,iv:9pVguH9m0xht0SBnuMQSB13zA6o4/bj1a1vrlEPiRD0=,tag:V8Kldyd7vDN7BMPgrcbGLw==,type:str]
+        secretName: ENC[AES256_GCM,data:fBLCggB2Ktfu30xgcHnAiTuqNK/aoA==,iv:YUG2fi2JcuMaRTTTE5VCGJtaqexpKYT+TM9tsucqPHo=,tag:71CthdEgVp8YxFq9IaHGwg==,type:str]
         postgresql:
             enabled: ENC[AES256_GCM,data:5Y3Z3w==,iv:ZPPT3ZHg+wtyCNjeGVJZaA3k4r0pzonqzSCzYtfKirU=,tag:Odk76vWM+ycyphTu9tcHJQ==,type:bool]
             auth:
@@ -76,8 +76,8 @@ sops:
             QktQU1FVRDc0MjZ2ZVdVcHh0S0VMUmsKIBRXhCcLaTxA4xGrgQYP0vuNkCNLkqkN
             4CzNt5VLwU0NvrJK2eHuYiw21gjHS+XqxR67wlSmE1ME+bTLrwUf3Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T12:49:11Z"
-    mac: ENC[AES256_GCM,data:xd7MvCOwhhYol0HrssjI++4nhTYSp+lxn2HlckCKIz6Pw+Fec+NMVoW7+DGKv1X52w7O/XsR2A5CPfoSY+kU5UTt86bo06hv4IvFCzGS9itjs//4BmjdK29dI92E6kHrPCiucfU9tN4Ig9VX1HIuoeG39BoAUVLQ2Mrt8ba+XOE=,iv:SK1SpZJ/Dp0+ER1V7zcYksJq8+xc8U7AafLKJ3/5OLE=,tag:lrEmplHaxSSrPo0ZrJu/5w==,type:str]
+    lastmodified: "2024-09-13T13:05:13Z"
+    mac: ENC[AES256_GCM,data:3AeptLfvk+LHJ5W1KAylNd2ZY0KLVF73DF696tUEccaBZPRDS045oaU9INWuZrKQZlAZan+tAnfCU6HL/dSkmQWIZTw1v9pJ8PhV2ecPxnQj4/FSaGG3PTqW1I/quJDV050u+4XacSXWGMsMpCsyPMxg8NQW7AdsNwpY8zEkH44=,iv:b1KoZ8SnrWdq34NPh5AutK7R6N0wSE5u5Gadq6bNXHw=,tag:GlKQp8FmTWt349Z1DqCqkQ==,type:str]
     pgp: []
     encrypted_regex: ^(values)$
     version: 3.9.0
