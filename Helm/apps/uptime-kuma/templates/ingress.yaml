@@ -2,22 +2,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: uptime-kuma
-    namespace: {{ $.Release.Namespace }}
+  name: uptime-kuma
+  namespace: {{ $.Release.Namespace }}
 spec:
-    ingressClassName: internal-nginx
-    tls:
-        - hosts:
-              - "*.k3s.hyde.services"
-          secretName: wildcard.hyde.services
-    rules:
-        - host: uptime-kuma.k3s.hyde.services
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: uptime-kuma
-                            port:
-                                number: {{ .Values.uptimekuma.port }}
+  ingressClassName: internal-nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: wildcard.hyde.services
+  rules:
+    - host: uptime-kuma.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: {{ .Values.uptimekuma.port }}

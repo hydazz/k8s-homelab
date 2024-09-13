@@ -41,14 +41,14 @@ spec:
               value: "Australia/Melbourne"
 {{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
+{{ toYaml .resources | indent 13 }}
 {{- end }}
           ports:
             - name: web
-            containerPort: {{ .port }}
+              containerPort: {{ .port }}
           volumeMounts:
             - name: appdata
-            mountPath: /app/data
+              mountPath: /app/data
           livenessProbe:
             failureThreshold: 5
             tcpSocket:
@@ -66,7 +66,6 @@ spec:
             claimName: uptime-kuma-appdata-pvc
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
