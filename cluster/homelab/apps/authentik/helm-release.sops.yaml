@@ -1,0 +1,83 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: authentik
+            version: 2024.8.1
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: authentik
+                namespace: flux-system
+    values:
+        authentik:
+            secret_key: ENC[AES256_GCM,data:ChJLnoZQbYjiUOFzo8rr/Er0ZjI8E88T2HSU3EbEE2z7fOvrdfP/X6boM8xmR5YjrVM=,iv:++N4wAx/Mw5lqT7j4Dt7ScrgluyOhkVG4slVsSKZ/9U=,tag:3jUakxTMGxX5hQh8vpdCRg==,type:str]
+            error_reporting:
+                enabled: ENC[AES256_GCM,data:ZK+Ekg==,iv:LGYn+ME1iTArhOVW8afhKdqLIjU+965PvWycBb2p8Oc=,tag:dY4uhswE18XNnNrXRmn/eQ==,type:bool]
+            postgresql:
+                password: ENC[AES256_GCM,data:1HcY23XJaYzMg4yVqws=,iv:+0p21Pkc2FGzDZhbpSwwNBDv3lDryxaDBUNFRZ0q4u0=,tag:OHrZh7hAcCPap7zf8EOLTw==,type:str]
+            email:
+                host: ENC[AES256_GCM,data:WTNqeoPwGgLYOqtvppDtL+xD,iv:YK8R2gNAr/ZJdhK668Sqhkm05hhqDlTjvSt56W0q63Q=,tag:trUOlYHzZYAkSWhhlq00hQ==,type:str]
+                port: ENC[AES256_GCM,data:AuIC,iv:p7/CL1ab5/ncTOs9H+OEZ09MpjAO84I7THriNcGuX7g=,tag:/dALeV2png7j/VC7qrxwLw==,type:int]
+                username: ENC[AES256_GCM,data:282Zk7mgFJgJUrCDnVJl3a5Aaotslw==,iv:Eei3TK1QJOaB2dRS5Hr7M7QI4mcsThEEWHcWQSEHg6c=,tag:rFSg9LjOBI2XiZQfdQHr2w==,type:str]
+                password: ENC[AES256_GCM,data:R7yhEse2IUIgnZHdOPZefA==,iv:mO3Aj/P/1I/eBVVu764uRlZUOKb4Ie+W49xiBwuYwu0=,tag:cp817tQC7bQOn1WItX0OaQ==,type:str]
+                use_tls: ENC[AES256_GCM,data:JtIjzQ==,iv:7a9UY+aTFFjtehUMpWIDrH2L1favpIq0KBMNejSCsNk=,tag:chavHwVrTp1pywp22VogHQ==,type:bool]
+                use_ssl: ENC[AES256_GCM,data:dA0tcx0=,iv:i8jxImWAQtdFFmQyDpUP+w4TkmHvGNG0f7U+9q1SQgI=,tag:Rtezs2hrE1xHIR/OKp0JnQ==,type:bool]
+                timeout: ENC[AES256_GCM,data:weU=,iv:p0zgOeNQjaYN4sYecucTku+P8CudCdBB3DBgKD5GUSo=,tag:yGR/ZgIJu6gXqbq+3l84Mg==,type:int]
+                from: ENC[AES256_GCM,data:mqSzv327uh2Pi6iwQGJ7oCGrhODv1g==,iv:fU2Fu2NMs5F1cYbN8AFSQ2b8L41pWU3dhd2g9godB1I=,tag:rXZ82duR9oFCSza9nFHbXw==,type:str]
+        server:
+            ingress:
+                enabled: ENC[AES256_GCM,data:tUk+yg==,iv:+qQRnHbuy2me40xrPj4/OnxXjwvdXqhzikcAYWW94nk=,tag:IXPSHfsAJ3pffgrrL4yUxw==,type:bool]
+                ingressClassName: ENC[AES256_GCM,data:eAMjOb27gNpfWjYldBg=,iv:qbJjeL2Bubd7fbtly6ePw0Mifkl2HlG+UABDpSiVEUs=,tag:fN+5oBPYdV15uO0b2fYNJQ==,type:str]
+                hosts:
+                    - host: ENC[AES256_GCM,data:IJwELgdcpJEUyxs5vOsR4qPR,iv:1tltfC6YVdyO1WdEEZe+Qu+YHuUEmU5GMFjl0XHH0sw=,tag:ep3hjwx0+kQp66YJSZithA==,type:str]
+                      paths:
+                        - path: ENC[AES256_GCM,data:pg==,iv:RNlWmIrjDExph5v1WCKe/QHz0lBHT4TzqT5s+BfusCE=,tag:jzHCHEr428hf8y/QrY2ivQ==,type:str]
+                          pathType: ENC[AES256_GCM,data:qDQwYPAXjSGzFiFojJKl6ZHBajUiZA==,iv:y7DpfZU/7iQEwrTU0oQFMzMSHA6JRgJrw8ErTXgY55w=,tag:wu4UJ92HHWFpXfdRbiUa/Q==,type:str]
+                tls:
+                    - hosts:
+                        - ENC[AES256_GCM,data:9WNG5JHs5egaro51OBKHW0ac,iv:dSO9jK1u0+/FhX5jBw8rdEhPAXhUSJDf8UxIXQUDnKM=,tag:hP1TkFPW28S6Fj5JiKN3fQ==,type:str]
+                      secretName: ENC[AES256_GCM,data:IdUTKHJHgwzVW8Np4sSYdoOkxr5ZXA==,iv:acIAej/MFC87zZodd5sHa2kfQjjZjxVnJ9uoQiAWCLY=,tag:60OvH6ixv1LiPsoR+6Lq0g==,type:str]
+        postgresql:
+            enabled: ENC[AES256_GCM,data:5Y3Z3w==,iv:ZPPT3ZHg+wtyCNjeGVJZaA3k4r0pzonqzSCzYtfKirU=,tag:Odk76vWM+ycyphTu9tcHJQ==,type:bool]
+            auth:
+                password: ENC[AES256_GCM,data:oAP/i8E2ao4x6hfwkTg=,iv:UQJUp2AiOmIWsV2BbfYM4zdqSpX0i7BGJE/NWpxbWkg=,tag:Fk5S2aOgsk3J9qDh+nJMOQ==,type:str]
+            primary:
+                persistence:
+                    size: ENC[AES256_GCM,data:rJxhLmg=,iv:Rz/yMxFGxhTozOpTaVbBqBs4RNHffggpsLhSy+u38og=,tag:qFRUxtnqUrQ5mV/HcqGo7g==,type:str]
+        redis:
+            enabled: ENC[AES256_GCM,data:opIf4A==,iv:eNmvrjNZHzrGyoRGnOLOSu+dHHDB4JArfmX5uJNTg94=,tag:U6eilQw0oWEFBuNYoFgIEA==,type:bool]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlckhGUFJkMjFaMVJIOGtk
+            M3ovb041WktFSkx2WlVQcnB1U05QWGJaamtZCjNaTzJLZnY2VFZrakFZVThnYUxP
+            eVQ2ODZnTk56YVNVR1ZuTmpWY0dFN0kKLS0tIHQweDMyaW9tK1phQ0ZPeGdTOXpS
+            QktQU1FVRDc0MjZ2ZVdVcHh0S0VMUmsKIBRXhCcLaTxA4xGrgQYP0vuNkCNLkqkN
+            4CzNt5VLwU0NvrJK2eHuYiw21gjHS+XqxR67wlSmE1ME+bTLrwUf3Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-13T12:49:11Z"
+    mac: ENC[AES256_GCM,data:xd7MvCOwhhYol0HrssjI++4nhTYSp+lxn2HlckCKIz6Pw+Fec+NMVoW7+DGKv1X52w7O/XsR2A5CPfoSY+kU5UTt86bo06hv4IvFCzGS9itjs//4BmjdK29dI92E6kHrPCiucfU9tN4Ig9VX1HIuoeG39BoAUVLQ2Mrt8ba+XOE=,iv:SK1SpZJ/Dp0+ER1V7zcYksJq8+xc8U7AafLKJ3/5OLE=,tag:lrEmplHaxSSrPo0ZrJu/5w==,type:str]
+    pgp: []
+    encrypted_regex: ^(values)$
+    version: 3.9.0
