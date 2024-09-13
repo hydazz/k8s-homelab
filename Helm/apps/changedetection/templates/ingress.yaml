@@ -5,7 +5,7 @@ metadata:
     name: changedetection
     namespace: {{ $.Release.Namespace }}
 spec:
-    ingressClassName: nginx
+    ingressClassName: internal-nginx
     tls:
         - hosts:
               - "*.k3s.hyde.services"

@@ -5,7 +5,7 @@ metadata:
   name: flaresolverr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -28,7 +28,7 @@ metadata:
   name: overseerr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: external-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -51,7 +51,7 @@ metadata:
   name: tdarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -74,7 +74,7 @@ metadata:
   name: bazarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -97,7 +97,7 @@ metadata:
   name: sonarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -120,7 +120,7 @@ metadata:
   name: prowlarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -144,7 +144,7 @@ metadata:
   name: radarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"
@@ -167,7 +167,7 @@ metadata:
   name: lidarr
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"

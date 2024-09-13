@@ -65,7 +65,7 @@ metadata:
   name: phpmyadmin
   namespace: mariadb
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal-nginx
   tls:
     - hosts:
         - "*.k3s.hyde.services"

@@ -22,7 +22,7 @@ spec:
         ingress:
             enabled: true
             host: longhorn.k3s.hyde.services
-            ingressClassName: nginx
+            ingressClassName: internal-nginx
             tls: true
             tlsSecret: wildcard.hyde.services
             annotations:
