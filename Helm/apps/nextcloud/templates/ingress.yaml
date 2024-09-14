@@ -12,15 +12,14 @@ spec:
         - "{{ .domain }}"
       secretName: {{ .tlssecret }}
   rules:
-    - host: "{{ .domain }}"
+    - host: {{ .domain }}
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: {{ .domain | replace "." "-" }}-service
+                name: {{ .domain | replace "." "-" }}-svc
                 port:
                   number: {{ $.Values.nextcloud.port }}
-
 {{- end }}

@@ -11,5 +11,4 @@ spec:
   resources:
     requests:
       storage: {{ .storage }}
-
 {{- end }}

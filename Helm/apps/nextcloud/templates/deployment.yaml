@@ -44,9 +44,11 @@ spec:
           volumeMounts:
             - name: appdata
               mountPath: /config
-{{- range .nfsMounts }}
-            - name: nfs-volume-{{ $.domain | replace "." "-" }}-{{ .destination | replace "/" "-" | replace "." "-" }}
-              mountPath: {{ .destination }}
+{{- if .nfsMounts }}
+{{- range $index, $mount := .nfsMounts }}
+            - name: nfs-mount-{{ $index }}
+              mountPath: {{ $mount.destination }}
+{{- end }}
 {{- end }}
           livenessProbe:
             failureThreshold: 5
@@ -57,24 +59,24 @@ spec:
             initialDelaySeconds: 10
             tcpSocket:
               port: {{ $.Values.nextcloud.port }}
-
       restartPolicy: Always
       volumes:
         - name: appdata
           persistentVolumeClaim:
             claimName: {{ .domain | replace "." "-" }}-appdata-pvc
-{{- range .nfsMounts }}
-        - name: nfs-volume-{{ $.domain | replace "." "-" }}-{{ .destination | replace "/" "-" | replace "." "-" }}
+{{- if .nfsMounts }}
+{{- range $index, $mount := .nfsMounts }}
+        - name: nfs-mount-{{ $index }}
           nfs:
-            server: {{ .source | splitList ":" | first }}
-            path: {{ .source | splitList ":" | last }}
+            server: {{ (split ":" $mount.source)._0 }}
+            path: {{ (split ":" $mount.source)._1 }}
 {{- end }}
-
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .domain | replace "." "-" }}-service
+  name: {{ .domain | replace "." "-" }}-svc
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
@@ -85,5 +87,4 @@ spec:
       protocol: TCP
       port: {{ $.Values.nextcloud.port }}
       targetPort: {{ $.Values.nextcloud.port }}
-
 {{- end }}
