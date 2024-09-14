@@ -9,15 +9,3 @@ spec:
   resources:
     requests:
       storage: 64Mi
-#---
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: authentik-dist-pvc
-#  namespace: authentik
-#spec:
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 1Mi
