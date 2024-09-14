@@ -14,3 +14,4 @@ resources:
   - media-downloaders
   - mailserver
   - authentik
+  - nextcloud
