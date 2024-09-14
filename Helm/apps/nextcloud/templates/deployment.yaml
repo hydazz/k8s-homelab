@@ -1,0 +1,89 @@
+{{- range .Values.instances }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .domain | replace "." "-" }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+    app.kubernetes.io/name: nextcloud
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+      app.kubernetes.io/name: nextcloud
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
+      labels:
+        app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+        app.kubernetes.io/name: nextcloud
+    spec:
+      containers:
+        - name: nextcloud
+          image: {{ $.Values.nextcloud.image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1001"
+            - name: GUID
+              value: "1001"
+            - name: TZ
+              value: "Australia/Melbourne"
+          ports:
+            - name: web
+              containerPort: {{ $.Values.nextcloud.port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+{{- range .nfsMounts }}
+            - name: nfs-volume-{{ $.domain | replace "." "-" }}-{{ .destination | replace "/" "-" }}
+              mountPath: {{ .destination }}
+{{- end }}
+          livenessProbe:
+            failureThreshold: 5
+            tcpSocket:
+              port: {{ $.Values.nextcloud.port }}
+          startupProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 10
+            tcpSocket:
+              port: {{ $.Values.nextcloud.port }}
+
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: {{ .domain | replace "." "-" }}-appdata-pvc
+{{- range .nfsMounts }}
+        - name: nfs-volume-{{ $.domain | replace "." "-" }}-{{ .destination | replace "/" "-" }}
+          nfs:
+            server: {{ .source | splitList ":" | first }}
+            path: {{ .source | splitList ":" | last }}
+{{- end }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .domain | replace "." "-" }}-service
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+    app.kubernetes.io/name: nextcloud
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ $.Values.nextcloud.port }}
+      targetPort: {{ $.Values.nextcloud.port }}
+
+{{- end }}

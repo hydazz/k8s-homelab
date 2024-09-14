@@ -7,15 +7,19 @@ data:
   custom.css: |
     /*** global ***/
     :root {
-    	--ak-accent: #3a244a;
-    	--pf-global--primary-color--100: #70468e;
-    	--pf-global--primary-color--200: #55356c;
-    	--pf-global--primary-color--400: var(--ak-accent);
-      }
+      --ak-accent: #3a244a;
+      --pf-global--primary-color--100: #70468e;
+      --pf-global--primary-color--200: #55356c;
+      --pf-global--primary-color--400: var(--ak-accent);
+    }
 
     .pf-c-login__main,
     .pf-c-login__main::before {
       border-radius: 8px;
+    }
+
+    .ak-brand.ak-flow-executor {
+      display: none;
     }
 
     /*** hide footer ***/

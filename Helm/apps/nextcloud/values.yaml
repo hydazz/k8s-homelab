@@ -1,0 +1,3 @@
+nextcloud:
+  image: ghcr.io/linuxserver/nextcloud:latest
+  port: 443

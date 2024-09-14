@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: nextcloud
+    namespace: nextcloud
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/nextcloud
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system
+    values:
+        instances:
+            - domain: ENC[AES256_GCM,data:ao/4rH22vWie3q/YLjMLl2h2edfMcQQ=,iv:jgzw0Tj0asLo9vVhH0JJ2J7Uf/HzFsn3hwWiPm+aQ7A=,tag:JJE++l4y4YZ/ZMgvc/jtxQ==,type:str]
+              storage: ENC[AES256_GCM,data:lJGT,iv:ALfS/nplHj0qEi9dXJBbfCV2D0mjl1eh0zUxE6vTfBM=,tag:xDKvSolKGTjhDP/sOP1wWQ==,type:str]
+              tlssecret: ENC[AES256_GCM,data:IdMgP3tQjvflmTc+SPsS3nj1j1IJHBXL,iv:0hof9KO7nJMWXtPyvTP2HqgvVNwUtF0hMmdNXTx6zwo=,tag:DjuGBVuyXrg+TxSoQhuDGQ==,type:str]
+              nfsMounts:
+                - source: ENC[AES256_GCM,data:MXtRifJJeKDfNC2mfiNj78PXPIBJbIg=,iv:/Orh7fgST4dGRu8H8JgaYd0bUMqxeuV9bA/H4nNc7oI=,tag:gdFsQMSpBH6cjvil0/HLag==,type:str]
+                  destination: ENC[AES256_GCM,data:i36GgNdxq6ooKg/K1U9H9T5dRG8QZWY5,iv:CN5eRYct8aYr1dq18lsb98DtCx6ssUhzTzw5WKk3OkE=,tag:wogoYcAw81UAy3UuLK/6qA==,type:str]
+            - domain: ENC[AES256_GCM,data:C8Kjcs0Ywj0t1ZuzBme6hDj3YGzI,iv:Z5or2eBYn4SiB2RR3qawsow8QtUgWkG7hySdW2VgcdA=,tag:U/l3IbLZ+ArQ1VEciSiAaQ==,type:str]
+              storage: ENC[AES256_GCM,data:AlbI,iv:AjLxQWDHfp9s7Qbenb3a2Yc037afKkvNFlirm/qAzPc=,tag:JNblM/tnPjj0cvu8gDW+9g==,type:str]
+              tlssecret: ENC[AES256_GCM,data:iABgW7uCfiXOgg+inu31aYsW8KS/dQ==,iv:lY+DRY3OIsTFFakoSdZpS9ZTP0cMq1F3mB/iYK0kwOQ=,tag:GjPZ9j+JbaGakuWaqF6fGA==,type:str]
+              nfsMounts:
+                - source: ENC[AES256_GCM,data:jBcCvTBuxwtYTe1cdlBjkCQ6Z7NfwdSElg==,iv:UNnFkmBr23Hp2tPkABnBEe4x6nsg2G1lHeJk2q8jCaw=,tag:fHM+FEfqTKTAUm/0VFikLA==,type:str]
+                  destination: ENC[AES256_GCM,data:lovPDgAKPfjeAGARgWp8UURDXKqQPKGYJe8=,iv:VtABwPR+8uxsQdQO/PTDE/iPdtiwZXmml9iUQYhmpjg=,tag:9mgF/lshNUcG5PyIUvHt8Q==,type:str]
+                - source: ENC[AES256_GCM,data:XaXuZNtgOgIb1oGbW4pTLRFnpcYl11pwGg==,iv:PxbbSBvzQxESea0ER0UF+GC5tcPo3B+d9PmVrVFWh3E=,tag:R2WNk1RrKDvjteNdqmWi3g==,type:str]
+                  destination: ENC[AES256_GCM,data:jWXht5b78dberfKM0ojQIaOnofQCLmFTV9E=,iv:1vGgqcuWqBJBbwcdKaT/YQy/3f1/7cdpVXRDjL0OvBo=,tag:B+j4FVJVB0Ir6nYN693hGQ==,type:str]
+                - source: ENC[AES256_GCM,data:HYDM5ZSrWLh4pp94NWGt1Od/xES4qKMZ9i4x,iv:w4kH8rkcxTe49IRgTo3SFiOPriYvxDkJYJNJ/YxiNaY=,tag:jtO0xBzfEZ7Y2ZM+TFu0mQ==,type:str]
+                  destination: ENC[AES256_GCM,data:Wy4rAMDzUHrnTUmvpQ==,iv:B/TyhJILJOxjbq6lLzIhRpZitoQhe3GgvgX/yJg7pA8=,tag:v0lx7g+JvOM5JLCGb3X4rA==,type:str]
+                - source: ENC[AES256_GCM,data:kJhn+E9n6+h1j33nPxGmDaNMMghA0yHszj4=,iv:ASp2z5U1srB26eNAoWgx3VWH/oxiPsXKRZ/w14IU9fU=,tag:MVH50L1JobDeyruGuaGvtQ==,type:str]
+                  destination: ENC[AES256_GCM,data:k4pGgGJ18SKQX6GI,iv:bn4wXORKzQXoLFcd7D2A+mTVBPlHhzPY37FiTHzu3FY=,tag:1tG2NUcart/eaHqdrQaACA==,type:str]
+                - source: ENC[AES256_GCM,data:sWHtFG2bE0K6lB9VgWnQtch6LduohWq09A==,iv:uX6V8nogo+/eBwlNJxIg/y892wpcuJ4hJ6uydsFltZg=,tag:Ji3mS4+OU+zer9qLt1eGDg==,type:str]
+                  destination: ENC[AES256_GCM,data:J8ZtKNPJqAZoWVc=,iv:ulbSazEgbgx5kd3i5V6jIlTw97gfCxTil69DsGfCmbs=,tag:wlqwVJDoc9fB4G2IAz0TPg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvNkgyeGlZZ0laaW96Y3J0
+            TWRadHNQRTBleWxPUk92bTdFNW1SNk8vRm04ClliR2RKekJTRitBMGNCTFEzWmFk
+            Rk52SVBzRldpUmZIaFRiUU5tY3ZmVU0KLS0tIDBNM2IwTm53Wi9naDBJdnJqQnAz
+            dzlpbmNQT1BpajVaOHVORmhjUWxneTQKKJzkGySWulwFAb721Zxmh3w8Gn+MPPpS
+            Z3e5k5Vu0MYYyzw/QiLBjVI92/hJJOITAS9Kiy0EJlCSsX77Hd5QEA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-14T09:45:02Z"
+    mac: ENC[AES256_GCM,data:YxS/gQlec/Ac7UOySMY7UZM0nCN+1ZfbDwxQB3tDFx872Dl/Jlqact0M4mYKrspZeFZvLoYvpUWVZcQxUZCCk3uGzEBqAbeRaVzK8Nwu9Il0H98IfIUbjt/rYXtPHEtA82TmfykvxU6MiVPH80+sj82rbjIUE1XrvvHFBBFzRF4=,iv:CsQQp0Y7XB2Hpg5WAsEG3bAtrdbq6ToLm7zUtDcJlMQ=,tag:Oa9EOonCyifE2yDodoLJjQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(instances|)$
+    version: 3.9.0
