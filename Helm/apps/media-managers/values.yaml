@@ -46,7 +46,7 @@ lidarr:
   port: 8686
 
 tdarr:
-  image: ghcr.io/haveagitgat/tdarr:2.24.05
+  image: ghcr.io/haveagitgat/tdarr:2.25.01
   port: 8265
   resources:
     limits:
