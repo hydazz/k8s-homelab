@@ -18,14 +18,8 @@ spec:
     values:
         instances:
             - domain: ENC[AES256_GCM,data:ao/4rH22vWie3q/YLjMLl2h2edfMcQQ=,iv:jgzw0Tj0asLo9vVhH0JJ2J7Uf/HzFsn3hwWiPm+aQ7A=,tag:JJE++l4y4YZ/ZMgvc/jtxQ==,type:str]
-              storage: ENC[AES256_GCM,data:lJGT,iv:ALfS/nplHj0qEi9dXJBbfCV2D0mjl1eh0zUxE6vTfBM=,tag:xDKvSolKGTjhDP/sOP1wWQ==,type:str]
-              tlssecret: ENC[AES256_GCM,data:IdMgP3tQjvflmTc+SPsS3nj1j1IJHBXL,iv:0hof9KO7nJMWXtPyvTP2HqgvVNwUtF0hMmdNXTx6zwo=,tag:DjuGBVuyXrg+TxSoQhuDGQ==,type:str]
-              nfsMounts:
-                - source: ENC[AES256_GCM,data:MXtRifJJeKDfNC2mfiNj78PXPIBJbIg=,iv:/Orh7fgST4dGRu8H8JgaYd0bUMqxeuV9bA/H4nNc7oI=,tag:gdFsQMSpBH6cjvil0/HLag==,type:str]
-                  destination: ENC[AES256_GCM,data:i36GgNdxq6ooKg/K1U9H9T5dRG8QZWY5,iv:CN5eRYct8aYr1dq18lsb98DtCx6ssUhzTzw5WKk3OkE=,tag:wogoYcAw81UAy3UuLK/6qA==,type:str]
-            - domain: ENC[AES256_GCM,data:C8Kjcs0Ywj0t1ZuzBme6hDj3YGzI,iv:Z5or2eBYn4SiB2RR3qawsow8QtUgWkG7hySdW2VgcdA=,tag:U/l3IbLZ+ArQ1VEciSiAaQ==,type:str]
               storage: ENC[AES256_GCM,data:AlbI,iv:AjLxQWDHfp9s7Qbenb3a2Yc037afKkvNFlirm/qAzPc=,tag:JNblM/tnPjj0cvu8gDW+9g==,type:str]
-              tlssecret: ENC[AES256_GCM,data:iABgW7uCfiXOgg+inu31aYsW8KS/dQ==,iv:lY+DRY3OIsTFFakoSdZpS9ZTP0cMq1F3mB/iYK0kwOQ=,tag:GjPZ9j+JbaGakuWaqF6fGA==,type:str]
+              tlssecret: ENC[AES256_GCM,data:IdMgP3tQjvflmTc+SPsS3nj1j1IJHBXL,iv:0hof9KO7nJMWXtPyvTP2HqgvVNwUtF0hMmdNXTx6zwo=,tag:DjuGBVuyXrg+TxSoQhuDGQ==,type:str]
               nfsMounts:
                 - source: ENC[AES256_GCM,data:jBcCvTBuxwtYTe1cdlBjkCQ6Z7NfwdSElg==,iv:UNnFkmBr23Hp2tPkABnBEe4x6nsg2G1lHeJk2q8jCaw=,tag:fHM+FEfqTKTAUm/0VFikLA==,type:str]
                   destination: ENC[AES256_GCM,data:lovPDgAKPfjeAGARgWp8UURDXKqQPKGYJe8=,iv:VtABwPR+8uxsQdQO/PTDE/iPdtiwZXmml9iUQYhmpjg=,tag:9mgF/lshNUcG5PyIUvHt8Q==,type:str]
@@ -37,6 +31,12 @@ spec:
                   destination: ENC[AES256_GCM,data:k4pGgGJ18SKQX6GI,iv:bn4wXORKzQXoLFcd7D2A+mTVBPlHhzPY37FiTHzu3FY=,tag:1tG2NUcart/eaHqdrQaACA==,type:str]
                 - source: ENC[AES256_GCM,data:sWHtFG2bE0K6lB9VgWnQtch6LduohWq09A==,iv:uX6V8nogo+/eBwlNJxIg/y892wpcuJ4hJ6uydsFltZg=,tag:Ji3mS4+OU+zer9qLt1eGDg==,type:str]
                   destination: ENC[AES256_GCM,data:J8ZtKNPJqAZoWVc=,iv:ulbSazEgbgx5kd3i5V6jIlTw97gfCxTil69DsGfCmbs=,tag:wlqwVJDoc9fB4G2IAz0TPg==,type:str]
+            - domain: ENC[AES256_GCM,data:C8Kjcs0Ywj0t1ZuzBme6hDj3YGzI,iv:Z5or2eBYn4SiB2RR3qawsow8QtUgWkG7hySdW2VgcdA=,tag:U/l3IbLZ+ArQ1VEciSiAaQ==,type:str]
+              storage: ENC[AES256_GCM,data:AlbI,iv:AjLxQWDHfp9s7Qbenb3a2Yc037afKkvNFlirm/qAzPc=,tag:JNblM/tnPjj0cvu8gDW+9g==,type:str]
+              tlssecret: ENC[AES256_GCM,data:iABgW7uCfiXOgg+inu31aYsW8KS/dQ==,iv:lY+DRY3OIsTFFakoSdZpS9ZTP0cMq1F3mB/iYK0kwOQ=,tag:GjPZ9j+JbaGakuWaqF6fGA==,type:str]
+              nfsMounts:
+                - source: ENC[AES256_GCM,data:MXtRifJJeKDfNC2mfiNj78PXPIBJbIg=,iv:/Orh7fgST4dGRu8H8JgaYd0bUMqxeuV9bA/H4nNc7oI=,tag:gdFsQMSpBH6cjvil0/HLag==,type:str]
+                  destination: ENC[AES256_GCM,data:i36GgNdxq6ooKg/K1U9H9T5dRG8QZWY5,iv:CN5eRYct8aYr1dq18lsb98DtCx6ssUhzTzw5WKk3OkE=,tag:wogoYcAw81UAy3UuLK/6qA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -52,8 +52,8 @@ sops:
             dzlpbmNQT1BpajVaOHVORmhjUWxneTQKKJzkGySWulwFAb721Zxmh3w8Gn+MPPpS
             Z3e5k5Vu0MYYyzw/QiLBjVI92/hJJOITAS9Kiy0EJlCSsX77Hd5QEA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-14T09:45:02Z"
-    mac: ENC[AES256_GCM,data:YxS/gQlec/Ac7UOySMY7UZM0nCN+1ZfbDwxQB3tDFx872Dl/Jlqact0M4mYKrspZeFZvLoYvpUWVZcQxUZCCk3uGzEBqAbeRaVzK8Nwu9Il0H98IfIUbjt/rYXtPHEtA82TmfykvxU6MiVPH80+sj82rbjIUE1XrvvHFBBFzRF4=,iv:CsQQp0Y7XB2Hpg5WAsEG3bAtrdbq6ToLm7zUtDcJlMQ=,tag:Oa9EOonCyifE2yDodoLJjQ==,type:str]
+    lastmodified: "2024-09-14T14:07:58Z"
+    mac: ENC[AES256_GCM,data:6+XozoXZaV9Rus+I3fzMB6e8QPmw/a4c45J1l7YWiv+gWFUw1EdCOg46OIB5Zo8FVOiUknrU1MaRURthIRirlofaYT7b7YSxwgJ/z158s7zGwOBwgOzlxGy277+PfSut2LGX7ooD6OFt8CISFZe235UcEtJHmreX0aLGdWumSIE=,iv:PRGvtswxw6skGcqo2cG1FB4Z2WEVVFBazHN+uvE7vWk=,tag:HDCvG8ZQGLBcg/RSiESdzw==,type:str]
     pgp: []
     encrypted_regex: ^(instances|)$
     version: 3.9.0

@@ -8,7 +8,7 @@ spec:
         annotations:
             reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
             reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: mariadb,portainer,longhorn-system,changedetection,lubelogger,media-downloaders,media-managers,monitoring,paperless-ngx,uptime-kuma,mailserver,authentik
+            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: mariadb,portainer,longhorn-system,changedetection,lubelogger,media-downloaders,media-managers,monitoring,paperless-ngx,uptime-kuma,mailserver,authentik,nextcloud
     secretName: ENC[AES256_GCM,data:v/7htA7mZVm7crOT1p4uJ/PxTeqqsA==,iv:L2F+N8aiVbvgh/XO9dxpts0iRc7ah2ANdCqCQ3qWi74=,tag:hv9nYR03BLhQNbuaRjVwHg==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -32,8 +32,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -44,11 +44,11 @@ metadata:
     name: ENC[AES256_GCM,data:Pe5LdfDKt1NMSmQPGDP/vLlqNS1mOx7J,iv:6sLinXAVdtsJvNjtaHwG9NEq/0QTg/Xq9dVbqfeC0tQ=,tag:uyh6CpDlyAOGz0Cu6ZutSg==,type:str]
     namespace: cert-manager
 spec:
-    #secretTemplate:
-    #  annotations:
-    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+    secretTemplate:
+        annotations:
+            reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: nextcloud
     secretName: ENC[AES256_GCM,data:LYWWOi8Y2HZ9AVYqiKc7N6n3ibGcpudS,iv:FeEwqAgILT9pbwFVRdoRpsVbdy+WYfRDtTtmooXeoc0=,tag:OhiLHJllhNJ+3c2XNTjqrw==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -71,8 +71,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -83,11 +83,6 @@ metadata:
     name: ENC[AES256_GCM,data:L5jTg6TE2wqMZlwb0jye2k7lu0z6/ME=,iv:RwYcl7xWoudnQIWqWGWK0MJY8OQaKgPcyHJngd2tUCQ=,tag:Ur2CxzR9ZHrPehPD7EyD9Q==,type:str]
     namespace: cert-manager
 spec:
-    #secretTemplate:
-    #  annotations:
-    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
     secretName: ENC[AES256_GCM,data:/JHsN3AjdWhJ+XXjJmqkV91bPMyTPK4=,iv:U1xwQ2Pv9FfOckA43ReZmBKNtyKrfDh7rFvUtPEXofM=,tag:tPAGH50qOkZmRNUfRNyGOg==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -110,8 +105,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -122,11 +117,6 @@ metadata:
     name: ENC[AES256_GCM,data:K+cT94UtqRYZDAWzJcAPXyosGOL+hMQM,iv:YGW7eQKM51bHphtsOLwtCopOyjzI4U62NNr0Na+e+es=,tag:vyfZFosjoHDGBx7q5YI2oQ==,type:str]
     namespace: cert-manager
 spec:
-    #secretTemplate:
-    #  annotations:
-    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
     secretName: ENC[AES256_GCM,data:4EAJ3NJjqIYiKe9U+ecdEUWSpyVzfjzS,iv:oU+E7JO4ddw/pOUPXMCTUxpZaeq0O8YFcm3J9vJeitM=,tag:OZKcafQt8pAT69PnVPgA5g==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -149,8 +139,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -161,11 +151,6 @@ metadata:
     name: ENC[AES256_GCM,data:n7pqPuEkTMLVNaHzs/fa1BS/7ri0l2PP,iv:5OS7u9dToP8lvprteNrKUtre/jIuYt1su0dxXQ7IP1A=,tag:MWhkLDa8CSlKbPzbygUcyg==,type:str]
     namespace: cert-manager
 spec:
-    #secretTemplate:
-    #  annotations:
-    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
     secretName: ENC[AES256_GCM,data:d/m1d2wvoMlI0PUqzWPYqleXfIGe7ar9,iv:Fs5WmGKxvARcET2wUI/Jqv1dqEdzPUwm9adLzwDjFfw=,tag:H/OflgsZn7jL16hFU+xN3Q==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -188,8 +173,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
@@ -200,11 +185,6 @@ metadata:
     name: ENC[AES256_GCM,data:OQ8UzFGBpJR5KEFzP6W3yh4QwZCE,iv:NupHIk5RS3f6Ro2ajpD78M3AQyAQbJdJYaUbBxL8QVg=,tag:nZps4z7rR2pD6eThxLVvbw==,type:str]
     namespace: cert-manager
 spec:
-    #secretTemplate:
-    #  annotations:
-    #    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    #    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
     secretName: ENC[AES256_GCM,data:vAEAQhSuUmm54aFfOxA7xtedd8WO,iv:7oyG4uE0UMeTLzpw0395art6M4p3UECfgXpxEdkQU/0=,tag:KqpGYT3Avrhw+lkGMTCGtA==,type:str]
     issuerRef:
         name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
@@ -227,8 +207,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-13T13:39:48Z"
-    mac: ENC[AES256_GCM,data:8Ik+TBTeKz6OhQ0vSXZRuslvQyM0azEBg9RaJrI5HOaM7B4RCXX2gjFD7Aptikx2inZegJf8G8BDaqNLAvXdU2Y2XYm+RMPBnMDCNpafCHiU00gTc7I+dIN5Ae9wpDfiyXUK3VmJVGvOJknOJkvK+tGv9nv8FT1HRqIkEMXngS4=,iv:lW1nlLTmu7KxcBu06rF808tve2ZUe1dDvNIr2gHIJfs=,tag:mQBeZsD7xMCPuLS6HGy9nw==,type:str]
+    lastmodified: "2024-09-14T14:09:30Z"
+    mac: ENC[AES256_GCM,data:uK9dyNkWN5gla0wc7giAAWmbPj4JN0QDJ4Tm8KxT+Ak+151IVAJGp2Hs+43XHKLp1b1fLNkmbMxKuWaKnqXZQzrW6+AYVcQ7iDy3eyf7TSVW+0Taj2ldZNDO+WsF9QSMXObWVEMIfnLidrs+bVODiCrKQgLD/TYK5xc1UyAuyko=,iv:fZvItNGuN73/VOzdEcKQOpnCA81HefH1wOP/jf3OHJc=,tag:xOWo7GYGG39RM00Gdda3Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.0
