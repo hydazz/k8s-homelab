@@ -11,3 +11,4 @@ temp
 .terraform
 docker-data
 private-*.yaml
+.decrypted*

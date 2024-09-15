@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: jenkins
+      version: 5.6.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: jenkins
+        namespace: flux-system
+  values:
+    controller:
+      ingress:
+        enabled: true
+        ingressClassName: external-nginx
+        hostName: ci.imagegenius.io
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+        tls:
+          - hosts:
+              - ci.imagegenius.io
+            secretName: wildcard.imagegenius.io
+    agent:
+      enabled: false
+    persistence:
+      size: 2Gi

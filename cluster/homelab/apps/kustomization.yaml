@@ -14,3 +14,4 @@ resources:
   - mailserver
   - authentik
   - nextcloud
+  - jenkins
