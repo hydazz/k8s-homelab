@@ -94,3 +94,15 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.tdarr.server }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kometa-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.kometa.appdata }}

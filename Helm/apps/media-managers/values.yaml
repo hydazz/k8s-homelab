@@ -16,6 +16,8 @@ storage:
     config: 4Mi
     logs: 8Mi
     server: 2Gi
+  kometa:
+    appdata: 1Gi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
@@ -51,3 +53,6 @@ tdarr:
   resources:
     limits:
       nvidia.com/gpu: 1
+
+kometa:
+  image: ghcr.io/linuxserver/kometa:2.0.2
