@@ -32,6 +32,8 @@ spec:
               value: mariadb
             - name: PMA_PORT
               value: "3306"
+            - name: UPLOAD_LIMIT
+              value: "128M"
           livenessProbe:
             failureThreshold: 5
             initialDelaySeconds: 30
@@ -64,6 +66,8 @@ kind: Ingress
 metadata:
   name: phpmyadmin
   namespace: mariadb
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "128m"
 spec:
   ingressClassName: internal-nginx
   tls:
