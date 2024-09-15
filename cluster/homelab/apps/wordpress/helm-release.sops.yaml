@@ -1,52 +1,44 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: ENC[AES256_GCM,data:53a3czNJOw7g7vReXSH+,iv:xOYLbPKk78TKijq6HxMO5M8P+2V1U0vTBmF+y1ZRCD0=,tag:ySbigpKL8dJJGKQ6FoQI5w==,type:str]
+    name: wordpress
     namespace: wordpress
 spec:
     interval: 5m
     install:
         createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
     chart:
         spec:
-            chart: wordpress
-            version: 23.1.13
-            interval: 5m
+            chart: ./Helm/apps/wordpress
+            reconcileStrategy: Revision
             sourceRef:
-                kind: HelmRepository
-                name: ENC[AES256_GCM,data:BYyNC5JPXA==,iv:e7f6xnwfloaqtsA0JjjQeX4gSAmR/JBiwp/olGlVGyk=,tag:5Y1l66YSztLq4kPFYpSzxw==,type:str]
+                kind: GitRepository
+                name: flux-system
                 namespace: flux-system
     values:
-        image:
-            repository: bitnami/wordpress
-            tag: 6.6.2-debian-12-r1
-        mariadb:
-            enabled: false
-        wordpressConfigureCache: true
-        htaccessPersistenceEnabled: true
-        ingress:
-            enabled: true
-            ingressClassName: external-nginx
-            hostname: ENC[AES256_GCM,data:xV52gYamgI01QVQFxEyF,iv:GbYHl60GOhTjGd25DcyihAOYJk8ibRqFNUgYJ6ooFus=,tag:cSAnVT3KqcIQd0+jTXsA9A==,type:str]
-            tls: true
-            extraTls:
-                - hosts:
-                    - ENC[AES256_GCM,data:AT1jjieU5NBBkbboEcIa,iv:IChClpqvyJB82rZvZK2RpAH9CND0NkQxDZ6NmNWMP4s=,tag:/Jin0T4ZPy09fGLvNF+ekA==,type:str]
-                  secretName: ENC[AES256_GCM,data:nFL5aUJbQUZL99KKCVXAWQZavzwCy8mP,iv:9gtMaGNxhv/s8VxT2Bpvy4DVCoF3GDkBlX1IQo+L0ic=,tag:ZQMSbwBUXZx9HVY1ToIPxQ==,type:str]
-        memcached:
-            enabled: false
-        externalCache:
-            host: memcached.wordpress.svc.cluster.local
-            port: 11211
-        persistence:
-            size: 1Gi
+        instances:
+            - domain: ENC[AES256_GCM,data:z1+bp6R9l6lCsxwwQ+zK,iv:KrsAErltfs1tLN70vAVGQ8z65RiUJDIg4AXfKFwQeq4=,tag:c6hfEC1zTqsjhYgsLy0e3w==,type:str]
+              values:
+                mariadb:
+                    enabled: ENC[AES256_GCM,data:6FMGMhg=,iv:TnPbHS2wr9IGJanrUVd9yvjYX6LNwocNejA9UIMdCZk=,tag:McLZ7dZIMlbJtymJDZiVdQ==,type:bool]
+                wordpressConfigureCache: ENC[AES256_GCM,data:0WqL1Q==,iv:AJzN7Q1rGQ5G3pOG7u8hJrkh1PAoiEYGskdCUsxvzVw=,tag:Beo9uwNBPgr2bcCBS3zELg==,type:bool]
+                htaccessPersistenceEnabled: ENC[AES256_GCM,data:ySvIMQ==,iv:o3WwykZ+T5LXQBeF3O6FJ3TpAgjqsTEZsZA+yh8724o=,tag:MGXWzppGB+DaZiZtvYyo7g==,type:bool]
+                ingress:
+                    enabled: ENC[AES256_GCM,data:+Lg6EQ==,iv:Xh5dphdWrz6ysesvzsrN4lMBVWreRi6Yf0WuiirZxW0=,tag:goHa+kE2HpQwzCTWKFr4zA==,type:bool]
+                    ingressClassName: ENC[AES256_GCM,data:/1rtu5i9+fBPeEhKsVw=,iv:u7lyDQ/fF3/MYbFhRtObFsfi4RTRrfJejoSPjcZQ+Cw=,tag:w0AnHJwco4rR34Dmjf8q/A==,type:str]
+                    hostname: ENC[AES256_GCM,data:0KWbRDWaIGgCKtbquMBR,iv:TYpwxrIuZLnMHeluu7Rn7Hf09GRrpEYUTnFq7ruuhOw=,tag:u6f6QQaqlvr+SYFmjwkCJw==,type:str]
+                    tls: ENC[AES256_GCM,data:dhftyg==,iv:AL8zxdr1UXqp3T4oRdEwjF4/MWANhA4zGaal3xHK4R4=,tag:MwIWv5s4Hc+JsdrYABOx6Q==,type:bool]
+                    extraTls:
+                        - hosts:
+                            - ENC[AES256_GCM,data:2SsIX+J6dibbIle9mC7W,iv:5CVqmhjynGtEyAdxKECdDxdRIA4Jzi9UOKOK+uJz2ZQ=,tag:rKIyHRAcvUB+8RWPYsBTHg==,type:str]
+                          secretName: ENC[AES256_GCM,data:zZ5p02WOJV+/Y3+eZsQO0GUH11yA+pBY,iv:oOxLutKeKlQ9uRcXSdkLbjezoF1EuxpMTKk8mIdzvQg=,tag:IZOqRE9SL9T5/XwWmmDldw==,type:str]
+                memcached:
+                    enabled: ENC[AES256_GCM,data:MK1EB/I=,iv:PJ7xzw1Z85qGPEVx6XfDdfnno/axJGn6gc83Z07aya8=,tag:SaMfLz0UipFz1U1E46DCLQ==,type:bool]
+                externalCache:
+                    host: ENC[AES256_GCM,data:t41kkQTi7smFlphcZw1vuUuc0qUOlTXJdQ8ayCLqz2umxtIIQQ==,iv:+CLqaPqGK0mbd8eHdblRavwPLuYJk73pZahGh4dF/NE=,tag:3jtMkv4wkeCT+3KsD/5QkA==,type:str]
+                    port: ENC[AES256_GCM,data:fF5xhd4=,iv:n6MovBL00whJjMa+udrsuizbSAtVvMAQ/K+pCJQ+CFs=,tag:JI7PN55X5h+J3uQRPunL3A==,type:int]
+                persistence:
+                    size: ENC[AES256_GCM,data:stgf,iv:9LYKPNCi+I6meCh2lF7NpgO2WmuukQgVZMxgWccZZeg=,tag:7biOwWs0q2Lb3AGVggMQ0w==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -56,14 +48,14 @@ sops:
         - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRZkVpbllXNmVLZU1nOXBK
-            ZlY5aXJLcDZNNnF4c3BDMk9oVEE3L3ZHSTBFClBxbUtqZDYwVjhua3d6clRQMUQr
-            N1loMEtvZDY2N2V5UVJmaHlSVnBNdncKLS0tIGl6a1lScG9OL0JYM3NqNHltdGJN
-            RXBac0ZGUitFc3pubm5ONU9QTHhJRXMK6QgQz+/ZvgGlbOEInTwBfusxEXxLi+iX
-            P3CWEbPVYmX9OPEOQvId1yho5CFkV4ac3nc+uaqYXLNqfhJ63MVe2w==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVbTByL0ZFYXMyWTZKd3dN
+            bTJOOHdZOTBMVWVvTEpLSEpKVE5SdEVEUW1ZCmhldGM1SUh3SXM1MitpMmRwb3JR
+            WW5GdmgwYXpiSVJmS2dHZjlnQ2dEVDQKLS0tIEl3RUtOTkVGUkhWZjNlNHZqK2hJ
+            SGZKNWFoQzk2eTFBMmpCcXZoam9wREEK0SMESlqNeRLbWIurX+KkOlVQqcx7yc26
+            u8n3wxkLTrTpVEx+CZrsbyizySDVX4xy2BmL6EPVIFK0zPivIpeWLA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-15T04:05:33Z"
-    mac: ENC[AES256_GCM,data:DttbLzaz5jN17AY7GEGddRkYSxbUJkpYdaW41L3yCPaG5Gr/8qR65JacjPsmNFCrYXzpiN6TkTp+s11RrLfmRHpRd+U9iezPtbBTep/7Fy97XlI47MMbCHCDkIEPRNBkdU6JokugzynYFvsxx2s1tORFc3iI03axTrL3wDnB+NA=,iv:9XeHUfNpIP4IMCa/WIb6uXo+LGTmzanagiSrWt/P4D8=,tag:hE6b9a8xiHuaI7PpqN/UpA==,type:str]
+    lastmodified: "2024-09-15T07:47:36Z"
+    mac: ENC[AES256_GCM,data:q0I84ktp8bP716hUtagRmW95asXKlV2gBYkjm4D3nMzhbsQCVRlnOkaHXM/+tvPcsNToxllcGLPFcyG2kRHGw2bSiQAE041pH4EtJ3ZNX5whXY5GvPKBCSy8oX15GgT3Z4ZDLjCR+CyOvCQc9fM+5KDYkaDFcT1u4a4osw/6uxM=,iv:qpg+P6hbo3Mg688qjZG3DwPlzM8oY0XChsvmn+tVxLE=,tag:7WVehQXzyBuKbWuOamEMBQ==,type:str]
     pgp: []
-    encrypted_regex: ^(name|hostname|extraTls|)$
+    encrypted_regex: ^(instances|)$
     version: 3.9.0
