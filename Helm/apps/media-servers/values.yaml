@@ -3,6 +3,8 @@ storage:
   plex:
     appdata: 8Gi
     transcode: 8Gi
+  immich:
+    postgres: 2Gi
 
 plex:
   image: ghcr.io/linuxserver/plex
@@ -38,3 +40,10 @@ plex:
   resources:
     limits:
       nvidia.com/gpu: 1
+
+immich:
+  image: ghcr.io/imagegenius/immich:noml
+  redis:
+    image: redis:latest
+  pgvectors:
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0

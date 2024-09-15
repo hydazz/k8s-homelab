@@ -34,7 +34,7 @@ spec:
         - "*.k3s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: overseerr.k3s.hyde.services
+    - host: overseerr.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -160,26 +160,3 @@ spec:
                 name: radarr
                 port:
                   number: {{ .Values.radarr.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: lidarr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k3s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: lidarr.k3s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: lidarr
-                port:
-                  number: {{ .Values.lidarr.port }}

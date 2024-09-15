@@ -38,18 +38,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: lidarr-appdata-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.lidarr.appdata }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: overseerr-appdata-pvc
 spec:
   accessModes:

@@ -7,3 +7,4 @@ resources:
   - limit-egress.yaml
   - ghcr-secret.sops.yaml
   - secret-super-sops.yaml
+  - secret.sops.yaml

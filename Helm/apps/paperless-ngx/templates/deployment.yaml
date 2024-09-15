@@ -1,23 +1,34 @@
 ---
+{{- with .Values.paperlessngx }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: paperless-ngx
+  namespace: {{ $.Release.Namespace }}
   labels:
+    app.kubernetes.io/instance: paperless-ngx
     app.kubernetes.io/name: paperless-ngx
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: paperless-ngx
+      app.kubernetes.io/instance: paperless-ngx
+      app.kubernetes.io/name: paperless-ngx
   template:
     metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
       labels:
-        app: paperless-ngx
+        app.kubernetes.io/instance: paperless-ngx
+        app.kubernetes.io/name: paperless-ngx
     spec:
       containers:
         - name: gotenberg
-          image: {{ .Values.gotenberg.image }}
+          image: {{ .gotenberg.image }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
           args:
@@ -26,19 +37,22 @@ spec:
             - --chromium-allow-list=file:///tmp/.*
 
         - name: tika
-          image: {{ .Values.tika.image }}
+          image: {{ .tika.image }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9998
 
         - name: redis
-          image: redis:latest
+          image: {{ .redis.image }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 6379
 
         - name: paperless-ngx
-          image: {{ .Values.paperlessngx.image }}
+          image: {{ .paperlessngx.image }}
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .Values.paperlessngx.port }}
+            - containerPort: {{ .paperlessngx.port }}
           env:
             - name: PAPERLESS_TIKA_ENABLED
               value: "1"
@@ -90,12 +104,31 @@ spec:
               value: "1001"
             - name: USERMAP_UID
               value: "1001"
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 13 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .paperlessngx.port }}
           volumeMounts:
             - name: appdata
               mountPath: /config
             - name: nfs-paperless-data
               mountPath: /data/media
-
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .paperlessngx.port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .paperlessngx.port }}
+      restartPolicy: Always
+      nodeSelector:
       volumes:
         - name: appdata
           persistentVolumeClaim:
@@ -106,15 +139,18 @@ spec:
             path: "/mnt/Fast/Public/Paperless"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: paperless-ngx
+  namespace: {{ $.Release.Namespace }}
 spec:
   selector:
-    app: paperless-ngx
+    app.kubernetes.io/instance: paperless-ngx
+    app.kubernetes.io/name: paperless-ngx
   ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: {{ .Values.paperlessngx.port }}
+    - name: paperless-ngx
+      protocol: TCP
+      port: 8080
+
+{{- end }}

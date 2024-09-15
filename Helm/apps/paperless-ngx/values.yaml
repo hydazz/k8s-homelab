@@ -1,13 +1,14 @@
-paperlessngx:
-  image: ghcr.io/paperless-ngx/paperless-ngx:2.12
-  port: 8000
-
-gotenberg:
-  image: docker.io/gotenberg/gotenberg:7.8
-
-tika:
-  image: apache/tika:2.9.2.1
-
+---
 storage:
   paperlessngx:
     appdata: 128Mi
+
+paperlessngx:
+  image: ghcr.io/paperless-ngx/paperless-ngx:2.12
+  port: 8000
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:7.8
+  tika:
+    image: apache/tika:2.9.2.1
+  redis:
+    image: redis:latest

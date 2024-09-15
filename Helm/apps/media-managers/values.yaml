@@ -6,7 +6,7 @@ storage:
     appdata: 1Gi
   prowlarr:
     appdata: 256Mi
-  lidarr:
+  lidarr: #unused
     appdata: 256Mi
   overseerr:
     appdata: 32Mi
