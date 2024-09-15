@@ -30,12 +30,11 @@ spec:
         ingressClassName: external-nginx
         hostName: ci.imagegenius.io
         paths:
-          - path: /
-            pathType: ImplementationSpecific
+          - /
         tls:
-          - hosts:
+          - secretName: wildcard.imagegenius.io
+            hosts:
               - ci.imagegenius.io
-            secretName: wildcard.imagegenius.io
     agent:
       enabled: false
     persistence:
