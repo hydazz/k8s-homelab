@@ -40,7 +40,7 @@ sonarr:
   port: 8989
 
 bazarr:
-  image: ghcr.io/linuxserver/bazarr:1.4.3
+  image: ghcr.io/linuxserver/bazarr:1.4.4
   port: 6767
 
 lidarr:
