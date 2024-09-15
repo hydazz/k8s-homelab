@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: wordpress
+    namespace: wordpress
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/wordpress
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system
+    values:
+        instances:
+            - domain: ENC[AES256_GCM,data:KsbvGyPG66J+kl7ECbo/,iv:+eqlj/gH74WTAXWiVK8LbSIZHwOsUSY1TtL9QXyxJU8=,tag:UdIybvX9edPeCeNajbb7DA==,type:str]
+              storage: ENC[AES256_GCM,data:7Dpz,iv:X6d+tEqlwpCUITPt4D5j4EKTPFC6Mffe1QNQQ9Hc1bU=,tag:zUSxP/zOGHDAkOSs4gGMPg==,type:str]
+              tlssecret: ENC[AES256_GCM,data:IdMgP3tQjvflmTc+SPsS3nj1j1IJHBXL,iv:0hof9KO7nJMWXtPyvTP2HqgvVNwUtF0hMmdNXTx6zwo=,tag:DjuGBVuyXrg+TxSoQhuDGQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvNkgyeGlZZ0laaW96Y3J0
+            TWRadHNQRTBleWxPUk92bTdFNW1SNk8vRm04ClliR2RKekJTRitBMGNCTFEzWmFk
+            Rk52SVBzRldpUmZIaFRiUU5tY3ZmVU0KLS0tIDBNM2IwTm53Wi9naDBJdnJqQnAz
+            dzlpbmNQT1BpajVaOHVORmhjUWxneTQKKJzkGySWulwFAb721Zxmh3w8Gn+MPPpS
+            Z3e5k5Vu0MYYyzw/QiLBjVI92/hJJOITAS9Kiy0EJlCSsX77Hd5QEA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-15T03:24:53Z"
+    mac: ENC[AES256_GCM,data:UgxJUqaoZ93n2Ydiw23GAhgqFYQrWj1UUD9nn9mPOVzXqOexgh8K2Tfj0SSQGJ5fUWAHAU1CBAFBMj56nfZf8xC4MlRiEKgyR6VQS14XfdW47emKDhsSovzDDmCqbKERIRqrf8p1VcNteK/Nt4M1Yu2wQL9I/m9lIpnWV0Rrfds=,iv:NnDPrMe9b6zEJcLEi8KAGfsNrvAO+eqmunUUOsFesvw=,tag:6/CaCqKbFkeCE9EXSn/pZA==,type:str]
+    pgp: []
+    encrypted_regex: ^(instances|)$
+    version: 3.9.0

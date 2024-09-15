@@ -1,0 +1,14 @@
+{{- range .Values.instances }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .domain | replace "." "-" }}-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .storage }}
+{{- end }}

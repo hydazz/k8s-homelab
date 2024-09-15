@@ -1,0 +1,60 @@
+{{- range .Values.instances }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .domain | replace "." "-" }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+    app.kubernetes.io/name: wordpress
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+      app.kubernetes.io/name: wordpress
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
+      labels:
+        app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+        app.kubernetes.io/name: wordpress
+    spec:
+      containers:
+        - name: wordpress
+          image: {{ $.Values.wordpress.image }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: "Australia/Melbourne"
+          ports:
+            - name: web
+              containerPort: {{ $.Values.wordpress.port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /var/www/html
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: {{ .domain | replace "." "-" }}-appdata-pvc
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .domain | replace "." "-" }}-svc
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: {{ .domain | replace "." "-" }}
+    app.kubernetes.io/name: wordpress
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ $.Values.wordpress.port }}
+      targetPort: {{ $.Values.wordpress.port }}
+{{- end }}
