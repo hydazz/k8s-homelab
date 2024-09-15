@@ -29,4 +29,4 @@ spec:
       existingSecret: mariadb-secrets
     image:
       repository: bitnami/mariadb
-      tag: 11.4.3-debian-12-r0
+      tag: 11.5.2-debian-12-r2
