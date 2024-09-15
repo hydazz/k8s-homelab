@@ -29,8 +29,6 @@ spec:
         enabled: true
         ingressClassName: external-nginx
         hostName: ci.imagegenius.io
-        paths:
-          - /
         tls:
           - secretName: wildcard.imagegenius.io
             hosts:
