@@ -1,7 +1,0 @@
-wordpress:
-  image: wordpress:6.6.2
-  port: 80
-
-redis:
-  image: redis:latest
-  port: 6379
