@@ -117,14 +117,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: immich-web
+  name: immich-svc # name create variable called IMMICH_PORT inside the container which conflicts
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
     app.kubernetes.io/instance: immich
     app.kubernetes.io/name: immich
   ports:
-    - name: immich-web
+    - name: immich-svc
       protocol: TCP
       port: 8080
 
