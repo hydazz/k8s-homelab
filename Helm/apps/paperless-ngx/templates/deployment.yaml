@@ -26,28 +26,6 @@ spec:
         app.kubernetes.io/name: paperless-ngx
     spec:
       containers:
-        - name: gotenberg
-          image: {{ .gotenberg.image }}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3000
-          args:
-            - gotenberg
-            - --chromium-disable-javascript=true
-            - --chromium-allow-list=file:///tmp/.*
-
-        - name: tika
-          image: {{ .tika.image }}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9998
-
-        - name: redis
-          image: {{ .redis.image }}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 6379
-
         - name: paperless-ngx
           image: {{ .paperlessngx.image }}
           imagePullPolicy: IfNotPresent
@@ -127,6 +105,29 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: {{ .paperlessngx.port }}
+
+        - name: gotenberg
+          image: {{ .gotenberg.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          args:
+            - gotenberg
+            - --chromium-disable-javascript=true
+            - --chromium-allow-list=file:///tmp/.*
+
+        - name: tika
+          image: {{ .tika.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9998
+
+        - name: redis
+          image: {{ .redis.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+
       restartPolicy: Always
       nodeSelector:
       volumes:

@@ -26,27 +26,6 @@ spec:
         app.kubernetes.io/name: immich
     spec:
       containers:
-        - name: redis
-          image: {{ .redis.image }}
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-          ports:
-            - containerPort: 6379
-
-        - name: pgvecto-rs
-          image: {{ .pgvectors.image }}
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - name: postgresql-appdata
-              mountPath: /var/lib/postgresql/data
-
         - name: immich
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
@@ -102,6 +81,28 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: 8080
+
+        - name: redis
+          image: {{ .redis.image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 6379
+
+        - name: pgvecto-rs
+          image: {{ .pgvectors.image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgresql-appdata
+              mountPath: /var/lib/postgresql/data
+
       restartPolicy: Always
       volumes:
         - name: postgresql-appdata
