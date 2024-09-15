@@ -116,14 +116,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: immich
+  name: immich-web
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
     app.kubernetes.io/instance: immich
     app.kubernetes.io/name: immich
   ports:
-    - name: immich
+    - name: immich-web
       protocol: TCP
       port: 8080
 
