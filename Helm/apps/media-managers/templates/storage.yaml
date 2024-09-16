@@ -106,3 +106,15 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.kometa.appdata }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notifiarr-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.notifiarr.appdata }}

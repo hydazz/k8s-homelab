@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
-  - ghcr-secret.sops.yaml
-  - secret-super-sops.yaml
+  - super-secret.sops.yaml
+  - secret.sops.yaml

@@ -18,6 +18,8 @@ storage:
     server: 2Gi
   kometa:
     appdata: 1Gi
+  notifiarr:
+    appdata: 1Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
@@ -56,3 +58,6 @@ tdarr:
 
 kometa:
   image: ghcr.io/linuxserver/kometa:2.0.2
+
+notifiarr:
+  image: ghcr.io/notifiarr/notifiarr:0.8.1

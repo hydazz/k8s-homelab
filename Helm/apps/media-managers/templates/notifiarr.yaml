@@ -1,0 +1,56 @@
+---
+{{- with .Values.notifiarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifiarr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: notifiarr
+    app.kubernetes.io/name: notifiarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: notifiarr
+      app.kubernetes.io/name: notifiarr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: appdata
+      labels:
+        app.kubernetes.io/instance: notifiarr
+        app.kubernetes.io/name: notifiarr
+    spec:
+      containers:
+        - name: notifiarr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+            - name: machineid
+              mountPath: /etc/machine-id
+              subPath: machine-id
+          env:
+            - name: MACHINE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: notifiarr-secrets
+                  key: machine-id
+          resources:
+            {{- toYaml .resources | indent 12 }}
+
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: notifiarr-appdata-pvc
+        - name: machineid
+          secret:
+            secretName: notifiarr-secrets
+            items:
+              - key: machine-id
+                path: machine-id
+      restartPolicy: Always
+{{- end }}
