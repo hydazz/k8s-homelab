@@ -160,3 +160,26 @@ spec:
                 name: radarr
                 port:
                   number: {{ .Values.radarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notifiarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ingressClassName: internal-nginx
+  tls:
+    - hosts:
+        - "*.k3s.hyde.services"
+      secretName: wildcard.hyde.services
+  rules:
+    - host: notifiarr.k3s.hyde.services
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: notifiarr
+                port:
+                  number: {{ .Values.notifiarr.port }}

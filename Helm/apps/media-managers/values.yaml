@@ -61,3 +61,4 @@ kometa:
 
 notifiarr:
   image: ghcr.io/notifiarr/notifiarr:0.8.1
+  port: 5454

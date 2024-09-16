@@ -11,6 +11,8 @@ metadata:
     app.kubernetes.io/name: notifiarr
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/instance: notifiarr
@@ -27,12 +29,9 @@ spec:
         - name: notifiarr
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: appdata
-              mountPath: /config
-            - name: machineid
-              mountPath: /etc/machine-id
-              subPath: machine-id
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
           env:
             - name: MACHINE_ID
               valueFrom:
@@ -41,7 +40,28 @@ spec:
                   key: machine-id
           resources:
             {{- toYaml .resources | indent 12 }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+            - name: machineid
+              mountPath: /etc/machine-id
+              subPath: machine-id
+          livenessProbe:
+            failureThreshold: 10
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
 
+      restartPolicy: Always
       volumes:
         - name: appdata
           persistentVolumeClaim:
@@ -52,5 +72,20 @@ spec:
             items:
               - key: machine-id
                 path: machine-id
-      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notifiarr
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: notifiarr
+    app.kubernetes.io/name: notifiarr
+  ports:
+    - name: notifiarr
+      protocol: TCP
+      port: {{ .port }}
+
 {{- end }}
