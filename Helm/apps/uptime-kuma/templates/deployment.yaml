@@ -39,10 +39,8 @@ spec:
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 13 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           ports:
             - name: web
               containerPort: {{ .port }}
