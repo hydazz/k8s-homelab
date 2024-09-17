@@ -1,17 +1,26 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-    name: general
-    namespace: velero
+  name: general
+  namespace: velero
 spec:
-    schedule: '0 1 * * *'
-    template:
-        hooks: {}
-        includedNamespaces:
-          - media-managers
-          - media-servers
-          - portainer
-          - monitoring
-        snapshotVolumes: true
-        ttl: 744h0m0s # 31 days
-    useOwnerReferencesInBackup: false
+  schedule: "0 1 * * *"
+  template:
+    hooks: {}
+    includedNamespaces:
+      - authentik
+      - jenkins
+      - mailserver
+      - mariadb
+      - media-downloaders
+      - media-managers
+      - media-servers
+      - portainer
+      - monitoring
+      - nextcloud
+      - paperless-ngx
+      - unifi-protect-backup
+      - wordpress
+    snapshotVolumes: true
+    ttl: 744h0m0s # 31 days
+  useOwnerReferencesInBackup: false
