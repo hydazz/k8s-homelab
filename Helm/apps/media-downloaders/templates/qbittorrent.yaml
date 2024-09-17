@@ -25,10 +25,8 @@ spec:
         app.kubernetes.io/instance: qbittorrent
         app.kubernetes.io/name: qbittorrent
     spec:
-{{- if .nodeSelector }}
       nodeSelector:
 {{ toYaml .nodeSelector | indent 8 }}
-{{- end }}
       containers:
         - name: qbittorrent
           image: {{ .image }}
@@ -57,10 +55,8 @@ spec:
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"
-{{- if .resources }}
           resources:
 {{ toYaml .resources | indent 12 }}
-{{- end }}
           ports:
             - name: web
               containerPort: {{ .port }}

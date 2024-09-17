@@ -43,10 +43,8 @@ spec:
               value: "03:00"
             - name: KOMETA_RUN
               value: "False"
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           volumeMounts:
             - name: appdata
               mountPath: /config

@@ -1,3 +1,7 @@
 nextcloud:
   image: ghcr.io/linuxserver/nextcloud:29.0.7
   port: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi

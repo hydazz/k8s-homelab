@@ -38,7 +38,12 @@ plex:
         port: 32469
         protocol: TCP # Access to the Plex DLNA Server
   resources:
+    requests:
+      cpu: 1
+      memory: 1Gi
     limits:
+      cpu: 6
+      memory: 4Gi
       nvidia.com/gpu: 1
 
 immich:

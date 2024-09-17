@@ -63,10 +63,8 @@ spec:
                 secretKeyRef:
                   name: unifi-protect-credentials
                   key: UFP_PASSWORD
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           volumeMounts:
             - name: appdata
               mountPath: /config

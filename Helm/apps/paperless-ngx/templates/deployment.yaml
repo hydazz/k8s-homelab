@@ -1,5 +1,5 @@
 ---
-{{- with .Values.paperlessngx }}
+{{- with .Values }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -27,10 +27,10 @@ spec:
     spec:
       containers:
         - name: paperless-ngx
-          image: {{ .paperlessngx.image }}
+          image: {{ .image }}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .paperlessngx.port }}
+            - containerPort: {{ .port }}
           env:
             - name: PAPERLESS_TIKA_ENABLED
               value: "1"
@@ -82,13 +82,11 @@ spec:
               value: "1001"
             - name: USERMAP_UID
               value: "1001"
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 13 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           ports:
             - name: web
-              containerPort: {{ .paperlessngx.port }}
+              containerPort: {{ .port }}
           volumeMounts:
             - name: appdata
               mountPath: /config
@@ -99,12 +97,12 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .paperlessngx.port }}
+              port: {{ .port }}
           startupProbe:
             failureThreshold: 10
             timeoutSeconds: 2
             tcpSocket:
-              port: {{ .paperlessngx.port }}
+              port: {{ .port }}
 
         - name: gotenberg
           image: {{ .gotenberg.image }}

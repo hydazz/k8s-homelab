@@ -24,30 +24,58 @@ storage:
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
   port: 8191
+  resources:
+    requests:
+      cpu: 512m
+      memory: 1Gi
 
 overseerr:
   image: ghcr.io/linuxserver/overseerr:1.33.2
   port: 5055
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
 
 prowlarr:
   image: ghcr.io/linuxserver/prowlarr:1.23.1
   port: 9696
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
 
 radarr:
   image: ghcr.io/linuxserver/radarr:5.9.1
   port: 7878
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
 
 sonarr:
   image: ghcr.io/linuxserver/sonarr:4.0.9
   port: 8989
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
 
 bazarr:
   image: ghcr.io/linuxserver/bazarr:1.4.4
   port: 6767
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
 
 lidarr:
   image: ghcr.io/linuxserver/lidarr:2.5.3
   port: 8686
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
 
 tdarr:
   image: ghcr.io/haveagitgat/tdarr:2.25.01
@@ -62,3 +90,7 @@ kometa:
 notifiarr:
   image: ghcr.io/notifiarr/notifiarr:0.8.1
   port: 5454
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi

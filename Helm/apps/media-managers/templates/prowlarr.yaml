@@ -42,10 +42,8 @@ spec:
               value: "ghcr.io/themepark-dev/theme.park:prowlarr"
             - name: "TP_THEME"
               value: "dracula"
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           ports:
             - name: web
               containerPort: {{ .port }}

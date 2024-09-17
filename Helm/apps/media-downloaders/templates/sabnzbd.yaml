@@ -25,10 +25,8 @@ spec:
         app.kubernetes.io/instance: sabnzbd
         app.kubernetes.io/name: sabnzbd
     spec:
-{{- if .nodeSelector }}
       nodeSelector:
-        {{ toYaml .nodeSelector | indent 8 }}
-{{- end }}
+{{ toYaml .nodeSelector | indent 8 }}
       containers:
         - name: sabnzbd
           image: {{ .image }}
@@ -43,10 +41,8 @@ spec:
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"
-{{- if .resources }}
           resources:
 {{ toYaml .resources | indent 12 }}
-{{- end }}
           ports:
             - name: web
               containerPort: {{ .port }}

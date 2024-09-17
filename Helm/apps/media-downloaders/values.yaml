@@ -10,9 +10,23 @@ qbittorrent:
   port: 8080
   nodeSelector:
     kubernetes.io/hostname: "k3s-discovery"
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 8
+      memory: 2Gi
 
 sabnzbd:
   image: ghcr.io/linuxserver/sabnzbd:4.3.3
   port: 8080
   nodeSelector:
     kubernetes.io/hostname: "k3s-discovery"
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 8
+      memory: 2Gi

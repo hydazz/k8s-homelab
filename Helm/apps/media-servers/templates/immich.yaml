@@ -60,10 +60,8 @@ spec:
                   key: DB_PASSWORD
             - name: REDIS_HOSTNAME
               value: "localhost"
-{{- if .resources }}
           resources:
 {{ toYaml .resources | indent 12 }}
-{{- end }}
           ports:
             - name: web
               containerPort: 8080
@@ -88,6 +86,8 @@ spec:
           securityContext:
             privileged: false
             allowPrivilegeEscalation: false
+          resources:
+            {{- toYaml .redis.resources | indent 12 }}
           ports:
             - containerPort: 6379
 
@@ -97,6 +97,8 @@ spec:
           securityContext:
             privileged: false
             allowPrivilegeEscalation: false
+          resources:
+            {{- toYaml .pgvectors.resources | indent 12 }}
           ports:
             - containerPort: 5432
           volumeMounts:
