@@ -30,3 +30,8 @@ sabnzbd:
     limits:
       cpu: 8
       memory: 2Gi
+
+unpackerr:
+  image: ghcr.io/unpackerr/unpackerr:0.14.5
+  nodeSelector:
+    kubernetes.io/hostname: "k3s-discovery"

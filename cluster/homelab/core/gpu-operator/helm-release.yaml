@@ -38,5 +38,5 @@ spec:
 
     devicePlugin:
       config:
-        name: time-slicing-config-all
+        name: time-slicing-config
         default: any
