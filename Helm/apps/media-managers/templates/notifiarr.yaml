@@ -39,7 +39,7 @@ spec:
                   name: notifiarr-secrets
                   key: machine-id
           resources:
-            {{- toYaml .resources | indent 12 }}
+{{ toYaml .resources | indent 12 }}
           ports:
             - name: web
               containerPort: {{ .port }}
