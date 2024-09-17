@@ -81,7 +81,12 @@ tdarr:
   image: ghcr.io/haveagitgat/tdarr:2.25.01
   port: 8265
   resources:
+    requests:
+      cpu: 10m
+      memory: 1Gi
     limits:
+      cpu: 1
+      memory: 3Gi
       nvidia.com/gpu: 1
 
 kometa:
