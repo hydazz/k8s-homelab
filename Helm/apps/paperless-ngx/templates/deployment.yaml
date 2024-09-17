@@ -29,8 +29,6 @@ spec:
         - name: paperless-ngx
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: {{ .port }}
           env:
             - name: PAPERLESS_TIKA_ENABLED
               value: "1"
