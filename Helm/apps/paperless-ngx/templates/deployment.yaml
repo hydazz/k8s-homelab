@@ -1,5 +1,5 @@
 ---
-{{- with .Values }}
+{{- with .Values.paperlessngx }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -136,7 +136,7 @@ spec:
           nfs:
             server: "10.0.3.7"
             path: "/mnt/Fast/Public/Paperless"
-
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -151,5 +151,3 @@ spec:
     - name: paperless-ngx
       protocol: TCP
       port: 8080
-
-{{- end }}
