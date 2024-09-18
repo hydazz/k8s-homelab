@@ -63,6 +63,8 @@ spec:
                     - secretName: wildcard.hyde.services
                       hosts:
                         - auth.hyde.services
+            podAnnotations:
+                backup.velero.io/backup-volumes: media
         postgresql:
             enabled: true
             auth:
@@ -70,6 +72,8 @@ spec:
             primary:
                 persistence:
                     size: 256Mi
+                podAnnotations:
+                    backup.velero.io/backup-volumes: data
         redis:
             enabled: true
             master:
@@ -90,8 +94,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-14T08:46:53Z"
-    mac: ENC[AES256_GCM,data:Fc/Le4RZCCe/i9/7zQACwIOtT+Ae2eLPGTMqv5WU8mbJSnJ06GuqkwYpQFp4jsA/5zxE1pIYX1UCpVwIy3Bpx4btgwPE7DkNvP+W1FrEfABhLUsrAQyg7lHc5AjmFg/ihebXVVNZnLvRc5LQWq++xegl9qMMKnm266k8Nnkdpss=,iv:HXhNe3EAqDGY8NBYjQJjMT0ue4sV3UDWQnS4v+BB5rQ=,tag:Wq6+os11eACY9DUAwEUwFw==,type:str]
+    lastmodified: "2024-09-18T06:15:03Z"
+    mac: ENC[AES256_GCM,data:5+A6QMsSnJxPblfzc81rgBg2/eqzplSLjFSGymcmhVQGomzNp4Dl+q7BKK/xmA/2G82eEdQp2zPg95MEa6dYCFWNyNJRgoG2BcCIgZ1cpsg0YJZ8HT1tvsb0zDrZ89uqo3gGpm5HvuvC7odofypKsWE9Qa0izCv5yJKx7liIzJs=,iv:p+nYR7YTHFZMKEAJ/IRZUbjv0ZKjcPzpRIlvSTwF7nk=,tag:S1br86h+6I/FK1u8Uv5nlg==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.0

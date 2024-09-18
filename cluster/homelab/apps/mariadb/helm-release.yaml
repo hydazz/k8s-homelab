@@ -30,3 +30,6 @@ spec:
     image:
       repository: bitnami/mariadb
       tag: 11.5.2-debian-12-r2
+    primary:
+      podAnnotations:
+        backup.velero.io/backup-volumes: data
