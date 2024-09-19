@@ -29,6 +29,8 @@ spec:
         repository: jenkins/jenkins
         tag: 2.477
       installPlugins: false
+      JCasC:
+        defaultConfig: false
       ingress:
         enabled: true
         ingressClassName: external-nginx
