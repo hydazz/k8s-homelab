@@ -28,6 +28,7 @@ spec:
       image:
         repository: jenkins/jenkins
         tag: 2.477
+      installPlugins: false
       ingress:
         enabled: true
         ingressClassName: external-nginx

@@ -17,7 +17,7 @@ spec:
     chart:
         spec:
             chart: authentik
-            version: 2024.8.2
+            version: 2024.8.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
@@ -94,8 +94,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-18T06:15:03Z"
-    mac: ENC[AES256_GCM,data:5+A6QMsSnJxPblfzc81rgBg2/eqzplSLjFSGymcmhVQGomzNp4Dl+q7BKK/xmA/2G82eEdQp2zPg95MEa6dYCFWNyNJRgoG2BcCIgZ1cpsg0YJZ8HT1tvsb0zDrZ89uqo3gGpm5HvuvC7odofypKsWE9Qa0izCv5yJKx7liIzJs=,iv:p+nYR7YTHFZMKEAJ/IRZUbjv0ZKjcPzpRIlvSTwF7nk=,tag:S1br86h+6I/FK1u8Uv5nlg==,type:str]
+    lastmodified: "2024-09-19T08:32:11Z"
+    mac: ENC[AES256_GCM,data:weCPz8oOZPROrDQzu/30asCw+H5ejO+klhjkFtf8ucWAKCdVRXVptMVNyh6SmoRSteMgErbES9TsMf4P6FBNWtCPfV5xqrWdG1Yd5MNNHWTwh0Pjax733L5DwkydlBRa/vlRJp6OUlQlpFsbeTaUH8tmf/Nh0JBQQXgVKWjSqfI=,iv:M4Qd7eIZG5sw4W9QX2OzFr7vgpWZjSlSOy4dXbOjsv4=,tag:9rQvnrhYiOugHl9J+LjXWg==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.0
