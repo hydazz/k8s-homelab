@@ -25,6 +25,9 @@ spec:
         namespace: flux-system
   values:
     controller:
+      image:
+        repository: jenkins/jenkins
+        tag: 2.477
       ingress:
         enabled: true
         ingressClassName: external-nginx
