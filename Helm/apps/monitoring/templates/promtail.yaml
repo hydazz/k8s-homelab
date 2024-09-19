@@ -37,15 +37,14 @@ spec:
             claimName: promtail-position-pvc
       tolerations: 
         - key: "CriticalAddonsOnly"
-        operator: "Equal"
-        effect: "NoSchedule"
-        value:
+          operator: "Equal"
+          effect: "NoSchedule"
       containers:
         - name: promtail-container
           image: {{ .image }}
 {{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
+{{ toYaml .resources | indent 10 }}
 {{- end }}
           args:
             - -config.file=/etc/promtail/promtail.yaml
