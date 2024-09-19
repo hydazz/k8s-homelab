@@ -30,6 +30,8 @@ spec:
         wordpressConfigureCache: true
         htaccessPersistenceEnabled: true
         wordpressScheme: https
+        service:
+            type: ClusterIP
         mariadb:
             enabled: false
         externalDatabase:
@@ -69,8 +71,8 @@ sops:
             Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
             QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-19T11:05:49Z"
-    mac: ENC[AES256_GCM,data:JNKBRnBs3lh9TiE2h16dG7DrdO62/LTqsCPUDSNpOMRVUmfMZAccuTztdaRrj9/uDjtQYbb2K5mm9O3mQK5+eQQqLXB4FjiiyNegAqenvcfWamPQXh08RC6IsfmNeqp/L9PZI1xkutefiXEM7nZ6BXDx/EYG3e/enCSzemnfL8A=,iv:eROl1CGv2A8VOSyCg6mY+ik59lS3CttgY2r7aj8Lle0=,tag:CedZe9bOAWH94lcqzlEyAw==,type:str]
+    lastmodified: "2024-09-19T11:17:35Z"
+    mac: ENC[AES256_GCM,data:F8hE2NcdfSpV8zwDBfNi4Z+pRgF/TM7HZdX6QmP89lb68AducI51QBbycPC83DRu5BsrwT0fWb9jt8truPgaml46HwI87gX/KmObi4Zqh8/IOZUl8jRXxbSXp9yJ7fMMI5IkbV/z2YsbUTc2TWJ8BeAE4UPUlD5EYo4UyBvbFAs=,iv:aCKRytFSm/Cg5vSTYAefU+P3PENAC/j2BzPBZ/uKEto=,tag:MfOxGDZPMpK35a9PJEIw/Q==,type:str]
     pgp: []
     encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
     version: 3.9.0
