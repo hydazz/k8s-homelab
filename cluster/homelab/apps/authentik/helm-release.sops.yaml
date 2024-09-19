@@ -56,9 +56,6 @@ spec:
                 ingressClassName: external-nginx
                 hosts:
                     - auth.hyde.services
-                paths:
-                    - /
-                pathType: ImplementationSpecific
                 tls:
                     - secretName: wildcard.hyde.services
                       hosts:
@@ -94,8 +91,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-19T08:32:11Z"
-    mac: ENC[AES256_GCM,data:weCPz8oOZPROrDQzu/30asCw+H5ejO+klhjkFtf8ucWAKCdVRXVptMVNyh6SmoRSteMgErbES9TsMf4P6FBNWtCPfV5xqrWdG1Yd5MNNHWTwh0Pjax733L5DwkydlBRa/vlRJp6OUlQlpFsbeTaUH8tmf/Nh0JBQQXgVKWjSqfI=,iv:M4Qd7eIZG5sw4W9QX2OzFr7vgpWZjSlSOy4dXbOjsv4=,tag:9rQvnrhYiOugHl9J+LjXWg==,type:str]
+    lastmodified: "2024-09-19T11:58:57Z"
+    mac: ENC[AES256_GCM,data:6T/6Zdbx4sUQlei0XwmcaN2oyNA4EFR7syXKVtdVCzoW5psmDH6PisoVDL/1bKsACDcTVCNPO18eYncGKVhFGKMTJczjgsgb9lBralWbF5/TGsc6C1dnWWHu71oZzgI7qyz1Mq192NgNrFuGec0sh/A7zDKxnyLf+IWk6GiFY+0=,iv:TAB6UbPvrGq+h6Qt5sK9kkN5JLjPmQrc9TX4eidibwo=,tag:grSVQ3DZZcvVa7cYoG9nGw==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.0
