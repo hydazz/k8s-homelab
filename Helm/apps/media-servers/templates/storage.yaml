@@ -34,3 +34,15 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.immich.postgres }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tautulli-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.tautulli.appdata }}

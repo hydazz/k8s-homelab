@@ -5,6 +5,8 @@ storage:
     transcode: 8Gi
   immich:
     postgres: 2Gi
+  tautulli:
+    appdata: 1Gi
 
 plex:
   image: ghcr.io/linuxserver/plex
@@ -52,3 +54,6 @@ immich:
     image: redis:latest
   pgvectors:
     image: tensorchord/pgvecto-rs:pg14-v0.2.0
+
+tautulli:
+  image: ghcr.io/linuxserver/tautulli:2.14.4
