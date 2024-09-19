@@ -4,14 +4,14 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: grafana-appdata-pvc
+  name: grafana-appdata-pvc
 spec:
-    accessModes:
-        - ReadWriteOnce
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: 128Mi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 128Mi
 
 {{- end }}
 
@@ -21,14 +21,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: prometheus-appdata-pvc
+  name: prometheus-appdata-pvc
 spec:
-    storageClassName: longhorn
-    accessModes:
-        - ReadWriteOnce
-    resources:
-        requests:
-            storage: 4Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
 
 {{- end }}
 
@@ -38,27 +38,27 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: loki-appdata-pvc
+  name: loki-appdata-pvc
 spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: 128Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 128Mi
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: loki-logs-pvc
+  name: loki-logs-pvc
 spec:
-    storageClassName: longhorn
-    accessModes:
-        - ReadWriteMany
-    resources:
-        requests:
-            storage: 2Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
 
 {{- end }}
 
@@ -68,13 +68,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: promtail-position-pvc
+  name: promtail-position-pvc
 spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: 256Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 256Mi
 
 {{- end }}
