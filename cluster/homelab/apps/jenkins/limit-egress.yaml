@@ -1,18 +1,33 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: restrict-plex
-  namespace: media-servers
+  name: restrict-jenkins
+  namespace: jenkins
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: plex
+      app.kubernetes.io/name: jenkins
   policyTypes:
     - Egress
   egress:
     - to:
         - ipBlock:
-            cidr: 192.168.100.15/32
+            cidr: 192.168.100.3/32
+      ports:
+        - protocol: TCP # X86-BUILDER-1
+          port: 22
+        - protocol: TCP # X86-BUILDER-1a
+          port: 2223
+        - protocol: TCP # X86-BUILDER-1b
+          port: 2224
+    - to:
+        - ipBlock:
+            cidr: 192.168.100.4/32
+      ports:
+        - protocol: TCP # ARM64-BUILDER-1a
+          port: 2223
+        - protocol: TCP # ARM64-BUILDER-1b
+          port: 2224
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
