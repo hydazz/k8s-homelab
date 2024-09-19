@@ -35,7 +35,7 @@ spec:
           env:
             - name: PUID
               value: "1001"
-            - name: GUID
+            - name: PGID
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"

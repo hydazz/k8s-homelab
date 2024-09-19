@@ -35,10 +35,14 @@ spec:
           env:
             - name: PUID
               value: "1001"
-            - name: GUID
+            - name: PGID
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"
+            - name: DOCKER_MODS
+              value: "ghcr.io/themepark-dev/theme.park:tautulli"
+            - name: "TP_THEME"
+              value: "dracula"
           resources:
 {{ toYaml .resources | indent 12 }}
           ports:
