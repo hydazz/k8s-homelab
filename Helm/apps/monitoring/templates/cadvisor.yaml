@@ -55,9 +55,8 @@ spec:
       serviceAccountName: cadvisor
       tolerations: 
         - key: "CriticalAddonsOnly"
-        operator: "Equal"
-        effect: "NoSchedule"
-        value:
+          operator: "Equal"
+          effect: "NoSchedule"
       containers:
         - name: cadvisor
           securityContext:
@@ -67,7 +66,7 @@ spec:
             - --containerd=/var/run/containerd/containerd.sock
 {{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
+{{ toYaml .resources | indent 10 }}
 {{- end }}
           volumeMounts:
             - name: rootfs
@@ -91,7 +90,7 @@ spec:
           ports:
             - name: http
               containerPort: {{ .port }}
-{{/*              Uncomment if you interested in the UI */}}
+{{/* Uncomment if you are interested in the UI */}}
               hostPort: {{ .port }}
               protocol: TCP
       automountServiceAccountToken: false
