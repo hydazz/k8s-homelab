@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: ENC[AES256_GCM,data:53a3czNJOw7g7vReXSH+,iv:xOYLbPKk78TKijq6HxMO5M8P+2V1U0vTBmF+y1ZRCD0=,tag:ySbigpKL8dJJGKQ6FoQI5w==,type:str]
+    name: ENC[AES256_GCM,data:JljL5bGKIdyWj82AZruv,iv:N4Z8OJi1s00AGNHXJvxeYAnF7/dQoDFxAxwXnGqIgZQ=,tag:JUb8qaI627Yk9YQH6icl2w==,type:str]
     namespace: wordpress
 spec:
     interval: 5m
@@ -21,25 +21,32 @@ spec:
             interval: 5m
             sourceRef:
                 kind: HelmRepository
-                name: ENC[AES256_GCM,data:BYyNC5JPXA==,iv:e7f6xnwfloaqtsA0JjjQeX4gSAmR/JBiwp/olGlVGyk=,tag:5Y1l66YSztLq4kPFYpSzxw==,type:str]
+                name: ENC[AES256_GCM,data:Xe+IMcaE0Q==,iv:O5aqUkdeGv/cvufgPypdUHtU+u8ZWFlJBWgNeU08edg=,tag:ehHy7tAoh0Aks/jZJjDgsA==,type:str]
                 namespace: flux-system
     values:
         image:
             repository: bitnami/wordpress
             tag: 6.6.2-debian-12-r3
-        mariadb:
-            enabled: false
         wordpressConfigureCache: true
         htaccessPersistenceEnabled: true
+        wordpressScheme: https
+        mariadb:
+            enabled: false
+        externalDatabase:
+            host: ENC[AES256_GCM,data:dkT7n38fQWCm2TLyOoQPZw7MbfPuRpdyE/vvPPAi3imW,iv:paxV/pGwICf8uizBLd/h0D/JYTZ8phCaE7l6hFS1mzg=,tag:dOuMQsBxAqFjq3lUFR5QIw==,type:str]
+            port: ENC[AES256_GCM,data:P9xykg==,iv:cW2cMG+vA4FfBqsK9RUi5U/zbe6oSFe0nOdC/au7CyQ=,tag:kbD6Roabm0RdkPQpu7jGOA==,type:int]
+            user: ENC[AES256_GCM,data:zdDSu3lbohX5t1+Nl1Z4,iv:U4BWVz/qe7KsyYHd6OGQgrRt9ZJxtvcBePeoshYRNtg=,tag:iZRq/eKdpj6ZU19ypgE9MA==,type:str]
+            existingSecret: ENC[AES256_GCM,data:MmZ9T/xtl1YDMP/2Lnchol9xhT8y1PE=,iv:KOPViJG3yZ+ZDZEoUeqAz1QREpVlrpf4tz0Bx42mizk=,tag:0yWfTqb8Rfk3szD2H+CB0g==,type:str]
+            database: ENC[AES256_GCM,data:hjebr9/8eadUKpNrwGpO,iv:t5gTN/et1cJbM3XnefdSAVwGWmXRKCqiO0VTABbQSgQ=,tag:z+w+XXLiLvqhTJ/gl4nqWQ==,type:str]
         ingress:
             enabled: true
             ingressClassName: external-nginx
-            hostname: ENC[AES256_GCM,data:xV52gYamgI01QVQFxEyF,iv:GbYHl60GOhTjGd25DcyihAOYJk8ibRqFNUgYJ6ooFus=,tag:cSAnVT3KqcIQd0+jTXsA9A==,type:str]
+            hostname: ENC[AES256_GCM,data:xTgtun66Fe4PWKq6wCd5,iv:PzhtCdGndrGHlOCuAj7f80iFc7Z+hOhPpy9Cey6c1H4=,tag:R0ErkGttAbZRcGbQw+H6uA==,type:str]
             tls: true
             extraTls:
                 - hosts:
-                    - ENC[AES256_GCM,data:AT1jjieU5NBBkbboEcIa,iv:IChClpqvyJB82rZvZK2RpAH9CND0NkQxDZ6NmNWMP4s=,tag:/Jin0T4ZPy09fGLvNF+ekA==,type:str]
-                  secretName: ENC[AES256_GCM,data:nFL5aUJbQUZL99KKCVXAWQZavzwCy8mP,iv:9gtMaGNxhv/s8VxT2Bpvy4DVCoF3GDkBlX1IQo+L0ic=,tag:ZQMSbwBUXZx9HVY1ToIPxQ==,type:str]
+                    - ENC[AES256_GCM,data:5Rk/43iLkU5Vowx+pfWX,iv:WD0si1WSmiRbERQWSze1estDjGKyGdl1HNFJ32nu0GE=,tag:xhshf9eKamUOtbTdFFLj5Q==,type:str]
+                  secretName: ENC[AES256_GCM,data:/Vwhx6ebE7qyocxtT9Q2YBG3UzsZDHOD,iv:R9Ha/dK7a4psFrOvus7wUHWIorOkFiv7VDOGtp6QCzk=,tag:rUMlwqYw8NZar2kxDx+wPQ==,type:str]
         memcached:
             enabled: false
         externalCache:
@@ -56,14 +63,14 @@ sops:
         - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRZkVpbllXNmVLZU1nOXBK
-            ZlY5aXJLcDZNNnF4c3BDMk9oVEE3L3ZHSTBFClBxbUtqZDYwVjhua3d6clRQMUQr
-            N1loMEtvZDY2N2V5UVJmaHlSVnBNdncKLS0tIGl6a1lScG9OL0JYM3NqNHltdGJN
-            RXBac0ZGUitFc3pubm5ONU9QTHhJRXMK6QgQz+/ZvgGlbOEInTwBfusxEXxLi+iX
-            P3CWEbPVYmX9OPEOQvId1yho5CFkV4ac3nc+uaqYXLNqfhJ63MVe2w==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3MnBMU3RyNlovTGZMdURX
+            Y1RYcGdEdlJtK0plaVRxMW9iazhhMzRVcVdBClVodDZ1Nmx6dFRlYVNuSFhwK0Q5
+            eWZETldPdEd1QU5oOXJoa09hZldvQ0UKLS0tIGovdDA2U21Felg3Zklva25jNGha
+            Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
+            QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-16T10:53:16Z"
-    mac: ENC[AES256_GCM,data:7LH7MqaX2W4Y9yqG/aI1J6eQHNn2lIIL09wn5lyJP1OZUhNLeq5eH90vzBCzzL36EgoNPFpLwat6Sg4lkJGcJV9JdsUWtZmoDp88+o3omeW7UQ2w9LJlxNm7mgi9KruHOr5LY/w3xs5f9nMZEwmtbHbL8J1xju9SmBK/jc4dogw=,iv:b6+z4Ne1fOW41BCTEdpHVMq1JFI8LKouBDZGCe34VJw=,tag:0uOGSlGi/eduYXs0lS/QBw==,type:str]
+    lastmodified: "2024-09-19T11:05:49Z"
+    mac: ENC[AES256_GCM,data:JNKBRnBs3lh9TiE2h16dG7DrdO62/LTqsCPUDSNpOMRVUmfMZAccuTztdaRrj9/uDjtQYbb2K5mm9O3mQK5+eQQqLXB4FjiiyNegAqenvcfWamPQXh08RC6IsfmNeqp/L9PZI1xkutefiXEM7nZ6BXDx/EYG3e/enCSzemnfL8A=,iv:eROl1CGv2A8VOSyCg6mY+ik59lS3CttgY2r7aj8Lle0=,tag:CedZe9bOAWH94lcqzlEyAw==,type:str]
     pgp: []
-    encrypted_regex: ^(name|hostname|extraTls|)$
+    encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
     version: 3.9.0
