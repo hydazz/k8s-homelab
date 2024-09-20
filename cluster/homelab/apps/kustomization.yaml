@@ -16,3 +16,4 @@ resources:
   - nextcloud
   - jenkins
   - wordpress
+  - minio
