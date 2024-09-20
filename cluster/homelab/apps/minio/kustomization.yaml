@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
+  - bucket-ingress.yaml
   - secret.sops.yaml

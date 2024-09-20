@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-bucket-ingress
+  namespace: minio
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: external-nginx
+  tls:
+    - secretName: wildcard.imagegenius.io
+      hosts:
+        - ci-tests.imagegenius.io
+        - packages.imagegenius.io
+  rules:
+    - host: ci-tests.imagegenius.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  number: 9000
+    - host: packages.imagegenius.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  number: 9000
