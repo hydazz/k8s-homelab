@@ -41,3 +41,6 @@ spec:
         - secretName: wildcard.imagegenius.io
           hosts:
             - s3.imagegenius.io
+    resources:
+      requests:
+        memory: 512Mi
