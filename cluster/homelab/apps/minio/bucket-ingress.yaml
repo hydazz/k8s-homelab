@@ -4,7 +4,8 @@ metadata:
   name: minio-bucket-ingress
   namespace: minio
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: external-nginx
@@ -17,8 +18,8 @@ spec:
     - host: ci-tests.imagegenius.io
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /ci-tests.imagegenius.io(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: minio
@@ -27,8 +28,8 @@ spec:
     - host: packages.imagegenius.io
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /packages.imagegenius.io(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: minio
