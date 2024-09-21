@@ -30,7 +30,7 @@ flaresolverr:
       memory: 1Gi
 
 overseerr:
-  image: ghcr.io/linuxserver/overseerr:1.33.2
+  image: ghcr.io/linuxserver/overseerr:2021.12.12
   port: 5055
   resources:
     requests:
