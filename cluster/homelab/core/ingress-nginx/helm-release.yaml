@@ -29,6 +29,7 @@ spec:
         controllerValue: "k8s.io/ingress-internal"
       service:
         loadBalancerIP: 192.168.4.10
+        externalTrafficPolicy: Local
       podAnnotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "10254"
@@ -69,6 +70,7 @@ spec:
         controllerValue: "k8s.io/ingress-external"
       service:
         loadBalancerIP: 192.168.4.15
+        externalTrafficPolicy: Local
       podAnnotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "10254"
