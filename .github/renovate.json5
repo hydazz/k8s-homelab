@@ -1,12 +1,12 @@
 {
   "extends": [
-	":enableRenovate",
-	"config:base",
-	":disableRateLimiting",
-	":dependencyDashboard",
-	":semanticCommits",
-	":separatePatchReleases",
-	"docker:enableMajor"
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "docker:enableMajor"
   ],
   "enabled": true,
   "semanticCommits": "enabled",
@@ -125,5 +125,12 @@
       "labels": ["renovate/helm", "dep/patch"],
       "automerge": true
     },
+    // Handle stupid versions
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/linuxserver/tautulli", "ghcr.io/linuxserver/overseerr"],
+      "versioning": "docker",
+      "ignoreVersions": ["2021.*"],
+    }
   ]
 }
