@@ -56,4 +56,4 @@ immich:
     image: tensorchord/pgvecto-rs:pg14-v0.2.0
 
 tautulli:
-  image: ghcr.io/linuxserver/tautulli:2.14.4
+  image: ghcr.io/linuxserver/tautulli:2021.12.16
