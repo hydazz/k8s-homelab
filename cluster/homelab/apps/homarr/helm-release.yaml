@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/ajnart/homarr
-      tag: 0.14.2
+      tag: 0.14.6
     ingress:
       enabled: true
       ingressClassName: internal-nginx
