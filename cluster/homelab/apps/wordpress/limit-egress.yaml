@@ -47,3 +47,9 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    - to:
+        - ipBlock:
+            cidr: 203.12.8.19/32
+      ports:
+        - protocol: TCP
+          port: 587
