@@ -29,24 +29,24 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - name: browserless
-            containerPort: {{ .playwright.port }}
+              containerPort: {{ .playwright.port }}
           env:
             - name: SCREEN_WIDTH
-            value: "1920"
+              value: "1920"
             - name: SCREEN_HEIGHT
-            value: "1024"
+              value: "1024"
             - name: SCREEN_DEPTH
-            value: "16"
+              value: "16"
             - name: MAX_CONCURRENT_CHROME_PROCESSES
-            value: "10"
+              value: "10"
             - name: STATS_REFRESH_SECONDS
-            value: "120"
-          resources: 
+              value: "120"
+          resources:
             limits:
               memory: 2Gi
           volumeMounts:
             - name: shm-empty-playwright
-            mountPath: /dev/shm
+              mountPath: /dev/shm
           livenessProbe:
             failureThreshold: 10
             initialDelaySeconds: 30
@@ -61,27 +61,25 @@ spec:
         - name: changedetection
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           ports:
             - name: web
-            containerPort: {{ .port }}
+              containerPort: {{ .port }}
           volumeMounts:
             - name: appdata
-            mountPath: /config
+              mountPath: /config
           env:
             - name: PUID
-            value: "1000"
+              value: "1000"
             - name: PGID
-            value: "1000"
+              value: "1000"
             - name: LC_ALL
-            value: "en_US.UTF-8"
+              value: "en_US.UTF-8"
             - name: BASE_URL
-            value: "{{ .baseUrl }}"
+              value: "{{ .baseUrl }}"
             - name: PLAYWRIGHT_DRIVER_URL
-            value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
+              value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
           livenessProbe:
             failureThreshold: 10
             initialDelaySeconds: 30
@@ -93,7 +91,6 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: {{ .port }}
-
       restartPolicy: Always
       volumes:
         - name: appdata
@@ -102,9 +99,7 @@ spec:
         - name: shm-empty-playwright
           emptyDir:
             medium: Memory
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
