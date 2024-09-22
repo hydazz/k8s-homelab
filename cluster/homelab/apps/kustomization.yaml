@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - authentik
   - cert-manager
+  - changedetection
   - homarr
   - jenkins
   - mailserver

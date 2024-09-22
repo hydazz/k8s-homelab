@@ -33,4 +33,5 @@ spec:
             - homarr.k3s.hyde.services
           secretName: wildcard.hyde.services
     persistence:
-      size: 128Mi
+      enabled: true
+      size: 8Mi
