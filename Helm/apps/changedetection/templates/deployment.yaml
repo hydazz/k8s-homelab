@@ -24,6 +24,40 @@ spec:
         app.kubernetes.io/name: changedetection
     spec:
       containers:
+        - name: changedetection
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          resources:
+{{ toYaml .resources | indent 12 }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /config
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: LC_ALL
+              value: "en_US.UTF-8"
+            - name: BASE_URL
+              value: "{{ .baseUrl }}"
+            - name: PLAYWRIGHT_DRIVER_URL
+              value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
+          livenessProbe:
+            failureThreshold: 10
+            initialDelaySeconds: 30
+            tcpSocket:
+              port: {{ .port }}
+            timeoutSeconds: 2
+          startupProbe:
+            failureThreshold: 20
+            timeoutSeconds: 2
+            tcpSocket:
+              port: {{ .port }}
+
         - name: browserless
           image: {{ .playwright.image }}
           imagePullPolicy: IfNotPresent
@@ -58,39 +92,7 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: {{ .playwright.port }}
-        - name: changedetection
-          image: {{ .image }}
-          imagePullPolicy: IfNotPresent
-          resources:
-{{ toYaml .resources | indent 12 }}
-          ports:
-            - name: web
-              containerPort: {{ .port }}
-          volumeMounts:
-            - name: appdata
-              mountPath: /config
-          env:
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
-            - name: LC_ALL
-              value: "en_US.UTF-8"
-            - name: BASE_URL
-              value: "{{ .baseUrl }}"
-            - name: PLAYWRIGHT_DRIVER_URL
-              value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
-          livenessProbe:
-            failureThreshold: 10
-            initialDelaySeconds: 30
-            tcpSocket:
-              port: {{ .port }}
-            timeoutSeconds: 2
-          startupProbe:
-            failureThreshold: 20
-            timeoutSeconds: 2
-            tcpSocket:
-              port: {{ .port }}
+
       restartPolicy: Always
       volumes:
         - name: appdata
