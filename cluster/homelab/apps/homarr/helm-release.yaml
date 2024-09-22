@@ -33,5 +33,21 @@ spec:
             - homarr.k3s.hyde.services
           secretName: wildcard.hyde.services
     persistence:
-      enabled: true
-      size: 8Mi
+      - name: homarr-config
+        enabled: true
+        accessMode: ReadWriteOnce
+        mountPath: /app/data/configs
+        size: 1Mi
+        storageClassName: longhorn
+      - name: homarr-database
+        enabled: true
+        accessMode: ReadWriteOnce
+        mountPath: /app/database
+        size: 1Mi
+        storageClassName: longhorn
+      - name: homarr-icons
+        enabled: true
+        accessMode: ReadWriteOnce
+        mountPath: /app/public/icons
+        size: 1Mi
+        storageClassName: longhorn
