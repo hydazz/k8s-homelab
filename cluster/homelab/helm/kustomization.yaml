@@ -6,16 +6,17 @@ resources:
   - bitnami
   - cert-manager
   - descheduler
+  - docker-mailserver
   - ingress-nginx
+  - jenkins
   - longhorn-system
   - lwolf-charts
   - metallb
   - metrics-server
+  - minio
+  - nvidia
+  - oben01
   - portainer
   - reflector
   - unofficial
   - velero
-  - docker-mailserver
-  - nvidia
-  - jenkins
-  - minio

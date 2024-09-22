@@ -41,10 +41,10 @@ spec:
         DMS_VMAIL_GID:
         ACCOUNT_PROVISIONER:
         POSTMASTER_ADDRESS:
-        ENABLE_UPDATE_CHECK: 1
+        ENABLE_UPDATE_CHECK: 0
         UPDATE_CHECK_INTERVAL: 1d
         PERMIT_DOCKER: none
-        TZ:
+        TZ: Australia/Melbourne
         NETWORK_INTERFACE:
         TLS_LEVEL:
         SPOOF_PROTECTION:
@@ -55,7 +55,7 @@ spec:
         ENABLE_POP3:
         ENABLE_IMAP: 1
         ENABLE_CLAMAV: 0
-        ENABLE_RSPAMD: 1
+        ENABLE_RSPAMD: 0
         ENABLE_RSPAMD_REDIS: 1
         RSPAMD_LEARN: 0
         RSPAMD_CHECK_AUTHENTICATED: 0
