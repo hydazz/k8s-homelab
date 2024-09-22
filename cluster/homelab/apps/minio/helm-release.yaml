@@ -32,25 +32,17 @@ spec:
     persistence:
       size: 1Gi
     ingress:
-      enabled: true
-      ingressClassName: external-nginx
-      path: /
-      hosts:
-        - s3.imagegenius.io
-      tls:
-        - secretName: wildcard.imagegenius.io
-          hosts:
-            - s3.imagegenius.io
+      enabled: false
     consoleIngress:
       enabled: true
       ingressClassName: internal-nginx
       path: /
       hosts:
-        - minio.imagegenius.io
+        - minio.k3s.hyde.services
       tls:
-        - secretName: wildcard.imagegenius.io
+        - secretName: wildcard.hyde.services
           hosts:
-            - minio.imagegenius.io
+            - minio.k3s.hyde.services
     resources:
       requests:
         memory: 512Mi

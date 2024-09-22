@@ -1,7 +1,30 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minio-bucket-ingress
+  name: minio-imagegenius
+  namespace: minio
+spec:
+  ingressClassName: external-nginx
+  tls:
+    - secretName: wildcard.imagegenius.io
+      hosts:
+        - s3.imagegenius.io
+  rules:
+    - host: s3.imagegenius.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  number: 9000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-imagegenius-buckets
   namespace: minio
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$host/$1
