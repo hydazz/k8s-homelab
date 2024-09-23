@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - ig-ingress.yaml
   - secret.sops.yaml
+  - limit-egress.yaml

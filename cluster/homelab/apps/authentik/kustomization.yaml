@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - storage.yaml
   - css.yaml
+  - limit-egress.yaml
