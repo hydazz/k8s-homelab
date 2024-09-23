@@ -1,4 +1,17 @@
 ---
+storage:
+  grafana:
+    appdata: 128Mi
+  prometheus:
+    appdata: 4Gi
+  loki:
+    appdata: 128Mi
+    logs: 2Gi
+  promtail:
+    position: 256Mi
+  influxdb:
+    appdata: 2Gi
+
 prometheus:
   image: quay.io/prometheus/prometheus:v2.54.1
   port: 9090
@@ -13,9 +26,13 @@ nodeExporter:
 grafana:
   image: grafana/grafana:11.2.0
   port: 3000
-  limits:
-    cpu: 250m
-    memory: 1Gi
+  resources:
+    requests:
+      cpu: 10m
+      memory: 500Mi
+    limits:
+      cpu: 250m
+      memory: 1Gi
 
 cadvisor:
   image: gcr.io/cadvisor/cadvisor:v0.45.0-containerd-cri
@@ -44,6 +61,10 @@ promtail:
     requests:
       cpu: 50m
       memory: 250Mi
+
+influxdb:
+  image: influxdb:2.7.10
+  port: 8086
 
 kubestatemetrics:
   image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.13.0

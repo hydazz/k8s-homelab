@@ -42,10 +42,8 @@ spec:
       containers:
         - name: promtail-container
           image: {{ .image }}
-{{- if .resources }}
           resources:
-{{ toYaml .resources | indent 10 }}
-{{- end }}
+{{ toYaml .resources | indent 12 }}
           args:
             - -config.file=/etc/promtail/promtail.yaml
           volumeMounts:

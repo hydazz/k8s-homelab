@@ -1,6 +1,4 @@
-{{- with .Values.grafana }}
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,13 +9,8 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 128Mi
-
-{{- end }}
-
-{{- with .Values.prometheus }}
+      storage: {{ .Values.storage.grafana.appdata }}
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -28,13 +21,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
-
-{{- end }}
-
-{{- with .Values.loki }}
+      storage: {{ .Values.storage.prometheus.appdata }}
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -45,9 +33,8 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 128Mi
+      storage: {{ .Values.storage.loki.appdata }}
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -58,13 +45,8 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 2Gi
-
-{{- end }}
-
-{{- with .Values.promtail }}
+      storage: {{ .Values.storage.loki.logs }}
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -75,6 +57,16 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 256Mi
-
-{{- end }}
+      storage: {{ .Values.storage.promtail.position }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.influxdb.appdata }}

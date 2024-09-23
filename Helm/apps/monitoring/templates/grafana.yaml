@@ -39,12 +39,7 @@ spec:
               name: http-grafana
               protocol: TCP
           resources:
-            requests:
-              cpu: 10m
-              memory: 500Mi
-            limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
+{{ toYaml .resources | indent 12 }}
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: appdata

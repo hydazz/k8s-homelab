@@ -1,0 +1,65 @@
+---
+{{- with .Values.influxdb }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app: influxdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      securityContext:
+        privileged: false
+        allowPrivilegeEscalation: false
+        fsGroup: 10001 
+      containers:
+        - name: influxdb
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          resources:
+{{ toYaml .resources | indent 12 }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: appdata
+              mountPath: /var/lib/influxdb2
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 120
+            periodSeconds: 120
+            timeoutSeconds: 5
+            tcpSocket:
+              port: {{ .port }}
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: influxdb-appdata-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app: influxdb
+  ports:
+    - name: influxdb
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}
