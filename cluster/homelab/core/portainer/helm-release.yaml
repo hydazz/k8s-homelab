@@ -18,7 +18,7 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: portainer/portainer-ce
+      repository: portainer/portainer-ee
       tag: 2.21.1
     service:
       type: ClusterIP
