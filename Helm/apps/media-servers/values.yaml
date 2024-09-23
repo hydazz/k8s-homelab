@@ -7,6 +7,8 @@ storage:
     postgres: 2Gi
   tautulli:
     appdata: 1Gi
+  wizarr:
+    appdata: 8Mi
 
 plex:
   image: ghcr.io/linuxserver/plex
@@ -57,3 +59,6 @@ immich:
 
 tautulli:
   image: ghcr.io/linuxserver/tautulli:2.14.5
+
+wizarr:
+  image: ghcr.io/wizarrrr/wizarr:4.1.1

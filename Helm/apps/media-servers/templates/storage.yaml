@@ -46,3 +46,15 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.tautulli.appdata }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wizarr-appdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: {{ .Values.storage.wizarr.appdata }}

@@ -5,13 +5,13 @@ metadata:
   name: uptime-kuma
   namespace: {{ $.Release.Namespace }}
 spec:
-  ingressClassName: internal-nginx
+  ingressClassName: external-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "uptime-kuma.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: uptime-kuma.k3s.hyde.services
+    - host: uptime-kuma.hyde.services
       http:
         paths:
           - pathType: Prefix
