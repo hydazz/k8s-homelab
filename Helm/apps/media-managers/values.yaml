@@ -93,7 +93,7 @@ kometa:
   image: ghcr.io/linuxserver/kometa:2.0.2
 
 notifiarr:
-  image: ghcr.io/notifiarr/notifiarr:0.8.1
+  image: ghcr.io/notifiarr/notifiarr:v0.8.2
   port: 5454
   resources:
     requests:
