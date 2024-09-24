@@ -25,6 +25,22 @@ spec:
         namespace: flux-system
   values:
     certificate: wildcard.hyde.services
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
+    persistence:
+      mail-config:
+        size: 1Mi
+      mail-data:
+        size: 256Mi
+      mail-state:
+        size: 128Mi
+      mail-log:
+        size: 256Mi
     deployment:
       env:
         # -----------------------------------------------
@@ -190,13 +206,3 @@ spec:
         RELAY_PORT: 25
         RELAY_USER:
         RELAY_PASSWORD:
-
-    persistence:
-      mail-config:
-        size: "1Mi"
-      mail-data:
-        size: "256Mi"
-      mail-state:
-        size: "128Mi"
-      mail-log:
-        size: "256Mi"

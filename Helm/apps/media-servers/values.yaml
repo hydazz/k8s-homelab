@@ -59,6 +59,14 @@ immich:
 
 tautulli:
   image: ghcr.io/linuxserver/tautulli:2.14.5
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
 
 wizarr:
   image: ghcr.io/wizarrrr/wizarr:4.1.1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
