@@ -1,7 +1,7 @@
 ---
 storage:
   plex:
-    appdata: 8Gi
+    appdata: 16Gi
     transcode: 8Gi
   immich:
     postgres: 2Gi
