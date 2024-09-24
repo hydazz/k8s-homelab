@@ -8,10 +8,10 @@ spec:
   ingressClassName: external-nginx
   tls:
     - hosts:
-        - "uptime-kuma.hyde.services"
+        - "status.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: uptime-kuma.hyde.services
+    - host: status.hyde.services
       http:
         paths:
           - pathType: Prefix
