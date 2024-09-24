@@ -28,6 +28,9 @@ spec:
       image:
         repository: jenkins/jenkins
         tag: 2.477
+      sidecars:
+        configAutoReload:
+          enabled: false
       installPlugins: false
       JCasC:
         defaultConfig: false
