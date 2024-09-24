@@ -58,13 +58,19 @@ spec:
             failureThreshold: 5
             initialDelaySeconds: 30
             timeoutSeconds: 2
-            tcpSocket:
-              port: 32400
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - curl --insecure --fail --silent https://localhost:32400/web || exit 1
           startupProbe:
             failureThreshold: 10
             timeoutSeconds: 2
-            tcpSocket:
-              port: 32400
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - curl --insecure --fail --silent https://localhost:32400/web || exit 1
       restartPolicy: Always
       nodeSelector:
       volumes:
