@@ -9,16 +9,18 @@ spec:
     hooks: {}
     includedNamespaces:
       - authentik
+      - changedetection
+      - homarr
       - jenkins
       - mailserver
       - mariadb
       - media-downloaders
       - media-managers
       - media-servers
-      - portainer
       - monitoring
       - nextcloud
       - paperless-ngx
+      - portainer
       - unifi-protect-backup
       - wordpress
     snapshotVolumes: true
