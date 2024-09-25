@@ -25,13 +25,6 @@ spec:
         namespace: flux-system
   values:
     certificate: wildcard.hyde.services
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 1
-        memory: 1Gi
     persistence:
       mail-config:
         size: 1Mi
@@ -42,6 +35,13 @@ spec:
       mail-log:
         size: 256Mi
     deployment:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 1
+          memory: 1Gi
       env:
         # -----------------------------------------------
         # --- Required Section ---------------------------
