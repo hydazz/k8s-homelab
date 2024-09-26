@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - super-secret.sops.yaml
   - secret.sops.yaml
+  - limit-egress.yaml
