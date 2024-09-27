@@ -131,6 +131,12 @@
       "matchPackageNames": ["ghcr.io/linuxserver/tautulli", "ghcr.io/linuxserver/overseerr"],
       "versioning": "docker",
       "allowedVersions": "!/^2021.*/"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
+      "versioning": "docker",
+      "allowedVersions": "!/^8\..*/"
     }
   ]
 }
