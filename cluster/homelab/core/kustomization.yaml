@@ -4,11 +4,13 @@ kind: Kustomization
 resources:
   - cert-manager
   - descheduler
+  - gpu-operator
   - ingress-nginx
   - kube-cleanup-operator
+  - kured
   - longhorn-system
   - metallb
-  - reflector
-  - velero
-  - gpu-operator
   - portainer
+  - reflector
+  - system-upgrade
+  - velero

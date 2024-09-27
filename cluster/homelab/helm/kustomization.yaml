@@ -9,6 +9,7 @@ resources:
   - docker-mailserver
   - ingress-nginx
   - jenkins
+  - kubereboot
   - longhorn-system
   - lwolf-charts
   - metallb
