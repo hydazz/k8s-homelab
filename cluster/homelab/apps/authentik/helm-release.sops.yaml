@@ -24,20 +24,6 @@ spec:
                 name: authentik
                 namespace: flux-system
     values:
-        global:
-            volumes:
-                - name: media
-                  persistentVolumeClaim:
-                    claimName: authentik-media-pvc
-                - name: custom-css
-                  configMap:
-                    name: authentik-custom-css
-            volumeMounts:
-                - name: media
-                  mountPath: /media
-                - name: custom-css
-                  mountPath: /web/dist/custom.css
-                  subPath: custom.css
         authentik:
             secret_key: ENC[AES256_GCM,data:B5hUuUQKFL3zUwD69NLL+p6IVEYaweNmh4XakTwRgTUxmkocVaGIaGFbzL8w3qxvtgk=,iv:OIlXI8Tjuv5GXGRnMjg/jjZMs3eoSALSsi0StW1XLGE=,tag:xTgE/SnFnrx/yZyQ4WU3LQ==,type:str]
             postgresql:
@@ -62,6 +48,19 @@ spec:
                         - auth.hyde.services
             podAnnotations:
                 backup.velero.io/backup-volumes: media
+            volumes:
+                - name: media
+                  persistentVolumeClaim:
+                    claimName: authentik-media-pvc
+                - name: custom-css
+                  configMap:
+                    name: authentik-custom-css
+            volumeMounts:
+                - name: media
+                  mountPath: /media
+                - name: custom-css
+                  mountPath: /web/dist/custom.css
+                  subPath: custom.css
         postgresql:
             enabled: true
             auth:
@@ -91,8 +90,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-19T11:58:57Z"
-    mac: ENC[AES256_GCM,data:6T/6Zdbx4sUQlei0XwmcaN2oyNA4EFR7syXKVtdVCzoW5psmDH6PisoVDL/1bKsACDcTVCNPO18eYncGKVhFGKMTJczjgsgb9lBralWbF5/TGsc6C1dnWWHu71oZzgI7qyz1Mq192NgNrFuGec0sh/A7zDKxnyLf+IWk6GiFY+0=,iv:TAB6UbPvrGq+h6Qt5sK9kkN5JLjPmQrc9TX4eidibwo=,tag:grSVQ3DZZcvVa7cYoG9nGw==,type:str]
+    lastmodified: "2024-09-30T09:40:44Z"
+    mac: ENC[AES256_GCM,data:O2cCTFEOwOO11457DkhIVQB05Qq38veB4YBX68Qqu1OkF7eT4zQ4fl1ONSC406YD2+Rq1IQuk7Zs9pOZu4SCqgVl8yXdCe4Ouv4nA08F6NDRHi8GdvA/dVsvC/BY5iq4z7s7DaPN1IPOnrK2PpQ9xOXaCr9xY2GCU6o4dZ+NGNg=,iv:G7w66TA1Tif79/eRkyk4wZoaGLUMjlQJnLBOJNcL8XQ=,tag:8W+K9nU7HTJKoGrCX3JC4A==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.0
