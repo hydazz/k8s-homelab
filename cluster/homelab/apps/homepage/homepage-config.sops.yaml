@@ -4,11 +4,11 @@ metadata:
     name: homepage-config
     namespace: homepage
 data:
-    kubernetes.yaml: ENC[AES256_GCM,data:j7P63NofZ1FZLi5Kdi7K8jfJNakUhIc59d/+ftiBBxG1mTngKF8F7Swfdo2JYJk5qHlfuOe2EuPHY1KMDdWkChsf7xxWHLXnxD98Fu1sH6UDuFiop4YuS4+jZFIG46PumQdzZ4Q6dxC+7QiH3as7BrdQ332jTCid4oqhBKiunrqM+Zu0v51UD250ff4jLYI+JvKe7fWSCBoBmF3m2k7l,iv:mfWZCMVn8bLvXofHcAnrsh8QzV+H5mryJRvShTubk3Q=,tag:YsdDDFe6k29++kOXnG7Q7A==,type:str]
+    kubernetes.yaml: ENC[AES256_GCM,data:6C+gADKac4jRLOKvoKI=,iv:y2rHqJOZONTicOXRZ+7nJRo9gYeGWqmmzaqWt39/k+s=,tag:NIDZSkxkXuERBv4gd58Sxw==,type:str]
     settings.yaml: ENC[AES256_GCM,data:Fi+DDis4ds0U+C53K0l3g5p036uahDCYWFmKGlVlncnV5gUvkp3l2Ha5c2Vm34DetZHu+32F9b2IwW1PMcrr2t7kHcBSONCVrlXt30N4kew2TCJAVDnfz268zxCldyaTB6aF7S5au0DgyJm3HiTRcSFz4Iw=,iv:xhryVycl7GgZnh1otLibIvsP6hXGWkHBpEEqahd4dWw=,tag:WDfHMwXauTySQ6i5WZ0CAQ==,type:str]
     bookmarks.yaml: ENC[AES256_GCM,data:Q8YVAMY2tK9zrNgfrwMa1CLiK32uD85gwIwUgW2E+jEw6nMl2WBqe/oLFXpSL8eEZSGHPBaOO81OJhhHCOPg6koE9X9skNCCut+hfLs/MFKTor97IUsCCepA+sBntdBKEjSybv2ahPsoiww0a+HUIQ==,iv:92d7VkY7VetKaCC5hcBwI5AMkU79asMQl+zpwM/tInw=,tag:1YiNJYSYJ5GiKGU9DPeHlw==,type:str]
-    services.yaml: ENC[AES256_GCM,data:87AI1UJTUzY7WNMbsTIuk0PbCSSD+TUp7JAdA1gJA6eoK7u8kVod/w+f8z8Tv/4xSJPrsr7ZhEDqU5XoR5wr7qR5LH/u5kDXM9FfZ87AJIo0AHco/UTGQ2t3wy7vNMrzwPDsg6sG4rHacivz2jlHd1Ps//hFSDx1AGW7/yGGxshpGHgNJQdutJfI2i3Fg6Rdf4xWxQr5FUU=,iv:0WAK4GTFfNLa2yvNjuFSfBkxWt+kGKyfDh5YpPHlpZU=,tag:iuKLwUHnvrQJDx6SxP0mTQ==,type:str]
-    widgets.yaml: ENC[AES256_GCM,data:cWzPSNAZSKtctPc08k3D8twPodvAqBZGSnzuH5cBM/IVnfXK02JCwmnbmclBHq0s7t1oXjg=,iv:PXuwF2+LGf2cLbqiV3BU/x1Q9vbH9XmqDkXYOP59QAs=,tag:ytmS51AtOmHnSgVT283ozg==,type:str]
+    services.yaml: ENC[AES256_GCM,data:qomP3ceqFKp6lbNl5Y+Um7tl6x8AELW3BIo4BYUoxZpfvsr3uNn3mqcUpHij0sVmxz3ZnrngETxK1AkZq7FdBtiva9TAltMhbaHkTHyFylqFaohLAl+OfbpvgwszHb8VURhwYljn9a8/Vyo5B3YLo+b1Ab8UbBYd/GlC+FFDzDyB7oqnTYGDLloytFKicoa2I8OmQoiXygkkq8C84N5sMsT1lBr3jq7rXz9uG5xbpYXTQuJs4aw6/bbNiH5C+nIx+kXiLGvkJyRHsyb+uGFP8n2lwq9tUchiZOXnfeZcGeqfsCugnBA1cYZP0Yi21wIW/yio9isvKt6md4EMpO/H686mViFNfcw3i9SWX+dadk1/2nlY3PkIIX8qSzDISDBGq8oe7IPRMbt0KwrOD+xjxzSmPQhi59NWCvmNiu5zbLFRsUQxqNm6UYTh2xcBk8xRiwsRvm3cTBxeSR7+KpiGFgQmmQpZAtJ85seHkzn3QIdaLVi55wGvyUs=,iv:wJrL8segmeUYcTrkNMqemPieR56seA+jTfFDWptfQbM=,tag:m3vhhM+y8X4OUCQJczr2Zg==,type:str]
+    widgets.yaml: ENC[AES256_GCM,data:hW5Nh/a3Q5nRIKI5Lh8gVeJYwjU27q3SbJ0uUsCTKKnud0fg8zBGew42N+ymZuErv044kcvNQwXvM1mpyiXy2um4sugG4swZgfBl3OzbkdsP1Cu+zzUvp8L27eRDlEEiSCOot1vWAG3ZMcuOtgYnXTJ5LFYoBdfEmurfXjl8JYMwDprbOBp17b8Cyh3JEjcCp4o7Alpu5vGlS2lgCrYbSLQM3Wwu0XT2eQDpinLbLL+pzxDQfcVC5HGdNEyX2HxsaIYDVjS/SlyIrclQtzz1LK+E,iv:iILWBO4k76I0wRiToTfeYbTc9pTXxTAr3RTawJVGMzA=,tag:i6GXTUZiI54YPGZCk+IEVg==,type:str]
     docker.yaml: ""
 sops:
     kms: []
@@ -25,8 +25,8 @@ sops:
             ZitEalVIL3Nra0Jnck5LR2R5dG1iSW8KnIogk7hX1gmOl+5ITd5H72jzEEO6dDe9
             TiUaJ37MV9zCNbCS6m7mkWDxaxM7qzfZ5FhoS7q8IpfUTRrrn+KSsg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-30T02:31:57Z"
-    mac: ENC[AES256_GCM,data:YGwfd7d1fowrd7ImWyjzKlSokb2BfliPnWMl0zWyHhstYtiA+tZrrCJw4x1Nw6PNge4Raq7TgyKSJoP5QFvfjGX1m7mcNbfqcrB51vTLKFEFOOCtFGv3mMBMzzuNfBItaYZgpv/02K9QxVMbKyGSyg1bSiiyQQS0GpjJAwmc5DM=,iv:X6LXHlR25OsTFJfGT3NZxp5C5OCbBmlQUbJoBoqGi48=,tag:o+5AmYh4eDaAyzKLoRW0LA==,type:str]
+    lastmodified: "2024-09-30T03:03:50Z"
+    mac: ENC[AES256_GCM,data:iJIxRGB8dYHcqk0dfWWWK+GBzwuyjCOmfRWnP6OeQwmhoHcAYFcMMTN/z8H+Kfw+0VJb2qhypr0chu7fLN3mH5QeX5S8jV1rDXHyQYMjmD93ce1+WPYO/frvrgBpHH6Ei77lA3D1jMuHtfl1ZTFZgR63N6FYmr+jom8PgIC5RAo=,iv:B4umDou3TAT6agMOKyniKDqY1HC+YFXEcgpMBcT/Bao=,tag:O726+XJwrVxoBR2Pnk1dSQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData|annotations|)$
     version: 3.9.0
