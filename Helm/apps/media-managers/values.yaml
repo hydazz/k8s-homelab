@@ -90,7 +90,7 @@ tdarr:
       nvidia.com/gpu: 1
 
 kometa:
-  image: ghcr.io/linuxserver/kometa:2.0.2
+  image: ghcr.io/linuxserver/kometa:2.1.0
 
 notifiarr:
   image: ghcr.io/notifiarr/notifiarr:v0.8.2
