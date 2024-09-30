@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: homepage-config
+    namespace: homepage
+data:
+    kubernetes.yaml: ENC[AES256_GCM,data:j7P63NofZ1FZLi5Kdi7K8jfJNakUhIc59d/+ftiBBxG1mTngKF8F7Swfdo2JYJk5qHlfuOe2EuPHY1KMDdWkChsf7xxWHLXnxD98Fu1sH6UDuFiop4YuS4+jZFIG46PumQdzZ4Q6dxC+7QiH3as7BrdQ332jTCid4oqhBKiunrqM+Zu0v51UD250ff4jLYI+JvKe7fWSCBoBmF3m2k7l,iv:mfWZCMVn8bLvXofHcAnrsh8QzV+H5mryJRvShTubk3Q=,tag:YsdDDFe6k29++kOXnG7Q7A==,type:str]
+    settings.yaml: ENC[AES256_GCM,data:Fi+DDis4ds0U+C53K0l3g5p036uahDCYWFmKGlVlncnV5gUvkp3l2Ha5c2Vm34DetZHu+32F9b2IwW1PMcrr2t7kHcBSONCVrlXt30N4kew2TCJAVDnfz268zxCldyaTB6aF7S5au0DgyJm3HiTRcSFz4Iw=,iv:xhryVycl7GgZnh1otLibIvsP6hXGWkHBpEEqahd4dWw=,tag:WDfHMwXauTySQ6i5WZ0CAQ==,type:str]
+    bookmarks.yaml: ENC[AES256_GCM,data:Q8YVAMY2tK9zrNgfrwMa1CLiK32uD85gwIwUgW2E+jEw6nMl2WBqe/oLFXpSL8eEZSGHPBaOO81OJhhHCOPg6koE9X9skNCCut+hfLs/MFKTor97IUsCCepA+sBntdBKEjSybv2ahPsoiww0a+HUIQ==,iv:92d7VkY7VetKaCC5hcBwI5AMkU79asMQl+zpwM/tInw=,tag:1YiNJYSYJ5GiKGU9DPeHlw==,type:str]
+    services.yaml: ENC[AES256_GCM,data:87AI1UJTUzY7WNMbsTIuk0PbCSSD+TUp7JAdA1gJA6eoK7u8kVod/w+f8z8Tv/4xSJPrsr7ZhEDqU5XoR5wr7qR5LH/u5kDXM9FfZ87AJIo0AHco/UTGQ2t3wy7vNMrzwPDsg6sG4rHacivz2jlHd1Ps//hFSDx1AGW7/yGGxshpGHgNJQdutJfI2i3Fg6Rdf4xWxQr5FUU=,iv:0WAK4GTFfNLa2yvNjuFSfBkxWt+kGKyfDh5YpPHlpZU=,tag:iuKLwUHnvrQJDx6SxP0mTQ==,type:str]
+    widgets.yaml: ENC[AES256_GCM,data:cWzPSNAZSKtctPc08k3D8twPodvAqBZGSnzuH5cBM/IVnfXK02JCwmnbmclBHq0s7t1oXjg=,iv:PXuwF2+LGf2cLbqiV3BU/x1Q9vbH9XmqDkXYOP59QAs=,tag:ytmS51AtOmHnSgVT283ozg==,type:str]
+    docker.yaml: ""
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLMFd4UDcvSE1EZHFpdGJv
+            cHN0dlZzcHNUN284MHErS0o2TXVBNFlxK2pvCkkzY2V2NHRYT3UxUlpEdGt5N1I2
+            V3Evd0R1ZWJselVBc1lOWitxcjZVYWsKLS0tIFM1dkZtWHA3aGtkS05FOGgyMld0
+            ZitEalVIL3Nra0Jnck5LR2R5dG1iSW8KnIogk7hX1gmOl+5ITd5H72jzEEO6dDe9
+            TiUaJ37MV9zCNbCS6m7mkWDxaxM7qzfZ5FhoS7q8IpfUTRrrn+KSsg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-09-30T02:31:57Z"
+    mac: ENC[AES256_GCM,data:YGwfd7d1fowrd7ImWyjzKlSokb2BfliPnWMl0zWyHhstYtiA+tZrrCJw4x1Nw6PNge4Raq7TgyKSJoP5QFvfjGX1m7mcNbfqcrB51vTLKFEFOOCtFGv3mMBMzzuNfBItaYZgpv/02K9QxVMbKyGSyg1bSiiyQQS0GpjJAwmc5DM=,iv:X6LXHlR25OsTFJfGT3NZxp5C5OCbBmlQUbJoBoqGi48=,tag:o+5AmYh4eDaAyzKLoRW0LA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|annotations|)$
+    version: 3.9.0
