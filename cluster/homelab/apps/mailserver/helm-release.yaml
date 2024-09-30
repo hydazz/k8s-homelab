@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: docker-mailserver
-      version: 4.0.6
+      version: 4.0.7
       interval: 5m
       sourceRef:
         kind: HelmRepository
