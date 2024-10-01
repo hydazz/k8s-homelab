@@ -48,6 +48,10 @@ spec:
                         - auth.hyde.services
             podAnnotations:
                 backup.velero.io/backup-volumes: media
+        serviceAccount:
+            serviceAccountSecret:
+                enabled: true
+            fullnameOverride: authentik-sa
             volumes:
                 - name: media
                   persistentVolumeClaim:
@@ -90,8 +94,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-30T09:40:44Z"
-    mac: ENC[AES256_GCM,data:O2cCTFEOwOO11457DkhIVQB05Qq38veB4YBX68Qqu1OkF7eT4zQ4fl1ONSC406YD2+Rq1IQuk7Zs9pOZu4SCqgVl8yXdCe4Ouv4nA08F6NDRHi8GdvA/dVsvC/BY5iq4z7s7DaPN1IPOnrK2PpQ9xOXaCr9xY2GCU6o4dZ+NGNg=,iv:G7w66TA1Tif79/eRkyk4wZoaGLUMjlQJnLBOJNcL8XQ=,tag:8W+K9nU7HTJKoGrCX3JC4A==,type:str]
+    lastmodified: "2024-10-01T09:52:13Z"
+    mac: ENC[AES256_GCM,data:b49VMN5a+0ZHQVc93ykGYSyF8SyGM7LSIYL7mhpuYmX7BWjoVsQFaPaUiYm/2AlKiM0+2twIBW6DO4bGsOyQ0r8qIlm6oohFygCbsxlWSFamxUC6bsmeJ9h6ntc+wlAb5iyAXjFVBxbqBiHTpltbU8sOX+p2J2Yr3Qzq0epuNCM=,iv:ENTSiGrYCkrU0l7TLTcj85ly8BKDE5IDiInLR+CsC2E=,tag:HQG8AfgIxhFVrRrAfTAqVQ==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.0
