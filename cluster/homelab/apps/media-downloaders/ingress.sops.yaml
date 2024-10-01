@@ -5,7 +5,7 @@ metadata:
     namespace: media-downloaders
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:0uroFebMwZoD,iv:dAULrZ0WO2kQlLT+b8UaibMQ+QJ5oiOJVo5wRmBMCJs=,tag:cM1rXBB4Ipyd/HiB6By/cQ==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:5lOhJ/FLXXHb8QfnRK0OiLrFpXbludc4e4QZFHjPK/PrLDrHIBxeOZ9OwhA=,iv:lxGRcqeqvBaugp1RZIPFf2cbmEkBpTTs5SEgDTBfxUk=,tag:+eHffxwbpOQ+Pv3FZpN8Gg==,type:str]
         gethomepage.dev/group: ENC[AES256_GCM,data:lrQOWfscg5tn+AbSIrvjI2Y=,iv:warmEha2FRFNAi0ZwoPvmlYL8loqmOt+1j+VMNWTrJM=,tag:qL3K0pgj8KnQPFH0bH/F4Q==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:y4AlCuFs6l14uxc=,iv:45KK55gMZYXNyBKrnBTghXjg4R040BzHYX9LnAZu+GQ=,tag:heqVQ/MLUG2RFc+oWrzLng==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:KKqyEnR7fL4f+F8=,iv:g8xm5EMtUKbzp5xvelHWBIbqWvmbXEY/p1Rm1hx/4YA=,tag:12zK0r+sWyXM824jzmc7aA==,type:str]
@@ -28,8 +28,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-30T07:20:04Z"
-    mac: ENC[AES256_GCM,data:GGwEYXJ9udD7qJTJ12Mmi5IvSCQV9n8tUf6xjAcKw8372IuudkDhPD0xg9EZ07x/n2qEsXDnBSjexFcN9KUcPVaGoam0VT3K/as52o6qTuVGyqqpq5TlCZ04slT3ENCnwU09rGUEdMTBhwtMXsSssJonbm7B3XOvO0duIcbTC8Y=,iv:MdRhF5smfeAm1l9ouOPomNspHB+Pl0zI6RaH1r0Tpqs=,tag:IGloi6ao6mBhMLmkIwoYvA==,type:str]
+    lastmodified: "2024-10-01T04:27:56Z"
+    mac: ENC[AES256_GCM,data:mU5C0fWoDUid/mMMjUNOgG+YJdJSSlLPXzIlGLiW7HhuNOjUvWOfIR48V7sog7LgUiAAZZw7jLUPDmnZtA5JKzYCRd+EZgbbEBzuX5/jaZY/Zgy98WcWz+GDRiQKt2qx7x7DukJndV+1vWp2qCpYbarEaKuy9IaoV1T0alYBSGQ=,iv:2HS580R/rLNsbONVz+n/KUnBW1tEZ4LWwI/OIm5f8Jc=,tag:icYLTYyrnD4mA6/O0E9lkg==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.0
@@ -41,7 +41,7 @@ metadata:
     namespace: media-downloaders
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:0uroFebMwZoD,iv:dAULrZ0WO2kQlLT+b8UaibMQ+QJ5oiOJVo5wRmBMCJs=,tag:cM1rXBB4Ipyd/HiB6By/cQ==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:2cgJmXR9kj35nKUZl7SfxtbSxn/AO+LTvFz3,iv:AH7VA2flYtvPiG/OAZHS7FnI4gY+IvnVAN/SRxcVm8s=,tag:LyN/OhuUEBivfDlWfk8OuA==,type:str]
         gethomepage.dev/group: ENC[AES256_GCM,data:lrQOWfscg5tn+AbSIrvjI2Y=,iv:warmEha2FRFNAi0ZwoPvmlYL8loqmOt+1j+VMNWTrJM=,tag:qL3K0pgj8KnQPFH0bH/F4Q==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:icmarjj6/A==,iv:FJ6Qyv1POW1j+Li3xFvaPlRET+dl0DmMnwcDeO/KWJY=,tag:Daf5WRZt0b50hRO5iDSF7A==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:yjQUF1kU4g==,iv:JruluAYixVL//3WmUC9l9hWtOcKqT651HcU5Sc0Y8J0=,tag:DJU6ZZ7GORLXEanrg9i/7A==,type:str]
@@ -63,8 +63,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-30T07:20:04Z"
-    mac: ENC[AES256_GCM,data:GGwEYXJ9udD7qJTJ12Mmi5IvSCQV9n8tUf6xjAcKw8372IuudkDhPD0xg9EZ07x/n2qEsXDnBSjexFcN9KUcPVaGoam0VT3K/as52o6qTuVGyqqpq5TlCZ04slT3ENCnwU09rGUEdMTBhwtMXsSssJonbm7B3XOvO0duIcbTC8Y=,iv:MdRhF5smfeAm1l9ouOPomNspHB+Pl0zI6RaH1r0Tpqs=,tag:IGloi6ao6mBhMLmkIwoYvA==,type:str]
+    lastmodified: "2024-10-01T04:27:56Z"
+    mac: ENC[AES256_GCM,data:mU5C0fWoDUid/mMMjUNOgG+YJdJSSlLPXzIlGLiW7HhuNOjUvWOfIR48V7sog7LgUiAAZZw7jLUPDmnZtA5JKzYCRd+EZgbbEBzuX5/jaZY/Zgy98WcWz+GDRiQKt2qx7x7DukJndV+1vWp2qCpYbarEaKuy9IaoV1T0alYBSGQ=,iv:2HS580R/rLNsbONVz+n/KUnBW1tEZ4LWwI/OIm5f8Jc=,tag:icYLTYyrnD4mA6/O0E9lkg==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.0
