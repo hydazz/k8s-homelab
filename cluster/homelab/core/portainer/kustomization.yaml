@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
+  - ingress.sops.yaml
 patches:
   - path: velero-annotation-patch.yaml
     target:
