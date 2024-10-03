@@ -34,6 +34,8 @@ spec:
       installPlugins: false
       JCasC:
         defaultConfig: false
+      podAnnotations:
+        backup.velero.io/backup-volumes: jenkins-home
       ingress:
         enabled: true
         ingressClassName: external-nginx
