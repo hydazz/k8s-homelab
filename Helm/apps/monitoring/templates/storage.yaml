@@ -65,7 +65,7 @@ metadata:
   name: influxdb-appdata-pvc
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
