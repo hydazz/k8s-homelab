@@ -7,3 +7,4 @@ resources:
   - storage.yaml
   - css.yaml
   - limit-egress.yaml
+  - ingress.sops.yaml

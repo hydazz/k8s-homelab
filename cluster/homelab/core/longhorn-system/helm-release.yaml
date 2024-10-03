@@ -28,7 +28,7 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Block Storage For Kubernetes
-        gethomepage.dev/group: Storage
+        gethomepage.dev/group: Management
         gethomepage.dev/icon: longhorn
         gethomepage.dev/name: Longhorn
         # type of authentication
