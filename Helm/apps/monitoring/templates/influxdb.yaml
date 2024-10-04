@@ -7,27 +7,30 @@ metadata:
   name: influxdb
   namespace: {{ $.Release.Namespace }}
   labels:
-    app: influxdb
+    app.kubernetes.io/instance: influxdb
+    app.kubernetes.io/name: influxdb
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: influxdb
+      app.kubernetes.io/instance: influxdb
+      app.kubernetes.io/name: influxdb
   template:
     metadata:
       labels:
-        app: influxdb
+        app.kubernetes.io/instance: influxdb
+        app.kubernetes.io/name: influxdb
     spec:
-      securityContext:
-        privileged: false
-        allowPrivilegeEscalation: false
-        fsGroup: 10001 
       containers:
         - name: influxdb
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            fsGroup: 10001
           resources:
 {{ toYaml .resources | indent 12 }}
           ports:
@@ -43,11 +46,13 @@ spec:
             timeoutSeconds: 5
             tcpSocket:
               port: {{ .port }}
+
       restartPolicy: Always
       volumes:
         - name: appdata
           persistentVolumeClaim:
             claimName: influxdb-appdata-pvc
+
 ---
 apiVersion: v1
 kind: Service
@@ -56,7 +61,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
-    app: influxdb
+    app.kubernetes.io/instance: influxdb
+    app.kubernetes.io/name: influxdb
   ports:
     - name: influxdb
       protocol: TCP
