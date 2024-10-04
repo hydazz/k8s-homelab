@@ -25,6 +25,13 @@ spec:
         app.kubernetes.io/instance: plex
         app.kubernetes.io/name: plex
     spec:
+      initContainers:
+        - name: init-permissions
+          image: busybox
+          command: ['sh', '-c', 'chown -R 1001:1001 /transcode && chmod -R 775 /transcode']
+          volumeMounts:
+            - name: transcode
+              mountPath: /transcode
       runtimeClassName: nvidia
       containers:
         - name: plex
@@ -78,8 +85,7 @@ spec:
           persistentVolumeClaim:
             claimName: plex-appdata-pvc
         - name: transcode
-          persistentVolumeClaim:
-            claimName: plex-transcode-pvc
+          emptyDir: {}
         - name: nfs-media-data
           nfs:
             path: "/mnt/Slow/Media/Plex Media"
