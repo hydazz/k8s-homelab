@@ -31,6 +31,8 @@ spec:
         gethomepage.dev/group: Management
         gethomepage.dev/icon: longhorn
         gethomepage.dev/name: Longhorn
+        gethomepage.dev/namespace: longhorn-system
+        gethomepage.dev/app: longhorn
         # type of authentication
         nginx.ingress.kubernetes.io/auth-type: basic
         nginx.ingress.kubernetes.io/auth-secret: basic-auth

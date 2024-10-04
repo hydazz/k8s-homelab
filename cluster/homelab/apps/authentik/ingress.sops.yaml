@@ -9,6 +9,8 @@ metadata:
         gethomepage.dev/group: ENC[AES256_GCM,data:YxAQMKpbCCRd3g==,iv:S92Acl4vVlGbruvHdLnbPeA5N/ZuJor3xzsYbGwBVMQ=,tag:eUWE9cXETCwfj/Fv6GpHbA==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:M2NGRpIlE0/m,iv:flAr1tWp+aWJMznC4GuKs5ktSW3DmUokpUnsrt9M00o=,tag:drqQFZFUAMSPwNfD0uvy0A==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:mNUO+hiUKYhS,iv:PjZ1UUwNGemqHXiMIxpgwpNBjxKuMJ0U0Ewcoeb6kpQ=,tag:b0Kd1r98isHcjvHwLobQuA==,type:str]
+        gethomepage.dev/namespace: ENC[AES256_GCM,data:N+LEdX8hhbpG,iv:t3FzZb1PRmno3Q0vn5hNS8hOOK4EP6rw8oooDzuzN0w=,tag:B2mBdgrK9B4cjhszzR4rWQ==,type:str]
+        gethomepage.dev/app: ENC[AES256_GCM,data:zyJtUAjz2mYr,iv:tqRPFF1e+YNxakPQ5qOMYeg5iShg6VRUDJ/VlKfpl38=,tag:z6Dc4suPm1lFWhrzVpNcgQ==,type:str]
         gethomepage.dev/widget.type: ENC[AES256_GCM,data:3ti9Y5a5Wie/,iv:MR2f5GxYj5eoxCDTMTnnyIgdkTTI+vhRiasS4H2j2VU=,tag:1E4RuARG0FpTTBbee25ZOg==,type:str]
         gethomepage.dev/widget.url: ENC[AES256_GCM,data:OqIzjQDlQTrwOO/2R+EH83sURz+YJk3e4OQ=,iv:Ohx+/21Q5B2AlIrfq94xjGEjBn30CrjqN/U1mFlW/BQ=,tag:Q5SXBNxS4TiRd7+QBPIfOg==,type:str]
         gethomepage.dev/widget.key: ENC[AES256_GCM,data:E4Hg+WxFRKjVn+2C0MnJ8yaDzWVwWcbwoucpmgP7f/oHQYAvcRQACZp9K0/RzK3987vqP7b5B1CFSwUM,iv:IHXEf0d+QxBKF61yLlapWauRx/Kgfat2VvdoLmr91E4=,tag:8twi+2+HpZ/tUcGD1k12PA==,type:str]
@@ -27,8 +29,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-03T09:29:22Z"
-    mac: ENC[AES256_GCM,data:v4oPdBD+cEqq1EEPrlil7rNYe0881duiXmOQIbCZzL6kVjeGjjoKk+cxDBBGR4Fa5hpfyVTy/5dSXs4w6dR6dnqizamFaESJPtkc9V5Vc5G97HjFS/v5jZBXnYohn4X+zUtMiFHQFle6h4ulJ9hqCtaaZNPPpu/mP74CCVu6pd0=,iv:YDsfdM9QAu1NsHdG2jRLFN3N0eFMyNHDi9/wXrkeAoM=,tag:VY64z9IPT2jEGUwz5+21Yg==,type:str]
+    lastmodified: "2024-10-04T00:30:48Z"
+    mac: ENC[AES256_GCM,data:pM1RW4dzwmylOgX2xx+57V6CQShyFSxCrvTancb/CEaRhdEC8+owDj9L+2Jd6N9N1na2X26moaKB21o4EuW6hxX/RszO4+KO4SXMkgWH2Gm/sA+UCOpCvkh2CB8MnPql2oWsKSShj9RgM8dlNGECIc8i/T9cxXcXi7nwUkZBHx4=,iv:wy/hG/+qe4+4gWCDP5zR+bCG1LzibKjRaj5CvaYjPrA=,tag:UeOBjx3qKD6j4wRfZqizWQ==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.0
