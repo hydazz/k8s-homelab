@@ -5,7 +5,7 @@ resources:
   - authentik
   - cert-manager
   - changedetection
-  - homarr
+  - homepage
   - jenkins
   - mailserver
   - mariadb
@@ -19,4 +19,3 @@ resources:
   - unifi-protect-backup
   - uptime-kuma
   - wordpress
-  - homepage
