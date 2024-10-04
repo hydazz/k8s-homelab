@@ -5,7 +5,7 @@ metadata:
     namespace: authentik
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:m04fbISs6/AW,iv:3jRCzx2b1aG5cXyKdh5g1FgeWVmDOO7tssMB0lwuxrs=,tag:m7F4b79wufiFr5gt3u7pDQ==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:h8MhLoA8UOW88C12LCI0Hmkej5qRDhQOjv4dFpAyYolXNoC6RWfCs1iN2w3YeMU=,iv:kA9nYKGpLifuLi/aU8YxnYzv+OVUM+Nu/sCYZc72ymI=,tag:cbCwCtlSJc9ExiNDu0TFKQ==,type:str]
         gethomepage.dev/group: ENC[AES256_GCM,data:YxAQMKpbCCRd3g==,iv:S92Acl4vVlGbruvHdLnbPeA5N/ZuJor3xzsYbGwBVMQ=,tag:eUWE9cXETCwfj/Fv6GpHbA==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:M2NGRpIlE0/m,iv:flAr1tWp+aWJMznC4GuKs5ktSW3DmUokpUnsrt9M00o=,tag:drqQFZFUAMSPwNfD0uvy0A==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:mNUO+hiUKYhS,iv:PjZ1UUwNGemqHXiMIxpgwpNBjxKuMJ0U0Ewcoeb6kpQ=,tag:b0Kd1r98isHcjvHwLobQuA==,type:str]
@@ -29,8 +29,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-04T00:30:48Z"
-    mac: ENC[AES256_GCM,data:pM1RW4dzwmylOgX2xx+57V6CQShyFSxCrvTancb/CEaRhdEC8+owDj9L+2Jd6N9N1na2X26moaKB21o4EuW6hxX/RszO4+KO4SXMkgWH2Gm/sA+UCOpCvkh2CB8MnPql2oWsKSShj9RgM8dlNGECIc8i/T9cxXcXi7nwUkZBHx4=,iv:wy/hG/+qe4+4gWCDP5zR+bCG1LzibKjRaj5CvaYjPrA=,tag:UeOBjx3qKD6j4wRfZqizWQ==,type:str]
+    lastmodified: "2024-10-04T03:09:34Z"
+    mac: ENC[AES256_GCM,data:eFaqHNn0U3neccFrK3P5tlvICoC4GnDwyb+iN7hC1t1bfLZJrU2RZwHvaRtVJNpBPlATRCcqCCuSP4qJt9/EtSklbVM3hcR6ERiBOsJg3cQozhJQ3KhPr71QDjH1e640bRX0ZFX32FPYs57qDR0hwypFG0VJxDAbutGjBLsGvIg=,iv:vIuEXHFE0kHqy/+YSU308+QZvd1Vm1c13cDCRibJ2fA=,tag:q95+hq1KqKez6zxp+5vwUg==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.0
