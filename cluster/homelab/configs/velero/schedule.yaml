@@ -10,7 +10,6 @@ spec:
     includedNamespaces:
       - authentik
       - changedetection
-      - homarr
       - jenkins
       - mailserver
       - mariadb
