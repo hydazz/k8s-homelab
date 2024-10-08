@@ -25,6 +25,7 @@ spec:
         app.kubernetes.io/instance: notifiarr
         app.kubernetes.io/name: notifiarr
     spec:
+      hostname: notifiarr
       containers:
         - name: notifiarr
           image: {{ .image }}
