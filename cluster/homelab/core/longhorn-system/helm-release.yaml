@@ -28,7 +28,7 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Block Storage For Kubernetes
-        gethomepage.dev/group: Management
+        gethomepage.dev/group: Infrastructure Management
         gethomepage.dev/icon: longhorn
         gethomepage.dev/name: Longhorn
         gethomepage.dev/namespace: longhorn-system

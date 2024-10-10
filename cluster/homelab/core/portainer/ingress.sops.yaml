@@ -6,7 +6,7 @@ metadata:
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
         gethomepage.dev/description: ENC[AES256_GCM,data:lO95ViT2vxosJVp2R9eT/AcdBRUmp01ZYLA8Zn0NIA==,iv:gSafcH9A3GHpFEogUJpbz5hNIZai893Zjmc+pbY25KE=,tag:NBRvK5cYwWq/N5+H9/3r8Q==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:pYpKbjbttudetg==,iv:MenEjskE3cVRG1SOXpyneYsTwim8JLhkdWOsJCnQhg0=,tag:bviJrf37WAokWRXRPxh5Iw==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:JNxNNC76L1qlaKgqvpQY+n4G0N8FnZFtJw==,iv:kj30ee691wIlhrJFYc9vnCLF1ibgCaYR0o0D86/eGHA=,tag:sdf0x8n8bWnGicaAJDcNBg==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:J4QvqygrwQcD,iv:pHbEUqp2sa2TixiFLz6oobexpaB+1DiNoiGF75C/jfw=,tag:l0s64doXHy8LN6rXMk/yFQ==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:mogkjP42dj4a,iv:eMKj1qezbrTVMjSHhPG0riSLiFQg8PQQqNAiGnlJ3B0=,tag:WL2gZopk+FKexe8qu1BkAA==,type:str]
         gethomepage.dev/namespace: ENC[AES256_GCM,data:EyADtu0Ww1kC,iv:cxNClUKBKXWkj1bJqNm6VYu+WBPVYsLhyTEW0d31J0c=,tag:imxOKFLNebQ7WcIOugYc3A==,type:str]
@@ -27,8 +27,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-03T09:27:08Z"
-    mac: ENC[AES256_GCM,data:A6UzILJLIKEsxRCpu4mMYYstrj/Cl5TWDmwCiQZub4x5iC/qgkCoZNLyTbmHKWNIGT6rcRZnlMWuDWZuzhhRJiVoZtSxHP0PrLcsH6HmOif7jKbgPFZJKi2fUN0D01CxljjvszgDpxPzwgr2tg6SCQ5p1+tNYOCpek1Sc1TcVXk=,iv:dNU3OnQgrhk4szidJVxWarGTE0Qd6Lp77iDopNmW1iY=,tag:gMRi9gnel0oXexfUzTom4w==,type:str]
+    lastmodified: "2024-10-10T09:10:27Z"
+    mac: ENC[AES256_GCM,data:daJ3Z2eWdDjDK/0h1efLjHnlWHnVywkfvsvZHe7g64ahXkjH8SFTmG1QcbGQf8sUz8mcd8fWJ2Mpz+TTSjQ7PohalMknS+UT2gRnJrtt1TXsCAha2W2E0W2lS+j08EzeUFI6fCVirZPznirycw19GLKc5c+h6egtQXLEbP5bgac=,iv:XcaR3XvcENpK8dSTQ4XXR43LtII3wH703GyHppKnoTQ=,tag:WrD2ULaHvh/4mjfaHXzwxQ==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
-    version: 3.9.0
+    version: 3.9.1
