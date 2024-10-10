@@ -5,3 +5,4 @@ resources:
   - helm-release.yaml
   - namespace.yaml
   - limit-egress.yaml
+  - roundcube.sops.yaml

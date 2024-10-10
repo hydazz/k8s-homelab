@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: roundcube
+    namespace: mailserver
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: roundcube
+            version: 1.15.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: mlohr
+                namespace: flux-system
+    values:
+        deployment:
+            replicas: 1
+        imap:
+            host: mail.hyde.services
+        smtp:
+            host: mail.hyde.services
+        ingress:
+            enabled: true
+            ingressClassName: internal-nginx
+            class: ""
+            host: roundcube.k3s.hyde.services
+            tls:
+                secretName: wildcard.hyde.services
+        externalDatabase:
+            type: mysql
+            host: mariadb.mariadb.svc.cluster.local
+            port: 3306
+            name: roundcube
+            user: roundcube
+            password: ENC[AES256_GCM,data:7g9V/RP0kSdTEmhajYVpww==,iv:2IpkbMr8TJ4iCKHBE9rhB/WQLTKUFlbwu/tvtDf9Ggk=,tag:GlRUZ4sb4zjOinY8zM4j/A==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0TVBkZkluQ01lNU5Jd3ds
+            TE4zNklJVll5YVFHeGVpN29MMUdXL29CckNjCm9qS3J0WUtkK21LZW9lYSt0K21X
+            ZzdwQXIwVzVHMnFqMXdnbmp2UlVXVFEKLS0tIFV0eDdTMXl5WEhWcTd5aW4wdGpw
+            aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
+            jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-10-10T06:16:08Z"
+    mac: ENC[AES256_GCM,data:TMW4xf7eJe39RpsUT1zUdq8icoJiGX/35PFScZLi2rK62m1p3Z4JMM4tTUpgT8CYPsa282tJIN1h0wcE5mAu4wES3G4WpdL2f63kgoCEYFqo6H/RrYol+LTWM5xmkL8+ohEtxIuWPuq1saEhcODOWdgscrmLijJxRiQi43WAPKA=,iv:1OtBfdq9RAmLFMrfd5TTTZcg3/DKkwCnGC0QeNEtn8E=,tag:Y8e0MnDeatUnkiTB16pSuQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(password|)$
+    version: 3.9.1
