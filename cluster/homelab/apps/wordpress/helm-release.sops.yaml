@@ -33,6 +33,10 @@ spec:
         htaccessPersistenceEnabled: true
         wordpressScheme: https
         allowEmptyPassword: false
+        resources:
+            requests:
+                cpu: 250m
+                memory: 512Mi
         podAnnotations:
             backup.velero.io/backup-volumes: wordpress-data
         service:
@@ -76,8 +80,8 @@ sops:
             Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
             QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-03T11:02:07Z"
-    mac: ENC[AES256_GCM,data:qpJ4FZpx+2fTBsiY2ZvBG1jwcwxtcWJN0QZ2dbyg3e3XoDBpeAr/6bzEf2c+2lXxCUQKcnquxQ01DP0Cl3+CzeNl7JU2pVCMrmB3nQK3oAXG0Dcxt5uUkC5Pwjyc72HAsvv4hw+VZ1UXxoZUMv3rnkv1UHT6MF+IpbaBB3nGBE8=,iv:pdhldu69RvoYhxPPIZPn+BrG4Tmo7x+39tTqkMuw6yk=,tag:4mdGNleq7I9wzFBoyg0EvA==,type:str]
+    lastmodified: "2024-10-10T05:06:34Z"
+    mac: ENC[AES256_GCM,data:TIMDkASzXjwT+qnu9GLJfzrboC2lV76Uv8hUcfADb7NJvUzs3z7PFH0QGWj3qTjXn4uJwWkSkobTnwoSqfnx+ianHZaFMJoAFoxPSWIbjh0+sgIx8v44Nw88OgtV9HC2gSN4QNHilwW7qb8Ee8H8MR1mOzBBv/X8th0aDWgLeH0=,iv:imA+AdWeQH2g+qD2rGrS2D7VCA1F/CS6dbEj0UjyXUU=,tag:UV3VmK+J057pJAGUOgVH+A==,type:str]
     pgp: []
     encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
-    version: 3.9.0
+    version: 3.9.1
