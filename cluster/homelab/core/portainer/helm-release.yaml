@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: portainer/portainer-ee
-      tag: 2.22.0
+      tag: 2.23.0
     service:
       type: ClusterIP
     tls:
