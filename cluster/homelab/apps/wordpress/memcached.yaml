@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: memcached
-      version: 7.5.0
+      version: 7.5.1
       interval: 5m
       sourceRef:
         kind: HelmRepository
