@@ -38,7 +38,7 @@ spec:
                 path: /
         resources:
             requests:
-                cpu: 250m
+                cpu: 256m
                 memory: 512Mi
         podAnnotations:
             backup.velero.io/backup-volumes: wordpress-data
@@ -83,8 +83,8 @@ sops:
             Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
             QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-15T09:31:43Z"
-    mac: ENC[AES256_GCM,data:4tAmS2pe0nd4xcTDKhDPDZd8c7SOPfM2KYnYg6bFCjH1JZAWZSeryDl/hud9L2gNMttLfvLEA2c9lZ2AnHOZD1e95d5HdtaoyCYGv2dMqm2S9QnR3Q6AhwTXUtrb9tVr7Se3nges1wPbDnQQxPUOniEaNFKIPn2CJJguJPZrIZ0=,iv:UKGNpSWenSVIJAGS5tYfjWUhNzaxu8s/9QASRRfLZpk=,tag:Sc8Z47V1hmW46+MmWMJ15w==,type:str]
+    lastmodified: "2024-10-17T21:57:11Z"
+    mac: ENC[AES256_GCM,data:nqkp6lPtk/CxT6zIcAghVltzpPC2j1ZFMm4AMlA4x5OW/MkWkw7H46uOtQLRmKcWaRn41fQdNiJO+AKiA6GKy20SII8zJXuxzrbBH9iURTivHemglSRQvc/RJo5bbUy0URa9rX+5ASgStRY950j3SWh+Nqt2GHx812GnUcDEdGk=,iv:hGiT6LIsdsKw8D2O0t4cnHPZ70+8xPY/mCSTNLfi1Z0=,tag:ch3qiBwT4b9JPOO6OGB5Nw==,type:str]
     pgp: []
     encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
     version: 3.9.1
