@@ -44,6 +44,10 @@ spec:
           - secretName: wildcard.imagegenius.io
             hosts:
               - ci.imagegenius.io
+      podSecurityContextOverride:
+        fsGroup: 1000
+        runAsNonRoot: false
+        runAsUser: 1000
     agent:
       enabled: false
     persistence:
