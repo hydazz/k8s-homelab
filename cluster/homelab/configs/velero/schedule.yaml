@@ -12,7 +12,7 @@ spec:
       - changedetection
       - jenkins
       - mailserver
-      - mariadb
+      - database
       - media-downloaders
       - media-managers
       - media-servers
