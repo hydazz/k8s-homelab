@@ -47,7 +47,7 @@ spec:
         mariadb:
             enabled: false
         externalDatabase:
-            host: ENC[AES256_GCM,data:dkT7n38fQWCm2TLyOoQPZw7MbfPuRpdyE/vvPPAi3imW,iv:paxV/pGwICf8uizBLd/h0D/JYTZ8phCaE7l6hFS1mzg=,tag:dOuMQsBxAqFjq3lUFR5QIw==,type:str]
+            host: ENC[AES256_GCM,data:grZiOQx5FPaiAJNGXHfMY/pGgEu/C/4tvyCFwz88VU4w3w==,iv:+Z/gdyuVnqHxm6e9xZ3ee9YzAgBSjqFN/6wup4yUmTY=,tag:W9FFEuIfMRmKGcYX/FoZwQ==,type:str]
             port: ENC[AES256_GCM,data:P9xykg==,iv:cW2cMG+vA4FfBqsK9RUi5U/zbe6oSFe0nOdC/au7CyQ=,tag:kbD6Roabm0RdkPQpu7jGOA==,type:int]
             user: ENC[AES256_GCM,data:zdDSu3lbohX5t1+Nl1Z4,iv:U4BWVz/qe7KsyYHd6OGQgrRt9ZJxtvcBePeoshYRNtg=,tag:iZRq/eKdpj6ZU19ypgE9MA==,type:str]
             existingSecret: ENC[AES256_GCM,data:MmZ9T/xtl1YDMP/2Lnchol9xhT8y1PE=,iv:KOPViJG3yZ+ZDZEoUeqAz1QREpVlrpf4tz0Bx42mizk=,tag:0yWfTqb8Rfk3szD2H+CB0g==,type:str]
@@ -83,8 +83,8 @@ sops:
             Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
             QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-17T21:57:11Z"
-    mac: ENC[AES256_GCM,data:nqkp6lPtk/CxT6zIcAghVltzpPC2j1ZFMm4AMlA4x5OW/MkWkw7H46uOtQLRmKcWaRn41fQdNiJO+AKiA6GKy20SII8zJXuxzrbBH9iURTivHemglSRQvc/RJo5bbUy0URa9rX+5ASgStRY950j3SWh+Nqt2GHx812GnUcDEdGk=,iv:hGiT6LIsdsKw8D2O0t4cnHPZ70+8xPY/mCSTNLfi1Z0=,tag:ch3qiBwT4b9JPOO6OGB5Nw==,type:str]
+    lastmodified: "2024-10-21T21:43:21Z"
+    mac: ENC[AES256_GCM,data:AlsWHPzkKtG3WavN84+6ESTQcAm2TCRqa7xMdy9zjaGIfQ/HhbPg8XISYoLrWDSIzwlJR45vvGe2kp/vlj8Orfuwbmhe8CRqpk4r6AP4vXx0VDhmXmI9S+0HcJhOydG43kRUacqP+NY9x1tb2NlOcvOWikvmHbH8mmOpY1e5Li8=,iv:udk2aqAfDDheka+up/dggVsNRqQOqYQaVGO0I3pod3A=,tag:/afTOiE7FcXEioV8DUpcpg==,type:str]
     pgp: []
     encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
     version: 3.9.1

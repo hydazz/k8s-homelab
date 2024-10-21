@@ -8,7 +8,7 @@ resources:
   - homepage
   - jenkins
   - mailserver
-  - mariadb
+  - database
   - media-downloaders
   - media-managers
   - media-servers

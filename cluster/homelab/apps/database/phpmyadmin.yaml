@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: phpmyadmin
-  namespace: mariadb
+  namespace: database
   labels:
     app.kubernetes.io/instance: phpmyadmin
     app.kubernetes.io/name: phpmyadmin
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: phpmyadmin
-  namespace: mariadb
+  namespace: database
 spec:
   selector:
     app.kubernetes.io/instance: phpmyadmin
@@ -65,7 +65,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: phpmyadmin
-  namespace: mariadb
+  namespace: database
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "128m"
 spec:

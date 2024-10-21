@@ -39,7 +39,7 @@ spec:
                 secretName: wildcard.hyde.services
         externalDatabase:
             type: mysql
-            host: mariadb.mariadb.svc.cluster.local
+            host: mariadb.database.svc.cluster.local
             port: 3306
             name: roundcube
             user: roundcube
@@ -59,8 +59,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-10T06:16:08Z"
-    mac: ENC[AES256_GCM,data:TMW4xf7eJe39RpsUT1zUdq8icoJiGX/35PFScZLi2rK62m1p3Z4JMM4tTUpgT8CYPsa282tJIN1h0wcE5mAu4wES3G4WpdL2f63kgoCEYFqo6H/RrYol+LTWM5xmkL8+ohEtxIuWPuq1saEhcODOWdgscrmLijJxRiQi43WAPKA=,iv:1OtBfdq9RAmLFMrfd5TTTZcg3/DKkwCnGC0QeNEtn8E=,tag:Y8e0MnDeatUnkiTB16pSuQ==,type:str]
+    lastmodified: "2024-10-21T21:46:56Z"
+    mac: ENC[AES256_GCM,data:Gec96+NRG+Sswbg9xXU4LzKLFVWATI5zAyOSNg/owO06rMbTKrWecFY4WwsBUDXLV6Ccgc8/WpjjFwfSx9REggmG081oBM+18ONnQoS7+J6NJraPL+i22sKj5hmVBZ1NooB+fDOftUE+o/qSokVINHUpEnViuaqadZ9SKsuQsfk=,iv:sxMerXCvets91zLgSLIhd78k3Hj6N6lngLynobsErps=,tag:8xItZxg8lhvM7e6bZ/j2mA==,type:str]
     pgp: []
     encrypted_regex: ^(password|)$
     version: 3.9.1
