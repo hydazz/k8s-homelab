@@ -18,12 +18,13 @@ spec:
         name: cert-manager
         namespace: flux-system
   values:
-    installCRDs: true
-    cert-manager:
-      deploymentAnnotations:
-        certmanager.k8s.io/disable-validation: "true"
-    dnsPolicy: "None"
-    dnsConfig:
+    crds:
+      enabled: true
+      keep: true
+    deploymentAnnotations:
+      certmanager.k8s.io/disable-validation: "true"
+    podDnsPolicy: "None"
+    podDnsConfig:
       nameservers:
         - "1.1.1.1"
         - "1.0.0.1"
