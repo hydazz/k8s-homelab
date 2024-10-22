@@ -33,3 +33,92 @@ spec:
     primary:
       podAnnotations:
         backup.velero.io/backup-volumes: data
+---
+# PostgreSQL 12 for Authentik
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgresql-12
+  namespace: database
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: postgresql
+      version: 12.12.10 # controls postgres version PIN TO 12
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    auth:
+      enablePostgresUser: true
+      existingSecret: postgresql-secrets
+      secretKeys:
+        adminPasswordKey: postgres-password
+    primary:
+      persistence:
+        size: 256Mi
+      podAnnotations:
+        backup.velero.io/backup-volumes: data
+      extendedConfiguration: |
+        max_connections = 500
+---
+# PostgreSQL 14 for Immich (pgvecto.rs)
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pgvectors-14
+  namespace: database
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: postgresql
+      version: 16.0.0
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    image:
+      repository: tensorchord/pgvecto-rs
+      tag: pg14-v0.2.0
+    auth:
+      enablePostgresUser: true
+      existingSecret: postgresql-secrets
+      secretKeys:
+        adminPasswordKey: postgres-password
+    primary:
+      containerSecurityContext:
+        readOnlyRootFilesystem: false
+      initdb:
+        scripts:
+          create-extensions.sql: |
+            CREATE EXTENSION cube;
+            CREATE EXTENSION earthdistance;
+            CREATE EXTENSION vectors;
+      persistence:
+        size: 2Gi
+      podAnnotations:
+        backup.velero.io/backup-volumes: data

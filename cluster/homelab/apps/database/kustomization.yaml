@@ -5,4 +5,4 @@ resources:
   - helm-release.yaml
   - namespace.yaml
   - secret.sops.yaml
-  - phpmyadmin.yaml
+  - lazy-tools.yaml
