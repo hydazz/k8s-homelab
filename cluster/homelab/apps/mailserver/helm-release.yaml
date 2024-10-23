@@ -28,7 +28,7 @@ spec:
     certificate: wildcard.hyde.services
     persistence:
       mail-config:
-        size: 1Mi
+        size: 10Mi
       mail-data:
         size: 256Mi
       mail-state:
