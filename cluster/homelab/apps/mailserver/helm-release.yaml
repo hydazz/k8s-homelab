@@ -24,6 +24,7 @@ spec:
         name: docker-mailserver
         namespace: flux-system
   values:
+    fullnameOverride: docker-mailserver
     certificate: wildcard.hyde.services
     persistence:
       mail-config:
