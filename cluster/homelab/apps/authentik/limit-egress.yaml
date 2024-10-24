@@ -18,7 +18,10 @@ spec:
         - protocol: TCP
           port: 6379
     - to:
-        - podSelector:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: database
+          podSelector:
             matchLabels:
               app.kubernetes.io/name: postgresql
       ports:

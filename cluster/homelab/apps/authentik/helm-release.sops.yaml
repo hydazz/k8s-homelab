@@ -27,6 +27,8 @@ spec:
         authentik:
             secret_key: ENC[AES256_GCM,data:B5hUuUQKFL3zUwD69NLL+p6IVEYaweNmh4XakTwRgTUxmkocVaGIaGFbzL8w3qxvtgk=,iv:OIlXI8Tjuv5GXGRnMjg/jjZMs3eoSALSsi0StW1XLGE=,tag:xTgE/SnFnrx/yZyQ4WU3LQ==,type:str]
             postgresql:
+                host: postgresql.database.svc.cluster.local
+                user: authentik
                 password: ENC[AES256_GCM,data:BoopI8eH+JItscXXbkY=,iv:Zf2IB/DfPcFl/61WNQt0+A0BIU1Oz4GmXWMhCLtxDu4=,tag:V/1wvCsdS9+PwTFOxjks8Q==,type:str]
             email:
                 host: mail.hyde.services
@@ -66,14 +68,7 @@ spec:
                 enabled: true
             fullnameOverride: authentik-sa
         postgresql:
-            enabled: true
-            auth:
-                password: ENC[AES256_GCM,data:2q0Dv2FwmWYRSUWRagI=,iv:WZOiSkCxTp35U3ve55EYCznUhMskB6TYI/NXqswQAR8=,tag:QhGDzoMSx33Igm0hSdhLXg==,type:str]
-            primary:
-                persistence:
-                    size: 256Mi
-                podAnnotations:
-                    backup.velero.io/backup-volumes: data
+            enabled: false
         redis:
             enabled: true
             master:
@@ -94,8 +89,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-03T11:04:48Z"
-    mac: ENC[AES256_GCM,data:u12+tM1L1aFXlC18sRm6Lffxmt+188qDpI/+075pdK9zCZDdci/EI4rUs6xsMuF+cTPJx38DZaKNmVWEqiK/JJS/Ov+yNbmhgqltTkARvfhKGQOexSY/uoASOkekflquS1FJ35O/ER6Zm0TPOiiqPxrLzi7LQV7HJIl+qaJXv+g=,iv:2RcOHwPjjtm005aQDLIp3P9iNhmoLaVlPY/o1OEkhHY=,tag:CtdVlTvnc8/yXIJqXda60w==,type:str]
+    lastmodified: "2024-10-24T01:52:31Z"
+    mac: ENC[AES256_GCM,data:JGT2O0pKZhOtUvkna01NWHTt4WeVGmSP6etwB360P8HUx/y7XffeqXiBwCrGRQaFe374ZxWJPw9+dVnYsI8lv5Df/pWkqWh2cKArgx9rLSSHLbwgwib9y7GDubem//6hZmmGQu2XnoRpRIdcXgIwWa+B3gT4UN+d818rJly5UZ8=,iv:46HlmX0UQYxMhwO1yH1CmGV7ozN8aVZM/ZLHy0LBGuo=,tag:wOi7BK8iD2NdNzkmAfJNdg==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
-    version: 3.9.0
+    version: 3.9.1
