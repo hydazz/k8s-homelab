@@ -104,7 +104,7 @@ spec:
               kubernetes.io/metadata.name: database
           podSelector:
             matchLabels:
-              app.kubernetes.io/name: pgvectors
+              app.kubernetes.io/instance: pgvectors
       ports:
         - protocol: TCP
           port: 5432
