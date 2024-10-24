@@ -19,8 +19,6 @@ spec:
       app.kubernetes.io/name: immich
   template:
     metadata:
-      annotations:
-        backup.velero.io/backup-volumes: postgresql-appdata
       labels:
         app.kubernetes.io/instance: immich
         app.kubernetes.io/name: immich
@@ -40,7 +38,7 @@ spec:
             - name: TZ
               value: "Australia/Melbourne"
             - name: DB_HOSTNAME
-              value: "localhost"
+              value: "pgvectors.database.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE_NAME
@@ -59,7 +57,7 @@ spec:
                   name: immich-secrets
                   key: DB_PASSWORD
             - name: REDIS_HOSTNAME
-              value: "localhost"
+              value: "redis-master"
           resources:
 {{ toYaml .resources | indent 12 }}
           ports:
@@ -80,36 +78,9 @@ spec:
             tcpSocket:
               port: 8080
 
-        - name: redis
-          image: {{ .redis.image }}
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-          resources:
-            {{- toYaml .redis.resources | indent 12 }}
-          ports:
-            - containerPort: 6379
-
-        - name: pgvecto-rs
-          image: {{ .pgvectors.image }}
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-          resources:
-            {{- toYaml .pgvectors.resources | indent 12 }}
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - name: postgresql-appdata
-              mountPath: /var/lib/postgresql/data
 
       restartPolicy: Always
       volumes:
-        - name: postgresql-appdata
-          persistentVolumeClaim:
-            claimName: immich-pg-appdata-pvc
         - name: nfs-media-immich
           nfs:
             path: "/mnt/Slow/Media/Immich"
@@ -119,7 +90,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: immich-svc # name create variable called IMMICH_PORT inside the container which conflicts
+  name: immich-svc # name creates variable called IMMICH_PORT inside the container which conflicts with existing variables
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:

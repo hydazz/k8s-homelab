@@ -3,7 +3,6 @@ storage:
   plex:
     appdata: 16Gi
   immich:
-    postgres: 2Gi
   tautulli:
     appdata: 1Gi
   wizarr:
@@ -51,10 +50,13 @@ plex:
 
 immich:
   image: ghcr.io/imagegenius/immich:noml
-  redis:
-    image: redis:latest
-  pgvectors:
-    image: tensorchord/pgvecto-rs:pg14-v0.2.0
+
+redis:
+  enabled: true
+  fullnameOverride: redis
+  architecture: standalone
+  auth:
+    enabled: false
 
 tautulli:
   image: ghcr.io/linuxserver/tautulli:2.14.6
