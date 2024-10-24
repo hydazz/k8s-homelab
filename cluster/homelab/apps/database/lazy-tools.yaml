@@ -117,6 +117,17 @@ spec:
           securityContext:
             privileged: false
             allowPrivilegeEscalation: false
+          env:
+            - name: PPA_SERVER_DESCS
+              value: "postgresql;;pgvectors"
+            - name: PPA_SERVER_HOSTS
+              value: "postgresql.database.svc.cluster.local;;pgvectors.database.svc.cluster.local"
+            - name: PPA_SERVER_PORTS
+              value: "5432;;5432"
+            - name: PPA_SERVER_SSL_MODES
+              value: "disable;;disable"
+            - name: PPA_EXTRA_LOGIN_SECURITY
+              value: "false"
           livenessProbe:
             failureThreshold: 5
             initialDelaySeconds: 30
