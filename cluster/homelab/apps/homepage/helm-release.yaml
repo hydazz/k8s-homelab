@@ -37,6 +37,8 @@ spec:
         ports:
           http:
             port: 3000
+    controller:
+      strategy: Recreate
     ingress:
       main:
         enabled: false

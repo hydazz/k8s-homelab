@@ -28,6 +28,8 @@ spec:
       repository: quay.io/minio/minio
       tag: RELEASE.2024-09-13T20-26-02Z
     mode: standalone
+    deploymentUpdate:
+      type: Recreate
     existingSecret: minio-secrets
     persistence:
       size: 1Gi

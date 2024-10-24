@@ -24,6 +24,9 @@ spec:
                 name: authentik
                 namespace: flux-system
     values:
+        global:
+            deploymentStrategy:
+                type: Recreate
         authentik:
             secret_key: ENC[AES256_GCM,data:B5hUuUQKFL3zUwD69NLL+p6IVEYaweNmh4XakTwRgTUxmkocVaGIaGFbzL8w3qxvtgk=,iv:OIlXI8Tjuv5GXGRnMjg/jjZMs3eoSALSsi0StW1XLGE=,tag:xTgE/SnFnrx/yZyQ4WU3LQ==,type:str]
             postgresql:
@@ -89,8 +92,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-24T01:52:31Z"
-    mac: ENC[AES256_GCM,data:JGT2O0pKZhOtUvkna01NWHTt4WeVGmSP6etwB360P8HUx/y7XffeqXiBwCrGRQaFe374ZxWJPw9+dVnYsI8lv5Df/pWkqWh2cKArgx9rLSSHLbwgwib9y7GDubem//6hZmmGQu2XnoRpRIdcXgIwWa+B3gT4UN+d818rJly5UZ8=,iv:46HlmX0UQYxMhwO1yH1CmGV7ozN8aVZM/ZLHy0LBGuo=,tag:wOi7BK8iD2NdNzkmAfJNdg==,type:str]
+    lastmodified: "2024-10-24T07:41:52Z"
+    mac: ENC[AES256_GCM,data:9G6yzz0Pcs9pa36zR8Bg8tvbdneHGpdz/3kSPqtCvxRD5I9569PFjSTz81eRRwolNU1/iiMh+Yff507booOkUAMtepZ7u9b1h1zC3wd6NXrRbKBvGGyR+B7Pa9fkc9/GHwI+z6GG9NK0R7NCq/VxndYK9VsLpzLghrggsCgQCrg=,iv:pImc+050Tm8SE/JWBd51W37fKoS97p5lNbRfsBWi7g0=,tag:tnpL9CGeRlANkEo0OUeWQQ==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.1

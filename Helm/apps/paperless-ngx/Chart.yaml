@@ -2,9 +2,6 @@
 apiVersion: v2
 appVersion: 1.0.0
 description: This chart is used to install paperless-ngx
-maintainers:
-    - email: alexanderhyde@icloud.com
-      name: Alex hyde
 name: paperless-ngx
 type: application
 version: 1.0.0
