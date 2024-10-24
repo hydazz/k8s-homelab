@@ -9,7 +9,7 @@ dependencies:
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 19.5.3
+    version: 19.5.5
 name: media-servers
 type: application
 version: 1.0.0
