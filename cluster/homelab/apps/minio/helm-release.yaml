@@ -32,7 +32,7 @@ spec:
       type: Recreate
     existingSecret: minio-secrets
     persistence:
-      size: 1Gi
+      size: 2Gi
     ingress:
       enabled: false
     consoleIngress:

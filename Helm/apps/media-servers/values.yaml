@@ -4,7 +4,7 @@ storage:
     appdata: 16Gi
   immich:
   tautulli:
-    appdata: 1Gi
+    appdata: 2Gi
   wizarr:
     appdata: 8Mi
 
@@ -55,6 +55,9 @@ redis:
   enabled: true
   fullnameOverride: redis
   architecture: standalone
+  master:
+    persistence:
+      enabled: false
   auth:
     enabled: false
 
