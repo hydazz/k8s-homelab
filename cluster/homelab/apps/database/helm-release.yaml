@@ -70,6 +70,10 @@ spec:
       secretKeys:
         adminPasswordKey: postgres-password
     primary:
+      resources:
+        requests:
+          cpu: 250m
+          memory: 128Mi
       persistence:
         size: 256Mi
       podAnnotations:
@@ -114,6 +118,10 @@ spec:
       secretKeys:
         adminPasswordKey: postgres-password
     primary:
+      resources:
+        requests:
+          cpu: 250m
+          memory: 128Mi
       containerSecurityContext:
         readOnlyRootFilesystem: false
       initdb:
