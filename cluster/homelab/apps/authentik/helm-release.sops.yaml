@@ -67,9 +67,7 @@ spec:
                   mountPath: /web/dist/custom.css
                   subPath: custom.css
         serviceAccount:
-            serviceAccountSecret:
-                enabled: true
-            fullnameOverride: authentik-sa
+            create: true
         postgresql:
             enabled: false
         redis:
@@ -92,8 +90,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-24T07:41:52Z"
-    mac: ENC[AES256_GCM,data:9G6yzz0Pcs9pa36zR8Bg8tvbdneHGpdz/3kSPqtCvxRD5I9569PFjSTz81eRRwolNU1/iiMh+Yff507booOkUAMtepZ7u9b1h1zC3wd6NXrRbKBvGGyR+B7Pa9fkc9/GHwI+z6GG9NK0R7NCq/VxndYK9VsLpzLghrggsCgQCrg=,iv:pImc+050Tm8SE/JWBd51W37fKoS97p5lNbRfsBWi7g0=,tag:tnpL9CGeRlANkEo0OUeWQQ==,type:str]
+    lastmodified: "2024-10-28T08:08:42Z"
+    mac: ENC[AES256_GCM,data:qkoAaBXTII3z8nC4fko5uLySDEL6NfkgZHjJqUVyy8Z7ttEjJZvHswrhSHyieumIYKmjvnAq6/qX9K+EufUCOvjlIYMkNf07EYSctGPUWGTaUAoC3EmPmY98MJGkJUsZSRaGFJ0Ks7IgXQKUv0w9y/V67Cjck1PT8XEIik0eEUE=,iv:UOcApdeXLSyEgBg01Kv4K/ozzUHqFgZcXfDj/LAAUKA=,tag:xxzyxGj+N09QFB4AKD4I5Q==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|)$
     version: 3.9.1
