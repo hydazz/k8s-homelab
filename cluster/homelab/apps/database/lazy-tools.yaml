@@ -112,7 +112,7 @@ spec:
     spec:
       containers:
         - name: phppgadmin
-          image: snimshchikov/phppgadmin:latest
+          image: snimshchikov/phppgadmin:latest # no other tags 🤨
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false

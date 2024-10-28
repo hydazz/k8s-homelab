@@ -3,13 +3,41 @@ storage:
   plex:
     appdata: 16Gi
   immich:
+    appdata: 2Gi
   tautulli:
     appdata: 2Gi
   wizarr:
     appdata: 64Mi
 
+immich:
+  image: ghcr.io/imagegenius/immich:1.118.2
+
+redis:
+  enabled: true
+  fullnameOverride: redis
+  architecture: standalone
+  master:
+    persistence:
+      enabled: false
+  auth:
+    enabled: false
+
+tautulli:
+  image: ghcr.io/linuxserver/tautulli:2.14.6
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
+
+wizarr:
+  image: ghcr.io/wizarrrr/wizarr:4.1.1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+
 plex:
-  image: ghcr.io/linuxserver/plex
+  image: ghcr.io/linuxserver/plex:1.41.1
   ports:
     loadbalancer:
       - name: plex-webui-tcp
@@ -47,30 +75,3 @@ plex:
       cpu: 6
       memory: 4Gi
       nvidia.com/gpu: 1
-
-immich:
-  image: ghcr.io/imagegenius/immich:noml
-
-redis:
-  enabled: true
-  fullnameOverride: redis
-  architecture: standalone
-  master:
-    persistence:
-      enabled: false
-  auth:
-    enabled: false
-
-tautulli:
-  image: ghcr.io/linuxserver/tautulli:2.14.6
-  resources:
-    requests:
-      cpu: 10m
-      memory: 256Mi
-
-wizarr:
-  image: ghcr.io/wizarrrr/wizarr:4.1.1
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi

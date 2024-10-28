@@ -61,6 +61,7 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
+    thiservesnopurpose:
     image:
       repository: bitnami/postgresql
       tag: 15.8.0-debian-12-r20

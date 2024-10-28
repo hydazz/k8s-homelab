@@ -23,6 +23,7 @@ spec:
         app.kubernetes.io/instance: immich
         app.kubernetes.io/name: immich
     spec:
+      runtimeClassName: nvidia
       containers:
         - name: immich
           image: {{ .image }}
@@ -64,6 +65,8 @@ spec:
             - name: web
               containerPort: 8080
           volumeMounts:
+            - name: appdata
+              mountPath: /config
             - name: nfs-media-immich
               mountPath: /photos
           livenessProbe:
@@ -78,9 +81,11 @@ spec:
             tcpSocket:
               port: 8080
 
-
       restartPolicy: Always
       volumes:
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: immich-appdata-pvc
         - name: nfs-media-immich
           nfs:
             path: "/mnt/Slow/Media/Immich"

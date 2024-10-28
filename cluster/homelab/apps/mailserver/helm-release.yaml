@@ -32,7 +32,7 @@ spec:
       mail-data:
         size: 256Mi
       mail-state:
-        size: 256M
+        size: 256Mi
       mail-log:
         size: 256Mi
     deployment:
