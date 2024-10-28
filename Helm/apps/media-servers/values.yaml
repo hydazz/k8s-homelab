@@ -6,7 +6,7 @@ storage:
   tautulli:
     appdata: 2Gi
   wizarr:
-    appdata: 8Mi
+    appdata: 64Mi
 
 plex:
   image: ghcr.io/linuxserver/plex

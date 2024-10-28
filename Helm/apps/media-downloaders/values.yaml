@@ -1,9 +1,9 @@
 ---
 storage:
   qbittorrent:
-    appdata: 32Mi
+    appdata: 128Mi
   sabnzbd:
-    appdata: 64Mi
+    appdata: 128Mi
 
 qbittorrent:
   image: ghcr.io/binhex/arch-qbittorrentvpn:5.0.0-1-01

@@ -8,4 +8,4 @@ unifiprotectbackup:
 
 storage:
   unifiprotectbackup:
-    appdata: 64Mi
+    appdata: 256Mi

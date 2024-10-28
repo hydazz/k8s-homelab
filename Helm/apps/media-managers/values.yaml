@@ -6,20 +6,20 @@ storage:
     appdata: 1Gi
   prowlarr:
     appdata: 256Mi
-  lidarr: #unused
-    appdata: 256Mi
+# lidarr:
+#   appdata: 256Mi
   overseerr:
-    appdata: 32Mi
+    appdata: 128Mi
   bazarr:
-    appdata: 32Mi
+    appdata: 128Mi
   tdarr:
-    config: 4Mi
-    logs: 8Mi
+    config: 128Mi
+    logs: 128Mi
     server: 2Gi
   kometa:
     appdata: 1Gi
   notifiarr:
-    appdata: 1Mi
+    appdata: 16Mi
 
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
