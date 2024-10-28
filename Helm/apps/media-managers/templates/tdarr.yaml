@@ -79,8 +79,10 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: {{ .port }}
+
       restartPolicy: Always
       nodeSelector:
+        nvidia.com/gpu.present: "true"
       volumes:
         - name: config
           persistentVolumeClaim:

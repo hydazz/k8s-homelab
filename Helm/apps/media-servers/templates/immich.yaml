@@ -82,6 +82,8 @@ spec:
               port: 8080
 
       restartPolicy: Always
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
       volumes:
         - name: appdata
           persistentVolumeClaim:

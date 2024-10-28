@@ -78,8 +78,10 @@ spec:
                 - /bin/sh
                 - -c
                 - curl --insecure --fail --silent https://localhost:32400/web || exit 1
+
       restartPolicy: Always
       nodeSelector:
+        nvidia.com/gpu.present: "true"
       volumes:
         - name: appdata
           persistentVolumeClaim:
