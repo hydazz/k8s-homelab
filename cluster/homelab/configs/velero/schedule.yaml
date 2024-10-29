@@ -10,9 +10,10 @@ spec:
     includedNamespaces:
       - authentik
       - changedetection
-      - jenkins
-      - mailserver
       - database
+      - jenkins
+      - knick-knacks
+      - mailserver
       - media-downloaders
       - media-managers
       - media-servers
@@ -20,7 +21,6 @@ spec:
       - nextcloud
       - paperless-ngx
       - portainer
-      - unifi-protect-backup
       - wordpress
     snapshotVolumes: true
     ttl: 168h0m0s # 7 days
