@@ -1,4 +1,5 @@
 ---
+# unifi protect backup
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -17,6 +18,7 @@ spec:
         name: flux-system
         namespace: flux-system
 ---
+# teslacam player
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -34,3 +36,63 @@ spec:
         kind: GitRepository
         name: flux-system
         namespace: flux-system
+---
+# semaphore ui
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: semaphore
+  namespace: knick-knacks
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: ansible-semaphore
+      version: 11.1.11
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: cloudhippie
+        namespace: flux-system
+  values:
+    fullnameOverride: semaphore
+    admin:
+      create: true
+      existingSecret: "semaphore-secrets"
+      emailKey: "adminemail"
+      fullnameKey: "adminfullname"
+      usernameKey: "adminusername"
+      passwordKey: "adminpassword"
+    database:
+      type: "mysql"
+      host: "mariadb.database.svc.cluster.local"
+      port: "3306"
+      name: "semaphore"
+      usernameFromSecret: false
+      username: "semaphore"
+      existingSecret: "semaphore-secrets"
+      passwordKey: "dbpassword"
+    ingress:
+      enabled: true
+      className: internal-nginx
+      hosts:
+        - host: semaphore.k3s.hyde.services
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - semaphore.k3s.hyde.services
+          secretName: wildcard.hyde.services
+    persistence:
+      enabled: true
+      size: "64Mi"
