@@ -10,7 +10,7 @@ storage:
     appdata: 64Mi
 
 immich:
-  image: ghcr.io/imagegenius/immich:1.119.0
+  image: ghcr.io/imagegenius/immich:1.119.1
 
 redis:
   enabled: true
