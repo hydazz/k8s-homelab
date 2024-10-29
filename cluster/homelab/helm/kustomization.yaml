@@ -16,7 +16,6 @@ resources:
   - metrics-server
   - minio
   - nvidia
-  - oben01
   - portainer
   - reflector
   - unofficial

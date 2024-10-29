@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: mlohr
+  name: oben01
   namespace: flux-system
 spec:
-  url: https://helm-charts.mlohr.com/
+  url: https://oben01.github.io/charts/
   interval: 10m

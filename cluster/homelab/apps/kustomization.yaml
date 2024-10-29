@@ -5,10 +5,11 @@ resources:
   - authentik
   - cert-manager
   - changedetection
+  - database
   - homepage
   - jenkins
+  - knick-knacks
   - mailserver
-  - database
   - media-downloaders
   - media-managers
   - media-servers
@@ -16,6 +17,5 @@ resources:
   - monitoring
   - nextcloud
   - paperless-ngx
-  - unifi-protect-backup
   - uptime-kuma
   - wordpress
