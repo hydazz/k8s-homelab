@@ -64,7 +64,6 @@ spec:
         name: cloudhippie
         namespace: flux-system
   values:
-    fullnameOverride: semaphore
     image:
       repository: semaphoreui/semaphore
       tag: v2.10.35
