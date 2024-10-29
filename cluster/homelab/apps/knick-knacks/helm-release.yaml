@@ -65,6 +65,9 @@ spec:
         namespace: flux-system
   values:
     fullnameOverride: semaphore
+    image:
+      repository: semaphoreui/semaphore
+      tag: v2.10.35
     admin:
       create: true
       existingSecret: "semaphore-secrets"
