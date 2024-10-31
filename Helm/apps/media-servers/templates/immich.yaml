@@ -65,8 +65,6 @@ spec:
             - name: web
               containerPort: 8080
           volumeMounts:
-            - name: appdata
-              mountPath: /config
             - name: nfs-media-immich
               mountPath: /photos
           livenessProbe:
@@ -85,9 +83,6 @@ spec:
       nodeSelector:
         nvidia.com/gpu.present: "true"
       volumes:
-        - name: appdata
-          persistentVolumeClaim:
-            claimName: immich-appdata-pvc
         - name: nfs-media-immich
           nfs:
             path: "/mnt/Slow/Media/Immich"

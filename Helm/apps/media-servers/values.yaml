@@ -3,14 +3,13 @@ storage:
   plex:
     appdata: 16Gi
   immich:
-    appdata: 2Gi
   tautulli:
     appdata: 2Gi
   wizarr:
     appdata: 64Mi
 
 immich:
-  image: ghcr.io/imagegenius/immich:1.119.1
+  image: ghcr.io/imagegenius/immich:1.119.1-noml
 
 redis:
   enabled: true
