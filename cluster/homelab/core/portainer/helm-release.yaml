@@ -20,6 +20,8 @@ spec:
     image:
       repository: portainer/portainer-ee
       tag: 2.23.0
+    nodeSelector:
+      kubernetes.io/hostname: k3s-titan
     service:
       type: ClusterIP
     tls:

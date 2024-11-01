@@ -33,21 +33,11 @@ spec:
         gethomepage.dev/name: Longhorn
         gethomepage.dev/namespace: longhorn-system
         gethomepage.dev/app: longhorn
-        # type of authentication
+        # authentication
         nginx.ingress.kubernetes.io/auth-type: basic
         nginx.ingress.kubernetes.io/auth-secret: basic-auth
         nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
-    longhornManager:
-      tolerations:
-        - key: "CriticalAddonsOnly"
-          operator: "Equal"
-          effect: "NoSchedule"
-          value:
-    longhornDriver:
-      tolerations:
-        - key: "CriticalAddonsOnly"
-          operator: "Equal"
-          effect: "NoSchedule"
-          value:
-    defaultSettings:
-      taintToleration: "CriticalAddonsOnly:NoSchedule"
+    longhornUI:
+      replicas: 1
+      nodeSelector:
+        kubernetes.io/hostname: k3s-titan
