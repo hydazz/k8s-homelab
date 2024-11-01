@@ -23,7 +23,6 @@ spec:
         app.kubernetes.io/instance: immich
         app.kubernetes.io/name: immich
     spec:
-      runtimeClassName: nvidia
       containers:
         - name: immich
           image: {{ .image }}
@@ -80,8 +79,6 @@ spec:
               port: 8080
 
       restartPolicy: Always
-      nodeSelector:
-        nvidia.com/gpu.present: "true"
       volumes:
         - name: nfs-media-immich
           nfs:
