@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/ajnart/homarr
-      tag: 0.15.6
+      tag: 0.15.7
     env:
       DATABASE_URL: file:/app/database/db.sqlite
     ingress:
