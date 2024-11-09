@@ -25,6 +25,9 @@ spec:
         namespace: flux-system
   values:
     fullnameOverride: docker-mailserver
+    image:
+      name: mailserver/docker-mailserver
+      tag: 14.0.0
     certificate: wildcard.hyde.services
     persistence:
       mail-config:
@@ -68,8 +71,8 @@ spec:
         TLS_LEVEL:
         SPOOF_PROTECTION:
         ENABLE_SRS: 0
-        ENABLE_OPENDKIM: 0
-        ENABLE_OPENDMARC: 0
+        ENABLE_OPENDKIM: 1
+        ENABLE_OPENDMARC: 1
         ENABLE_POLICYD_SPF: 0
         ENABLE_POP3:
         ENABLE_IMAP: 1
@@ -84,8 +87,8 @@ spec:
         RSPAMD_NEURAL: 0
         ENABLE_AMAVIS: 0
         AMAVIS_LOGLEVEL: 0
-        ENABLE_DNSBL: 0
-        ENABLE_FAIL2BAN: 0
+        ENABLE_DNSBL: 1
+        ENABLE_FAIL2BAN: 1
         FAIL2BAN_BLOCKTYPE: drop
         ENABLE_MANAGESIEVE:
         POSTSCREEN_ACTION: enforce
