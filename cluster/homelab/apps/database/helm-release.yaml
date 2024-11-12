@@ -79,6 +79,9 @@ spec:
         size: 512Mi
       podAnnotations:
         backup.velero.io/backup-volumes: data
+      extraEnvVars:
+        - name: POSTGRESQL_REPLICATION_USE_PASSFILE
+          value: "false"
       extendedConfiguration: |
         max_connections = 500
 ---
