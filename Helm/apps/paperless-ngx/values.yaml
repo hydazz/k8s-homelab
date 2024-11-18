@@ -7,7 +7,7 @@ paperlessngx:
   image: ghcr.io/paperless-ngx/paperless-ngx:2.13
   port: 8000
   gotenberg:
-    image: gotenberg/gotenberg:8.7
+    image: gotenberg/gotenberg:8.14
   tika:
     image: apache/tika:3.0.0.0
   redis:
