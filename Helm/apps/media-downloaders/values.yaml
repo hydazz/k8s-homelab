@@ -6,7 +6,7 @@ storage:
     appdata: 128Mi
 
 qbittorrent:
-  image: ghcr.io/binhex/arch-qbittorrentvpn:5.0.1-1-01
+  image: ghcr.io/binhex/arch-qbittorrentvpn:5.0.2-1-01
   port: 8080
   nodeSelector:
     kubernetes.io/hostname: "k3s-discovery"
