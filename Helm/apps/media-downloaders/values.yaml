@@ -1,7 +1,7 @@
 ---
 storage:
   qbittorrent:
-    appdata: 128Mi
+    appdata: 256Mi
   sabnzbd:
     appdata: 128Mi
 
