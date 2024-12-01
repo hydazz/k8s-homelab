@@ -46,6 +46,8 @@ spec:
             name: roundcube
             user: roundcube
             password: ENC[AES256_GCM,data:7g9V/RP0kSdTEmhajYVpww==,iv:2IpkbMr8TJ4iCKHBE9rhB/WQLTKUFlbwu/tvtDf9Ggk=,tag:GlRUZ4sb4zjOinY8zM4j/A==,type:str]
+        pdb:
+            minAvailable: ""
 sops:
     kms: []
     gcp_kms: []
@@ -61,8 +63,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-24T07:40:21Z"
-    mac: ENC[AES256_GCM,data:etdWDDDwdH8OWKx3/5Z+57Rl/p/eRysKBLUzu6og5L1F7Pq22xhikt/f6y4vgBmkeqOYIMUxuMpYYonooMpavSAvyWKspZy2yG8DQRlJnI0rKhNLsaqytOF5gfNxMeV0/yMHNI2yZ9FnVGDYkDKtLwExsb6B+iUlz4nwk6ywNqg=,iv:wFv+MuiT4OoNXawERJXIgO/lbxiCwTj5cgCL4vIwcgE=,tag:G9+BGNASW5Gj4yXajZoNAw==,type:str]
+    lastmodified: "2024-12-01T11:20:59Z"
+    mac: ENC[AES256_GCM,data:oFzu7xfnPOUgqcBSN2lmE0paNtG3RTad+tKVJJP7Nq8/iW80MJZpRLE9MvdIMbEIxcisK7z49gMKx1HhuXu3sCG0q38uaiHJClGABVIFYYt2l0jTQuiZH4KfV33GpFGHSfQJi93M+2od4YQFSW4NWb3YCBJwOZdpuBAn6Ekf+6s=,iv:66Dia9sqnLCV2+Z95ptBcfBH1u3pJy/FT4EqY/c8Hro=,tag:yJ4hXoIZBL/cA3KcQjdDdA==,type:str]
     pgp: []
     encrypted_regex: ^(password|)$
     version: 3.9.1
