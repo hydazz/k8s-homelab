@@ -1,0 +1,38 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:GC4GiV1TfAFTBuEm6riPAkIqNHZ3MQ==,iv:+6pY3SgAZ7TSn/cWNEJe7eg3VpdbDQCkKy7zQXM/czg=,tag:VJgT3S6CMQodwOCdvcmfmA==,type:str]
+    namespace: cert-manager
+spec:
+    secretTemplate:
+        annotations:
+            reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    secretName: ENC[AES256_GCM,data:v/7htA7mZVm7crOT1p4uJ/PxTeqqsA==,iv:L2F+N8aiVbvgh/XO9dxpts0iRc7ah2ANdCqCQ3qWi74=,tag:hv9nYR03BLhQNbuaRjVwHg==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:sPfuHaLwvYeCCetPGg==,iv:kmnIDes1Wo8CxO/pDltuOY/et1w7EtJphPlf1ynzuCQ=,tag:gJxqkX/qnsisfyNhOBl62Q==,type:str]
+        - ENC[AES256_GCM,data:J+17UZ60ntQ4SZcmkr5O,iv:jYr0TnsvQNNz9tRy+byUr8cOki/vbZQ3xAyq1rpTlRY=,tag:g69m3s7e9SNWZ/G/zs3nRQ==,type:str]
+        - ENC[AES256_GCM,data:5wTsUAYPZjtrGtaXtoBaP1FHcw==,iv:TBSltwwMlKHEfSre6DGlmHi4DuQ0QAqaHl7Poi5kvWI=,tag:wnsConwJcVmV6drJdnDQiA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-12-02T10:44:22Z"
+    mac: ENC[AES256_GCM,data:HFOr+Wgqa8wk2M/y8yASbFG0ldO3vnqqMg0l22nd4/4QE5vZj0VnawE1+GZowcfv9J0Ssq+wgUxs+T7hsIrTQbZmP9b67jRxSB9MZmucCVG0AHjSivpOsi3LosyRGqeYdpxB6cnkenqjWJpO1yqQdCAJks3fXE+tRdsbROU6R9o=,iv:TRivQ6VpqFh141bhK+s/QSu01C9105MMVOCueN+o1kk=,tag:PhJiw2rLuOMhY271CQC0MQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.1
