@@ -6,7 +6,7 @@ dependencies:
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 20.3.0
+    version: 20.4.0
 name: media-servers
 type: application
 version: 1.0.0
