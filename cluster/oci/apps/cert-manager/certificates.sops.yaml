@@ -15,6 +15,7 @@ spec:
     dnsNames:
         - ENC[AES256_GCM,data:sPfuHaLwvYeCCetPGg==,iv:kmnIDes1Wo8CxO/pDltuOY/et1w7EtJphPlf1ynzuCQ=,tag:gJxqkX/qnsisfyNhOBl62Q==,type:str]
         - ENC[AES256_GCM,data:J+17UZ60ntQ4SZcmkr5O,iv:jYr0TnsvQNNz9tRy+byUr8cOki/vbZQ3xAyq1rpTlRY=,tag:g69m3s7e9SNWZ/G/zs3nRQ==,type:str]
+        - ENC[AES256_GCM,data:ldQr4VrHPYrmudC8YCtn1SNE5Q==,iv:VC6/X7or/d0uYDmT/49TjFqPz8LZK/yZ9WSpJaF9nRo=,tag:8ppx7xdZ7yM0hw4H5M259g==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -30,8 +31,8 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-03T03:13:39Z"
-    mac: ENC[AES256_GCM,data:9B46t0OLHcwnWKLdLTYvmxEHqr0jfw4AxZEhogDEFuKsftqpoSHA4cA0qxmcTESI0MTTnsx4amItfmFtrR5J++FwrBXqV/Cqhw+iVV9O4yeeZbyO9ioBFeJZrKwaWMaPQuKr+kvq+ouyXB59bSMXhss2T/ciTpz4bf/mo45kBZ8=,iv:+E7bze0dij26NZNcIMnpgwlZIGEBTg2V0B8YDY1XZBA=,tag:xBkk7nMv4wPNJ8+jhCHLlA==,type:str]
+    lastmodified: "2024-12-03T04:39:04Z"
+    mac: ENC[AES256_GCM,data:OMwE05f5d16xg2jmvweRFMtFIV6p/S54qaCN6dFliun1IycSyjJBUa9SYVQQSWjRbEnolBAEOAamlsnRItE60PG/fJgQDHixWpeQtlUIXiFnXqKJhat2a20L0Ro09qy72W7blaG4K2E9xZB22qZ8QrW0rY2Onijc0X8c/2mkqqY=,iv:/tZlqgJxtUVXiQ/XOq67UVuYaE09UgD9UsYh/beoAjY=,tag:F5NOgTsnENkFX0ZJ+rV9FA==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.1
