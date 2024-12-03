@@ -43,9 +43,6 @@ spec:
         requests:
           cpu: 100m
           memory: 128Mi
-        limits:
-          cpu: 1
-          memory: 1Gi
       annotations:
         backup.velero.io/backup-volumes: mail-config,mail-data,mail-state
       env:
