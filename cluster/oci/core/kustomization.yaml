@@ -3,5 +3,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cert-manager
-  - reflector
+  - descheduler
   - ingress-nginx
+  - kube-cleanup-operator
+  - reflector
+  - system-upgrade
+  - velero
