@@ -7,5 +7,4 @@ resources:
   - ingress-nginx
   - kube-cleanup-operator
   - reflector
-  - system-upgrade
   - velero
