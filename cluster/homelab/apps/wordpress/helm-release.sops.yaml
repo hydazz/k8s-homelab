@@ -26,7 +26,7 @@ spec:
     values:
         image:
             repository: bitnami/wordpress
-            tag: 6.7.1-debian-12-r1
+            tag: 6.7.1-debian-12-r2
         networkPolicy:
             enabled: false
         wordpressConfigureCache: true
