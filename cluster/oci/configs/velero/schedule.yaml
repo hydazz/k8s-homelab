@@ -8,7 +8,7 @@ spec:
   template:
     hooks: {}
     includedNamespaces:
-      - mailserver
+      - database-oci
     snapshotVolumes: true
     ttl: 168h0m0s # 7 days
   useOwnerReferencesInBackup: false
