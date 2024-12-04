@@ -49,7 +49,7 @@ spec:
         - name: default
           provider: aws
           default: true
-          bucket: k3s
+          bucket: velero
           config:
             region: minio
             s3ForcePathStyle: true
@@ -59,12 +59,13 @@ spec:
         - name: minio
           provider: aws
           default: false
-          bucket: k3s
+          bucket: velero
           config:
             region: minio
             s3ForcePathStyle: true
             s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
+
       volumeSnapshotLocation:
         - name: minio
           provider: aws
