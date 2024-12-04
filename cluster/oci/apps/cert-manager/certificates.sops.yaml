@@ -31,8 +31,47 @@ sops:
             Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
             8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-03T04:39:04Z"
-    mac: ENC[AES256_GCM,data:OMwE05f5d16xg2jmvweRFMtFIV6p/S54qaCN6dFliun1IycSyjJBUa9SYVQQSWjRbEnolBAEOAamlsnRItE60PG/fJgQDHixWpeQtlUIXiFnXqKJhat2a20L0Ro09qy72W7blaG4K2E9xZB22qZ8QrW0rY2Onijc0X8c/2mkqqY=,iv:/tZlqgJxtUVXiQ/XOq67UVuYaE09UgD9UsYh/beoAjY=,tag:F5NOgTsnENkFX0ZJ+rV9FA==,type:str]
+    lastmodified: "2024-12-04T21:39:44Z"
+    mac: ENC[AES256_GCM,data:tG/jEF/bPZCINwpk2gLyrJwlRDFQ/ITyyf+rpbizlU+rVLg9yv1pVmnmO5ifPuSr/Tm/nVoNwFVuhgZHH1PIsEMQZHPbgpzwGgYAjmTsFn7QtAnStG+mR7MZoQquhF9YYVWUwwbLWAufDmHh6qMVlcWmAKyyDIzkgtKG4FMpHu8=,iv:biVQc++3cPeFFq14o1wxaNDs/mvb/jmnN/5oC+bMyf8=,tag:gPquKHwPkwcxEMVm1Pecww==,type:str]
+    pgp: []
+    encrypted_regex: ^(name|secretName|dnsNames|)$
+    version: 3.9.1
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: ENC[AES256_GCM,data:FdkAiZ2+oXhXtQ74uuMmBQnVgsUP6yJm,iv:vMoL29jiB7FdIQ4voo85LKiuSvLiB4zAqcKcR/smKjE=,tag:xsvTd3cB7u82cNwlhfB3Vw==,type:str]
+    namespace: cert-manager
+spec:
+    secretTemplate:
+        annotations:
+            reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+            reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: wordpress
+    secretName: ENC[AES256_GCM,data:E39p+rLcUKbQhW9V8Pc8681dWnRe8XuN,iv:V5+o5lcpAMKuqPxUL0Af8CcRCi3m23H+DrWYO/XAanw=,tag:hiW1/vfLopjMIbtXItAT+Q==,type:str]
+    issuerRef:
+        name: ENC[AES256_GCM,data:pLbL/2hE9WaE0Ag=,iv:pPdVprXmEUfad4QUGQ+Gz/A455XD3hSI6qmOG1Kp8W0=,tag:Vyp3pBkhHCEJyGZKTkJ2lw==,type:str]
+        kind: ClusterIssuer
+    dnsNames:
+        - ENC[AES256_GCM,data:prlnJpavn2DeohMheXiJ,iv:ClWLP/dqKF8u5tt95iJUJyWHwbJ6hj9i4kvKE0/g6Uo=,tag:L+Qbz2kFSBJbEiNnP5t1HA==,type:str]
+        - ENC[AES256_GCM,data:N5jl1I/XOuolEVfiFBJSb6U=,iv:JppBMky0JLhwK5yvNQOh5gumR9Ezo7DBpAZILGewCPI=,tag:pzQZcXOlA7c14tS1nznxMA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2bzY4ZE1PWDJpdFJ3VWVm
+            d09IVnBib3ZpRHExVUdidHRDNDZKM3Z5SUhjCnhFMC9JQzg4ZklFRUhPdko1cENX
+            M0xXRmVkQ2lLNTkxUTh1dExTZnJvZ2sKLS0tIEJENks1c1VKOUZqT3FJRWFTZllT
+            Wmc0bkFRZ1ZNWHk5NmVyVGM0ZzZEYm8Kw6PXHyd/z/0xrNqSBS0CFmgdPBoZbTR3
+            8p92W/i//3AE7E22bquF88fb3CNkvgkeJzUfjBt+B286JowdBXAujg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-12-04T21:39:44Z"
+    mac: ENC[AES256_GCM,data:tG/jEF/bPZCINwpk2gLyrJwlRDFQ/ITyyf+rpbizlU+rVLg9yv1pVmnmO5ifPuSr/Tm/nVoNwFVuhgZHH1PIsEMQZHPbgpzwGgYAjmTsFn7QtAnStG+mR7MZoQquhF9YYVWUwwbLWAufDmHh6qMVlcWmAKyyDIzkgtKG4FMpHu8=,iv:biVQc++3cPeFFq14o1wxaNDs/mvb/jmnN/5oC+bMyf8=,tag:gPquKHwPkwcxEMVm1Pecww==,type:str]
     pgp: []
     encrypted_regex: ^(name|secretName|dnsNames|)$
     version: 3.9.1
