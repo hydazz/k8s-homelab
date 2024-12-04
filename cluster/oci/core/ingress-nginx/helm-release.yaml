@@ -28,7 +28,6 @@ spec:
         name: internal-nginx
         controllerValue: "k8s.io/ingress-internal"
       service:
-        loadBalancerIP: 10.0.20.161
         externalTrafficPolicy: Local
         annotations:
           service.beta.kubernetes.io/oci-load-balancer-internal: "true"
