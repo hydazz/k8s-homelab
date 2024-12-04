@@ -49,27 +49,17 @@ spec:
         - name: default
           provider: aws
           default: true
-          bucket: velero-oci
+          bucket: velero
           config:
             region: minio
             s3ForcePathStyle: true
             s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
 
-        - name: velero-oci
+        - name: minio
           provider: aws
           default: false
-          bucket: velero-oci
-          config:
-            region: minio
-            s3ForcePathStyle: true
-            s3Url: http://192.168.3.6:9000
-            checksumAlgorithm: ""
-
-        - name: velero-homelab
-          provider: aws
-          default: false
-          bucket: velero-homelab
+          bucket: velero
           config:
             region: minio
             s3ForcePathStyle: true
@@ -77,7 +67,7 @@ spec:
             checksumAlgorithm: ""
 
       volumeSnapshotLocation:
-        - name: velero-oci
+        - name: minio
           provider: aws
           config:
             region: minio

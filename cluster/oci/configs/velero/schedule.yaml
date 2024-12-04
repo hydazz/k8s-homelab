@@ -1,7 +1,7 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: general
+  name: k8s-oci
   namespace: velero
 spec:
   schedule: "0 1 * * *"
