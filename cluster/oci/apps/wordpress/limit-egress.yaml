@@ -20,7 +20,7 @@ spec:
     - to:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: database-oci
+              kubernetes.io/metadata.name: database
           podSelector:
             matchLabels:
               app.kubernetes.io/name: mariadb

@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: mariadb
-  namespace: database-oci
+  namespace: database
 spec:
   interval: 5m
   install:
@@ -39,7 +39,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: postgresql
-  namespace: database-oci
+  namespace: database
 spec:
   interval: 5m
   install:
