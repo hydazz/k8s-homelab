@@ -22,6 +22,8 @@ spec:
       - paperless-ngx
       - portainer
       - wordpress
+    volumeSnapshotLocations:
+      - k3s-homelab
     snapshotVolumes: true
     ttl: 168h0m0s # 7 days
   useOwnerReferencesInBackup: false
