@@ -24,6 +24,7 @@ spec:
   values:
     installCRDs: true
     controller:
+      kind: DaemonSet
       ingressClassResource:
         name: internal-nginx
         controllerValue: "k8s.io/ingress-internal"
@@ -65,6 +66,7 @@ spec:
   values:
     installCRDs: true
     controller:
+      kind: DaemonSet
       ingressClassResource:
         name: external-nginx
         controllerValue: "k8s.io/ingress-external"
