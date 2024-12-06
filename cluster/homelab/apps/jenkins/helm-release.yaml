@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: jenkins
-      version: 5.7.17
+      version: 5.7.21
       interval: 5m
       sourceRef:
         kind: HelmRepository
@@ -27,7 +27,7 @@ spec:
     controller:
       image:
         repository: jenkins/jenkins
-        tag: 2.487
+        tag: 2.488
       sidecars:
         configAutoReload:
           enabled: false

@@ -47,7 +47,7 @@ kube-prometheus-stack:
             - prometheus.k3s.hyde.services
 
 loki:
-  image: grafana/loki:3.3.0
+  image: grafana/loki:3.3.1
   port: 3100
   resources:
     requests:
@@ -57,12 +57,12 @@ loki:
       memory: 2Gi
 
 promtail:
-  image: grafana/promtail:3.3.0
+  image: grafana/promtail:3.3.1
   resources:
     requests:
       cpu: 50m
       memory: 250Mi
 
 influxdb:
-  image: influxdb:2.7.10
+  image: influxdb:2.7.11
   port: 8086
