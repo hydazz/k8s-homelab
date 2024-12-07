@@ -2,8 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-    - helm-release.sops.yaml
-    - namespace.yaml
-    - secret.sops.yaml
-    - memcached.yaml
-    - limit-egress.yaml
+  - helm-release.sops.yaml
+  - limit-egress.yaml
+  - memcached.yaml
+  - namespace.yaml
+  - secret.sops.yaml
