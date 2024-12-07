@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxmox
+  namespace: reverse-proxy
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "true"
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.4.14
+  externalTrafficPolicy: Local
+  ports:
+    - name: https
+      port: 8006
+      targetPort: 8006
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: proxmox
+  namespace: reverse-proxy
+subsets:
+  - addresses:
+      - ip: 192.168.3.2
+      - ip: 192.168.3.3
+      - ip: 192.168.3.4
+    ports:
+      - port: 8006
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: proxmox-ingress
+  namespace: reverse-proxy
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/secure-backends: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$remote_addr"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30s"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30s"
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: proxmox.hyde.services
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxmox
+                port:
+                  number: 8006
+  tls:
+    - hosts:
+        - proxmox.hyde.services
+      secretName: wildcard.hyde.services
