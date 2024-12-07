@@ -21,6 +21,8 @@ spec:
         app.kubernetes.io/instance: phpmyadmin
         app.kubernetes.io/name: phpmyadmin
     spec:
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
       containers:
         - name: phpmyadmin
           image: phpmyadmin/phpmyadmin:5.2.1
@@ -110,6 +112,8 @@ spec:
         app.kubernetes.io/instance: phppgadmin
         app.kubernetes.io/name: phppgadmin
     spec:
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
       containers:
         - name: phppgadmin
           image: snimshchikov/phppgadmin:latest # no other tags 🤨
