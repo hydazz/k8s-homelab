@@ -11,7 +11,7 @@ k3s_become: true
 k3s_debug: false
 k3s_etcd_datastore: true
 k3s_use_unsupported_config: true
-k3s_registration_address: 192.168.4.2 # Master node ip
+k3s_registration_address: 192.168.4.5 # Master node ip
 k3s_server_manifests_urls:
   - url: https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/calico.yaml
     filename: calico.yaml

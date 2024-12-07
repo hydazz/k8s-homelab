@@ -21,7 +21,7 @@ spec:
       repository: portainer/portainer-ee
       tag: 2.24.1
     nodeSelector:
-      kubernetes.io/hostname: k3s-titan
+      kubernetes.io/hostname: k3s-nebula
     service:
       type: ClusterIP
     tls:

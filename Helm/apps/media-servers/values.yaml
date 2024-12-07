@@ -74,3 +74,6 @@ plex:
       cpu: 6
       memory: 4Gi
       nvidia.com/gpu: 1
+  nodeSelector:
+    nvidia.com/gpu.present: "true"
+    kubernetes.io/hostname: "k3s-discovery"

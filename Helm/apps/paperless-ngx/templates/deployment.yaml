@@ -125,7 +125,6 @@ spec:
             - containerPort: 6379
 
       restartPolicy: Always
-      nodeSelector:
       volumes:
         - name: appdata
           persistentVolumeClaim:

@@ -88,6 +88,9 @@ tdarr:
       cpu: 1
       memory: 3Gi
       nvidia.com/gpu: 1
+  nodeSelector:
+    nvidia.com/gpu.present: "true"
+    kubernetes.io/hostname: "k3s-discovery"
 
 kometa:
   image: ghcr.io/linuxserver/kometa:2.1.0

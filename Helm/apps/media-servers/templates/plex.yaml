@@ -81,7 +81,7 @@ spec:
 
       restartPolicy: Always
       nodeSelector:
-        nvidia.com/gpu.present: "true"
+{{ toYaml .nodeSelector | indent 8 }}
       volumes:
         - name: appdata
           persistentVolumeClaim:

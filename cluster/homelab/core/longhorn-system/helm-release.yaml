@@ -40,4 +40,4 @@ spec:
     longhornUI:
       replicas: 1
       nodeSelector:
-        kubernetes.io/hostname: k3s-titan
+        kubernetes.io/hostname: k3s-nebula
