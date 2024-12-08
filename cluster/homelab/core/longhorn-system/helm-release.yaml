@@ -19,6 +19,9 @@ spec:
         namespace: flux-system
   values:
     enablePSP: false
+    defaultSettings:
+      defaultDataLocality: best-effort
+      orphanAutoDeletion: true
     ingress:
       enabled: true
       host: longhorn.k3s.hyde.services
