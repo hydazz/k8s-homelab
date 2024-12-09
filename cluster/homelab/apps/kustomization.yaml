@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - authentik
   - cert-manager
-  - changedetection
+# - changedetection # to fix
   - database
   - homepage
   - jenkins
@@ -17,5 +17,5 @@ resources:
   - monitoring
   - nextcloud
   - paperless-ngx
-  - uptime-kuma
+# - uptime-kuma  # to fix
   - wordpress
