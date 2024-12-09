@@ -21,7 +21,11 @@ spec:
       repository: portainer/portainer-ee
       tag: 2.24.1
     nodeSelector:
-      kubernetes.io/hostname: k3s-nebula
+      kubernetes.io/hostname: "nebula"
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
     service:
       type: ClusterIP
     tls:
@@ -31,11 +35,20 @@ spec:
       ingressClassName: internal-nginx
       annotations:
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Container Management Simplified
+        gethomepage.dev/group: Infrastructure Management
+        gethomepage.dev/icon: portainer
+        gethomepage.dev/name: Portainer
+        gethomepage.dev/namespace: portainer
+        gethomepage.dev/app: portainer
+        gethomepage.dev/href: https://portainer.k3s.hyde.services
       hosts:
         - host: portainer.k3s.hyde.services
           paths:
             - path: /
               pathType: ImplementationSpecific
+              port: 9443
       tls:
         - hosts:
             - portainer.k3s.hyde.services

@@ -9,7 +9,7 @@ storage:
     appdata: 64Mi
 
 immich:
-  image: ghcr.io/imagegenius/immich:1.122.1-noml
+  image: ghcr.io/imagegenius/immich:1.122.2-noml
 
 redis:
   enabled: true
@@ -76,4 +76,4 @@ plex:
       nvidia.com/gpu: 1
   nodeSelector:
     nvidia.com/gpu.present: "true"
-    kubernetes.io/hostname: "k3s-discovery"
+    kubernetes.io/hostname: "discovery"

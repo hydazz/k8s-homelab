@@ -9,7 +9,7 @@ qbittorrent:
   image: ghcr.io/binhex/arch-qbittorrentvpn:5.0.2-1-01
   port: 8080
   nodeSelector:
-    kubernetes.io/hostname: "k3s-discovery"
+    kubernetes.io/hostname: "discovery"
   resources:
     requests:
       cpu: 250m
@@ -22,7 +22,7 @@ sabnzbd:
   image: ghcr.io/linuxserver/sabnzbd:4.3.3
   port: 8080
   nodeSelector:
-    kubernetes.io/hostname: "k3s-discovery"
+    kubernetes.io/hostname: "discovery"
   resources:
     requests:
       cpu: 250m
@@ -34,4 +34,4 @@ sabnzbd:
 unpackerr:
   image: ghcr.io/unpackerr/unpackerr:0.14.5
   nodeSelector:
-    kubernetes.io/hostname: "k3s-discovery"
+    kubernetes.io/hostname: "discovery"

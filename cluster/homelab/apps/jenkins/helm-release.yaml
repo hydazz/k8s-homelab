@@ -40,6 +40,14 @@ spec:
         enabled: true
         ingressClassName: external-nginx
         hostName: ci.imagegenius.io
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: jenkins
+              servicePort: 8080
         tls:
           - secretName: wildcard.imagegenius.io
             hosts:

@@ -27,4 +27,8 @@ spec:
         repository: quay.io/metallb/controller
         tag: v0.14.8
       nodeSelector:
-        kubernetes.io/hostname: "k3s-nebula"
+        kubernetes.io/hostname: "nebula"
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"

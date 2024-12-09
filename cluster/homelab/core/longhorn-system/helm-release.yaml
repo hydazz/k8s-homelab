@@ -43,4 +43,8 @@ spec:
     longhornUI:
       replicas: 1
       nodeSelector:
-        kubernetes.io/hostname: k3s-nebula
+        kubernetes.io/hostname: "nebula"
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
