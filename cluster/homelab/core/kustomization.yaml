@@ -12,5 +12,4 @@ resources:
   - metallb
   - portainer
   - reflector
-  - system-upgrade
   - velero
