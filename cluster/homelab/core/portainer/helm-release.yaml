@@ -42,16 +42,16 @@ spec:
         gethomepage.dev/name: Portainer
         gethomepage.dev/namespace: portainer
         gethomepage.dev/app: portainer
-        gethomepage.dev/href: https://portainer.k3s.hyde.services
+        gethomepage.dev/href: https://portainer.k8s.hyde.services
       hosts:
-        - host: portainer.k3s.hyde.services
+        - host: portainer.k8s.hyde.services
           paths:
             - path: /
               pathType: ImplementationSpecific
               port: 9443
       tls:
         - hosts:
-            - portainer.k3s.hyde.services
+            - portainer.k8s.hyde.services
           secretName: wildcard.hyde.services
     persistence:
       size: 128Mi

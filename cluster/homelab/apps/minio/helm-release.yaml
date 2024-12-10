@@ -40,11 +40,11 @@ spec:
       ingressClassName: internal-nginx
       path: /
       hosts:
-        - minio.k3s.hyde.services
+        - minio.k8s.hyde.services
       tls:
         - secretName: wildcard.hyde.services
           hosts:
-            - minio.k3s.hyde.services
+            - minio.k8s.hyde.services
     resources:
       requests:
         memory: 512Mi

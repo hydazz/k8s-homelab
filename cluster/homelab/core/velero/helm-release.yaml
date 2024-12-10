@@ -46,11 +46,11 @@ spec:
       extraEnvVars:
         TZ: Australia/Melbourne
       backupStorageLocation:
-        - name: k3s-homelab
+        - name: k8s-homelab
           provider: aws
           default: true
           bucket: velero
-          prefix: k3s-homelab
+          prefix: k8s-homelab
           config:
             region: minio
             s3ForcePathStyle: true
@@ -70,7 +70,7 @@ spec:
 #            checksumAlgorithm: ""
 
       volumeSnapshotLocation:
-        - name: k3s-homelab
+        - name: k8s-homelab
           provider: aws
           config:
             region: minio

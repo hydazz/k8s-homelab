@@ -88,13 +88,13 @@ spec:
       enabled: true
       className: internal-nginx
       hosts:
-        - host: semaphore.k3s.hyde.services
+        - host: semaphore.k8s.hyde.services
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - semaphore.k3s.hyde.services
+            - semaphore.k8s.hyde.services
           secretName: wildcard.hyde.services
     persistence:
       enabled: true

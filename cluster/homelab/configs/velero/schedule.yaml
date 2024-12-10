@@ -1,7 +1,7 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: k3s-homelab
+  name: k8s-homelab
   namespace: velero
 spec:
   schedule: "0 1 * * *"
@@ -23,7 +23,7 @@ spec:
       - portainer
       - wordpress
     volumeSnapshotLocations:
-      - k3s-homelab
+      - k8s-homelab
     snapshotVolumes: true
     ttl: 168h0m0s # 7 days
   useOwnerReferencesInBackup: false

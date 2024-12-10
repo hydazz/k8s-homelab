@@ -36,7 +36,7 @@ spec:
             enabled: true
             ingressClassName: internal-nginx
             class: ""
-            host: roundcube.k3s.hyde.services
+            host: roundcube.k8s.hyde.services
             tls:
                 secretName: wildcard.hyde.services
         externalDatabase:
@@ -63,8 +63,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-01T11:20:59Z"
-    mac: ENC[AES256_GCM,data:oFzu7xfnPOUgqcBSN2lmE0paNtG3RTad+tKVJJP7Nq8/iW80MJZpRLE9MvdIMbEIxcisK7z49gMKx1HhuXu3sCG0q38uaiHJClGABVIFYYt2l0jTQuiZH4KfV33GpFGHSfQJi93M+2od4YQFSW4NWb3YCBJwOZdpuBAn6Ekf+6s=,iv:66Dia9sqnLCV2+Z95ptBcfBH1u3pJy/FT4EqY/c8Hro=,tag:yJ4hXoIZBL/cA3KcQjdDdA==,type:str]
+    lastmodified: "2024-12-10T03:18:39Z"
+    mac: ENC[AES256_GCM,data:NAdOFtVOcHj578n7uzDpr9o6Dg1OPoKPV7CcKSpvblebVOvC63J5ST7sGzrnkxg41AUxWHJYMjjZNMH9D2Mibnzjg4IA3OIigj3uwQiDJGWb8vHbWHGmv8nuKLdNOyTBP95p82HFA7R44h3RfT4/PXrXRcryHWZiRQ0hsXg90ec=,iv:MjkFcd8CRPZ8QJB1ESrMLAozlVIzREOKQ+R6YjdZlQw=,tag:q941OYuBAwIsCx3j5ju02A==,type:str]
     pgp: []
     encrypted_regex: ^(password|)$
-    version: 3.9.1
+    version: 3.9.2

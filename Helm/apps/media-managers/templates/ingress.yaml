@@ -8,10 +8,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: flaresolverr.k3s.hyde.services
+    - host: flaresolverr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -31,7 +31,7 @@ spec:
   ingressClassName: external-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
     - host: overseerr.hyde.services
@@ -54,10 +54,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: tdarr.k3s.hyde.services
+    - host: tdarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -77,10 +77,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: bazarr.k3s.hyde.services
+    - host: bazarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -100,10 +100,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: sonarr.k3s.hyde.services
+    - host: sonarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -123,10 +123,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: prowlarr.k3s.hyde.services
+    - host: prowlarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -147,10 +147,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: radarr.k3s.hyde.services
+    - host: radarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -170,10 +170,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: notifiarr.k3s.hyde.services
+    - host: notifiarr.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix

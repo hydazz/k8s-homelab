@@ -24,7 +24,7 @@ spec:
       orphanAutoDeletion: true
     ingress:
       enabled: true
-      host: longhorn.k3s.hyde.services
+      host: longhorn.k8s.hyde.services
       ingressClassName: internal-nginx
       tls: true
       tlsSecret: wildcard.hyde.services

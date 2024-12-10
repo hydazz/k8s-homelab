@@ -8,10 +8,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: homepage.k3s.hyde.services
+    - host: homepage.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix

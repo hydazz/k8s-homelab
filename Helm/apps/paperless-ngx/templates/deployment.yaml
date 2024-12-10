@@ -73,7 +73,7 @@ spec:
             - name: PAPERLESS_REDIS
               value: "redis://localhost:6379"
             - name: PAPERLESS_URL
-              value: "https://paperless.k3s.hyde.services"
+              value: "https://paperless.k8s.hyde.services"
             - name: PAPERLESS_TIME_ZONE
               value: "Australia/Melbourne"
             - name: USERMAP_GID

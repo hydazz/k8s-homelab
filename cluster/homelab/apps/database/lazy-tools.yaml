@@ -75,10 +75,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: phpmyadmin.k3s.hyde.services
+    - host: phpmyadmin.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -170,10 +170,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: phppgadmin.k3s.hyde.services
+    - host: phppgadmin.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix

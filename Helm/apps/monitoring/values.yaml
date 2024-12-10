@@ -21,13 +21,13 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: internal-nginx
       hosts:
-        - grafana.k3s.hyde.services
+        - grafana.k8s.hyde.services
       paths:
         - /
       tls:
         - secretName: wildcard.hyde.services
           hosts:
-            - grafana.k3s.hyde.services
+            - grafana.k8s.hyde.services
     persistence:
       enabled: true
       accessModes:
@@ -38,13 +38,13 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: internal-nginx
       hosts:
-        - prometheus.k3s.hyde.services
+        - prometheus.k8s.hyde.services
       paths:
         - /
       tls:
         - secretName: wildcard.hyde.services
           hosts:
-            - prometheus.k3s.hyde.services
+            - prometheus.k8s.hyde.services
 
 loki:
   image: grafana/loki:3.3.1

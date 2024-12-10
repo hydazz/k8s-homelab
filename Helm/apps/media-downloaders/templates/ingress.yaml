@@ -8,10 +8,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: qbittorrent.k3s.hyde.services
+    - host: qbittorrent.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
@@ -31,10 +31,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - "*.k3s.hyde.services"
+        - "*.k8s.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: sabnzbd.k3s.hyde.services
+    - host: sabnzbd.k8s.hyde.services
       http:
         paths:
           - pathType: Prefix
