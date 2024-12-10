@@ -49,6 +49,11 @@ spec:
               value: "latest"
             - name: TZ
               value: "Australia/Melbourne"
+            - name: PLEX_CLAIM
+              valueFrom:
+                secretKeyRef:
+                  name: plex-secrets
+                  key: PLEX_CLAIM
           resources:
 {{ toYaml .resources | indent 12 }}
           ports:
@@ -97,19 +102,18 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: plex-loadbalancer
+  name: plex
   namespace: {{ $.Release.Namespace }}
 spec:
   type: LoadBalancer
-  #externalTrafficPolicy: Local
+  externalTrafficPolicy: Local
+  loadBalancerIP: 192.168.4.12
   selector:
     app.kubernetes.io/instance: plex
     app.kubernetes.io/name: plex
   ports:
-{{- range .ports.loadbalancer }}
-    - name: {{ .name }}
-      port: {{ .port }}
-      protocol: {{ .protocol }}
-      targetPort: {{ .port }}
-{{- end }}
+    - name: plex
+      protocol: TCP
+      port: 32400
+
 {{- end }}
