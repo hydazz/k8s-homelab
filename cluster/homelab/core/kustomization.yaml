@@ -9,7 +9,7 @@ resources:
   - kube-cleanup-operator
   - kured
   - longhorn-system
-  - metallb
+#  - metallb
   - portainer
   - reflector
   - velero
