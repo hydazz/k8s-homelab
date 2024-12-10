@@ -57,25 +57,8 @@ spec:
             s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
 
-#        - name: k8s-oci
-#          provider: aws
-#          default: false
-#          accessMode: ReadOnly
-#          bucket: velero
-#          prefix: k8s-oci
-#          config:
-#            region: minio
-#            s3ForcePathStyle: true
-#            s3Url: http://192.168.3.6:9000
-#            checksumAlgorithm: ""
-
       volumeSnapshotLocation:
         - name: k8s-homelab
           provider: aws
           config:
             region: minio
-
-#        - name: k8s-oci
-#          provider: aws
-#          config:
-#            region: minio
