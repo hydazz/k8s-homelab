@@ -19,7 +19,7 @@ qbittorrent:
       memory: 2Gi
 
 sabnzbd:
-  image: ghcr.io/linuxserver/sabnzbd:4.3.3
+  image: ghcr.io/linuxserver/sabnzbd:4.4.0
   port: 8080
   nodeSelector:
     kubernetes.io/hostname: "discovery"
