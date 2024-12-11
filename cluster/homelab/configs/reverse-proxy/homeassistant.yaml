@@ -21,20 +21,9 @@ spec:
                 name: homeassistant
                 port:
                   number: 8123
-    - host: hass.hyde.services
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: homeassistant
-                port:
-                  number: 8123
   tls:
     - hosts:
         - homeassistant.hyde.services
-        - hass.hyde.services
       secretName: wildcard.hyde.services
 ---
 apiVersion: v1

@@ -38,6 +38,9 @@ spec:
         size: 256Mi
       mail-log:
         size: 256Mi
+    service:
+      loadBalancer:
+        publicIp: 192.168.4.13
     deployment:
       resources:
         requests:
