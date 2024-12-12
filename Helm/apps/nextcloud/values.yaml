@@ -1,5 +1,5 @@
 nextcloud:
-  image: ghcr.io/linuxserver/nextcloud:30.0.3
+  image: ghcr.io/linuxserver/nextcloud:30.0.4
   port: 80
   resources:
     requests:
