@@ -17,5 +17,5 @@ resources:
   - monitoring
   - nextcloud
   - paperless-ngx
-# - uptime-kuma  # to fix
+  - uptime-kuma  # to fix
   - wordpress
