@@ -111,6 +111,9 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
+    global:
+      security:
+        allowInsecureImages: true
     fullnameOverride: pgvectors
     image:
       repository: tensorchord/pgvecto-rs
