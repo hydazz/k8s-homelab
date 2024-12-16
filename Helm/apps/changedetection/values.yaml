@@ -1,6 +1,6 @@
 ---
 changedetection:
-  image: ghcr.io/linuxserver/changedetection.io:0.48.01
+  image: ghcr.io/linuxserver/changedetection.io:0.48.04
   port: 5000
   baseUrl: changedetection.k8s.hyde.services
   resources:
