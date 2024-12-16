@@ -70,7 +70,7 @@ bazarr:
       memory: 256Mi
 
 lidarr:
-  image: ghcr.io/linuxserver/lidarr:2.7.1
+  image: ghcr.io/linuxserver/lidarr:2.8.2
   port: 8686
   resources:
     requests:
