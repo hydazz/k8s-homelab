@@ -38,7 +38,7 @@ overseerr:
       memory: 50Mi
 
 prowlarr:
-  image: ghcr.io/linuxserver/prowlarr:1.27.0
+  image: ghcr.io/linuxserver/prowlarr:1.28.2
   port: 9696
   resources:
     requests:
