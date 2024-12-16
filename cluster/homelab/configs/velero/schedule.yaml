@@ -9,18 +9,27 @@ spec:
     hooks: {}
     includedNamespaces:
       - authentik
+      - cert-manager
       - changedetection
       - database
+      - flux-system
+      - ingress-nginx
       - jenkins
       - knick-knacks
+      - kube-public
+      - kube-system
+      - longhorn-system
       - mailserver
       - media-downloaders
       - media-managers
       - media-servers
+      - minio
       - monitoring
       - nextcloud
       - paperless-ngx
       - portainer
+      - uptime-kuma
+      - velero
       - wordpress
     volumeSnapshotLocations:
       - k8s-homelab

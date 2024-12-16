@@ -11,7 +11,7 @@ metadata:
         gethomepage.dev/name: ENC[AES256_GCM,data:vEA9f/aqpA==,iv:nC42GNchfgpKXEHgvBO9ild5G5SWkeR7koYfwb7hXWU=,tag:JZx5xUsuNNVnPwKjAZDXSg==,type:str]
         gethomepage.dev/href: ENC[AES256_GCM,data:oshPX+TjfsvlZubxaeQDl/VAXvx+klIkv4uOEZwI5ygu,iv:dv1mgbQT0Qlepi2ZdSHY/pUUOOnM2vFGPxt4gLbqHVQ=,tag:YQaLQ5pJVIigLQsnf6EU7g==,type:str]
         gethomepage.dev/widget.type: ENC[AES256_GCM,data:3FF0+I7IrA==,iv:6Hb7ZTavpVPxc6faiYCSqCx4KJafMjsr9lkOk9PWzdk=,tag:6LfRsfmE1p+2vmnavKa36w==,type:str]
-        gethomepage.dev/widget.url: ENC[AES256_GCM,data:FHouuXczL/OMKr4muqaJk0/lR/X2FKMNc6v5pQf7voQ7qU7XST4K1QK6w+niQJCrB30cQYGO3sFiS0o=,iv:1rVIcY4AM3XKBi2+ZHKt7Xg/Vo2d5ROmWEj7SUpnL3I=,tag:VX8e9XaAKqGRRPYEVGzGFw==,type:str]
+        gethomepage.dev/widget.url: ENC[AES256_GCM,data:VEX1yhrPxW+PkJtmRpcTCDErYLR3lwQ9Dj8tzO6bEGpUPKVCCiOmHqZucrWzqTkxe6IX3tA9,iv:Kj5XxiKEvS0ThJocNo1ABN8+6Zb/mxhGmaMzy69oOYk=,tag:LZYM+iaG8aFCDlAV1qlKVw==,type:str]
         gethomepage.dev/widget.username: ENC[AES256_GCM,data:AyRsU8U=,iv:vaMQIWha9nxqZ0XES02X+j+udG+HDZ/wucP/d2oROt0=,tag:LMzq2wrMoOwufG6cXVxqdw==,type:str]
         gethomepage.dev/widget.password: ENC[AES256_GCM,data:qLDG/pYl/fTxbtTxTA==,iv:wsJMnPpk1kLaBtDf+/G31GS8OxjYJJ3kWsoh6JXapQU=,tag:YgtAmGnglFKRA3+a9cz9jQ==,type:str]
 sops:
@@ -29,8 +29,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-10T23:39:19Z"
-    mac: ENC[AES256_GCM,data:3dtD04QJrk60t3IqE62SAmIZmvIeK+a6o1lw+i32g5tysjiLnuMwFFK8dU3cgtrtl3AL+dNH87Nem7gcKQiXAyNrCkjWD8csuKYmpVvNRHCxVLLCh7SXKeh6Tr2MlBoHq5ApSCQtKNBkPzoZQGME90q8UfAlSO+AzIyRq4ZyvAU=,iv:0MeOeyaUecRmb8GyntEhAErmhNlt4u5fcoW8R1YG/nc=,tag:E5DsbeQtfuYPoXaJbFDz0g==,type:str]
+    lastmodified: "2024-12-16T02:52:18Z"
+    mac: ENC[AES256_GCM,data:zf647IF9akuwf9wamjUNjBZgZCUA/qucNXdg8FltLoBZwQ1BUE4SDMTpOKkwtShWuoLsNJw/CO676iwnEUR5zSDykrqyZdXLJKNI7K3lsJgyEwY1FVQVynsMU74AUgda198NC3u66HwKSZBts//zqWqfXlaNXeBYEfUQdYWnkh4=,iv:psUT8AcSw6RCe6x1XPFOZSFZm27y411lRXetfNn0e5o=,tag:33xDU4LUO9++egPSmZ6y2Q==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.2
@@ -64,8 +64,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-10T23:39:19Z"
-    mac: ENC[AES256_GCM,data:3dtD04QJrk60t3IqE62SAmIZmvIeK+a6o1lw+i32g5tysjiLnuMwFFK8dU3cgtrtl3AL+dNH87Nem7gcKQiXAyNrCkjWD8csuKYmpVvNRHCxVLLCh7SXKeh6Tr2MlBoHq5ApSCQtKNBkPzoZQGME90q8UfAlSO+AzIyRq4ZyvAU=,iv:0MeOeyaUecRmb8GyntEhAErmhNlt4u5fcoW8R1YG/nc=,tag:E5DsbeQtfuYPoXaJbFDz0g==,type:str]
+    lastmodified: "2024-12-16T02:52:18Z"
+    mac: ENC[AES256_GCM,data:zf647IF9akuwf9wamjUNjBZgZCUA/qucNXdg8FltLoBZwQ1BUE4SDMTpOKkwtShWuoLsNJw/CO676iwnEUR5zSDykrqyZdXLJKNI7K3lsJgyEwY1FVQVynsMU74AUgda198NC3u66HwKSZBts//zqWqfXlaNXeBYEfUQdYWnkh4=,iv:psUT8AcSw6RCe6x1XPFOZSFZm27y411lRXetfNn0e5o=,tag:33xDU4LUO9++egPSmZ6y2Q==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.2
@@ -97,8 +97,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-10T23:39:19Z"
-    mac: ENC[AES256_GCM,data:3dtD04QJrk60t3IqE62SAmIZmvIeK+a6o1lw+i32g5tysjiLnuMwFFK8dU3cgtrtl3AL+dNH87Nem7gcKQiXAyNrCkjWD8csuKYmpVvNRHCxVLLCh7SXKeh6Tr2MlBoHq5ApSCQtKNBkPzoZQGME90q8UfAlSO+AzIyRq4ZyvAU=,iv:0MeOeyaUecRmb8GyntEhAErmhNlt4u5fcoW8R1YG/nc=,tag:E5DsbeQtfuYPoXaJbFDz0g==,type:str]
+    lastmodified: "2024-12-16T02:52:18Z"
+    mac: ENC[AES256_GCM,data:zf647IF9akuwf9wamjUNjBZgZCUA/qucNXdg8FltLoBZwQ1BUE4SDMTpOKkwtShWuoLsNJw/CO676iwnEUR5zSDykrqyZdXLJKNI7K3lsJgyEwY1FVQVynsMU74AUgda198NC3u66HwKSZBts//zqWqfXlaNXeBYEfUQdYWnkh4=,iv:psUT8AcSw6RCe6x1XPFOZSFZm27y411lRXetfNn0e5o=,tag:33xDU4LUO9++egPSmZ6y2Q==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.2
