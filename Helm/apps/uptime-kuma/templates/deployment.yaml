@@ -31,7 +31,10 @@ spec:
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
-            allowPrivilegeEscalation: false
+            allowPrivilegeEscalation: true
+            capabilities:
+              add:
+                - NET_RAW
           env:
             - name: PUID
               value: "1001"
