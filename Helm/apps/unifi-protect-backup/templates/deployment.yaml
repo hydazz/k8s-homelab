@@ -68,7 +68,10 @@ spec:
           volumeMounts:
             - name: appdata
               mountPath: /config
+
       restartPolicy: Always
+      nodeSelector:
+{{ toYaml .nodeSelector | indent 8 }}
       volumes:
         - name: appdata
           persistentVolumeClaim:

@@ -58,6 +58,8 @@ spec:
               port: {{ .port }}
 
       restartPolicy: Always
+      nodeSelector:
+{{ toYaml .nodeSelector | indent 8 }}
       volumes:
         - name: appdata
           persistentVolumeClaim:
