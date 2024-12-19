@@ -1,4 +1,4 @@
-# [hydazz/k3s-homelab](https://github.com/hydazz/k3s-homelab)
+# [hydazz/k8s-homelab](https://github.com/hydazz/k8s-homelab)
 
 This is the repo for my k3s cluster, largly based on [Michaelpalacce/HomeLab](https://github.com/Michaelpalacce/HomeLab).
 Everything is managed via flux, nothing has been configed/applied manually outside of this repo (except the sops secret).
