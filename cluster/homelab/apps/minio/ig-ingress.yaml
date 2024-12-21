@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: minio-imagegenius
   namespace: minio
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "1g"
 spec:
   ingressClassName: external-nginx
   tls:
