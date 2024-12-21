@@ -2,29 +2,6 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: loki
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: loki.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: loki
-                port:
-                  number: {{ .Values.loki.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: influxdb
   namespace: {{ $.Release.Namespace }}
 spec:
