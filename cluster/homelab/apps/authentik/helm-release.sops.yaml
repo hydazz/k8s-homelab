@@ -70,6 +70,10 @@ spec:
             create: true
         postgresql:
             enabled: false
+        geoip:
+            enabled: true
+            accountId: ENC[AES256_GCM,data:6AB2nBZ5,iv:EnkL6i693nlg7jPW1bzfXxLNJ4XKKemlbeoaV9rDleI=,tag:+cS9Ygg1gKsTxAnKyabpXQ==,type:str]
+            licenseKey: ENC[AES256_GCM,data:MLwZJjDrxPmjdrV9X7gKse3t4gcPPCPQccjE1RVUXft0WiXnsU9bhA==,iv:+7h6yRnnnE/qnwVyO0b1UHIidxpDNJENeYNG7Ft24es=,tag:OzWzLX0JWwRdiEKpeGI2Fw==,type:str]
         redis:
             enabled: true
             master:
@@ -93,8 +97,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-28T08:24:07Z"
-    mac: ENC[AES256_GCM,data:4dDwun0yrmuHFRbrUWQoA1IiJ1FZhDeULLv5BJkrky23m4G6ZJKuOrf+42YnZg7l6XmEyIW4jIHnWYR0tLiRLaR0XKfWkeMH2tggaqWR8/nwrk3WQPnbaJ2U2XLclejnSnNRwpm/HzXazfjUZSuJ4p44fw/ufRmBEea4IPm1Dzk=,iv:hU40rZ5dcsGMSm2bBoXzM2ndfW+FoqBYGs/W99EG60E=,tag:Tssb7si01EEds3dxxAUPpg==,type:str]
+    lastmodified: "2024-12-21T04:51:53Z"
+    mac: ENC[AES256_GCM,data:KyJ/TXIlrTXgGtlrr793oaFZpN9GHiGscnkokPNgc481P5t0d9hIVDMpLy6gFbJOyxhYmWBx1kmQMYoVepiKwKXS3vEKn1qU64cgmotGUc2YcKRHnRhQpcu+7+MNKptBas7ehYv4QQStMEySG4P2Tm0BiGFnkNBubnYFGhGrwaE=,iv:Qlj2ErBai/diI464iC8dQeP2KGV02mdL7OZ8/Jou3uo=,tag:gwwb11d83AkBRX0VDGk/HA==,type:str]
     pgp: []
-    encrypted_regex: ^(password|secret_key|)$
+    encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
     version: 3.9.1
