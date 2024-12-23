@@ -1,0 +1,81 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: crowdsec
+  namespace: crowdsec
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: crowdsec
+      version: 0.16.0
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: crowdsec
+        namespace: flux-system
+  values:
+    container_runtime: containerd
+    lapi:
+      env:
+        # To enroll the Security Engine to the console
+        - name: ENROLL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-secrets
+              key: enroll-key
+        - name: ENROLL_INSTANCE_NAME
+          value: "k8s"
+        - name: ENROLL_TAGS
+          value: "k8s linux"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-secrets
+              key: db-password
+      persistentVolume:
+        config:
+          enabled: false
+        data:
+          enabled: false
+    appsec:
+      enabled: true
+      acquisitions:
+        - source: appsec
+          listen_addr: "0.0.0.0:7422"
+          path: /
+          appsec_config: crowdsecurity/virtual-patching
+          labels:
+            type: appsec
+      env:
+        - name: COLLECTIONS
+          value: "crowdsecurity/appsec-virtual-patching"
+
+    # This allows the LAPI pod to register and communicate with the appsec pod
+    config:
+      config.yaml.local: |
+        db_config:
+          type: mysql
+          user: crowdsec
+          password: ${DB_PASSWORD}
+          db_name: crowdsec
+          host: mariadb.database.svc.cluster.local
+          port: 3306
+          sslmode: disable
+        api:
+          server:
+            auto_registration:
+              enabled: true
+              token: "${REGISTRATION_TOKEN}" # /!\ Do not modify this variable (auto-generated and handled by the chart)
+              allowed_ranges:
+                - "127.0.0.1/32"
+                - "192.168.0.0/16"
+                - "10.0.0.0/8"
+                - "172.16.0.0/12"
