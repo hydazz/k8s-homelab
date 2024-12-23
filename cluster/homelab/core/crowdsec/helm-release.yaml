@@ -23,9 +23,16 @@ spec:
         namespace: flux-system
   values:
     container_runtime: containerd
+    agent:
+      acquisition:
+        - namespace: mailserver
+          podName: docker-mailserver-*
+          program: postfix
+      env:
+        - name: COLLECTIONS
+          value: "crowdsecurity/postfix"
     lapi:
       env:
-        # To enroll the Security Engine to the console
         - name: ENROLL_KEY
           valueFrom:
             secretKeyRef:
