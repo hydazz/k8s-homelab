@@ -91,6 +91,10 @@ spec:
                 key: api-key
           - name: BOUNCER_CONFIG
             value: "/crowdsec/crowdsec-bouncer.conf"
+          - name: CAPTCHA_PROVIDER
+            value: "recaptcha"
+          - name: BAN_TEMPLATE_PATH
+            value: /etc/nginx/lua/plugins/crowdsec/templates/ban.html
         command: ['sh', '-c', "sh /docker_start.sh; mkdir -p /lua_plugins/crowdsec/; cp -R /crowdsec/* /lua_plugins/crowdsec/"]
         volumeMounts:
         - name: crowdsec-bouncer-plugin
@@ -102,6 +106,8 @@ spec:
       config:
         plugins: "crowdsec"
         lua-shared-dicts: "crowdsec_cache: 50m"
+        server-snippet : |
+          resolver local=on ipv6=off;
       # < crowdsec
       podAnnotations:
         prometheus.io/scrape: "true"
