@@ -2,7 +2,7 @@
 storage:
   radarr:
     appdata: 2Gi
-    appdata-3d: 256Mi
+    appdata_3d: 256Mi
   sonarr:
     appdata: 1Gi
   prowlarr:

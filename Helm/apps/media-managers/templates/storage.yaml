@@ -33,7 +33,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.radarr.appdata-3d }}
+      storage: {{ .Values.storage.radarr.appdata_3d }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
