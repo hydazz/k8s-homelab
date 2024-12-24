@@ -33,15 +33,11 @@ spec:
           value: "crowdsecurity/postfix"
     lapi:
       env:
-        - name: ENROLL_KEY
-          valueFrom:
-            secretKeyRef:
-              name: crowdsec-secrets
-              key: enroll-key
-        - name: ENROLL_INSTANCE_NAME
-          value: "k8s"
-        - name: ENROLL_TAGS
-          value: "k8s linux"
+        #- name: ENROLL_KEY
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: crowdsec-secrets
+        #      key: enroll-key
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:

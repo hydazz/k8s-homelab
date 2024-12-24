@@ -5,3 +5,4 @@ resources:
   - basic-auth.sops.yaml
   - helm-release.yaml
   - namespace.yaml
+  - secret.sops.yaml
