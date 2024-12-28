@@ -37,6 +37,35 @@ wizarr:
 
 plex:
   image: ghcr.io/linuxserver/plex:1.41.3
+  ports:
+    loadbalancer:
+      - name: plex-webui-tcp
+        port: 32400
+        protocol: TCP # TCP (required for Plex WebUI)
+      - name: plex-dlna-udp
+        port: 1900
+        protocol: UDP # Access to the Plex DLNA Server
+      - name: plex-bonjour-udp
+        port: 5353
+        protocol: UDP # Bonjour/Avahi network discovery
+      - name: plex-roku-tcp
+        port: 8324
+        protocol: TCP # Controlling Plex for Roku via Plex Companion
+      - name: plex-gdm-udp
+        port: 32410
+        protocol: UDP # GDM network discovery
+      - name: plex-gdm-udp-2
+        port: 32412
+        protocol: UDP # GDM network discovery
+      - name: plex-gdm-udp-3
+        port: 32413
+        protocol: UDP # GDM network discovery
+      - name: plex-gdm-udp-4
+        port: 32414
+        protocol: UDP # GDM network discovery
+      - name: plex-dlna-tcp
+        port: 32469
+        protocol: TCP # Access to the Plex DLNA Server
   resources:
     requests:
       cpu: 1

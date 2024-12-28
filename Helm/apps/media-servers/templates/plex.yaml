@@ -112,8 +112,10 @@ spec:
     app.kubernetes.io/instance: plex
     app.kubernetes.io/name: plex
   ports:
-    - name: plex
-      protocol: TCP
-      port: 32400
-
+{{- range .ports.loadbalancer }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      protocol: {{ .protocol }}
+      targetPort: {{ .port }}
+{{- end }}
 {{- end }}
