@@ -62,7 +62,6 @@ spec:
         - name: COLLECTIONS
           value: "crowdsecurity/appsec-virtual-patching"
 
-    # This allows the LAPI pod to register and communicate with the appsec pod
     config:
       config.yaml.local: |
         db_config:
