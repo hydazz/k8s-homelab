@@ -4,7 +4,7 @@ metadata:
   name: proxmox
   namespace: reverse-proxy
   annotations:
-    metallb.universe.tf/allow-shared-ip: "true"
+    metallb.io/allow-shared-ip: "true"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
