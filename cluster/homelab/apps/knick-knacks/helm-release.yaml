@@ -99,3 +99,30 @@ spec:
     persistence:
       enabled: true
       size: "64Mi"
+---
+# nginx
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nginx
+  namespace: knick-knacks
+spec:
+  chart:
+    spec:
+      chart: nginx
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      version: 18.3.1
+  values:
+    staticSitePVC: nginx-static-site-pvc
+    ingress:
+      enabled: true
+      ingressClassName: external-nginx
+      hostname: hyde.services
+      tls: true
+      extraTls:
+        - hosts:
+            - hyde.services
+          secretName: wildcard.hyde.services

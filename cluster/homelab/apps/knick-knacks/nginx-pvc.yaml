@@ -1,12 +1,12 @@
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: changedetection-appdata-pvc
+  name: nginx-static-site-pvc
+  namespace: knick-knacks
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: {{ .Values.storage.appdata }}
+      storage: 128Mi
