@@ -107,14 +107,25 @@ metadata:
   name: nginx
   namespace: knick-knacks
 spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
       chart: nginx
+      version: 18.3.1
+      interval: 5m
       sourceRef:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      version: 18.3.1
   values:
     staticSitePVC: nginx-static-site-pvc
     ingress:
