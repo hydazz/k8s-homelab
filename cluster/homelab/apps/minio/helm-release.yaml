@@ -45,6 +45,8 @@ spec:
         - secretName: wildcard.hyde.services
           hosts:
             - minio.k8s.hyde.services
+    podAnnotations:
+      backup.velero.io/backup-volumes: export
     resources:
       requests:
         memory: 512Mi

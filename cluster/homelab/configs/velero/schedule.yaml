@@ -27,7 +27,6 @@ spec:
       - monitoring
       - nextcloud
       - paperless-ngx
-      - portainer
       - uptime-kuma
       - velero
       - wordpress

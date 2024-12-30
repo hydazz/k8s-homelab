@@ -97,8 +97,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-21T04:51:53Z"
-    mac: ENC[AES256_GCM,data:KyJ/TXIlrTXgGtlrr793oaFZpN9GHiGscnkokPNgc481P5t0d9hIVDMpLy6gFbJOyxhYmWBx1kmQMYoVepiKwKXS3vEKn1qU64cgmotGUc2YcKRHnRhQpcu+7+MNKptBas7ehYv4QQStMEySG4P2Tm0BiGFnkNBubnYFGhGrwaE=,iv:Qlj2ErBai/diI464iC8dQeP2KGV02mdL7OZ8/Jou3uo=,tag:gwwb11d83AkBRX0VDGk/HA==,type:str]
+    lastmodified: "2024-12-30T08:22:49Z"
+    mac: ENC[AES256_GCM,data:ri+xvDIsdX1mCjwaz7RBzCu7AzQueR6ddQ9r4r28FG9ebAMOtLYZs+QVZ39O8lAEDRhQH1UOwb0zC8yMNDROaUw9CUfDn3urCigKy2MreBGTpVaUbqWQTwkDGeSNlOFg0vj5JkWcG7pDPZBy12Hz/hPet9aezxpme7Wwtsr5bFw=,iv:ed3JNxOsshcJdjupisviY5Zu4DXyIt/51xs1bprdqio=,tag:MzE7z9h68e7HJQeBxAro5Q==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
     version: 3.9.1
