@@ -63,7 +63,7 @@ sonarr:
       memory: 256Mi
 
 bazarr:
-  image: ghcr.io/linuxserver/bazarr:1.5.0
+  image: ghcr.io/linuxserver/bazarr:1.5.1
   port: 6767
   resources:
     requests:
