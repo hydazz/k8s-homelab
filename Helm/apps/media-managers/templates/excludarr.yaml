@@ -1,0 +1,75 @@
+---
+{{- with .Values.excludarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: excludarr
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: excludarr
+    app.kubernetes.io/name: excludarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: excludarr
+      app.kubernetes.io/name: excludarr
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app.kubernetes.io/instance: excludarr
+        app.kubernetes.io/name: excludarr
+    spec:
+      containers:
+        - name: excludarr
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GENERAL_FAST_SEARCH
+              value: "true"
+            - name: GENERAL_LOCALE
+              value: "en_AU"
+            - name: GENERAL_PROVIDERS
+              value: "netflix, apple tv plus"
+            - name: RADARR_URL
+              value: "http://radarr.media-managers.svc.cluster.local:7878"
+            - name: RADARR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: excludarr-secrets
+                  key: RADARR_API_KEY
+            - name: RADARR_VERIFY_SSL
+              value: "false"
+            - name: RADARR_EXCLUDE_TAGS
+              value: ""
+            - name: SONARR_URL
+              value: "http://sonarr.media-managers.svc.cluster.local:8989"
+            - name: SONARR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: excludarr-secrets
+                  key: SONARR_API_KEY
+            - name: SONARR_VERIFY_SSL
+              value: "false"
+            - name: SONARR_EXCLUDE
+              value: ""
+            - name: SONARR_EXCLUDE_TAGS
+              value: ""
+            - name: CRON_MODE
+              value: "true"
+          volumeMounts:
+            - name: crontab
+              mountPath: /etc/excludarr/crontab
+              subPath: crontab
+          resources:
+{{ toYaml .resources | indent 12 }}
+      restartPolicy: Always
+      volumes:
+        - name: crontab
+          configMap:
+            name: excludarr-crontab
+{{- end }}
