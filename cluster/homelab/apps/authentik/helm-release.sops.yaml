@@ -66,8 +66,6 @@ spec:
                 - name: custom-css
                   mountPath: /web/dist/custom.css
                   subPath: custom.css
-        serviceAccount:
-            create: true
         postgresql:
             enabled: false
         geoip:
@@ -79,9 +77,6 @@ spec:
             master:
                 persistence:
                     size: 128Mi
-        authentik-remote-cluster:
-            clusterRole:
-                enabled: true
 sops:
     kms: []
     gcp_kms: []
@@ -97,8 +92,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-30T08:22:49Z"
-    mac: ENC[AES256_GCM,data:ri+xvDIsdX1mCjwaz7RBzCu7AzQueR6ddQ9r4r28FG9ebAMOtLYZs+QVZ39O8lAEDRhQH1UOwb0zC8yMNDROaUw9CUfDn3urCigKy2MreBGTpVaUbqWQTwkDGeSNlOFg0vj5JkWcG7pDPZBy12Hz/hPet9aezxpme7Wwtsr5bFw=,iv:ed3JNxOsshcJdjupisviY5Zu4DXyIt/51xs1bprdqio=,tag:MzE7z9h68e7HJQeBxAro5Q==,type:str]
+    lastmodified: "2025-01-07T01:15:34Z"
+    mac: ENC[AES256_GCM,data:R9pTcCthFEuFLKBm7ElzInUvPw5j4ejyZr5DPnKdNjEvMqPG1aIJaBOGUTLnL/hC23tMM852nGoFNosxjSIQels/6F+/zUr96WTdv4oPMIB6hsh7RNPbeAzywXYJdWrOrs1DS9UTv/RHrbiluPoraqh53Zs0RwtxdFQllo5Srmk=,iv:KDIapfUBzc/qu2NiapqxGiEqa8vZVNDb5KzX0XwkIqY=,tag:M4D3b3eERYSGfHCWuf2/cg==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
-    version: 3.9.1
+    version: 3.9.3
