@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - cert-manager
   - crowdsec
-  - descheduler
   - gpu-operator
   - ingress-nginx
   - kube-cleanup-operator

@@ -6,7 +6,6 @@ resources:
   - bitnami
   - cert-manager
   - crowdsec
-  - descheduler
   - docker-mailserver
   - ingress-nginx
   - jenkins
