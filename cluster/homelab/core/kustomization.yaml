@@ -7,7 +7,6 @@ resources:
   - gpu-operator
   - ingress-nginx
   - kube-cleanup-operator
-  - kured
   - longhorn-system
   - metallb
   - portainer

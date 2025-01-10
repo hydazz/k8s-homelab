@@ -44,6 +44,7 @@ spec:
       replicas: 1
       nodeSelector:
         kubernetes.io/hostname: "nebula"
+    global:
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
