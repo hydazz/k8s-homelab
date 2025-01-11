@@ -18,25 +18,6 @@ spec:
         name: flux-system
         namespace: flux-system
 ---
-# teslacam player
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: teslacamplayer
-  namespace: knick-knacks
-spec:
-  interval: 5m
-  install:
-    createNamespace: true
-  chart:
-    spec:
-      chart: ./Helm/apps/teslacamplayer
-      reconcileStrategy: Revision
-      sourceRef:
-        kind: GitRepository
-        name: flux-system
-        namespace: flux-system
----
 # semaphore ui
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease

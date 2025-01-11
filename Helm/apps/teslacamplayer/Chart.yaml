@@ -1,7 +1,0 @@
----
-apiVersion: v2
-appVersion: 1.0.0
-description: This chart is used to install teslacamplayer
-name: teslacamplayer
-type: application
-version: 1.0.0

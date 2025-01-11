@@ -7,7 +7,7 @@ metadata:
     metallb.io/allow-shared-ip: "true"
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
+  externalTrafficPolicy: Cluster
   ports:
     - name: https
       port: 8006
@@ -22,9 +22,8 @@ metadata:
   namespace: reverse-proxy
 subsets:
   - addresses:
-      - ip: 192.168.3.2
-      - ip: 192.168.3.3
-      - ip: 192.168.3.4
+      - ip: 192.168.3.3 # discovery
+      - ip: 192.168.3.4 # voyager
     ports:
       - port: 8006
 
@@ -39,6 +38,9 @@ metadata:
     nginx.ingress.kubernetes.io/secure-backends: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/upstream-hash-by: "$remote_addr"
+    nginx.ingress.kubernetes.io/upstream-fail-timeout: "30s"
+    nginx.ingress.kubernetes.io/upstream-max-fails: "3"
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30s"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "30s"

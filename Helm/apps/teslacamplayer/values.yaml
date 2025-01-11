@@ -1,7 +1,0 @@
----
-storage:
-  teslacamplayer:
-    appdata: 64Mi
-
-teslacamplayer:
-  image: ghcr.io/imagegenius/teslacamplayer:2024.8.11
