@@ -45,7 +45,7 @@ spec:
             - name: RADARR_VERIFY_SSL
               value: "false"
             - name: RADARR_EXCLUDE_TAGS
-              value: ""
+              value: "excludarr_ignore"
             - name: SONARR_URL
               value: "http://sonarr.media-managers.svc.cluster.local:8989"
             - name: SONARR_API_KEY
@@ -58,7 +58,7 @@ spec:
             - name: SONARR_EXCLUDE
               value: ""
             - name: SONARR_EXCLUDE_TAGS
-              value: ""
+              value: "excludarr_ignore"
             - name: CRON_MODE
               value: "true"
           volumeMounts:
