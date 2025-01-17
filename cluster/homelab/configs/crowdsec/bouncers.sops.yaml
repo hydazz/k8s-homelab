@@ -3,10 +3,10 @@ kind: Secret
 metadata:
     name: crowdsec-bouncers
     namespace: crowdsec
-annotations:
-    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: ENC[AES256_GCM,data:C+0QhQ==,iv:uREH5L4Pk22Jg2i2N7fRfhLHf0C6OFF4aMSot85iYB0=,tag:mlwDlOXt9wR702/s5ihiOw==,type:str]
-    reflector.v1.k8s.emberstack.com/reflection-allowed: ENC[AES256_GCM,data:Nt6/Wg==,iv:EWlPj+blykC1W3QG3jjAkUoqkSa9uQ5joZDYjH7Murs=,tag:a73jddGNRJ8q7KjACizQlA==,type:str]
-    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ENC[AES256_GCM,data:r2/jwu9FAHXwX4Jb+g==,iv:Qu69dwhl2n24BFiKFCvASlZ1Mraa4ll5fKQM4HEeUCM=,tag:VNYh2R//rOR/ZSTgyKKiWg==,type:str]
+    annotations:
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: ENC[AES256_GCM,data:O0cmwQ==,iv:2XyRyzW6Si95XJtHoZtFtF1gMTohmJQSaPs2s+O9HW4=,tag:FLTKPnxPnZdw/wKBmPS42w==,type:str]
+        reflector.v1.k8s.emberstack.com/reflection-allowed: ENC[AES256_GCM,data:7xxjOQ==,iv:x0yUUI2+hzpzJXSId9eOw2wYJ0wv8FFN6KBOXeTYayk=,tag:8/svJ1fzvZlTsmEEK2euOA==,type:str]
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ENC[AES256_GCM,data:zJQkT8OKzVhjJlrtIA==,iv:vam76SfDmdqtGRTYghGbUfpjEry4KLZSlIRTOZe/BKU=,tag:3SQsDTKtVxjRIu7s+CJFrw==,type:str]
 type: Opaque
 data:
     nginx: ENC[AES256_GCM,data:BpU210GHJIrr3eo4nbEbiG/OXrfZdLhJq29BmbLjZPb+Y3ocwbxgUmdsXm9IsCxqUvlmVqLI4eBXxFgw,iv:5CFu3mgCPx9cH4jA8EX1q35RQk2wj3cU/O6yMcMlk6E=,tag:yW/VrdWJ8CA7+HDxfOr3Cg==,type:str]
@@ -25,8 +25,8 @@ sops:
             ZitEalVIL3Nra0Jnck5LR2R5dG1iSW8KnIogk7hX1gmOl+5ITd5H72jzEEO6dDe9
             TiUaJ37MV9zCNbCS6m7mkWDxaxM7qzfZ5FhoS7q8IpfUTRrrn+KSsg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-17T01:57:42Z"
-    mac: ENC[AES256_GCM,data:DdULGs/hwafBwdGqAjRA9DvhsIJqv5Ld8hRcu2Ch4F0hiG7gc0P3c1pVIGia3QspcrqcKAOUu8/Q8gIiVaqgpU/TJ9pIb1D2KzLAlEZgIiqrNmpd3+rhiJzr8abjyZd/OS1eg7HT4CuHBsnQ/YzyWLAfmsPKrxfr0/tXkfasIa0=,iv:cfOBMhbZSMwGf4Ly/UW0gIyjqZQCRbL48PfDx1xEBkk=,tag:f46POqSOXmBegZIu3CpEDQ==,type:str]
+    lastmodified: "2025-01-17T02:16:48Z"
+    mac: ENC[AES256_GCM,data:Oq91Fk9ElebcLZXXDMabgZRzYTB5/SRTg8jOd9k1aSHVPvqOWbo0oifi6/P67FsSZj7TLomG/Fh4U4OIwBsdM/RYIhgv9HGn3t3lN5ck0kYt6xjebaPb7ffaSrshZkW/5eTao3jyQy7q4yNgZu6TsdhbDQR4dmXBYDCGBDt4Rzo=,iv:rPGfbXnlPiJcJ1bEzjkcRaEQzxEVJQAvPoauyN5TkEQ=,tag:E4EyL0t3mHanquFutaIfyw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData|annotations|)$
     version: 3.9.3
