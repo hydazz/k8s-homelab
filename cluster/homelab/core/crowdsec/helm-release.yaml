@@ -34,33 +34,32 @@ spec:
           value: "crowdsecurity/nginx"
     lapi:
       env:
-        #- name: ENROLL_KEY
-        #  valueFrom:
-        #    secretKeyRef:
-        #      name: crowdsec-secrets
-        #      key: enroll-key
+        - name: ENROLL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-secrets
+              key: enroll-key
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: crowdsec-secrets
               key: db-password
+        - name: ENROLL_INSTANCE_NAME
+          value: "k8s-homelab"
+        - name: ENROLL_TAGS
+          value: "k8s linux"
+        - name: BOUNCER_KEY_nginx
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-bouncers
+              key: nginx
       persistentVolume:
         config:
           enabled: false
         data:
           enabled: false
     appsec:
-      enabled: true
-      acquisitions:
-        - source: appsec
-          listen_addr: "0.0.0.0:7422"
-          path: /
-          appsec_config: crowdsecurity/virtual-patching
-          labels:
-            type: appsec
-      env:
-        - name: COLLECTIONS
-          value: "crowdsecurity/appsec-virtual-patching"
+      enabled: false
 
     config:
       config.yaml.local: |

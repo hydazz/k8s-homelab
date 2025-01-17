@@ -87,8 +87,8 @@ spec:
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: ingress-nginx-secrets
-                  key: api-key
+                  name: crowdsec-bouncers
+                  key: nginx
             - name: BOUNCER_CONFIG
               value: "/crowdsec/crowdsec-bouncer.conf"
             - name: CAPTCHA_PROVIDER
