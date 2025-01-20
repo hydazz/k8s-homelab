@@ -35,10 +35,8 @@ spec:
               value: "1001"
             - name: TZ
               value: "Australia/Melbourne"
-            - name: EXPERIMENTAL_DOWNLOADER
-              value: "true"
             - name: PURGE_INTERVAL
-              value: "1h"
+              value: "1d"
             - name: FILE_STRUCTURE_FORMAT
               value: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
             - name: DETECTION_TYPES
