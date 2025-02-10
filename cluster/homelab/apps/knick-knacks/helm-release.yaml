@@ -101,7 +101,7 @@ spec:
   chart:
     spec:
       chart: nginx
-      version: 18.3.6
+      version: 19.0.0
       interval: 5m
       sourceRef:
         kind: HelmRepository
