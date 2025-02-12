@@ -1,4 +1,4 @@
-{{- with .Values.storage.pterodaactyl }}
+{{- with .Values.storage.pterodactyl }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

@@ -1,12 +1,12 @@
 ---
 storage:
-  pterodaactyl:
+  pterodactyl:
     var: 1Gi
     nginx: 64Mi
     certs: 64Mi
     logs: 512Mi
 
-pterodaactyl:
+pterodactyl:
   image: ghcr.io/pterodactyl/panel:v1.11.10
   replicas: 1
 

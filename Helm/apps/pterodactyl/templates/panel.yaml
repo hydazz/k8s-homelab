@@ -1,30 +1,30 @@
 ---
-{{- with .Values.pterodaactyl }}
+{{- with .Values.pterodactyl }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pterodaactyl
+  name: pterodactyl
   namespace: {{ $.Release.Namespace }}
   labels:
-    app.kubernetes.io/instance: pterodaactyl
-    app.kubernetes.io/name: pterodaactyl
+    app.kubernetes.io/instance: pterodactyl
+    app.kubernetes.io/name: pterodactyl
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: pterodaactyl
-      app.kubernetes.io/name: pterodaactyl
+      app.kubernetes.io/instance: pterodactyl
+      app.kubernetes.io/name: pterodactyl
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: pterodaactyl
-        app.kubernetes.io/name: pterodaactyl
+        app.kubernetes.io/instance: pterodactyl
+        app.kubernetes.io/name: pterodactyl
     spec:
       containers:
-        - name: pterodaactyl
+        - name: pterodactyl
           image: {{ .image }}
           imagePullPolicy: IfNotPresent
           securityContext:
@@ -129,12 +129,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pterodaactyl
+  name: pterodactyl
   namespace: {{ $.Release.Namespace }}
 spec:
   selector:
-    app.kubernetes.io/instance: pterodaactyl
-    app.kubernetes.io/name: pterodaactyl
+    app.kubernetes.io/instance: pterodactyl
+    app.kubernetes.io/name: pterodactyl
   ports:
     - name: http
       port: 80

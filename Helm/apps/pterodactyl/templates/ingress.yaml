@@ -2,22 +2,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pterodaactyl
+  name: pterodactyl
   namespace: {{ $.Release.Namespace }}
 spec:
   ingressClassName: external-nginx
   tls:
     - hosts:
-        - "pterodaactyl.hyde.services"
+        - "pterodactyl.hyde.services"
       secretName: wildcard.hyde.services
   rules:
-    - host: pterodaactyl.hyde.services
+    - host: pterodactyl.hyde.services
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: pterodaactyl
+                name: pterodactyl
                 port:
                   number: 8080

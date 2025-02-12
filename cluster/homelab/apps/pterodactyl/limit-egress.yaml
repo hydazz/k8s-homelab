@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: restrict-pterodaactyl
-  namespace: pterodaactyl
+  name: restrict-pterodactyl
+  namespace: pterodactyl
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: pterodaactyl
+      app.kubernetes.io/name: pterodactyl
   policyTypes:
     - Egress
   egress:
