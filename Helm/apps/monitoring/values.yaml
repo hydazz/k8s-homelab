@@ -47,7 +47,7 @@ kube-prometheus-stack:
             - prometheus.k8s.hyde.services
 
 loki:
-  image: grafana/loki:3.3.2
+  image: grafana/loki:3.4.0
   port: 3100
   resources:
     requests:
