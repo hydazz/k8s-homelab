@@ -17,5 +17,6 @@ resources:
   - monitoring
   - nextcloud
   - paperless-ngx
+  - pterodactyl
   - uptime-kuma
   - wordpress

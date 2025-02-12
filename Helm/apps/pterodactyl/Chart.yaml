@@ -1,0 +1,12 @@
+---
+apiVersion: v2
+appVersion: 1.0.0
+description: This chart is used to install pterodactyl panel
+dependencies:
+  - name: redis
+    condition: redis.enabled
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 20.7.0
+name: pterodactyl-panel
+type: application
+version: 1.0.0

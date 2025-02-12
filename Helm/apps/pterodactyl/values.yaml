@@ -1,0 +1,32 @@
+---
+storage:
+  pterodaactyl:
+    var: 1Gi
+    nginx: 64Mi 
+    certs: 64Mi
+    logs: 512Mi
+
+pterodaactyl:
+  image: ghcr.io/pterodactyl/panel:v1.11.10
+  replicas: 1
+
+  appUrl: "http://pterodactyl.hyde.services"
+  appTimezone: "Australia/Melbourne"
+  appServiceAuthor: "noreply@hyde.services"
+  mailFrom: "noreply@hyde.services"
+  mailDriver: "smtp"
+  mailHost: "mail.hyde.services"
+  mailPort: "587"
+  mailEncryption: "true"
+
+  dbHost: "mariadb.database.svc.cluster.local"
+  dbPort: "3306"
+  redisHost: "redis-master"
+
+  resources:
+    requests:
+      cpu: "300m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "256Mi"
