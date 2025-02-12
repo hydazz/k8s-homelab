@@ -28,6 +28,16 @@ spec:
         - protocol: TCP
           port: 3306
     - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 443
+    - to:
         - ipBlock:
             cidr: 0.0.0.0/0
       ports:
@@ -57,7 +67,5 @@ spec:
         - ipBlock:
             cidr: 192.168.100.7/32
       ports:
-        - protocol: TCP
-          port: 8080
         - protocol: TCP
           port: 2022
