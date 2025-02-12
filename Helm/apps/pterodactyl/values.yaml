@@ -32,3 +32,13 @@ pterodactyl:
     limits:
       cpu: "500m"
       memory: "256Mi"
+
+redis:
+  enabled: true
+  fullnameOverride: redis
+  architecture: standalone
+  master:
+    persistence:
+      enabled: false
+  auth:
+    enabled: false
