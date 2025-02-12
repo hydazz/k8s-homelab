@@ -43,8 +43,12 @@ spec:
               value: "false"
             - name: DB_HOST
               value: "{{ .dbHost }}"
+            - name: DB_DATABASE
+              value: "{{ .dbDatabase }}"
             - name: DB_PORT
               value: "{{ .dbPort }}"
+            - name: DB_USERNAME
+              value: "{{ .dbUser }}"
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -73,6 +77,8 @@ spec:
                 secretKeyRef:
                   name: pterodactyl-secrets
                   key: mailPassword
+            - name: TRUSTED_PROXIES
+              value: "*"
           resources:
 {{ toYaml .resources | indent 12 }}
           ports:

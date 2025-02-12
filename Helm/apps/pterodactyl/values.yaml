@@ -2,7 +2,7 @@
 storage:
   pterodaactyl:
     var: 1Gi
-    nginx: 64Mi 
+    nginx: 64Mi
     certs: 64Mi
     logs: 512Mi
 
@@ -20,7 +20,9 @@ pterodaactyl:
   mailEncryption: "true"
 
   dbHost: "mariadb.database.svc.cluster.local"
+  dbDatabase: "pterodactyl"
   dbPort: "3306"
+  dbUser: "pterodactyl"
   redisHost: "redis-master"
 
   resources:
