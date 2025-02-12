@@ -4,3 +4,4 @@ resources:
   - homeassistant.yaml
   - namespace.yaml
   - proxmox.yaml
+  - pterodactyl-wings.yaml
