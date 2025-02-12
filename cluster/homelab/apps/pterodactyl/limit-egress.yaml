@@ -53,3 +53,11 @@ spec:
       ports:
         - protocol: TCP
           port: 587
+    - to:
+        - ipBlock:
+            cidr: 192.168.100.7/32
+      ports:
+        - protocol: TCP
+          port: 8080
+        - protocol: TCP
+          port: 2022
