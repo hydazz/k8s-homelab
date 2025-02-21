@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: semaphore
-    namespace: semaphore
+    namespace: knick-knacks
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
         gethomepage.dev/description: ENC[AES256_GCM,data:k9MPpbcKuPLrZrt9PK4rts3c5/A3zCcZ7p6CdOUay3yuUE94P140TTo50N3DrWvWUwzyaq+k,iv:BF+duK3rX9KHY253G1tkP0ipw5nTPNEU8QvszXTo+Lg=,tag:Ibi6cMI3gCbKznTfgOpiyw==,type:str]
@@ -27,8 +27,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-21T09:43:06Z"
-    mac: ENC[AES256_GCM,data:qLk7th9cFFR9p2umuv1qhO+ufcdYvO3FVEeC2/mfx3XETkP9oIt7b0cNlHjT0orH4Tj1sw4CBX6dxpQaCpp1hr1iMthVLCcNtXyAXKi/X7dUDn2K97/hb83fleHLhNqf6Qczw0FCwg8k7Xl12QplwNeouCMna/loyIwFSX1oQqE=,iv:dsqX4ZcrZ/CgMvH6b/7rACumzXdedF7HhaBqeVmQS/U=,tag:4z7BH3WhUaYce+fBSBNI8Q==,type:str]
+    lastmodified: "2025-02-21T22:36:41Z"
+    mac: ENC[AES256_GCM,data:N3+XSrLa/E1h1UvsKYXAJyKeACkntoAyhmrhS0+dLcf+0VrV4VD81W/ffWgFX2DQlfAW0DW6ODvfp6TTjav98gztQthuqAqiJOwhcFL7zzJcCro6XUIkWO/lqzSGuzzrYyOhTUEWtuOlw4uKcIlzd+Du/bLXnpi0Ozt9bLWoZBs=,iv:u1yktHn1xw+4v22jxm7/HAjSq+bfy8N0Z8ppsjs9L5o=,tag:IMASfvs7sk8YY+tsAA+2WA==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.9.4
