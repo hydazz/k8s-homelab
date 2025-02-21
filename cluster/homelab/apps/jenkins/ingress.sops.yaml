@@ -6,7 +6,7 @@ metadata:
     annotations:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:25VhZg==,iv:91Bv4sJDfiLeNhBBNjts8mFqO9pORCbMg/03FIbKNQM=,tag:a3EhN4sxiEZqFyBwV5DHaA==,type:str]
         gethomepage.dev/description: ENC[AES256_GCM,data:shh9SveUtQlZR5nDWepSA3a6VvzkcYUObM5F/IfgTrtZriBv+d5CH1soRE+LneIovnp5JesxpWPl,iv:vBwijXS2ETvVMvBI9kzmP9Ep3Xm3VnX8COccfo+ZEog=,tag:kAmWiYaBvBZs/MUbMQ7c4w==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:hMsILfBzmrZ263gFtSoLTqjRB5tHM9FP1A==,iv:f7FRkDqU8KYYjUcEmzl6nhiGq03b8nEtEAbLekBlyvU=,tag:+UZ/6HdbUQW7Ihnhl+sOlg==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:KDFYOJiB+iedO5VbdayK1Q==,iv:zkpcpRSEtzdmz2sML8LnAnGnhW2U6ld25ZFTL7x3bQE=,tag:IE2/BrtDICgyg+C512P9TA==,type:str]
         gethomepage.dev/icon: ENC[AES256_GCM,data:FykhquXfrg==,iv:eO0oWM9v2SewAfuELskZQOtuVXn/LIaIHtW+kCUf5zI=,tag:cmWeQzWA8u6uJOWGvT1Y2Q==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:fPsUrQa1Kw==,iv:AolX9NOUbvHI2/FFXKDVNFmq7NGQugklPC2HjsFJzvg=,tag:IcgTcBgCNwDq9ZQxiiOJOg==,type:str]
         gethomepage.dev/namespace: ENC[AES256_GCM,data:kk2/oj8zyw==,iv:KapKGtcyzzXQP1gDtmNJzKrJV2lcY1lkev4fVj4dswU=,tag:/vAenE7SAFx1oNzdK2a9Zg==,type:str]
@@ -27,8 +27,8 @@ sops:
             Mmg3aDRwZW54a1ZyZytmUFhjUEtDNHMKGZxZ//O4puSOs/H5pwK8eFsLCL69YrJK
             p9xrjiTjXUFC+pzE5YFsXgeOslTFnieufL5sZztaKssKFyMduH0t+Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-10T09:19:43Z"
-    mac: ENC[AES256_GCM,data:3BjrqmyCV+NZDbbBa9cGXU7/OQAl8E5L5vAZtyl5V8d2xdCTjIm8bCeygGYXX62wc4YZ+4svTHvgjGRQCF+ObShzFu3YHO2zY9KmRKVqd/K84tpw7sZ5Nkk5++e9gTQCIBkVBVNkIp2aXS9rzVmJurUwQfCtZ85fHjpN3gid2dk=,iv:X470JR9+frW5ehrVggNGpFlLUk2YlYacAVIQ07J4WA8=,tag:4pH5SOHuslH8IxxSNvh/Qw==,type:str]
+    lastmodified: "2025-02-21T09:41:45Z"
+    mac: ENC[AES256_GCM,data:98QA3ZRaih72ER/65poJWgcebdOK/yRbnzBvORG9PHFXUzffAeId7BaJ5+gtv0bTT+zofXbjnf1lSGWvnWMf0ay+lZisCtn1a4nPSQ7NvRGr+hwm4tMtYF4u8K0vf2NUi8i175eS5B/bjNiYbiQjetVsgPzyDywdLJXF47gcLkM=,iv:aXrRgdpyOPqw0ib+TW5xPguqunZG10Upsg1ZRoyzu2k=,tag:Y7tzyv9xyZDiUfgnKgEr0A==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
-    version: 3.9.1
+    version: 3.9.4
