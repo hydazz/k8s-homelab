@@ -41,6 +41,8 @@ spec:
                 use_tls: true
                 timeout: "30"
                 from: no-reply@hyde.services
+            redis:
+                host: redis-master
         server:
             ingress:
                 enabled: true
@@ -74,9 +76,13 @@ spec:
             licenseKey: ENC[AES256_GCM,data:MLwZJjDrxPmjdrV9X7gKse3t4gcPPCPQccjE1RVUXft0WiXnsU9bhA==,iv:+7h6yRnnnE/qnwVyO0b1UHIidxpDNJENeYNG7Ft24es=,tag:OzWzLX0JWwRdiEKpeGI2Fw==,type:str]
         redis:
             enabled: true
+            fullnameOverride: redis
+            architecture: standalone
             master:
                 persistence:
-                    size: 128Mi
+                    enabled: false
+            auth:
+                enabled: false
 sops:
     kms: []
     gcp_kms: []
@@ -92,8 +98,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-07T01:15:34Z"
-    mac: ENC[AES256_GCM,data:R9pTcCthFEuFLKBm7ElzInUvPw5j4ejyZr5DPnKdNjEvMqPG1aIJaBOGUTLnL/hC23tMM852nGoFNosxjSIQels/6F+/zUr96WTdv4oPMIB6hsh7RNPbeAzywXYJdWrOrs1DS9UTv/RHrbiluPoraqh53Zs0RwtxdFQllo5Srmk=,iv:KDIapfUBzc/qu2NiapqxGiEqa8vZVNDb5KzX0XwkIqY=,tag:M4D3b3eERYSGfHCWuf2/cg==,type:str]
+    lastmodified: "2025-02-23T01:01:18Z"
+    mac: ENC[AES256_GCM,data:aJSccI3M2GQiOuV5AOTwpJhYaQ9EdJ2XyGqT3r5xkCahJbn/39LQcga/I/jaFT1hgg8FUCD9C5NFq8mEuQEjY4udI5agjH8RbawDWsLMOMeE8pqIg/KcZfQ9U7ThWUYPNfSwpx5n8TYA/6sxnd+By7MN7SDzyqxtKOIMHVMAMcE=,iv:gi53ULaxpccf/gVyGEhQ9XtcPpmEit6DrVoU89+hJjA=,tag:xQS4ZNiQ9yJI+BGpIUZhtQ==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
-    version: 3.9.3
+    version: 3.9.4
