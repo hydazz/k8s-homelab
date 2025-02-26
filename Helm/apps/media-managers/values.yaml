@@ -79,7 +79,7 @@ lidarr:
       memory: 256Mi
 
 tdarr:
-  image: ghcr.io/haveagitgat/tdarr:2.33.01
+  image: ghcr.io/haveagitgat/tdarr:2.34.01
   port: 8265
   resources:
     requests:
