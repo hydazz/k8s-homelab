@@ -39,6 +39,7 @@ spec:
       mail-log:
         size: 256Mi
     service:
+      type: "LoadBalancer"
       loadBalancer:
         publicIp: 192.168.4.13
     deployment:

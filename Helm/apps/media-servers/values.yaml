@@ -1,7 +1,7 @@
 ---
 storage:
   plex:
-    appdata: 16Gi
+    appdata: 24Gi
   immich:
   tautulli:
     appdata: 2Gi
