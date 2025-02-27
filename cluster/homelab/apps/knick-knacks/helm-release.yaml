@@ -118,3 +118,6 @@ spec:
         - hosts:
             - hyde.services
           secretName: wildcard.hyde.services
+    updateStrategy:
+      type: Recreate
+      rollingUpdate:
