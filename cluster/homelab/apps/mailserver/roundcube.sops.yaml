@@ -63,8 +63,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-24T00:50:52Z"
-    mac: ENC[AES256_GCM,data:BKLbkxFOb4c1a23VYPMRXEW03i7IHXi0OwuwsE5JuFOEUwAsDrfTGq+w1pxvgtv3heDwj/sV8QSzmuHGSCFZpa9la/0ByDkomKGPNiSsWrBzvkQ37TTocpFuwuXKRmwREYjmV5IYKMFtH8CL65gc1eNTJ/HMsrCc1aTv7xWdWAU=,iv:YpZj8tD+fK6pVvLT9OqZw5gDorisswfc+c6CwZlzwok=,tag:9LT0PjEFX5HUGzowO8OqEg==,type:str]
+    lastmodified: "2025-02-27T11:37:01Z"
+    mac: ENC[AES256_GCM,data:Q5aEeEnO4HGepiozuhAo6Vs0t5yu6XopTbApLO0ypVxj4GpberTzOiqIwn2wBXoFuKnFXOJQBnZx3Biti/oaCPYl4Rb8BteoHNYPJy4seGSkISvztAzKrXODDvKVOq5uRKis9SjpMpb9bt+HiIs9DGjxJB+QsjIN6ZLwvvBvGCs=,iv:sGyBc+kyBZJiDbyzB8X+gu/gGYJid6VVop7xvZbGqCE=,tag:SWIKkRoNQeId0N43tovV4g==,type:str]
     pgp: []
     encrypted_regex: ^(password|)$
-    version: 3.9.2
+    version: 3.9.4
