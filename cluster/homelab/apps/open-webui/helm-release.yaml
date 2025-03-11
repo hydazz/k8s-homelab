@@ -24,6 +24,9 @@ spec:
         name: open-webui
         namespace: flux-system
   values:
+    image:
+      repository: ghcr.io/open-webui/open-webui
+      tag: 0.5.20
     ollama:
       ollama:
         gpu:
@@ -49,4 +52,3 @@ spec:
     persistence:
       enabled: true
       size: 2Gi
-    enableOpenaiApi: false
