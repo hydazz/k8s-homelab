@@ -16,6 +16,7 @@ resources:
   - minio
   - monitoring
   - nextcloud
+  - open-webui
   - paperless-ngx
   - pterodactyl
   - uptime-kuma

@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -42,3 +41,9 @@ spec:
       config:
         name: time-slicing-config
         default: "any"
+      env:
+        - name: NVIDIA_MPS_ENABLE
+          value: "1"  # Enables MPS
+
+    migManager:
+      enabled: false  # Ensures MIG is not used since you don't want partitions
