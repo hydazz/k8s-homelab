@@ -32,8 +32,8 @@ spec:
           number: 1
           nvidiaResource: "nvidia.com/gpu"
         models:
-        #  pull:
-        #    - llama3
+          pull:
+            - deepseek-r1
         #  run:
         #    - llama3
       runtimeClassName: nvidia
