@@ -42,7 +42,7 @@ spec:
         size: 32Gi
     ingress:
       enabled: true
-      ingressClass: external-nginx
+      class: external-nginx
       host: chat.hyde.services
       tls: true
       existingSecret: wildcard.hyde.services
