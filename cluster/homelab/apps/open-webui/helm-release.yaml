@@ -16,7 +16,7 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: openwebui
+      chart: open-webui
       version: 5.21.0
       interval: 5m
       sourceRef:
