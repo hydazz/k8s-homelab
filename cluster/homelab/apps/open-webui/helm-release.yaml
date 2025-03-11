@@ -42,17 +42,10 @@ spec:
         size: 32Gi
     ingress:
       enabled: true
-      class: external-nginx
-      hosts:
-        - host: chat.hyde.services
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-              port: 443
-      tls:
-        - hosts:
-            - chat.hyde.services
-          secretName: wildcard.hyde.services
+      ingressClass: external-nginx
+      host: chat.hyde.services
+      tls: true
+      existingSecret: wildcard.hyde.services
     persistence:
       enabled: true
       size: 2Gi
