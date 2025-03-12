@@ -28,6 +28,10 @@ spec:
       repository: ghcr.io/open-webui/open-webui
       tag: 0.5.20
     ollama:
+      fullnameOverride: ollama
+      image:
+        repository: ollama/ollama
+        tag: 0.5.12
       ollama:
         gpu:
           enabled: true
@@ -36,13 +40,11 @@ spec:
           nvidiaResource: "nvidia.com/gpu"
         models:
           pull:
-            - deepseek-r1
-        #  run:
-        #    - llama3
+            - llama3.2
       runtimeClassName: nvidia
       persistentVolume:
         enabled: true
-        size: 32Gi
+        size: 8Gi
     ingress:
       enabled: true
       class: external-nginx
