@@ -44,6 +44,13 @@ spec:
           - secretName: wildcard.hyde.services
             hosts:
               - ollama.k8s.hyde.services
+      resources:
+        requests:
+          cpu: 10m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 6Gi
       ollama:
         gpu:
           enabled: true
