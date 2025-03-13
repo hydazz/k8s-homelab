@@ -52,7 +52,7 @@ spec:
           nvidiaResource: "nvidia.com/gpu"
         models:
           pull:
-            - llama3.2
+            - llama3.1
       runtimeClassName: nvidia
       persistentVolume:
         enabled: true
