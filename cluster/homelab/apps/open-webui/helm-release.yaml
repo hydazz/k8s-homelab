@@ -32,6 +32,18 @@ spec:
       image:
         repository: ollama/ollama
         tag: 0.6.0
+      ingress:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: ollama.k8s.hyde.services
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - ollama.k8s.hyde.services
       ollama:
         gpu:
           enabled: true
