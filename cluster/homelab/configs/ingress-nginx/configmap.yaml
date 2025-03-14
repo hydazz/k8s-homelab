@@ -4,6 +4,7 @@ metadata:
   name: ingress-nginx-external-controller
   namespace: ingress-nginx
 data:
+  strict-validate-path-type: "false"
   allow-snippet-annotations: "true"
   annotations-risk-level: "Critical"
   enable-real-ip: "true"
@@ -14,5 +15,6 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 data:
+  strict-validate-path-type: "false"
   allow-snippet-annotations: "true"
   annotations-risk-level: "Critical"
