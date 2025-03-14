@@ -18,27 +18,7 @@ data:
       border-radius: 8px;
     }
 
-    .ak-brand.ak-flow-executor {
-      display: none;
-    }
-
     /*** hide footer ***/
     ul.pf-c-list.pf-m-inline {
       display: none !important;
-    }
-
-    .pf-c-toolbar {
-      border-radius: 8px 8px 0px 0px;
-    }
-
-    .pf-c-pagination.pf-m-bottom {
-      border-radius: 0px 0px 8px 8px;
-    }
-
-    .pf-c-sidebar__content {
-      background-color: rgba(255, 255, 255, 0) !important;
-    }
-
-    .pf-c-card {
-      border-radius: 8px;
     }
