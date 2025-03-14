@@ -80,7 +80,8 @@ spec:
             architecture: standalone
             master:
                 persistence:
-                    enabled: false
+                    size: 128Mi
+                resourcesPreset: nano
             auth:
                 enabled: false
 sops:
@@ -98,8 +99,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-23T01:01:18Z"
-    mac: ENC[AES256_GCM,data:aJSccI3M2GQiOuV5AOTwpJhYaQ9EdJ2XyGqT3r5xkCahJbn/39LQcga/I/jaFT1hgg8FUCD9C5NFq8mEuQEjY4udI5agjH8RbawDWsLMOMeE8pqIg/KcZfQ9U7ThWUYPNfSwpx5n8TYA/6sxnd+By7MN7SDzyqxtKOIMHVMAMcE=,iv:gi53ULaxpccf/gVyGEhQ9XtcPpmEit6DrVoU89+hJjA=,tag:xQS4ZNiQ9yJI+BGpIUZhtQ==,type:str]
+    lastmodified: "2025-03-14T02:19:20Z"
+    mac: ENC[AES256_GCM,data:v/2FCYdTQBTpac89z53CmHK7OqYy6pu8WFYXYSqW4dXkFnJDfqJI5QrlthnuNw8/oyfvGuyRn9oPSBxDzH3sjhpCGThPyFYwlu3L9KuGihfu3t6vU/eKxC4E4mVimZiVxnflbhsojy7SwERFURA5P1eRU3p3MNJNPaNZQ7jEyg0=,iv:BB3CznINqioUbwJHaijXtTkB4lipcAg8i7noFZgUbCc=,tag:3EsHRaaA+vs8vRH0waIZiw==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
     version: 3.9.4

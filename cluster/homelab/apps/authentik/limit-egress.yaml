@@ -47,9 +47,17 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Mail Server
     - to:
         - ipBlock:
             cidr: 203.12.8.19/32
       ports:
         - protocol: TCP
           port: 587
+    # Control Pnae
+    - to:
+        - ipBlock:
+            cidr: 192.168.4.5/32
+      ports:
+        - protocol: TCP
+          port: 6443
