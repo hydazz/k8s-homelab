@@ -44,6 +44,9 @@ spec:
         enabled: false
     config:
       useExistingConfigMap: homepage-config
+    env:
+      - name: HOMEPAGE_ALLOWED_HOSTS
+        value: homepage.k8s.hyde.services
     persistence:
       logs:
         enabled: true
