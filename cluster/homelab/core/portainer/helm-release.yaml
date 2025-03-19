@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: portainer/portainer-ee
-      tag: 2.27.1
+      tag: 2.27.2
     nodeSelector:
       kubernetes.io/hostname: "nebula"
     tolerations:
