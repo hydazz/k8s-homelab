@@ -55,7 +55,7 @@ spec:
   chart:
     spec:
       chart: postgresql
-      version: 16.5.2
+      version: 16.5.3
       interval: 5m
       sourceRef:
         kind: HelmRepository
@@ -105,7 +105,7 @@ spec:
   chart:
     spec:
       chart: postgresql
-      version: 16.5.2
+      version: 16.5.3
       interval: 5m
       sourceRef:
         kind: HelmRepository
