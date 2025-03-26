@@ -36,8 +36,17 @@ spec:
           - mountPath: /target
             name: plugins
     deployNodeAgent: true
+    nodeAgent:
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
     credentials:
       existingSecret: cloud-credentials-minio
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
     configuration:
       extraEnvVars:
         TZ: Australia/Melbourne
@@ -52,7 +61,6 @@ spec:
             s3ForcePathStyle: true
             s3Url: http://192.168.3.6:9000
             checksumAlgorithm: ""
-
       volumeSnapshotLocation:
         - name: k8s-homelab
           provider: aws

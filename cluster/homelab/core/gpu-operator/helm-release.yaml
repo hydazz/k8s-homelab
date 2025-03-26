@@ -36,14 +36,12 @@ spec:
           value: nvidia
         - name: CONTAINERD_SET_AS_DEFAULT
           value: "true"
-
     devicePlugin:
       config:
         name: time-slicing-config
         default: "any"
       env:
         - name: NVIDIA_MPS_ENABLE
-          value: "1"  # Enables MPS
-
+          value: "1"
     migManager:
-      enabled: false  # Ensures MIG is not used since you don't want partitions
+      enabled: false

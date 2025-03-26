@@ -22,6 +22,7 @@ spec:
     defaultSettings:
       defaultDataLocality: best-effort
       orphanAutoDeletion: true
+      taintToleration: node-role.kubernetes.io/control-plane:NoSchedule
     ingress:
       enabled: true
       host: longhorn.k8s.hyde.services
