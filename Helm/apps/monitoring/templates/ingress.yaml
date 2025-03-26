@@ -1,23 +1,23 @@
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: influxdb
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: influxdb.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: influxdb
-                port:
-                  number: {{ .Values.influxdb.port }}
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: influxdb
+#  namespace: {{ $.Release.Namespace }}
+#spec:
+#  ingressClassName: internal-nginx
+#  tls:
+#    - hosts:
+#        - "*.k8s.hyde.services"
+#      secretName: wildcard.hyde.services
+#  rules:
+#    - host: influxdb.k8s.hyde.services
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: influxdb
+#                port:
+#                  number: {{ .Values.influxdb.port }}

@@ -10,15 +10,15 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.promtail.position }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: influxdb-appdata-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.influxdb.appdata }}
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: influxdb-appdata-pvc
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  storageClassName: longhorn
+#  resources:
+#    requests:
+#      storage: {{ .Values.storage.influxdb.appdata }}
