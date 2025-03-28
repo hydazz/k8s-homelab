@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: oben01
+  name: egeback
   namespace: flux-system
 spec:
-  url: https://oben01.github.io/charts/
+  url: https://charts.egeback.se
   interval: 10m

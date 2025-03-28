@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: adguard-home
+  namespace: adguard-home
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: adguard-home
+      version: 1.0.27
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: egeback
+        namespace: flux-system
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: adguard/adguardhome
+              tag: v0.107.59
+            env:
+              TZ: Australia/Melbourne
+    defaultPodOptions:
+      hostNetwork: false
+    #ingress:
+    #  main:
+    #    enabled: true
+    #    className: internal-nginx
+    #    hosts:
+    #      - host: adguard.k8s.hyde.services
+    #        paths:
+    #          - pathType: Prefix
+    #            path: /
+    #            backend:
+    #              service:
+    #                name: main
+    #                port:
+    #                  number: 3000
+    #    tls:
+    #      - secretName: wildcard.hyde.services
+    #        hosts:
+    #          - adguard.k8s.hyde.services
+    service:
+      dns:
+        enabled: true
+        type: LoadBalancer
+    #volumeClaimTemplates:
+    #  data:
+    #    enabled: true
+    #    size: 128Mi
+    #    storageClass: longhorn
+    #    accessMode: ReadWriteOnce
+    #persistence:
+    #  data:
+    #    enabled: true
