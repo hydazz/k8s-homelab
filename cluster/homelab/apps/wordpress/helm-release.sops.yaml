@@ -44,6 +44,7 @@ spec:
             type: Recreate
         service:
             type: ClusterIP
+        priorityClassName: keep-alive
         mariadb:
             enabled: false
         externalDatabase:
@@ -83,8 +84,8 @@ sops:
             Z05STHFpbTJxUEJiMUszODJ5bmk2Y2sKakxpm1Lal0aa/gf5XzpYGGFRNg0F7BQ/
             QaOE51UlEKP3fnOccWmWeOM06RFeyCS7MEBuYh92ONndlgYQGe5QuA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-03-26T03:14:52Z"
-    mac: ENC[AES256_GCM,data:ViDYCE3rIxO/HGFMW7g8EzysyJCB1xvNVkdwnMzhN7owyvHUUKkhpIoeHjNNEgR0uZp+mgvHMLA0QQst3xgUcTPfFW2qdcXTB975cw7DBNtWXDT1OXvrKek3gkMGPlyqEw4c2yf0PE3+yyEbtOi+1IVZx4LZWg2KC+7w8ME8gNk=,iv:vX6SSanM5xYrYkgQ6mUj8Ujb5loH38wWtQQbpmfEAfc=,tag:lZrHDzyreg5HMS3vCLOclw==,type:str]
+    lastmodified: "2025-03-28T06:59:54Z"
+    mac: ENC[AES256_GCM,data:d/+ZCanj75GMPY5c4QCTbpDQVfCSpHpoef1AEu37CPTPUz/THQzKM3kXaBLs/2oe54AfcSwPqJ4HnpCy15vV7ustjepMHI5ALREVIDgBTPVGlCGkVdpmMp8jezV3tT1n7FSlPS33PB58aaEJpCGy6041JdJppFRrbuF3C25HGTA=,iv:VA1qy+WFbuXTJJ7zzHyGQLWKZfHTsJdFCJhJv10ZLJo=,tag:ymkm6UOZEW4TQwcj9X4reA==,type:str]
     pgp: []
     encrypted_regex: ^(name|hostname|extraTls|externalDatabase|)$
     version: 3.9.4

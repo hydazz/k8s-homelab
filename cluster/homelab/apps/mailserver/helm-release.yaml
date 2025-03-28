@@ -52,6 +52,7 @@ spec:
           memory: 1Gi
       annotations:
         backup.velero.io/backup-volumes: mail-config,mail-data,mail-state
+      priorityClassName: "keep-alive"
       env:
         # -----------------------------------------------
         # --- Required Section ---------------------------

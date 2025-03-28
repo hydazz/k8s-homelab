@@ -61,6 +61,10 @@ spec:
               port: {{ .port }}
 
       restartPolicy: Always
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
       nodeSelector:
 {{ toYaml .nodeSelector | indent 8 }}
       volumes:

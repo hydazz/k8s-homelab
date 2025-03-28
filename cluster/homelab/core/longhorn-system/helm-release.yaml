@@ -48,8 +48,7 @@ spec:
           proxy_set_header X-Forwarded-Host $http_host;
     longhornUI:
       replicas: 1
-      nodeSelector:
-        kubernetes.io/hostname: "nebula"
+      priorityClass: "keep-alive"
     global:
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"

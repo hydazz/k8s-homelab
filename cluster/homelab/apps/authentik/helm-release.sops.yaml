@@ -27,6 +27,7 @@ spec:
         global:
             deploymentStrategy:
                 type: Recreate
+            priorityClassName: keep-alive
         authentik:
             secret_key: ENC[AES256_GCM,data:B5hUuUQKFL3zUwD69NLL+p6IVEYaweNmh4XakTwRgTUxmkocVaGIaGFbzL8w3qxvtgk=,iv:OIlXI8Tjuv5GXGRnMjg/jjZMs3eoSALSsi0StW1XLGE=,tag:xTgE/SnFnrx/yZyQ4WU3LQ==,type:str]
             postgresql:
@@ -82,6 +83,7 @@ spec:
                 persistence:
                     size: 128Mi
                 resourcesPreset: nano
+                priorityClassName: keep-alive
             auth:
                 enabled: false
 sops:
@@ -99,8 +101,8 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-03-14T03:37:07Z"
-    mac: ENC[AES256_GCM,data:Jm0Viyf86BkJ0uOoVySG4wXh6RW7cA4E25EfDS1FzJ4qcP3rHPBhIEw2ox4aVerSzbQOSxhPuXQ+ynjJ6+bwBX/7Ku3zb780Exkeb1Fo1OErbNxtZvhVRc3OaCwU0mPIJA8nBw1eH7yiHfx/XSO+zPpfr2O2k/4dqwciIEolSxo=,iv:X8kOdljgFauJRArC5x6g933QVFAu0+PkapQyLQVIGzs=,tag:KIJsuFvPw4N4RYXh7RucZQ==,type:str]
+    lastmodified: "2025-03-28T06:55:35Z"
+    mac: ENC[AES256_GCM,data:L0/pCTmQUipu9H8FJpjwnN4IEdbqW10QdlO9N6UaoW0e3xmUtjz3FzqwHVHd3kEMiShTEJrxenWMy4ihaCcnlXJ69+R0J0yrJgkzti1Gm5+jLT3HFV++Wupy/y6YGWLG4fEOiEpmhHm7r6DpSfSMUrcS8JXi3PS6OrJddjLVKQE=,iv:O4yJgtsJb0hKKZjYIJr9ckMQx5P2BuHNBz+J9otXchQ=,tag:0nsFFCJgNnsLAodTLNe3xg==,type:str]
     pgp: []
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
     version: 3.9.4

@@ -26,8 +26,7 @@ spec:
       image:
         repository: quay.io/metallb/controller
         tag: v0.14.9
-      nodeSelector:
-        kubernetes.io/hostname: "nebula"
+      priorityClassName: "keep-alive"
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
