@@ -16,6 +16,21 @@ spec:
         kind: HelmRepository
         name: portainer-repo
         namespace: flux-system
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: v1
+              kind: Deployment
+              name: portainer
+            patch: |
+              - op: add
+                path: /spec/template/spec/priorityClassName
+                value: keep-alive
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  backup.velero.io/backup-volumes: data
   values:
     image:
       repository: portainer/portainer-ee
