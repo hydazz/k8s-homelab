@@ -55,6 +55,7 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
+        externalTrafficPolicy: Local
     #volumeClaimTemplates:
     #  data:
     #    enabled: true
