@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: oben01
+  name: rm3l
   namespace: flux-system
 spec:
-  url: https://oben01.github.io/charts/
+  url: https://helm-charts.rm3l.org
   interval: 10m
