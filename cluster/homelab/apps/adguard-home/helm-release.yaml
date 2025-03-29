@@ -44,7 +44,7 @@ spec:
           - secretName: wildcard-hyde-services-tls
             hosts:
               - adguard.k8s.hyde.services
-    priorityClassName: best-effort
+    priorityClassName: keep-alive
     persistence:
       volumeClaimSpec:
         resources:
