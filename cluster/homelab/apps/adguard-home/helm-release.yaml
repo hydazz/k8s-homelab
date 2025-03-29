@@ -27,6 +27,9 @@ spec:
     image:
       repository: adguard/adguardhome
       tag: v0.107.59
+    strategy:
+      type: Recreate
+      rollingUpdate:
     services:
       dns:
         type: LoadBalancer
@@ -58,112 +61,4 @@ spec:
         resources:
           requests:
             storage: 1Gi
-    bootstrapConfig:
-      # -- AdGuard Home config. See [this page](https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file)
-      bind_host: 0.0.0.0
-      bind_port: 80
-      beta_bind_port: 0
-      users: []
-      auth_attempts: 5
-      block_auth_min: 15
-      http_proxy: ""
-      language: en
-      debug_pprof: false
-      web_session_ttl: 720
-      dns:
-        bind_hosts:
-          - 0.0.0.0
-        port: 53
-        statistics_interval: 90
-        querylog_enabled: true
-        querylog_file_enabled: true
-        querylog_interval: 168h
-        querylog_size_memory: 1000
-        anonymize_client_ip: false
-        protection_enabled: true
-        blocking_mode: default
-        blocking_ipv4: ""
-        blocking_ipv6: ""
-        blocked_response_ttl: 10
-        parental_block_host: family-block.dns.adguard.com
-        safebrowsing_block_host: standard-block.dns.adguard.com
-        ratelimit: 20
-        ratelimit_whitelist: []
-        refuse_any: true
-        upstream_dns:
-          - https://dns.cloudflare.com/dns-query
-        upstream_dns_file: ""
-        bootstrap_dns:
-          - 1.1.1.1
-          - 1.0.0.1
-        all_servers: true
-        fastest_addr: false
-        fastest_timeout: 1s
-        allowed_clients: []
-        disallowed_clients: []
-        blocked_hosts:
-          - version.bind
-          - id.server
-          - hostname.bind
-        trusted_proxies:
-          - 127.0.0.0/8
-          - ::1/128
-        cache_size: 4194304
-        cache_ttl_min: 0
-        cache_ttl_max: 0
-        cache_optimistic: true
-        bogus_nxdomain: []
-        aaaa_disabled: false
-        enable_dnssec: false
-        edns_client_subnet: false
-        max_goroutines: 300
-        ipset: []
-        filtering_enabled: true
-        filters_update_interval: 24
-        parental_enabled: false
-        safesearch_enabled: false
-        safebrowsing_enabled: false
-        safebrowsing_cache_size: 1048576
-        safesearch_cache_size: 1048576
-        parental_cache_size: 1048576
-        cache_time: 30
-        rewrites: []
-        blocked_services: []
-        upstream_timeout: 10s
-        local_domain_name: lan
-        resolve_clients: true
-        use_private_ptr_resolvers: true
-        local_ptr_upstreams: []
-      tls:
-        enabled: false
-      filters:
-        - enabled: true
-          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt
-          name: Steven Black's List
-          id: 1
-      whitelist_filters: []
-      user_rules: []
-      dhcp:
-        enabled: false
-      clients:
-        runtime_sources:
-          whois: true
-          arp: true
-          rdns: true
-          dhcp: true
-          hosts: true
-        persistent: []
-      log:
-        enabled: true
-        file: ""
-        max_backups: 0
-        max_size: 100
-        max_age: 3
-        compress: false
-        local_time: true
-        verbose: true
-      os:
-        group: ""
-        user: ""
-        rlimit_nofile: 0
-      schema_version: 12
+    bootstrapEnabled: false
