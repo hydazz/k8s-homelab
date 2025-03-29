@@ -42,13 +42,11 @@ spec:
         hosts:
           - host: adguard.k8s.hyde.services
             paths:
-              - pathType: Prefix
-                path: /
-                backend:
-                  service:
-                    name: adguard-home
-                    port:
-                      number: 3000
+              - path: /
+                pathType: Prefix
+                service:
+                  name: adguard-home
+                  port: 3000
         tls:
           - secretName: wildcard.hyde.services
             hosts:
