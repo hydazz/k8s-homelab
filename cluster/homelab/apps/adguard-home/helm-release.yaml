@@ -27,10 +27,21 @@ spec:
     image:
       repository: adguard/adguardhome
       tag: v0.107.59
+    strategy:
+      type: Recreate
+      rollingUpdate:
     services:
       dns:
         type: LoadBalancer
         externalTrafficPolicy: Local
+      https:
+        enabled: false
+      dnsOverTls:
+        enabled: false
+      dnsOverQuic:
+        enabled: false
+      dnscrypt:
+        enabled: false
     ingresses:
       http:
         enabled: true
@@ -50,3 +61,4 @@ spec:
         resources:
           requests:
             storage: 1Gi
+    bootstrapEnabled: false
