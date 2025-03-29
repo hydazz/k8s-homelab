@@ -35,24 +35,24 @@ spec:
               TZ: Australia/Melbourne
     defaultPodOptions:
       hostNetwork: false
-    #ingress:
-    #  main:
-    #    enabled: true
-    #    className: internal-nginx
-    #    hosts:
-    #      - host: adguard.k8s.hyde.services
-    #        paths:
-    #          - pathType: Prefix
-    #            path: /
-    #            backend:
-    #              service:
-    #                name: main
-    #                port:
-    #                  number: 3000
-    #    tls:
-    #      - secretName: wildcard.hyde.services
-    #        hosts:
-    #          - adguard.k8s.hyde.services
+    ingress:
+      main:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: adguard.k8s.hyde.services
+            paths:
+              - pathType: Prefix
+                path: /
+                backend:
+                  service:
+                    name: adguard-home
+                    port:
+                      number: 3000
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - adguard.k8s.hyde.services
     service:
       dns:
         enabled: true
