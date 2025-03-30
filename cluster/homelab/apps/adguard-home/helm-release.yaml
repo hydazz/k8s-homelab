@@ -52,7 +52,7 @@ spec:
               - path: /
                 pathType: ImplementationSpecific
         tls:
-          - secretName: wildcard-hyde-services-tls
+          - secretName: wildcard.hyde.services
             hosts:
               - adguard.k8s.hyde.services
     priorityClassName: keep-alive
