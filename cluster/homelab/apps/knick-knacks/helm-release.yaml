@@ -121,5 +121,7 @@ spec:
     updateStrategy:
       type: Recreate
       rollingUpdate:
+    service:
+      type: ClusterIP
     podAnnotations:
       backup.velero.io/backup-volumes: staticsite
