@@ -1,0 +1,7 @@
+- name: Manage Kubernetes cluster
+  hosts: all
+  become: true
+  gather_facts: false
+
+- name: Remove Node
+  ansible.builtin.import_playbook: kubernetes_sigs.kubespray.remove_node

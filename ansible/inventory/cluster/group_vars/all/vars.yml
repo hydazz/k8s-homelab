@@ -1,0 +1,9 @@
+upstream_dns_servers:
+  - 1.1.1.1
+  - 1.0.0.1
+metrics_server_enabled: true
+node_feature_discovery_enabled: true
+kube_version: v1.31.4
+kube_proxy_mode: ipvs
+kube_proxy_strict_arp: true
+enable_dual_stack_networks: true

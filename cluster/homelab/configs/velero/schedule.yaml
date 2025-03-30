@@ -12,12 +12,8 @@ spec:
       - cert-manager
       - changedetection
       - database
-      - flux-system
-      - ingress-nginx
       - jenkins
       - knick-knacks
-      - kube-public
-      - kube-system
       - longhorn-system
       - mailserver
       - media-downloaders
@@ -27,6 +23,7 @@ spec:
       - monitoring
       - nextcloud
       - paperless-ngx
+      - portainer
       - uptime-kuma
       - velero
       - wordpress
