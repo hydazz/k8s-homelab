@@ -15,7 +15,7 @@ resources:
   - media-managers
   - media-servers
   - minio
-  # - monitoring
+  - monitoring
   - nextcloud
   - open-webui
   - paperless-ngx
