@@ -76,4 +76,3 @@ plex:
       nvidia.com/gpu: 1
   nodeSelector:
     nvidia.com/gpu.present: "true"
-    kubernetes.io/hostname: "discovery"

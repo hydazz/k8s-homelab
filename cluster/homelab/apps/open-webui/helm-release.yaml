@@ -51,6 +51,8 @@ spec:
         limits:
           cpu: 500m
           memory: 6Gi
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
       ollama:
         gpu:
           enabled: true
