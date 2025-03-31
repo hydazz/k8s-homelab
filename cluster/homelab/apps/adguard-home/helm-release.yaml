@@ -30,6 +30,8 @@ spec:
     strategy:
       type: Recreate
       rollingUpdate:
+    podAnnotations:
+      backup.velero.io/backup-volumes: data-vol
     services:
       dns:
         type: LoadBalancer

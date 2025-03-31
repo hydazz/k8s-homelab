@@ -64,6 +64,8 @@ spec:
       persistentVolume:
         enabled: true
         size: 16Gi
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
     ingress:
       enabled: true
       class: external-nginx

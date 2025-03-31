@@ -8,20 +8,20 @@ spec:
   template:
     hooks: {}
     includedNamespaces:
+      - adguard-home
       - authentik
-      - cert-manager
       - changedetection
       - database
       - jenkins
       - knick-knacks
-      - longhorn-system
       - mailserver
       - media-downloaders
       - media-managers
       - media-servers
       - minio
-      - monitoring
+#     - monitoring
       - nextcloud
+      - open-webui
       - paperless-ngx
       - portainer
       - uptime-kuma
