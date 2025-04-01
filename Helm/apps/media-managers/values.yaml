@@ -93,7 +93,7 @@ tdarr:
     nvidia.com/gpu.present: "true"
 
 kometa:
-  image: ghcr.io/linuxserver/kometa:2.1.0
+  image: ghcr.io/linuxserver/kometa:2.2.0
 
 excludarr:
   image: excludarr/excludarr:v1.1.3
