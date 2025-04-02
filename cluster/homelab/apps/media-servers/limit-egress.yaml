@@ -167,3 +167,9 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+    - to:
+        - ipBlock:
+            cidr: 203.12.8.19/32
+      ports:
+        - protocol: TCP
+          port: 32400
