@@ -24,6 +24,8 @@ spec:
         app.kubernetes.io/instance: excludarr
         app.kubernetes.io/name: excludarr
     spec:
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
       containers:
         - name: excludarr
           image: {{ .image }}
@@ -60,7 +62,7 @@ spec:
             - name: SONARR_EXCLUDE_TAGS
               value: "excludarr_ignore"
             - name: CRON_MODE
-              value: "true"
+              value: "false"
           volumeMounts:
             - name: crontab
               mountPath: /etc/excludarr/crontab
