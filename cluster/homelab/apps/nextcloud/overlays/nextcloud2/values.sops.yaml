@@ -38,7 +38,7 @@ nextcloud:
         - name: ENC[AES256_GCM,data:BPAPkFo=,iv:mQWYZEowmx79+sAkTsTW5OTL6RgH37pDCy5sQh1ylok=,tag:/sIB0SBCRAvvHZgGEyukTg==,type:str]
           mountPath: ENC[AES256_GCM,data:jlw9Y/4M,iv:y+5tkpdPjTD+RyWH8Od0zFO4cMqSgNmPe5OrfXB5Yr0=,tag:IkH2/myH7/boGWrfIzwO2w==,type:str]
     configs:
-        custom.config.php: ENC[AES256_GCM,data:PLbh0PVzp25msO8wTQgiDVTl2pMBi6JCsm2wUEN8zacauzqSbWsce8wbyakXNm8onKuM2d72ghOgMpM5SbqRooAFSDdhRt2h1Qsv7VYtFKbg2306dlf2gVxKpfloxi8h5i3wMICiUG/uJjbhvpPLCpYHBA6gsjaIYyFCFlb2aOGOwJEarhuuuKmSHQwhweFZTCyfJyeaqYgsQJu/kifYZJyK9C7LUpbM1gTCK2xyenyvx1eeJ6Q3SHqyPfkTBhBiRfG5E5vMX2tn7bREVPIXIz1N7Se3d79kwvmho4YYtricFjx2AY0h2vOJoy5wRXUb7xS+dc0PFEYv/F4deMVOwRj6sjBeEbKtDVBGvmsBTa4+LTTzmLRxRBwEQT9hhRUOa1JVqFfCL0MVNp/u0PTMZ5nMWnGg,iv:PoIyBJairnl7DOQWpiRIm3pUY4q2C+/sP41+/3YGHyY=,tag:rKijTYIseDyoZX4GiG/M6w==,type:str]
+        custom.config.php: ENC[AES256_GCM,data:4J1FuIN5Or8l1hMcgRm4vPWWNGUBFXw8XV1SAQq5TMsxMMfU47rd2vUJVQmN8YYk98IdzfmWFRlNfK8bX7LJ0kLeH/ZRqQHZDxsClCSOFBuRLbx2EHePrvSEQJWhPvs7uYP47zuw64zsEv8Xjy8ztwftjKH6epV1uoBLiBq5aBp3BhhPyZ+WRZoLoF1K+T54GTS8A3WMudDd21GWesmN5LsGNhvpQuYP6qUyQrPTpdnPCFG1v4xZ0qkjk6sGFjKQXrsjlZ9/oC5U/lje6qCmc5BLSSh/1W5HGMLdNS9uG6evItYzELUIdCuye/HopQm8LkzrFwmKqf3eWVF23FFdjQkDlUdcGYO3fHXrsBJJtj774vC2gGC17Gzla8bm9g1FJQHdPxJK9azzFSaQ4cTwE2bCu0qll1Wy4gvx7ExKPjKeOu3h6pjRwTyYW38EIWomiQYQ65E0Lruakc6k2eHi9xxSouBuTHdzFet4dhU/Hw5Xhg==,iv:l8sh2Ai3IawaIyAoA6pEJienNIsgV+BEsKqUsXjp14E=,tag:uKk0QAO1j3uZLOtZ10+UpQ==,type:str]
 internalDatabase:
     enabled: ENC[AES256_GCM,data:YH6N+cE=,iv:EBHKPBRGP19lVLKLK0aLeCO8ErubQwsty8+7Bnc8JJ8=,tag:hRZNsBAg05coQJ45lJ5SHg==,type:bool]
 externalDatabase:
@@ -79,7 +79,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-07T11:09:48Z"
-    mac: ENC[AES256_GCM,data:CTXxCSvo/S/TbDEu2LXWMstWVRAggLjgRRehb0Fw9hDoiq52J+U9BMpHR03iPkhXxgH8/BBIvZv8FbmbXwOiRdvp5/Ir8+vl4VwIeQfFG7Wz0FXQxqM/6RHSwumzeDbHi1sLx8W5JQ55OPku/4UHz8dBUaB3AM4Upewp5UoRYtg=,iv:wBbRDzZjIsX3TIqiJO95xN/wNhQzd0BBI1/PQe8G5tE=,tag:qXw9DDaI4c/NL0DZl0fKlw==,type:str]
+    lastmodified: "2025-04-07T13:00:58Z"
+    mac: ENC[AES256_GCM,data:XBwvUH6UmJG5Gf5Imj/UPcsHZWlE0hseZ1MmovtBG2+cXSdOF8ib/I0KMO0MKAKl7FuBHNxtCUCRZn8R1Co8JPoI6CKWqBtIcnY9+25troOZLrHADk6lQMd4Jok3xhSFHslzPukOJu0ZdqkDWRFm4h+5bobZyZSnpv3mnag7sBs=,iv:LCkVVLNR25DlYybjzI6Xv5pOyoFjen1MMEPzcxSO0SA=,tag:kjn3gtXeYbFIiYu3s817NA==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.1
