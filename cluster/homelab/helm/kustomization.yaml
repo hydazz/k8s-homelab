@@ -15,6 +15,7 @@ resources:
   - metallb
   - metrics-server
   - minio
+  - nextcloud
   - nvidia
   - portainer
   - reflector
