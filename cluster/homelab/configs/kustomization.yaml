@@ -6,7 +6,6 @@ resources:
 #  - crowdsec
   - homepage
   - ingress-nginx
-  - media-managers
   - metallb
   - reverse-proxy
   - velero
