@@ -34,6 +34,7 @@ ingress:
           secretName: ENC[AES256_GCM,data:3ywf7G3tgZaG0r0w0cUptSLnMik6HbI0,iv:BT8NFcujwOYbEXOdtl5mP46bOVzoFjVp7/lvzu8d6Ik=,tag:onXyJ3CzZOymvTk8ippxvw==,type:str]
 persistence:
     size: ENC[AES256_GCM,data:cjXa,iv:YrrmzBRIxHo8vaAy+ZoceQXZV07vjYt/eTdxPDNGqSc=,tag:wKRq6Xw2Z4/L0sThhEk3PQ==,type:str]
+apacheConfiguration: ENC[AES256_GCM,data:OPeASz1ppMPhbN4HDMbNADvW8jnSerDI5c3IwVWdkb8keEpydrwL/lVAH3PxAb8mpu+aPzwbj+9WwjVWXsL84oERQvPu4JYTOqghDBaottgD6dKvvlMSEqkArKvCfJCEA/KUooltKr0B0lccNrRPvuU9,iv:H6dBzSAWhxFLCRAoNYENasmdPYmEpz35PchASI0irqU=,tag:BQLlIBtK6kEb5cwbwrYzww==,type:str]
 sops:
     age:
         - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
@@ -45,7 +46,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-08T07:31:56Z"
-    mac: ENC[AES256_GCM,data:KZhJLTmdM9o5p7ESMp3IxV7NO4UVA9LcbY3ZEUtWPVyg6x3erl2FvhywjlGbOOgqdtKAKF5uooMJM3i7z6BVXoGueLg7XmMbic9vfLQiPczoNOOzlGdYwHhPtwkvs6/AzlH/FBmyRiBFBdLuMTyhItP/+O5CGcutEngnGMg3WNY=,iv:FM7SwDAnYuPPh/FqLiqn6ZdeVmfouisFGfVzefPizew=,tag:9yUmFCWqbagSlykZu/uzzg==,type:str]
+    lastmodified: "2025-04-08T10:26:30Z"
+    mac: ENC[AES256_GCM,data:XJLWBovV1Y9QA+BT+KlMSJFoK1Cnp17MR8/fTZuc0dig1tw7DjEN9fP63OEtzwhYOdZaykdWt8ZHq1Clz4Em/+82OHLY2LxlagsGwkoxz+zA+Ikpx0YBb9ChEzHtUv8p0sGDbn4rBJ1k6ifurZqUh/XsyAbOljLEUtUf/RIQS0s=,iv:hgdNZ6JdVn9H4FQtgUL/XkE6H6B4PfHx6bKVlPFk8H4=,tag:RuTmVCApZLLq9jtLR/r6Cg==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.1
