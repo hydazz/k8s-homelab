@@ -27,6 +27,8 @@ spec:
     image:
       repository: nextcloud
       tag: 31.0.2-fpm-alpine
+    podAnnotations:
+      backup.velero.io/backup-volumes: nextcloud-main,nextcloud-data
     nginx:
       enabled: true
       config:

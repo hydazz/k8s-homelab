@@ -10,8 +10,6 @@ readinessProbe:
     httpGet:
         path: ENC[AES256_GCM,data:vg==,iv:sDhevnWB02MHLxKamRjDVA4YuAXYrAnOUjSttf56CTk=,tag:8WidSkbvo5jQbM2fi8E2Yg==,type:str]
 resourcesPreset: ENC[AES256_GCM,data:EWCAJlsP,iv:VOiUZuKR6CjAMoXkJ0MQ11HY0mS04nytQ8GgEPb/c3w=,tag:Oaaoq+8fGsbe1OosYxlQMg==,type:str]
-podAnnotations:
-    backup.velero.io/backup-volumes: ENC[AES256_GCM,data:Ie+v3I1P5lRVmMG57Nc=,iv:zQPfnZCGSo3vlCz/pXyRr23+/MkF8v8BJvlsVOhyq6s=,tag:G8zegd/ySwCQqNbB+Hb6AA==,type:str]
 updateStrategy:
     type: ENC[AES256_GCM,data:W+EgUa2Osvk=,iv:t8dze62PEDcvJN0ueik2q2iQzHYip/90mtYIDKyzSrc=,tag:xu1dHpubBtio3ji/tT90DA==,type:str]
 service:
@@ -48,7 +46,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-08T10:42:38Z"
-    mac: ENC[AES256_GCM,data:/mvTFOB0O3SO76zRGrR06Cwcb6PGxAFQ+zVl8ZBRzSEEc+yd1oVi+Kc7T1OrJHxul2IBi5tB0w8et6lybPG7DM4msD2WGwtzcSMDLI64WRUD1WQkQvoJrlvCyjpxZtKXHc8nqp8rZck1FwOGm+/fUnIjrj2G6l4AKJ/J1hDvasU=,iv:3hZWuFgkWaV3HC+K45bhvTA1Z9Fgeq0j+ZgCrbIfb0c=,tag:sPnntTDl7jkapZ6JTdNBsw==,type:str]
+    lastmodified: "2025-04-08T23:01:29Z"
+    mac: ENC[AES256_GCM,data:zI06ts88mV7TfEQMhTZBRVJvrMQdAEhAQ/Oqq8NjdqdYuT+6nLuVokLFvHhq64eGUdEYD1GLkIOc3Fr6itzoCj8kX7164v4rlSb0+zheVW90lAOZ1I1lnzH8mTp9XwLuzl68VOBznNPVqb5P70CnBhmApnZGUXJVF7JVbFz3hDY=,iv:rikI+jDEeGX5cpyDBcyQmvllopWAADGI2qEB0uGzrKs=,tag:m7Nzzz1yzTGv9JiWXBccMQ==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.1

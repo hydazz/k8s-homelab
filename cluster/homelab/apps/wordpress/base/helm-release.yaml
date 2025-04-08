@@ -34,6 +34,8 @@ spec:
     externalCache:
       host: memcached.wordpress.svc.cluster.local
       port: 11211
+    podAnnotations:
+      backup.velero.io/backup-volumes: wordpress-data
 
   valuesFrom:
     - kind: Secret
