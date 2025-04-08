@@ -34,7 +34,9 @@ ingress:
           secretName: ENC[AES256_GCM,data:3ywf7G3tgZaG0r0w0cUptSLnMik6HbI0,iv:BT8NFcujwOYbEXOdtl5mP46bOVzoFjVp7/lvzu8d6Ik=,tag:onXyJ3CzZOymvTk8ippxvw==,type:str]
 persistence:
     size: ENC[AES256_GCM,data:cjXa,iv:YrrmzBRIxHo8vaAy+ZoceQXZV07vjYt/eTdxPDNGqSc=,tag:wKRq6Xw2Z4/L0sThhEk3PQ==,type:str]
-apacheConfiguration: ENC[AES256_GCM,data:boAWo3R8ZeWPE9o9ZS+KCNSxGKvKXG/WVung7dNoKA8Hz4+imN8ySmMloMtQt16tuPGA4Kelyl6nLB8VP8kW,iv:5adzoNEy5WtgFSa/yg21uhJl9l/fF4RgxN1nFk5D3Rc=,tag:SuB2lpoiWGdEeuNKQbhfBg==,type:str]
+#ENC[AES256_GCM,data:yCgN8uSY1+J9y7TWY00HR+vfYh0HiQ==,iv:7vMsHteoy1N4jBnU3nsCsgmG+wup3UBxmDlXxUG2+/g=,tag:ZLLAV6/zjyAKXtsotju/ig==,type:comment]
+#ENC[AES256_GCM,data:RkpfmTHqHALBkLWWOB5RXdye7ncloI+Yr/1YlGzmNiGcxQ==,iv:1lkngGMSwzv6/k1qBsXdMkQndvXEuN0bP78/xQ+RVSA=,tag:vR/IKwp6TGptirGn20GmYw==,type:comment]
+#ENC[AES256_GCM,data:kLMab/ZYULQbKuzomHLK2uMDjGjNNEznThNzlqvcDL+OHg0=,iv:RqQZt9NNpcUjhB5HGOkXqs5hWdtYoBXVGHDS64LdBig=,tag:NqAiFdFOSyfpmL7d4qyyUg==,type:comment]
 sops:
     age:
         - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
@@ -46,7 +48,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-08T10:33:50Z"
-    mac: ENC[AES256_GCM,data:F/zptOtjP89aii9SiQW8wZcqfdurD/Uvrg07M118XiDieJYe6uU93MMCxWOZpRKsgMc9QGHEwuJma/UW405DZrDNYrzw2TSnZZANFCAqdKlBrJpwpkYfMbo/erSL7fASmEZ2e4G0jbO9gx1VDYQ9d2lRJx9udXYtgi7YjzIco/w=,iv:/wlG1lg7QCZqYBRYJqWdNQbk5I7kkVKvC7+EAomlvsc=,tag:HQETv+LnvBit9mbm382PYA==,type:str]
+    lastmodified: "2025-04-08T10:42:38Z"
+    mac: ENC[AES256_GCM,data:/mvTFOB0O3SO76zRGrR06Cwcb6PGxAFQ+zVl8ZBRzSEEc+yd1oVi+Kc7T1OrJHxul2IBi5tB0w8et6lybPG7DM4msD2WGwtzcSMDLI64WRUD1WQkQvoJrlvCyjpxZtKXHc8nqp8rZck1FwOGm+/fUnIjrj2G6l4AKJ/J1hDvasU=,iv:3hZWuFgkWaV3HC+K45bhvTA1Z9Fgeq0j+ZgCrbIfb0c=,tag:sPnntTDl7jkapZ6JTdNBsw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.1
