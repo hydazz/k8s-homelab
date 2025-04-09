@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: open-webui
+  name: dirsigler
   namespace: flux-system
 spec:
-  url: https://open-webui.github.io/helm-charts
+  url: https://helm.irsigler.cloud
   interval: 10m
