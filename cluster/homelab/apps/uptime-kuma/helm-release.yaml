@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -8,14 +7,48 @@ spec:
   interval: 5m
   install:
     createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
-      chart: ./Helm/apps/uptime-kuma
-      reconcileStrategy: Revision
+      chart: uptime-kuma
+      version: 2.21.2
+      interval: 5m
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: dirsigler
         namespace: flux-system
   values:
-    uptime-kuma:
-      replicas: 1
+    image:
+      repository: louislam/uptime-kuma
+      tag: 1.23.16
+    podAnnotations:
+      backup.velero.io/backup-volumes: storage
+    priorityClassName: keep-alive
+    volume:
+      size: 1Gi
+    ingress:
+      enabled: true
+      className: external-nginx
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Real-Time Monitoring and Uptime Tracking for Your Services
+        gethomepage.dev/group: Web Applications
+        gethomepage.dev/icon: uptime-kuma
+        gethomepage.dev/name: Uptime Kuma
+        gethomepage.dev/namespace: uptime-kuma
+        gethomepage.dev/app: uptime-kuma
+      hosts:
+        - host: status.hyde.services
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - hosts:
+            - status.hyde.services
+          secretName: wildcard.hyde.services
