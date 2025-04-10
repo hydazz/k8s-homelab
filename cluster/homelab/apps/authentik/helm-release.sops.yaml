@@ -31,7 +31,7 @@ spec:
         authentik:
             secret_key: ENC[AES256_GCM,data:B5hUuUQKFL3zUwD69NLL+p6IVEYaweNmh4XakTwRgTUxmkocVaGIaGFbzL8w3qxvtgk=,iv:OIlXI8Tjuv5GXGRnMjg/jjZMs3eoSALSsi0StW1XLGE=,tag:xTgE/SnFnrx/yZyQ4WU3LQ==,type:str]
             postgresql:
-                host: postgresql.database.svc.cluster.local
+                host: postgresql-14.database.svc.cluster.local
                 user: authentik
                 password: ENC[AES256_GCM,data:BoopI8eH+JItscXXbkY=,iv:Zf2IB/DfPcFl/61WNQt0+A0BIU1Oz4GmXWMhCLtxDu4=,tag:V/1wvCsdS9+PwTFOxjks8Q==,type:str]
             email:
@@ -87,10 +87,6 @@ spec:
             auth:
                 enabled: false
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1umudqfh963mmhgkgatylwh9jgez7qh4twpaqy3ea3nlcarhm09hq5er32r
           enc: |
@@ -101,8 +97,7 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-03-28T06:55:35Z"
-    mac: ENC[AES256_GCM,data:L0/pCTmQUipu9H8FJpjwnN4IEdbqW10QdlO9N6UaoW0e3xmUtjz3FzqwHVHd3kEMiShTEJrxenWMy4ihaCcnlXJ69+R0J0yrJgkzti1Gm5+jLT3HFV++Wupy/y6YGWLG4fEOiEpmhHm7r6DpSfSMUrcS8JXi3PS6OrJddjLVKQE=,iv:O4yJgtsJb0hKKZjYIJr9ckMQx5P2BuHNBz+J9otXchQ=,tag:0nsFFCJgNnsLAodTLNe3xg==,type:str]
-    pgp: []
+    lastmodified: "2025-04-10T03:55:18Z"
+    mac: ENC[AES256_GCM,data:qfCqIvL++YlNy36nqNDSMedbsdQ2IceX81A0OacBQW6BpRRGohW7j+w2OBrmMQJJUmKVRzHoE1hRCFNIwzpoFft5Q8FhswEJS4FT3X/HayIwRgFj+V3plSkjPhMfCF89zVzwQJl41+Ez337VwSwEO1Fu4Ofcq6nSA9+vG6qTiaA=,iv:osz+Ars1Zy4PKx25VJCNPKsCDgJNOUVkg3aniY+QpSI=,tag:OsZS1g5E6+sHeSxq3k3DTQ==,type:str]
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
-    version: 3.9.4
+    version: 3.10.1

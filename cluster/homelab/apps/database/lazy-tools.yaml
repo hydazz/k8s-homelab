@@ -123,9 +123,9 @@ spec:
             allowPrivilegeEscalation: false
           env:
             - name: PPA_SERVER_DESCS
-              value: "postgresql;;pgvectors"
+              value: "postgresql-14;;pgvectors"
             - name: PPA_SERVER_HOSTS
-              value: "postgresql.database.svc.cluster.local;;pgvectors.database.svc.cluster.local"
+              value: "postgresql-14.database.svc.cluster.local;;pgvectors.database.svc.cluster.local"
             - name: PPA_SERVER_PORTS
               value: "5432;;5432"
             - name: PPA_SERVER_SSL_MODES

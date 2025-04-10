@@ -41,7 +41,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: postgresql
+  name: postgresql-14
   namespace: database
 spec:
   interval: 5m
@@ -66,7 +66,7 @@ spec:
   values:
     image:
       repository: bitnami/postgresql
-      tag: 15.10.0-debian-12-r2
+      tag: 14.17.0-debian-12-r14
     auth:
       enablePostgresUser: true
       existingSecret: postgresql-secrets
@@ -78,7 +78,7 @@ spec:
           cpu: 250m
           memory: 128Mi
       persistence:
-        size: 512Mi
+        size: 2Gi
       podAnnotations:
         backup.velero.io/backup-volumes: data
       extraEnvVars:
