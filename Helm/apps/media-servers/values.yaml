@@ -36,7 +36,7 @@ wizarr:
       memory: 128Mi
 
 plex:
-  image: ghcr.io/linuxserver/plex:1.41.5
+  image: ghcr.io/linuxserver/plex:1.41.6
   ports:
     loadbalancer:
       - name: plex-webui-tcp
