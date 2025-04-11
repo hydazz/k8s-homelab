@@ -1,24 +1,3 @@
----
-# unifi protect backup
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: unifi-protect-backup
-  namespace: knick-knacks
-spec:
-  interval: 5m
-  install:
-    createNamespace: true
-  chart:
-    spec:
-      chart: ./Helm/apps/unifi-protect-backup
-      reconcileStrategy: Revision
-      sourceRef:
-        kind: GitRepository
-        name: flux-system
-        namespace: flux-system
----
-# semaphore ui
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -67,6 +46,14 @@ spec:
       passwordKey: "dbpassword"
     ingress:
       enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Modern web interface for managing popular DevOps tools
+        gethomepage.dev/group: Web Applications
+        gethomepage.dev/icon: semaphore
+        gethomepage.dev/name: Semaphore
+        gethomepage.dev/namespace: knick-knacks
+        gethomepage.dev/app: ansible-semaphore
       className: internal-nginx
       hosts:
         - host: semaphore.k8s.hyde.services
@@ -80,48 +67,3 @@ spec:
     persistence:
       enabled: true
       size: "64Mi"
----
-# nginx
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: nginx
-  namespace: knick-knacks
-spec:
-  interval: 5m
-  install:
-    createNamespace: true
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  upgrade:
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  chart:
-    spec:
-      chart: nginx
-      version: 19.0.4
-      interval: 5m
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
-  values:
-    staticSitePVC: nginx-static-site-pvc
-    ingress:
-      enabled: true
-      ingressClassName: external-nginx
-      hostname: hyde.services
-      tls: true
-      extraTls:
-        - hosts:
-            - hyde.services
-          secretName: wildcard.hyde.services
-    updateStrategy:
-      type: Recreate
-      rollingUpdate:
-    service:
-      type: ClusterIP
-    podAnnotations:
-      backup.velero.io/backup-volumes: staticsite
