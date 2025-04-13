@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: ghcr.io/open-webui/open-webui
-      tag: v0.6.2
+      tag: 0.6.4
     ollama:
       fullnameOverride: ollama
       image:
