@@ -137,3 +137,7 @@ spec:
           enabled: true
           accessMode: ReadWriteOnce
           size: 128Mi
+        logs:
+          enabled: true
+          type: emptyDir
+          mountPath: /app/logs
