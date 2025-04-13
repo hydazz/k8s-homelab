@@ -82,9 +82,6 @@ spec:
           memory: 128Mi
       persistence:
         size: 2Gi
-      updateStrategy:
-        type: Recreate
-        rollingUpdate:
       podAnnotations:
         backup.velero.io/backup-volumes: data
       extraEnvVars:
