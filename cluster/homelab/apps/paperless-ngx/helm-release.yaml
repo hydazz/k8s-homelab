@@ -43,6 +43,7 @@ spec:
           nameKey: PAPERLESS_DBNAME
           userKey: PAPERLESS_DBUSER
           passwordKey: PAPERLESS_DBPASS
+        sslMode: DISABLED
       comsume:
         polling:
           enabled: 60
