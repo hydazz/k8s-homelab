@@ -22,7 +22,7 @@ redis:
     enabled: false
 
 tautulli:
-  image: ghcr.io/linuxserver/tautulli:2.15.1
+  image: ghcr.io/linuxserver/tautulli:2.15.2
   resources:
     requests:
       cpu: 10m
