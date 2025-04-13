@@ -52,6 +52,7 @@ spec:
     ingress:
       main:
         enabled: true
+        className: internal-nginx
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Digital Document Management for Organizing and Archiving Your Files
