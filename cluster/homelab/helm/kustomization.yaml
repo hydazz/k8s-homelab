@@ -16,6 +16,7 @@ resources:
   - minio
   - nextcloud
   - nvidia
+  - open-webui
   - portainer
   - reflector
   - unofficial

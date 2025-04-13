@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: paperless-ngx
-      version: 0.2.1
+      version: 0.2.5
       interval: 5m
       sourceRef:
         kind: HelmRepository
@@ -95,3 +95,45 @@ spec:
         path: /mnt/Fast/Public/Paperless/consume
         mountPath: /usr/src/paperless/consume
         readOnly: false
+    #redis:
+    #  enabled: true
+    #  fullnameOverride: redis
+    #  architecture: standalone
+    #  master:
+    #    persistence:
+    #      enabled: false
+    #  auth:
+    #    enabled: false
+    paperless-ai:
+      enabled: true
+      fullnameOverride: paperless-ai
+      image:
+        repository: clusterzx/paperless-ai
+        tag: 2.7.6
+      paperlessai:
+        openai:
+          enable: true
+          existingSecret: "paperless-ai-secrets"
+          model: "gpt-4o-mini"
+        paperless:
+          existingSecret:
+            name: "paperless-ai-secrets"
+            apiTokenKey: "PAPERLESS_API_TOKEN"
+            usernameKey: "PAPERLESS_USERNAME"
+      ingress:
+        main:
+          enabled: true
+          className: internal-nginx
+          hosts:
+            - host: paperless-ai.k8s.hyde.services
+              paths:
+                - path: /
+          tls:
+            - secretName: wildcard.hyde.services
+              hosts:
+                - paperless-ai.k8s.hyde.services
+      persistence:
+        data:
+          enabled: true
+          accessMode: ReadWriteOnce
+          size: 128Mi
