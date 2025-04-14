@@ -44,11 +44,9 @@ spec:
           userKey: PAPERLESS_DBUSER
           passwordKey: PAPERLESS_DBPASS
         sslMode: DISABLED
-      comsume:
+      consume:
         polling:
           enabled: 60
-      ocr:
-        language: eng
     ingress:
       main:
         enabled: true
