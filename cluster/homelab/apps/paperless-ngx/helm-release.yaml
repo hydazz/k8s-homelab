@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: paperless-ngx
-      version: 0.2.6
+      version: 0.2.7
       interval: 5m
       sourceRef:
         kind: HelmRepository
@@ -135,7 +135,3 @@ spec:
           enabled: true
           accessMode: ReadWriteOnce
           size: 128Mi
-        logs:
-          enabled: true
-          type: emptyDir
-          mountPath: /app/logs
