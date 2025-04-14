@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: adguard/adguardhome
-      tag: v0.107.59
+      tag: v0.107.60
     strategy:
       type: Recreate
       rollingUpdate:
