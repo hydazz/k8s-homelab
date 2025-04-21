@@ -40,6 +40,8 @@ spec:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
           effect: "NoSchedule"
+      podLabels:
+        role: node-agent
     credentials:
       existingSecret: cloud-credentials-minio
     tolerations:
