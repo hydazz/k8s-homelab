@@ -62,7 +62,7 @@ ingress:
           secretName: ENC[AES256_GCM,data:zwoNSYvZDGWzFTjR/LROq8b/RhN0QyX3,iv:IaTYIVQxUnhtbfImekX6/xpTwZuBHo8lQdblg9hrd6U=,tag:1JXc3HkJ5G96JeFHef0KoQ==,type:str]
 persistence:
     enabled: ENC[AES256_GCM,data:+g6y7g==,iv:qe9E0qkweYVWS0gNOL22wjUX3R7aE61OsHhSqKA1Pp0=,tag:oZkOcHCMA1Ct7zYjCMfkbg==,type:bool]
-    size: ENC[AES256_GCM,data:FLvU,iv:rBTPtAw06nEqDADMG936vFUY94WQugdsxRpj8txi0uc=,tag:ahAAXBp562/jP9rjvpE9UA==,type:str]
+    size: ENC[AES256_GCM,data:W+CT,iv:ck9OvACuLSwofS8unQ9c5W2mcYepgNVq1C4MBFTOnJA=,tag:ffC8cY2xsdE53m4Sdudugw==,type:str]
     nextcloudData:
         enabled: ENC[AES256_GCM,data:otADqQ==,iv:JOndJhJtgy/HPT5rIrUeLV5pwknfSxGDSGzmg6vB4WU=,tag:mgVqu7RAGt+61b+hYRiyLg==,type:bool]
         size: ENC[AES256_GCM,data:rIbzysk=,iv:80Rl1I4nwtCDgTTh7Fq9XVc5kHQPC6fSnKBslGt1w28=,tag:EKXy2sooMJOhsN3J16sUmA==,type:str]
@@ -79,7 +79,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-07T13:00:58Z"
-    mac: ENC[AES256_GCM,data:XBwvUH6UmJG5Gf5Imj/UPcsHZWlE0hseZ1MmovtBG2+cXSdOF8ib/I0KMO0MKAKl7FuBHNxtCUCRZn8R1Co8JPoI6CKWqBtIcnY9+25troOZLrHADk6lQMd4Jok3xhSFHslzPukOJu0ZdqkDWRFm4h+5bobZyZSnpv3mnag7sBs=,iv:LCkVVLNR25DlYybjzI6Xv5pOyoFjen1MMEPzcxSO0SA=,tag:kjn3gtXeYbFIiYu3s817NA==,type:str]
+    lastmodified: "2025-04-22T07:25:12Z"
+    mac: ENC[AES256_GCM,data:BP3wSWpKgkO6WOMvmKO4Xd+OLPAKa9ER0eVlqOrvmf0Jwf3sasfzTJNG4EnFFtM/9Xecn7HzIu+M/Ml7c35884usIRVbSdN1Za3ww4LCt/8lcWxPWbCvHfLSWHFmYStT8K0lhMHAHUaYMI3JTRyK+azx14EMIlNj8FTzWrl6urg=,iv:0q5D7EF1H5gJcjnOycq9MNuHoErekGQDow9do1ghuw0=,tag:KZiiiDOAYvXra40roz2hMw==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.10.1
+    version: 3.10.2

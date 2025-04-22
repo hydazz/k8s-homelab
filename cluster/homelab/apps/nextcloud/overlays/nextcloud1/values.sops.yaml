@@ -38,7 +38,7 @@ ingress:
           secretName: ENC[AES256_GCM,data:bR7ctVL+jvpDSYrL84SNyTd12/F4GA==,iv:SI8RhHhAigL/0gLqON6Ivdgnnvv8JxJ0K6Ax80KVW/A=,tag:s1jYrK7xsdMemQDBx8UZ/Q==,type:str]
 persistence:
     enabled: ENC[AES256_GCM,data:Z/UqDA==,iv:Acv8cAb7ZKtYL2hlQnkKIv3YLKpuKaIArwcFiImpBG0=,tag:N/aQc3Er8p1l05wOC6osvQ==,type:bool]
-    size: ENC[AES256_GCM,data:cjXa,iv:YrrmzBRIxHo8vaAy+ZoceQXZV07vjYt/eTdxPDNGqSc=,tag:wKRq6Xw2Z4/L0sThhEk3PQ==,type:str]
+    size: ENC[AES256_GCM,data:YVVf,iv:7q+DWFnkCbza5FdJq0vUODHdc1nLslyEywXZaCO21PI=,tag:kah8Ld2Dr5rvQaWTl0DA/A==,type:str]
     nextcloudData:
         enabled: ENC[AES256_GCM,data:km6EUA==,iv:ny6mitG6a+9Byana67yKTET/10xfU90Ek46NUoIj0Oo=,tag:oyhZVFo3E2vbgIg2/xpdmw==,type:bool]
         size: ENC[AES256_GCM,data:F39fNTg=,iv:/fkJC+6OTakbAeXifl0m59rLplSRvCbWwDmq1yh9Pe0=,tag:7QZEiigj/pbPaOb7wNJG+g==,type:str]
@@ -55,7 +55,7 @@ sops:
             ajUvcThCS0pSeC91cVkzRjFneHgwNVEK+/s2i+42LbGkgD2DWJDut9LeWR2wiC45
             kHgIQ51ZZJV/CkR8L2b2XAzLgHoNwDWlukvp6IG5pFFBWLxkhBiWIQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-07T13:00:48Z"
-    mac: ENC[AES256_GCM,data:7JKW/f4/4bzbytcYcYnHB9tVNQwkMLLbunNJYm1AJAoH5GqbjG7LAUC7WOSdLaMMBHkGmnXlVD870X3YPqvu3y1k+y7Zc8zOCrnZv37n/qwRQbVwYA424nUH1k8SIZGMbMrL7/5WFxIUYPTqQR4IFuKVoRQKsZbHncfD+GQdlQw=,iv:Vlyi+/asl+2udFekvsyqg41Q8hPjI1yHeasTb7D7wRQ=,tag:X7hZLC3DSm6unjVL+4mbRg==,type:str]
+    lastmodified: "2025-04-22T07:25:01Z"
+    mac: ENC[AES256_GCM,data:W8YIDRJDrhlBdCoK0Uer2IWRjGfLGt9SpN7r3dj1Zowa1NyD8hh0vQk8brilLZIilg1B+pdI1U4cbhVaVZNYYWnErisUM99Z2t14SqFrzm2pYPcsJSYvXMnC+GlBUUMQhoVF0dmvOiEfRY1uv4Rf3tCLqFWzZZoijgqY3QPSyIo=,iv:Blmu6a2SISXL6mN3r5e+d4P1LYrrsvGu+dQ346GbrtA=,tag:3b0eNob0PE4mzquOnyNe7g==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.10.1
+    version: 3.10.2
