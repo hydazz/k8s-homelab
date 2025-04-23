@@ -1,5 +1,3 @@
----
-# unifi protect backup
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -9,11 +7,56 @@ spec:
   interval: 5m
   install:
     createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
-      chart: ./Helm/apps/unifi-protect-backup
-      reconcileStrategy: Revision
+      chart: unifi-protect-backup
+      version: 0.1.4
+      interval: 5m
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: hydaz
         namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/ep1cman/unifi-protect-backup
+      tag: 0.13.0
+    upb:
+      ufp:
+        existingSecret:
+          name: unifi-protect-secrets
+          usernameKey: UFP_USERNAME
+          passwordKey: UFP_PASSWORD
+        address: "192.168.4.1"
+        sslVerify: "false"
+      rclone:
+        retention: 1d
+        destination: cloudflare:/unifi-protect
+        existingSecret:
+          name: unifi-protect-secrets
+          rcloneConfigKey: rclone.conf
+      detectionTypes: person,vehicle,ring
+      fileStructureFormat: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
+      purgeInterval: 1d
+      skipMissing: "false"
+    env:
+      TZ: Australia/Melbourne
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 256Mi
