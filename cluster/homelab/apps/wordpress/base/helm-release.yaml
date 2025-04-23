@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: wordpress
-      version: 24.2.2
+      version: 24.2.3
       interval: 5m
       sourceRef:
         kind: HelmRepository
