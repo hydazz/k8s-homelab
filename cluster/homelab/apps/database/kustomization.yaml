@@ -1,7 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - helm-release.yaml
-  - lazy-tools.yaml
+  - app/mariadb
+  - app/postgresql/14
   - namespace.yaml
-  - secret.sops.yaml
+  - tools/phpmyadmin
+  - tools/phppgadmin
