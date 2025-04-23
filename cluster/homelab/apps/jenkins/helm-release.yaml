@@ -38,6 +38,14 @@ spec:
         backup.velero.io/backup-volumes: jenkins-home
       ingress:
         enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Automation Server for Continuous Integration and Delivery
+          gethomepage.dev/group: Web Applications
+          gethomepage.dev/icon: jenkins
+          gethomepage.dev/name: Jenkins
+          gethomepage.dev/namespace: jenkins
+          gethomepage.dev/app: jenkins
         ingressClassName: external-nginx
         hostName: ci.imagegenius.io
         tls:
