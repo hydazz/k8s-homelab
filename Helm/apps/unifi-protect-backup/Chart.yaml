@@ -1,7 +1,0 @@
----
-apiVersion: v2
-appVersion: 1.0.0
-description: This chart is used to install unifi-protect-backup
-name: unifi-protect-backup
-type: application
-version: 1.0.1
