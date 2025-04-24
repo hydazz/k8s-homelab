@@ -44,9 +44,6 @@ spec:
           userKey: PAPERLESS_DBUSER
           passwordKey: PAPERLESS_DBPASS
         sslMode: DISABLED
-      consume:
-        polling:
-          enabled: 60
     ingress:
       main:
         enabled: true
@@ -78,20 +75,6 @@ spec:
         server: 10.0.3.7
         path: /mnt/Fast/Public/Paperless/media
         mountPath: /usr/src/paperless/media
-        readOnly: false
-      export:
-        enabled: true
-        type: nfs
-        server: 10.0.3.7
-        path: /mnt/Fast/Public/Paperless/export
-        mountPath: /usr/src/paperless/export
-        readOnly: false
-      consume:
-        enabled: true
-        type: nfs
-        server: 10.0.3.7
-        path: /mnt/Fast/Public/Paperless/consume
-        mountPath: /usr/src/paperless/consume
         readOnly: false
     #redis:
     #  enabled: true
