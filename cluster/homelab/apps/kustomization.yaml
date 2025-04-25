@@ -18,5 +18,6 @@ resources:
   - nextcloud
   - open-webui
   - paperless-ngx
+  - pterodactyl
   - uptime-kuma
   - wordpress

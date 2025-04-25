@@ -1,0 +1,95 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pterodactyl-panel
+  namespace: pterodactyl
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: pterodactyl-panel
+      version: 0.1.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: hydaz
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/pterodactyl/panel
+      tag: v1.11.10
+    panel:
+      app:
+        timezone: Australia/Melbourne
+      database:
+        host: mariadb.database.svc.cluster.local
+        port: 3306
+        name: pterodactyl
+        existingSecret:
+          name: pterodactyl-secrets
+          usernameKey: dbUser
+          passwordKey: dbPassword
+      mail:
+        driver: smtp
+        from: noreply@hyde.services
+        host: mail.hyde.services
+        port: 587
+        existingSecret:
+          name: pterodactyl-secrets
+          usernameKey: mailUser
+          passwordKey: mailPassword
+    ingress:
+      main:
+        enabled: true
+        className: external-nginx
+        hosts:
+          - host: pterodactyl.hyde.services
+            paths:
+              - path: /
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - pterodactyl.hyde.services
+    resources:
+      requests:
+        cpu: 300m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 1Gi
+      nginx:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 64Mi
+      certs:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 64Mi
+      logs:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 512Mi
+    wings:
+      enabled: true
+      ingressClassName: internal-nginx
+      tlsSecretName: wildcard.hyde.services
+      corsAllowOrigin: https://pterodactyl.hyde.services
+      instances:
+        - name: discovery
+          ip: 192.168.100.7
+          port: 8080
+          to: discovery.wing.hyde.services
