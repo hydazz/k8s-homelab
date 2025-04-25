@@ -13,7 +13,6 @@ spec:
       port: 8006
       targetPort: 8006
       protocol: TCP
-
 ---
 apiVersion: v1
 kind: Endpoints
@@ -26,7 +25,6 @@ subsets:
       - ip: 192.168.3.4 # voyager
     ports:
       - port: 8006
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
