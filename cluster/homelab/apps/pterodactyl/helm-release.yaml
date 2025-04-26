@@ -50,7 +50,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: external-nginx
+        ingressClassName: external-nginx
         hosts:
           - host: pterodactyl.hyde.services
             paths:
