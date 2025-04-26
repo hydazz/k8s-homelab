@@ -40,7 +40,7 @@ spec:
           passwordKey: dbPassword
       mail:
         driver: smtp
-        from: noreply@hyde.services
+        from: no-reply@hyde.services
         host: mail.hyde.services
         port: 587
         existingSecret:
@@ -93,3 +93,7 @@ spec:
           ip: 192.168.100.7
           port: 8080
           to: discovery.wing.hyde.services
+        - name: oci1
+          ip: 207.211.147.226
+          port: 8080
+          to: oci1.wing.hyde.services
