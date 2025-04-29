@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: pterodactyl-panel
-      version: 0.1.1
+      version: 0.1.2
       interval: 5m
       sourceRef:
         kind: HelmRepository
@@ -47,6 +47,36 @@ spec:
           name: pterodactyl-secrets
           usernameKey: mailUser
           passwordKey: mailPassword
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - |
+              if [ ! -f /app/.theme-installed ]; then
+                echo "Installing Dependencies..."
+                apk add --no-cache rsync yarn
+
+                echo "Setting up Build Environment..."
+                cd /app
+                php artisan config:clear
+                php artisan config:cache
+                php artisan optimize
+
+                echo "Copying Customisation Files..."
+                rsync -a /app/var/arix/theme/ /app/
+                rsync -a /app/var/arix/addon/ /app/
+
+                echo "Applying Arix Theme..."
+                export NODE_OPTIONS=--openssl-legacy-provider
+                printf "\n0\n" | php artisan arix install
+
+                echo "Installing Arix Addon..."
+                printf "\n0\n\n" | php artisan addons install
+
+                touch /app/.theme-installed
+              fi
     ingress:
       main:
         enabled: true
@@ -63,9 +93,6 @@ spec:
       requests:
         cpu: 300m
         memory: 128Mi
-      limits:
-        cpu: 500m
-        memory: 256Mi
     persistence:
       data:
         enabled: true
