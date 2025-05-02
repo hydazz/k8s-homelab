@@ -33,6 +33,8 @@ kube-prometheus-stack:
       accessModes:
         - ReadWriteOnce
       size: 128Mi
+    deploymentStrategy:
+      type: Recreate
   prometheus:
     ingress:
       enabled: true
