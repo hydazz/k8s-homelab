@@ -50,29 +50,24 @@ spec:
     lifecycle:
       postStart:
         exec:
+          # jankiest way of installing extentions
           command:
             - /bin/sh
             - -c
             - |
               if [ ! -f /app/.theme-installed ]; then
-                echo "Installing Dependencies..."
                 apk add --no-cache rsync yarn
 
-                echo "Setting up Build Environment..."
                 cd /app
                 php artisan config:clear
                 php artisan config:cache
                 php artisan optimize
 
-                echo "Copying Customisation Files..."
                 rsync -a /app/var/arix/theme/ /app/
                 rsync -a /app/var/arix/addon/ /app/
 
-                echo "Applying Arix Theme..."
                 export NODE_OPTIONS=--openssl-legacy-provider
                 printf "\n0\n" | php artisan arix install
-
-                echo "Installing Arix Addon..."
                 printf "\n0\n\n" | php artisan addons install
 
                 touch /app/.theme-installed
