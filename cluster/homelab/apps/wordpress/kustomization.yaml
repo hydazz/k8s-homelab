@@ -4,4 +4,5 @@ resources:
   - limit-egress.yaml
   - memcached.yaml
   - namespace.yaml
+  - overlays/livemusicvictoria-com-au
   - overlays/wordpress1
