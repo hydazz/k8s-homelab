@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - app/qbittorrent
   - helm-release.yaml
-#  - ingress.sops.yaml
+  - ingress.sops.yaml
   - namespace.yaml
   - secret.sops.yaml
