@@ -1,0 +1,83 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: media-downloaders
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: qbittorrent
+      version: 0.1.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: hydaz
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/home-operations/qbittorrent
+      tag: 5.1.0
+    env:
+      TZ: Australia/Melbourne
+    nodeSelector:
+      kubernetes.io/hostname: "discovery"
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 8
+        memory: 2Gi
+    vuetorrent:
+      enabled: true
+    gluetun:
+      enabled: true
+      image:
+        repository: ghcr.io/qdm12/gluetun
+        tag: v3.40.0
+      env:
+        VPN_SERVICE_PROVIDER: custom
+        VPN_TYPE: wireguard
+        VPN_INTERFACE: wg0
+        WIREGUARD_ENDPOINT_PORT: 1443
+        VPN_PORT_FORWARDING: on
+        VPN_PORT_FORWARDING_PROVIDER: torguard
+        FIREWALL_INPUT_PORTS: 8080,54913
+        FIREWALL_OUTBOUND_SUBNETS: 10.233.64.0/18,10.233.0.0/18
+      secretRef: qbittorrent-secrets
+    portForward:
+      enabled: true
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - host: qbittorrent.k8s.hyde.services
+            paths:
+              - path: /
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - qbittorrent.k8s.hyde.services
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 256Mi
+      media:
+        enabled: true
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Slow/Media
+        mountPath: /data
+        readOnly: false

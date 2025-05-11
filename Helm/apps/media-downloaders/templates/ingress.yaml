@@ -1,27 +1,3 @@
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: qbittorrent
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: qbittorrent.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: qbittorrent
-                port:
-                  number: {{ .Values.qbittorrent.port }}
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
