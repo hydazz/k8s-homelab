@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: wordpress
+resources:
+  - ../../base
+patches:
+  - target:
+      kind: HelmRelease
+      name: wordpress
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: staging
+      - op: replace
+        path: /spec/valuesFrom/0/name
+        value: staging-values
+secretGenerator:
+  - name: staging-values
+    files:
+      - values.yaml=values.sops.yaml
+    options:
+      disableNameSuffixHash: true

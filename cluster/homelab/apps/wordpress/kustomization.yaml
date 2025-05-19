@@ -5,4 +5,5 @@ resources:
   - memcached.yaml
   - namespace.yaml
   - overlays/livemusicvictoria-com-au
+  - overlays/staging
   - overlays/wordpress1
