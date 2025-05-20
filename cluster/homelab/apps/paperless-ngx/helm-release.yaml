@@ -90,7 +90,7 @@ spec:
       fullnameOverride: paperless-ai
       image:
         repository: clusterzx/paperless-ai
-        tag: 3.0.1
+        tag: 3.0.3
       paperlessai:
         openai:
           enable: true
