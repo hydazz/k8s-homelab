@@ -66,5 +66,5 @@ promtail:
       memory: 250Mi
 
 influxdb:
-  image: influxdb:2.7.11
+  image: influxdb:2.7.12
   port: 8086
