@@ -27,16 +27,12 @@ spec:
     image:
       repository: ghcr.io/home-operations/qbittorrent
       tag: 5.1.0
-    securityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-    podSecurityContext:
-      fsGroup: 1001
-      fsGroupChangePolicy: "OnRootMismatch"
     env:
       TZ: Australia/Melbourne
     nodeSelector:
       kubernetes.io/hostname: "discovery"
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
     resources:
       requests:
         cpu: 250m
