@@ -48,7 +48,8 @@ spec:
         effect: "NoSchedule"
     configuration:
       extraEnvVars:
-        TZ: Australia/Melbourne
+        - name: TZ
+          value: Australia/Melbourne
       backupStorageLocation:
         - name: k8s-homelab
           provider: aws
