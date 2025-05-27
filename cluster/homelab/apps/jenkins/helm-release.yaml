@@ -27,7 +27,7 @@ spec:
     controller:
       image:
         repository: jenkins/jenkins
-        tag: 2.511
+        tag: 2.512
       sidecars:
         configAutoReload:
           enabled: false
