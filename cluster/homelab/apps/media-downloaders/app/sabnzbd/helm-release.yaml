@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sabnzbd
+  namespace: media-downloaders
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: sabnzbd
+      version: 0.1.0
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: hydaz
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/home-operations/sabnzbd
+      tag: 4.5.1
+    env:
+      TZ: Australia/Melbourne
+    nodeSelector:
+      kubernetes.io/hostname: "discovery"
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 8
+        memory: 2Gi
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - host: sabnzbd.k8s.hyde.services
+            paths:
+              - path: /
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - sabnzbd.k8s.hyde.services
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 128Mi
+      media:
+        enabled: true
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Slow/Media
+        mountPath: /data
+        readOnly: false
