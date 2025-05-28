@@ -31,7 +31,7 @@ spec:
       fullnameOverride: ollama
       image:
         repository: ollama/ollama
-        tag: 0.7.1
+        tag: 0.8.0
       ingress:
         enabled: true
         className: internal-nginx
