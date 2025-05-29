@@ -4,5 +4,5 @@ resources:
   - app/qbittorrent
   - app/sabnzbd
   - tools/unpackerr
-#  - ingress.sops.yaml
+  - ingress.sops.yaml
   - namespace.yaml

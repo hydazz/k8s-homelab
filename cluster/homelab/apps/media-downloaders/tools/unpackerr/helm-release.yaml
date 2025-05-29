@@ -76,7 +76,7 @@ spec:
       webhook:
         - url:
             secretRef:
-              name: unpackerr-secret
+              name: unpackerr-secrets
               key: webhookUrl
           name: Notifiarr
           ignore_ssl: false
