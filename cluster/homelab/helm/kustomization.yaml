@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - authentik
   - bitnami
+  - bjw-s
   - cert-manager
   - crowdsec
   - docker-mailserver
