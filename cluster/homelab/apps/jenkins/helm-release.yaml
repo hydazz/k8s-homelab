@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: jenkins
-      version: 5.8.53
+      version: 5.8.55
       interval: 5m
       sourceRef:
         kind: HelmRepository
