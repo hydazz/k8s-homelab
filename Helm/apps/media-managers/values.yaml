@@ -23,7 +23,7 @@ storage:
     appdata: 16Mi
 
 flaresolverr:
-  image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+  image: ghcr.io/flaresolverr/flaresolverr:v3.3.22
   port: 8191
   resources:
     requests:
