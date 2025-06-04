@@ -1,7 +1,6 @@
 ---
 storage:
   radarr:
-    appdata: 2Gi
     appdata_3d: 256Mi
   sonarr:
     appdata: 1Gi
@@ -45,14 +44,6 @@ prowlarr:
     requests:
       cpu: 10m
       memory: 128Mi
-
-radarr:
-  image: ghcr.io/linuxserver/radarr:5.25.0
-  port: 7878
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
 
 sonarr:
   image: ghcr.io/linuxserver/sonarr:4.0.14

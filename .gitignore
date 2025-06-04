@@ -12,3 +12,4 @@ temp
 docker-data
 private-*.yaml
 .decrypted*
+.vscode
