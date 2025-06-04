@@ -3,8 +3,9 @@ kind: Kustomization
 resources:
   - app/private
   - app/radarr
+  - app/sonarr
   - helm-release.yaml
-#  - ingress.sops.yaml
+  #  - ingress.sops.yaml
   - limit-egress.yaml
   - namespace.yaml
   - secret.sops.yaml
