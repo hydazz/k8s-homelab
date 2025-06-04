@@ -101,7 +101,7 @@ spec:
         globalMounts:
           - path: /config
         accessMode: ReadWriteOnce
-        size: 256Mi
+        size: 1Gi
       logs:
         type: emptyDir
         globalMounts:
