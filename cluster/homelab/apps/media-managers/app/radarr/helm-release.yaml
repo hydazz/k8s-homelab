@@ -66,6 +66,8 @@ spec:
     ingress:
       app:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 64m
         className: internal-nginx
         hosts:
           - host: radarr.k8s.hyde.services
