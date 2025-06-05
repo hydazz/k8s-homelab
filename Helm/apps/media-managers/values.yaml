@@ -6,8 +6,6 @@ storage:
     appdata: 256Mi
 # lidarr:
 #   appdata: 256Mi
-  overseerr:
-    appdata: 128Mi
   bazarr:
     appdata: 128Mi
   tdarr:
@@ -26,14 +24,6 @@ flaresolverr:
     requests:
       cpu: 512m
       memory: 1Gi
-
-overseerr:
-  image: ghcr.io/linuxserver/overseerr:1.34.0
-  port: 5055
-  resources:
-    requests:
-      cpu: 10m
-      memory: 50Mi
 
 prowlarr:
   image: ghcr.io/linuxserver/prowlarr:1.37.0

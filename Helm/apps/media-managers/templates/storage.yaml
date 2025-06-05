@@ -26,18 +26,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: overseerr-appdata-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.overseerr.appdata }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: bazarr-appdata-pvc
 spec:
   accessModes:

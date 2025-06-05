@@ -25,29 +25,6 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: overseerr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: external-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: overseerr.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: overseerr
-                port:
-                  number: {{ .Values.overseerr.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: tdarr
   namespace: {{ $.Release.Namespace }}
 spec:
