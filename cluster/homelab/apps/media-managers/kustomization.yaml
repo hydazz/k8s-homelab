@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - app/overseerr
   - app/private
+  - app/prowlarr
   - app/radarr
   - app/sonarr
   - helm-release.yaml

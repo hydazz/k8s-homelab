@@ -1,7 +1,5 @@
 ---
 storage:
-  prowlarr:
-    appdata: 256Mi
 # lidarr:
 #   appdata: 256Mi
   bazarr:
@@ -22,14 +20,6 @@ flaresolverr:
     requests:
       cpu: 512m
       memory: 1Gi
-
-prowlarr:
-  image: ghcr.io/linuxserver/prowlarr:1.37.0
-  port: 9696
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi
 
 bazarr:
   image: ghcr.io/linuxserver/bazarr:1.5.2
