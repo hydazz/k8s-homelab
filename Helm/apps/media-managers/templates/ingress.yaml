@@ -90,30 +90,6 @@ spec:
                 name: prowlarr
                 port:
                   number: {{ .Values.prowlarr.port }}
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: radarr-3d
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: radarr-3d.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: radarr-3d
-                port:
-                  number: 7878
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

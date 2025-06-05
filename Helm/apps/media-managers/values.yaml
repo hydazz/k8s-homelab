@@ -1,7 +1,5 @@
 ---
 storage:
-  radarr:
-    appdata_3d: 256Mi
   prowlarr:
     appdata: 256Mi
 # lidarr:
