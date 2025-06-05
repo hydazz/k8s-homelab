@@ -4,10 +4,6 @@ storage:
 #   appdata: 256Mi
   bazarr:
     appdata: 128Mi
-  tdarr:
-    config: 128Mi
-    logs: 128Mi
-    server: 2Gi
   kometa:
     appdata: 1Gi
   notifiarr:
@@ -36,20 +32,6 @@ lidarr:
     requests:
       cpu: 10m
       memory: 256Mi
-
-tdarr:
-  image: ghcr.io/haveagitgat/tdarr:2.42.01
-  port: 8265
-  resources:
-    requests:
-      cpu: 10m
-      memory: 1Gi
-    limits:
-      cpu: 1
-      memory: 3Gi
-      nvidia.com/gpu: 1
-  nodeSelector:
-    nvidia.com/gpu.present: "true"
 
 kometa:
   image: ghcr.io/linuxserver/kometa:2.2.0

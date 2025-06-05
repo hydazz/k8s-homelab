@@ -6,6 +6,7 @@ resources:
   - app/prowlarr
   - app/radarr
   - app/sonarr
+  - app/tdarr
   - helm-release.yaml
   #  - ingress.sops.yaml
   - namespace.yaml

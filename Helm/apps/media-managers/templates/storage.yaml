@@ -13,42 +13,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tdarr-config-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.tdarr.config }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tdarr-logs-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.tdarr.logs }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tdarr-server-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: {{ .Values.storage.tdarr.server }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: kometa-appdata-pvc
 spec:
   accessModes:

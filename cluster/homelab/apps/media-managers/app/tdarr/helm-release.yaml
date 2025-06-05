@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tdarr
+  namespace: media-managers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      tdarr:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr
+              tag: 2.42.01
+            env:
+              TZ: Australia/Melbourne
+              PUID: 1001
+              PGID: 1001
+              serverIP: 0.0.0.0
+              serverPort: 8266
+              webUIPort: &port 8265
+              internalNode: true
+              inContainer: true
+              nodeName: Internal
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 10m
+                memory: 1Gi
+              limits:
+                cpu: 1
+                memory: 3Gi
+                nvidia.com/gpu: 1
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+      annotations:
+        backup.velero.io/backup-volumes: config
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 64m
+        className: internal-nginx
+        hosts:
+          - host: tdarr.k8s.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - tdarr.k8s.hyde.services
+    persistence:
+      config:
+        enabled: true
+        retain: true
+        globalMounts:
+          - path: /app/server
+            subPath: server
+          - path: /app/configs
+            subPath: config
+        accessMode: ReadWriteOnce
+        size: 2Gi
+      media:
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Slow/Media/Plex Media
+        globalMounts:
+          - path: /media
