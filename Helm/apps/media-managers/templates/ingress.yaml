@@ -1,27 +1,3 @@
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: flaresolverr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: flaresolverr.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: flaresolverr
-                port:
-                  number: {{ .Values.flaresolverr.port }}
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

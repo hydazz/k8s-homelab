@@ -2,8 +2,6 @@
 storage:
 # lidarr:
 #   appdata: 256Mi
-  kometa:
-    appdata: 1Gi
   notifiarr:
     appdata: 16Mi
 
@@ -14,9 +12,6 @@ lidarr:
     requests:
       cpu: 10m
       memory: 256Mi
-
-kometa:
-  image: ghcr.io/linuxserver/kometa:2.2.0
 
 notifiarr:
   image: ghcr.io/notifiarr/notifiarr:v0.8.3

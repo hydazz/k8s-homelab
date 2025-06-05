@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app kometa
+  namespace: media-managers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      kometa:
+        type: cronjob
+        cronjob:
+          schedule: "0 3 * * *"
+          timeZone: &timezone Australia/Melbourne
+          concurrencyPolicy: Forbid
+          successfulJobsHistory: 1
+          failedJobsHistory: 1
+        containers:
+          app:
+            image:
+              repository: kometateam/kometa
+              tag: v2.2.0
+            env:
+              TZ: *timezone
+              KOMETA_RUN: true
+              KOMETA_READ_ONLY_CONFIG: true
+            envFrom:
+              - secretRef:
+                  name: kometa-secrets
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        enabled: false
+    persistence:
+      config:
+        enabled: true
+        retain: true
+        globalMounts:
+          - path: /config
+        accessMode: ReadWriteOnce
+        size: 128Mi
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      assets:
+        type: emptyDir
+        globalMounts:
+          - path: /config/assets
+      files:
+        type: configMap
+        name: kometa-configmap
+        globalMounts:
+          - path: /config/config.yml
+            subPath: config.yml
+            readOnly: true
+          - path: /config/playlists.yml
+            subPath: playlists.yml
+            readOnly: true

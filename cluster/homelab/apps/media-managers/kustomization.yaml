@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - app/bazarr
   - app/flaresolverr
+  - app/kometa
   - app/overseerr
   - app/private
   - app/prowlarr
