@@ -90,7 +90,7 @@ radarr:
   root_folder_path: /data/Plex Media/Movies
   monitor: true
   availability: announced
-  quality_profile: Auto
+  quality_profile: Auto (Highest)
   search: false
   add_existing: false
   upgrade_existing: false
@@ -104,7 +104,7 @@ sonarr:
   add: false
   root_folder_path: /data/Plex Media/TV Shows
   monitor: all
-  quality_profile: Auto
+  quality_profile: Auto (Highest)
   language_profile: English
   series_type: standard
   season_folder: true

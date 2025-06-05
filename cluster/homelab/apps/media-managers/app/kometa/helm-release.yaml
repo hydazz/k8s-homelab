@@ -72,15 +72,16 @@ spec:
         globalMounts:
           - path: /config
         accessMode: ReadWriteOnce
-        size: 128Mi
-      logs:
+        size: 512Mi
+      data:
         type: emptyDir
         globalMounts:
           - path: /config/logs
-      assets:
-        type: emptyDir
-        globalMounts:
+            subPath: logs
+          - path: /config/overlays
+            subPath: overlays
           - path: /config/assets
+            subPath: assets
       files:
         type: configMap
         name: kometa-configmap
