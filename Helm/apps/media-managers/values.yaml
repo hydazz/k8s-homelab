@@ -7,14 +7,6 @@ storage:
   notifiarr:
     appdata: 16Mi
 
-flaresolverr:
-  image: ghcr.io/flaresolverr/flaresolverr:v3.3.24
-  port: 8191
-  resources:
-    requests:
-      cpu: 512m
-      memory: 1Gi
-
 lidarr:
   image: ghcr.io/linuxserver/lidarr:2.11.2
   port: 8686
