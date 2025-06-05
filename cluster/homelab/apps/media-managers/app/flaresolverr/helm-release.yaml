@@ -36,7 +36,6 @@ spec:
             env:
               TZ: Australia/Melbourne
               LOG_LEVEL: INFO
-              HOME: /tmp
             probes:
               liveness: &probe
                 enabled: true
@@ -59,13 +58,6 @@ spec:
               capabilities:
                 drop:
                   - ALL
-    defaultPodOptions:
-      securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
-        runAsNonRoot: true
-        fsGroup: 1001
-        fsGroupChangePolicy: "OnRootMismatch"
     service:
       app:
         controller: *app
