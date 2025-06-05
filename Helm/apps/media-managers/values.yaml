@@ -2,8 +2,6 @@
 storage:
 # lidarr:
 #   appdata: 256Mi
-  bazarr:
-    appdata: 128Mi
   kometa:
     appdata: 1Gi
   notifiarr:
@@ -16,14 +14,6 @@ flaresolverr:
     requests:
       cpu: 512m
       memory: 1Gi
-
-bazarr:
-  image: ghcr.io/linuxserver/bazarr:1.5.2
-  port: 6767
-  resources:
-    requests:
-      cpu: 10m
-      memory: 256Mi
 
 lidarr:
   image: ghcr.io/linuxserver/lidarr:2.11.2

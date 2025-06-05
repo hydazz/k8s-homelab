@@ -25,29 +25,6 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: bazarr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: bazarr.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: bazarr
-                port:
-                  number: {{ .Values.bazarr.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: notifiarr
   namespace: {{ $.Release.Namespace }}
 spec:
