@@ -1,0 +1,129 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app storage-${D_HS/./-}
+  namespace: nextcloud
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: nextcloud
+      version: 6.6.10
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+        namespace: flux-system
+  values:
+    image:
+      repository: nextcloud
+      tag: 31.0.5-fpm-alpine
+      flavor: fpm-alpine
+    nginx:
+      enabled: true
+    podAnnotations:
+      backup.velero.io/backup-volumes: nextcloud-main,nextcloud-data
+    fullnameOverride: *app
+    nextcloud:
+      host: &host storage.${D_HS}
+      configs:
+        custom.config.php: |-
+          <?php
+          $CONFIG = array(
+            'overwriteprotocol' => 'https',
+            'overwrite.cli.url' => 'https://storage.${D_HS}',
+            'overewritehost' => 'storage.${D_HS}',
+            'check_data_directory_permissions' => false,
+            'default_phone_region' => '3166-2:AU',
+            'enable_previews' => false,
+            'trusted_proxies' => array(
+              0 => '127.0.0.1',
+              1 => '10.0.0.0/8',
+            ),
+            'trusted_domains' => array(
+              0 => '127.0.0.1',
+              1 => 'storage.${D_HS}',
+            ),
+            'filesystem_check_changes' => 1,
+            'simpleSignUpLink.shown' => false,
+            'cache_path' => '/cache',
+            'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+          );
+      phpConfigs:
+        uploadLimit.ini: |
+          upload_max_filesize = 16G
+          post_max_size = 16G
+          max_input_time = 3600
+          max_execution_time = 3600
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: mysql
+      host: mariadb.database.svc.cluster.local
+      existingSecret:
+        enabled: true
+        secretName: shs-sectets
+        usernameKey: db-username
+        passwordKey: db-password
+        databaseKey: db-name
+    ingress:
+      enabled: true
+      className: external-nginx
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+        nginx.ingress.kubernetes.io/proxy-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+
+          rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+          location = /.well-known/carddav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /.well-known/caldav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
+          }
+      tls:
+        - hosts:
+            - *host
+          secretName: wildcard.${D_HS}
+    persistence:
+      enabled: true
+      size: 2Gi
+      nextcloudData:
+        enabled: true
+        size: 512Mi
+    cronjob:
+      enabled: true
+
+  valuesFrom:
+    - kind: Secret
+      name: shs-values

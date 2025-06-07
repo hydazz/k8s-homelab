@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - limit-egress.yaml
   - namespace.yaml
-  - overlays/nextcloud1
+  - app/shs
   - overlays/nextcloud2
