@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: postgresql
-      version: 16.7.9
+      version: 16.7.10
       interval: 5m
       sourceRef:
         kind: HelmRepository
