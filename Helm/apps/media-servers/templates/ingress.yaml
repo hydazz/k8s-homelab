@@ -44,26 +44,3 @@ spec:
                 name: tautulli
                 port:
                   number: 8181
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: wizarr
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: external-nginx
-  tls:
-    - hosts:
-        - "wizarr.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: wizarr.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: wizarr
-                port:
-                  number: 5690

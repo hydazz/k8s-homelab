@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app wizarr
+  namespace: media-servers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      wizarr:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/wizarrrr/wizarr
+              tag: 2025.6.1
+            env:
+              TZ: Australia/Melbourne
+              APP_URL: https://wizarr.hyde.services
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 5690
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: external-nginx
+        hosts:
+          - host: wizarr.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - wizarr.hyde.services
+    persistence:
+      config:
+        enabled: true
+        retain: true
+        globalMounts:
+          - path: /data/database
+        accessMode: ReadWriteOnce
+        size: 64Mi

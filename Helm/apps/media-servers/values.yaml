@@ -5,8 +5,6 @@ storage:
   immich:
   tautulli:
     appdata: 2Gi
-  wizarr:
-    appdata: 64Mi
 
 immich:
   image: ghcr.io/imagegenius/immich:1.134.0-noml
@@ -27,13 +25,6 @@ tautulli:
     requests:
       cpu: 10m
       memory: 256Mi
-
-wizarr:
-  image: ghcr.io/wizarrrr/wizarr:2025.6.1
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi
 
 plex:
   image: ghcr.io/linuxserver/plex:1.41.7
