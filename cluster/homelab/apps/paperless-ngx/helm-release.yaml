@@ -91,6 +91,8 @@ spec:
       image:
         repository: clusterzx/paperless-ai
         tag: 3.0.4
+      nodeSelector:
+        kubernetes.io/arch: amd64
       paperlessai:
         openai:
           enable: true
