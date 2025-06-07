@@ -4,13 +4,12 @@ resources:
   - app/bazarr
   - app/flaresolverr
   - app/kometa
+  - app/notifiarr
   - app/overseerr
   - app/private
   - app/prowlarr
   - app/radarr
   - app/sonarr
   - app/tdarr
-  - helm-release.yaml
   - ingress.sops.yaml
   - namespace.yaml
-  - secret.sops.yaml

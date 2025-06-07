@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app notifiarr
+  namespace: media-managers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      notifiarr:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/notifiarr/notifiarr
+              tag: v0.8.3
+            env:
+              TZ: Australia/Melbourne
+              MACHINE_ID:
+                valueFrom:
+                  secretKeyRef:
+                    name: notifiarr-secrets
+                    key: machine-id
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 5454
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      hostname: notifiarr
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: notifiarr.k8s.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - notifiarr.k8s.hyde.services
+    persistence:
+      config:
+        enabled: true
+        retain: true
+        globalMounts:
+          - path: /config
+        accessMode: ReadWriteOnce
+        size: 16Mi
+      machine-id:
+        type: secret
+        name: notifiarr-secrets
+        globalMounts:
+          - path: /etc/machine-id
+            subPath: machine-id
