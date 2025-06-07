@@ -5,7 +5,7 @@ metadata:
     namespace: flux-system
 spec:
     interval: 5m0s
-    path: ./cluster/homelab/base/vars
+    path: ./cluster/homelab/vars
     prune: true
     decryption:
         provider: sops
