@@ -19,13 +19,6 @@ redis:
   auth:
     enabled: false
 
-tautulli:
-  image: ghcr.io/linuxserver/tautulli:2.15.2
-  resources:
-    requests:
-      cpu: 10m
-      memory: 256Mi
-
 plex:
   image: ghcr.io/linuxserver/plex:1.41.7
   ports:

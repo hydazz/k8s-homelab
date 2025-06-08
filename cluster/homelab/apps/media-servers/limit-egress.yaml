@@ -43,45 +43,6 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: restrict-tautulli
-  namespace: media-servers
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/name: tautulli
-  policyTypes:
-    - Egress
-  egress:
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-            except:
-              - 10.0.0.0/8
-              - 172.16.0.0/12
-              - 192.168.0.0/16
-      ports:
-        - protocol: TCP
-          port: 80
-        - protocol: TCP
-          port: 443
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-      ports:
-        - protocol: UDP
-          port: 53
-        - protocol: TCP
-          port: 53
-    - to:
-        - ipBlock:
-            cidr: 203.12.8.19/32
-      ports:
-        - protocol: TCP
-          port: 32400
----
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
   name: restrict-immich
   namespace: media-servers
 spec:

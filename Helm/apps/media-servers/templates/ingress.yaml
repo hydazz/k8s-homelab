@@ -21,26 +21,3 @@ spec:
                 name: immich-svc
                 port:
                   number: 8080
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: tautulli
-  namespace: {{ $.Release.Namespace }}
-spec:
-  ingressClassName: external-nginx
-  tls:
-    - hosts:
-        - "tautulli.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: tautulli.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: tautulli
-                port:
-                  number: 8181

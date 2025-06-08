@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tautulli
+  namespace: media-servers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      tautulli:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/tautulli
+              tag: 2.15.2
+            env:
+              TZ: Australia/Melbourne
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /status
+                    port: &port 8181
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 10m
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: external-nginx
+        hosts:
+          - host: tautulli.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - tautulli.hyde.services
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        size: 256Mi
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+            subPath: logs
+          - path: /config/backups
+            subPath: backups
