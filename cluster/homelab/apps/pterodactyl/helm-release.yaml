@@ -42,7 +42,7 @@ spec:
         driver: smtp
         from: no-reply@hyde.services
         host: mail.hyde.services
-        port: 587
+        port: 465
         existingSecret:
           name: pterodactyl-secrets
           usernameKey: mailUser

@@ -36,7 +36,7 @@ spec:
                 password: ENC[AES256_GCM,data:BoopI8eH+JItscXXbkY=,iv:Zf2IB/DfPcFl/61WNQt0+A0BIU1Oz4GmXWMhCLtxDu4=,tag:V/1wvCsdS9+PwTFOxjks8Q==,type:str]
             email:
                 host: mail.hyde.services
-                port: "587"
+                port: "465"
                 username: no-reply@hyde.services
                 password: ENC[AES256_GCM,data:d3rNh+xHFeBmGrPY3PCG4Q==,iv:Ia6h8IMDbMSuLkmDFaw9Be8KsCkw6JNsmuY/8I0Pv2M=,tag:Rgegk8kGRcAipywViP+moA==,type:str]
                 use_tls: true
@@ -97,7 +97,7 @@ sops:
             aDVxSUFNOUY0SWYybE5iK1JSYk95MEUKHOpUIKJJsU09xb5S5QzqEz720GSiLuBw
             jSMQUpn1Kf1nQg87HdSi0ATj3U6fkzkaemCY+yek1OKdKhlAE8KLMQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-10T03:55:18Z"
-    mac: ENC[AES256_GCM,data:qfCqIvL++YlNy36nqNDSMedbsdQ2IceX81A0OacBQW6BpRRGohW7j+w2OBrmMQJJUmKVRzHoE1hRCFNIwzpoFft5Q8FhswEJS4FT3X/HayIwRgFj+V3plSkjPhMfCF89zVzwQJl41+Ez337VwSwEO1Fu4Ofcq6nSA9+vG6qTiaA=,iv:osz+Ars1Zy4PKx25VJCNPKsCDgJNOUVkg3aniY+QpSI=,tag:OsZS1g5E6+sHeSxq3k3DTQ==,type:str]
+    lastmodified: "2025-06-08T14:22:26Z"
+    mac: ENC[AES256_GCM,data:sx0/WvF7qgU2bjSiWvVlFpDQmDmFpVYdPDZEOLJ3o8aZndXqNIKUpaBSK+s6RPT+UhFJyA6ifkcgUfTnf/DbbxpJhFCNUqB98G/OKDg42x1Sr5rcofBQhBoi8WC6zuODgn3uk4aiybm4Zq51oYuAvpvkGihV6UseSQqdJE2roBI=,iv:QgC6jmCEzmfQEV06cD1qjIjDFm8uUV5laqvWsNvEYjA=,tag:e7bhJQN1WFLrkdcfX36VvA==,type:str]
     encrypted_regex: ^(password|secret_key|accountId|licenseKey)$
-    version: 3.10.1
+    version: 3.10.2

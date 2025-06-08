@@ -52,4 +52,4 @@ spec:
             cidr: 203.12.8.19/32
       ports:
         - protocol: TCP
-          port: 587
+          port: 465
