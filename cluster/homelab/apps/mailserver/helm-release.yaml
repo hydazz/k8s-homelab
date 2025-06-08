@@ -87,13 +87,6 @@ spec:
       tls: true
       realIpHeader: X-Forwarded-For
       realIpFrom: 0.0.0.0/0
-      extraHosts:
-        - name: mailu.hyde.services
-          path: /
-      extraTls:
-        - hosts:
-            - mailu.hyde.services
-          secretName: wildcard.hyde.services
     front:
       logLevel: WARNING
       hostPort:
@@ -101,12 +94,13 @@ spec:
       externalService:
         enabled: true
         type: LoadBalancer
+        externalTrafficPolicy: Local
         annotations:
           metallb.io/loadBalancerIPs: 192.168.4.13
         ports:
-          pop3: false
+          pop3: true
           pop3s: true
-          imap: false
+          imap: true
           imaps: true
           smtp: true
           smtps: true
