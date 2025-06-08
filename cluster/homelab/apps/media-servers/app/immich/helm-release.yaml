@@ -1,0 +1,107 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app immich
+  namespace: media-servers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      immich:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/imagegenius/immich
+              tag: 1.134.0-noml
+            env:
+              PUID: "1001"
+              PGID: "1001"
+              TZ: Australia/Melbourne
+              DB_HOSTNAME: postgresql-14.database.svc.cluster.local
+              DB_PORT: "5432"
+              DB_DATABASE_NAME:
+                secretKeyRef:
+                  name: immich-secrets
+                  key: DB_DATABASE_NAME
+              DB_USERNAME:
+                secretKeyRef:
+                  name: immich-secrets
+                  key: DB_USERNAME
+              DB_PASSWORD:
+                secretKeyRef:
+                  name: immich-secrets
+                  key: DB_PASSWORD
+              REDIS_HOSTNAME: localhost
+              REDIS_PORT: "6379"
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/server-info/ping
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+          redis:
+            image:
+              repository: redis
+              tag: 8.0.2
+            env:
+              REDIS_REPLICATION_MODE: master
+            command: ["redis-server"]
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: external-nginx
+        hosts:
+          - host: immich.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - immich.hyde.services
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /config
+      photos:
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Slow/Media/Immich
+        globalMounts:
+          - path: /photos

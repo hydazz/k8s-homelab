@@ -2,22 +2,6 @@
 storage:
   plex:
     appdata: 24Gi
-  immich:
-  tautulli:
-    appdata: 2Gi
-
-immich:
-  image: ghcr.io/imagegenius/immich:1.134.0-noml
-
-redis:
-  enabled: true
-  fullnameOverride: redis
-  architecture: standalone
-  master:
-    persistence:
-      enabled: false
-  auth:
-    enabled: false
 
 plex:
   image: ghcr.io/linuxserver/plex:1.41.7
