@@ -51,9 +51,6 @@ spec:
               readiness: *probe
             securityContext:
               allowPrivilegeEscalation: false
-              capabilities:
-                drop:
-                  - ALL
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/arch: "amd64"
