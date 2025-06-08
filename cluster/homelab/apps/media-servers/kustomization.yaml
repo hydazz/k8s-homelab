@@ -5,7 +5,7 @@ resources:
   - app/tautulli
 # - app/wizarr
   - helm-release.yaml
-  - ingress.sops.yaml
+# - ingress.sops.yaml
   - limit-egress.yaml
   - namespace.yaml
   - secret.sops.yaml

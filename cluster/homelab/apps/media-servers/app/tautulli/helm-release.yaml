@@ -73,6 +73,8 @@ spec:
     ingress:
       app:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 64m
         className: external-nginx
         hosts:
           - host: tautulli.hyde.services
