@@ -1,93 +1,84 @@
-apiVersion: apps/v1
-kind: Deployment
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
-  name: phppgadmin
+  name: &app phppgadmin
   namespace: database
-  labels:
-    app.kubernetes.io/instance: phppgadmin
-    app.kubernetes.io/name: phppgadmin
 spec:
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: phppgadmin
-      app.kubernetes.io/name: phppgadmin
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/instance: phppgadmin
-        app.kubernetes.io/name: phppgadmin
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
     spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      phppgadmin:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: snimshchikov/phppgadmin
+              tag: latest # no other tags 🤨
+            env:
+              PPA_SERVER_DESCS: "postgresql-14"
+              PPA_SERVER_HOSTS: "postgresql-14.database.svc.cluster.local"
+              PPA_SERVER_PORTS: 5432
+              PPA_SERVER_SSL_MODES: "disable"
+              PPA_EXTRA_LOGIN_SECURITY: false
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: &port 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
       nodeSelector:
         kubernetes.io/arch: "amd64"
-      containers:
-        - name: phppgadmin
-          image: snimshchikov/phppgadmin:latest # no other tags 🤨
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-          env:
-            - name: PPA_SERVER_DESCS
-              value: "postgresql-14"
-            - name: PPA_SERVER_HOSTS
-              value: "postgresql-14.database.svc.cluster.local"
-            - name: PPA_SERVER_PORTS
-              value: "5432"
-            - name: PPA_SERVER_SSL_MODES
-              value: "disable"
-            - name: PPA_EXTRA_LOGIN_SECURITY
-              value: "false"
-          livenessProbe:
-            failureThreshold: 5
-            initialDelaySeconds: 30
-            timeoutSeconds: 2
-            tcpSocket:
-              port: 80
-          startupProbe:
-            failureThreshold: 10
-            timeoutSeconds: 2
-            tcpSocket:
-              port: 80
-      restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: phppgadmin
-  namespace: database
-spec:
-  selector:
-    app.kubernetes.io/instance: phppgadmin
-    app.kubernetes.io/name: phppgadmin
-  ports:
-    - name: phppgadmin
-      protocol: TCP
-      port: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: phppgadmin
-  namespace: database
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "128m"
-spec:
-  ingressClassName: internal-nginx
-  tls:
-    - hosts:
-        - "*.k8s.hyde.services"
-      secretName: wildcard.hyde.services
-  rules:
-    - host: phppgadmin.k8s.hyde.services
-      http:
-        paths:
-          - pathType: Prefix
-            path: /
-            backend:
-              service:
-                name: phppgadmin
-                port:
-                  number: 80
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "128m"
+        className: internal-nginx
+        hosts:
+          - host: phppgadmin.k8s.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - phppgadmin.k8s.hyde.services
