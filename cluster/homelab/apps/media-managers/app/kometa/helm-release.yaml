@@ -67,10 +67,6 @@ spec:
         enabled: false
     persistence:
       config:
-        enabled: true
-        retain: true
-        globalMounts:
-          - path: /config
         accessMode: ReadWriteOnce
         size: 512Mi
       data:

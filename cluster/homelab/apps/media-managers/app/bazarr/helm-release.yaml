@@ -95,10 +95,6 @@ spec:
               - bazarr.k8s.hyde.services
     persistence:
       config:
-        enabled: true
-        retain: true
-        globalMounts:
-          - path: /config
         accessMode: ReadWriteOnce
         size: 128Mi
       logs:

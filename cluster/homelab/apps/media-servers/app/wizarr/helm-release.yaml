@@ -90,8 +90,6 @@ spec:
               - wizarr.hyde.services
     persistence:
       config:
-        enabled: true
-        retain: true
         globalMounts:
           - path: /data/database
         accessMode: ReadWriteOnce

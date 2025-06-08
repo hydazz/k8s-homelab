@@ -95,8 +95,6 @@ spec:
               - tdarr.k8s.hyde.services
     persistence:
       config:
-        enabled: true
-        retain: true
         globalMounts:
           - path: /app/server
             subPath: server

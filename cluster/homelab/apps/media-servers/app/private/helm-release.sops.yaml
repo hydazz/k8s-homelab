@@ -103,8 +103,6 @@ spec:
                         - ENC[AES256_GCM,data:lov1S71dT/cQ/GOtV/DBeWOQADnX6g==,iv:tLhhbziofLnI1ZJFvJVdCS5scL+VsjaorIufOIJo3zk=,tag:IzwTBZVJ/ebUaNx8ijh8QQ==,type:str]
         persistence:
             config:
-                enabled: ENC[AES256_GCM,data:m6iUxg==,iv:gS2OvTCjn5OZ3NgYajwMdbYBIRlhLn8mUdl/hgF3L6w=,tag:uH0QH9xexwE9riqvULdRSQ==,type:bool]
-                retain: ENC[AES256_GCM,data:yB9isA==,iv:BG5j2sxvJhl7rmkdDqQMBmfrbjJLdD+6+2Qs1USnIjA=,tag:/PJah1TdVHgbKwq43H6Wbw==,type:bool]
                 globalMounts:
                     - path: ENC[AES256_GCM,data:1Xt8OY46bKgHIo2sUI5z,iv:4WnYsqiyhrLaZvQtG0ITW98YW19/fCBXvbxNum43WP4=,tag:nLeY6LYF17tAooxrmGNXAg==,type:str]
                 accessMode: ENC[AES256_GCM,data:UxQasY85bMBDdF5hpQ==,iv:2BB0dBlmdFdiQog4GujtDN6SCHpJbOxjD88HaOctR+k=,tag:atsWzo7kujeKf5/hv3Q3Dw==,type:str]
@@ -126,7 +124,7 @@ sops:
             YlZ0ZDdvcmI5QzNheEFKdk5pQWtHZncK3P2+vWqQooaU4WWMKw7nGtcnU2zL8N4h
             B1gtAPhr261+YSOvNEug2+wFACulyT/1MZ+dR14xJm+7PmpnMMF3Lg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-07T12:54:45Z"
-    mac: ENC[AES256_GCM,data:xdZwBGgUhU9Fnzv5fBxjC7LnTX4tvmMVD9uqkczE00sVLYgFroeQkDZYzz9gByNxHEA6FNXDPXYdN9P5r+OSzZQ7//5aNIKI1eLSS1zTKArgUjnEY/MsX0L0+KASwmNzmRbgSnCMR3zCN9jO6fUSlSXLEUTzhGsuqEfTL4kFkyw=,iv:5NbsbQ2WSXn7+p9LEQyckI8jTY8A5NZ6g4D+X1shbrI=,tag:HVP8j6oBAGstUvUjeM77OA==,type:str]
+    lastmodified: "2025-06-07T14:06:49Z"
+    mac: ENC[AES256_GCM,data:1YhAmulyZXo9vU3dsCNvATwA5F6ziPsHEd+rPERH1og0HIQ61J65bc6o13x1lzdijTHpMJdbwB8+bDkZM4MXLjD0yeK5Ui+w+YLHh27rkCzJeYpIe1XnUbpEC+jcIyIBvz8ikf+PKkEzGy+qQD/2o/s2vWcVvN2TjBxLTNmdGb4=,iv:BwbjR4xNsCV/uIqCGA7hKVDPnQxuoqg7XDXWf9IAAE8=,tag:pTPBfEUajGMNJaC311LSMQ==,type:str]
     encrypted_regex: (metadata|values)
     version: 3.10.2
