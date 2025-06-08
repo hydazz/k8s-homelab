@@ -103,14 +103,15 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.io/loadBalancerIPs: 192.168.4.13
-        services:
+        ports:
+          pop3: false
+          pop3s: true
+          imap: false
+          imaps: true
           smtp: true
           smtps: true
           submission: true
-          imap: true
-          imaps: true
-          pop3: true
-          pop3s: true
+          manageSieve: true
       kind: Deployment
       replicaCount: 1
       updateStrategy:
