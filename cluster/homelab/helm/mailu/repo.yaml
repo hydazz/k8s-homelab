@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: docker-mailserver
+    name: mailu
     namespace: flux-system
 spec:
-    url: https://docker-mailserver.github.io/docker-mailserver-helm
+    url: https://mailu.github.io/helm-charts/
     interval: 10m

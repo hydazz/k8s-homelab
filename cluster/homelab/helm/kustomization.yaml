@@ -6,7 +6,7 @@ resources:
   - bjw-s
   - cert-manager
   - crowdsec
-  - docker-mailserver
+  - mailu
   - ingress-nginx
   - jenkins
   - kubereboot

@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: mailserver
+  name: mailu
   namespace: mailserver
 spec:
   interval: 5m
@@ -16,204 +16,179 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: docker-mailserver
-      version: 4.2.1
+      chart: mailu
+      version: 2.2.2
       interval: 5m
       sourceRef:
         kind: HelmRepository
-        name: docker-mailserver
+        name: mailu
         namespace: flux-system
   values:
-    fullnameOverride: docker-mailserver
-    image:
-      name: mailserver/docker-mailserver
-      tag: 14.0.0
-    certificate: wildcard.hyde.services
-    persistent_volume_claims:
-      mail-config:
-        size: 10Mi
-      mail-data:
-        size: 256Mi
-      mail-state:
-        size: 256Mi
-      mail-log:
-        size: 256Mi
-    service:
-      type: "LoadBalancer"
-#      loadBalancer:
-#        publicIp: 192.168.4.13
-    deployment:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 128Mi
-        limits:
-          cpu: 1
-          memory: 1Gi
-      annotations:
-        backup.velero.io/backup-volumes: mail-config,mail-data,mail-state
-      priorityClassName: "keep-alive"
-      env:
-        # -----------------------------------------------
-        # --- Required Section ---------------------------
-        # -----------------------------------------------
-        OVERRIDE_HOSTNAME: mail.hyde.services
-
-        # -----------------------------------------------
-        # --- General Section ---------------------------
-        # -----------------------------------------------
-        LOG_LEVEL: info
-        SUPERVISOR_LOGLEVEL:
-        DMS_VMAIL_UID:
-        DMS_VMAIL_GID:
-        ACCOUNT_PROVISIONER:
-        POSTMASTER_ADDRESS:
-        ENABLE_UPDATE_CHECK: 0
-        UPDATE_CHECK_INTERVAL: 1d
-        PERMIT_DOCKER: none
-        TZ: Australia/Melbourne
-        NETWORK_INTERFACE:
-        TLS_LEVEL:
-        SPOOF_PROTECTION:
-        ENABLE_SRS: 0
-        ENABLE_OPENDKIM: 1
-        ENABLE_OPENDMARC: 1
-        ENABLE_POLICYD_SPF: 0
-        ENABLE_POP3:
-        ENABLE_IMAP: 1
-        ENABLE_CLAMAV: 0
-        ENABLE_RSPAMD: 0
-        ENABLE_RSPAMD_REDIS: 1
-        RSPAMD_LEARN: 0
-        RSPAMD_CHECK_AUTHENTICATED: 0
-        RSPAMD_GREYLISTING: 0
-        RSPAMD_HFILTER: 1
-        RSPAMD_HFILTER_HOSTNAME_UNKNOWN_SCORE: 6
-        RSPAMD_NEURAL: 0
-        ENABLE_AMAVIS: 0
-        AMAVIS_LOGLEVEL: 0
-        ENABLE_DNSBL: 1
-        ENABLE_FAIL2BAN: 1
-        FAIL2BAN_BLOCKTYPE: drop
-        ENABLE_MANAGESIEVE:
-        POSTSCREEN_ACTION: enforce
-        SMTP_ONLY:
-        # These values are automatically set by the chart based on the certificate key
-        # SSL_TYPE:
-        # SSL_CERT_PATH:
-        # SSL_KEY_PATH:
-        SSL_ALT_CERT_PATH:
-        SSL_ALT_KEY_PATH:
-        VIRUSMAILS_DELETE_DELAY:
-        POSTFIX_DAGENT:
-        POSTFIX_MAILBOX_SIZE_LIMIT:
-        ENABLE_QUOTAS: 1
-        POSTFIX_MESSAGE_SIZE_LIMIT:
-        CLAMAV_MESSAGE_SIZE_LIMIT:
-        PFLOGSUMM_TRIGGER:
-        PFLOGSUMM_RECIPIENT:
-        PFLOGSUMM_SENDER:
-        LOGWATCH_INTERVAL:
-        LOGWATCH_RECIPIENT:
-        LOGWATCH_SENDER:
-        REPORT_RECIPIENT:
-        REPORT_SENDER:
-        LOGROTATE_COUNT: 1
-        LOGROTATE_INTERVAL: daily
-        POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME: 0
-        POSTFIX_INET_PROTOCOLS: all
-        DOVECOT_INET_PROTOCOLS: all
-
-        # -----------------------------------------------
-        # --- SpamAssassin Section ----------------------
-        # -----------------------------------------------
-        ENABLE_SPAMASSASSIN: 0
-        ENABLE_SPAMASSASSIN_KAM: 0
-        SPAMASSASSIN_SPAM_TO_INBOX: 1
-        MOVE_SPAM_TO_JUNK: 1
-        MARK_SPAM_AS_READ: 0
-        SA_TAG: 2.0
-        SA_TAG2: 6.31
-        SA_KILL: 10.0
-        SPAM_SUBJECT: "***SPAM*** "
-
-        # -----------------------------------------------
-        # --- Fetchmail Section -------------------------
-        # -----------------------------------------------
-        ENABLE_FETCHMAIL: 0
-        FETCHMAIL_POLL: 300
-        FETCHMAIL_PARALLEL: 0
-        ENABLE_GETMAIL: 0
-        GETMAIL_POLL: 5
-
-        # -----------------------------------------------
-        # --- LDAP Section ------------------------------
-        # -----------------------------------------------
-        LDAP_START_TLS:
-        LDAP_SERVER_HOST:
-        LDAP_SEARCH_BASE:
-        LDAP_BIND_DN:
-        LDAP_BIND_PW:
-        LDAP_QUERY_FILTER_USER:
-        LDAP_QUERY_FILTER_GROUP:
-        LDAP_QUERY_FILTER_ALIAS:
-        LDAP_QUERY_FILTER_DOMAIN:
-
-        # -----------------------------------------------
-        # --- Dovecot Section ---------------------------
-        # -----------------------------------------------
-        DOVECOT_TLS:
-        DOVECOT_USER_FILTER:
-        DOVECOT_PASS_FILTER:
-        DOVECOT_MAILBOX_FORMAT: maildir
-        DOVECOT_AUTH_BIND:
-
-        # -----------------------------------------------
-        # --- Postgrey Section --------------------------
-        # -----------------------------------------------
-        ENABLE_POSTGREY: 0
-        POSTGREY_DELAY: 300
-        POSTGREY_MAX_AGE: 35
-        POSTGREY_TEXT: "Delayed by Postgrey"
-        POSTGREY_AUTO_WHITELIST_CLIENTS: 5
-
-        # -----------------------------------------------
-        # --- SASL Section ------------------------------
-        # -----------------------------------------------
-        ENABLE_SASLAUTHD: 0
-        SASLAUTHD_MECHANISMS:
-        SASLAUTHD_MECH_OPTIONS:
-        SASLAUTHD_LDAP_SERVER:
-        SASLAUTHD_LDAP_BIND_DN:
-        SASLAUTHD_LDAP_PASSWORD:
-        SASLAUTHD_LDAP_SEARCH_BASE:
-        SASLAUTHD_LDAP_FILTER:
-        SASLAUTHD_LDAP_START_TLS:
-        SASLAUTHD_LDAP_TLS_CHECK_PEER:
-        SASLAUTHD_LDAP_TLS_CACERT_FILE:
-        SASLAUTHD_LDAP_TLS_CACERT_DIR:
-        SASLAUTHD_LDAP_PASSWORD_ATTR:
-        SASLAUTHD_LDAP_AUTH_METHOD:
-        SASLAUTHD_LDAP_MECH:
-
-        # -----------------------------------------------
-        # --- SRS Section -------------------------------
-        # -----------------------------------------------
-        SRS_SENDER_CLASSES: envelope_sender
-        SRS_EXCLUDE_DOMAINS:
-        SRS_SECRET:
-
-        # -----------------------------------------------
-        # --- Default Relay Host Section ----------------
-        # -----------------------------------------------
-
-        DEFAULT_RELAY_HOST:
-
-        # -----------------------------------------------
-        # --- Multi-Domain Relay Section ----------------
-        # -----------------------------------------------
-
-        RELAY_HOST:
-        RELAY_PORT: 25
-        RELAY_USER:
-        RELAY_PASSWORD:
+    global:
+      database:
+        roundcube:
+          database: roundcube
+          username: roundcube
+          existingSecret: mailu-secrets
+          existingSecretPasswordKey: ROUNDCUBE_DB_PASS
+    hostnames:
+      - mail.hyde.services
+    domain: hyde.services
+    existingSecret: mailu-secrets
+    timezone: Australia/Melbourne
+    initialAccount:
+      enabled: true
+      username: alex
+      domain: hyde.services
+      existingSecret: mailu-secrets
+      existingSecretPasswordKey: INITIAL_ADMIN_PW
+      mode: ifmissing
+    subnet: 10.233.64.0/18
+    subnet6: fd85:ee78:d8a6:8607::1:0000/112
+    mailuVersion: "2024.06.36"
+    logLevel: WARNING
+    dmarc:
+      rua: ""
+      ruf: ""
+    limits:
+      messageSizeLimitInMegabytes: 64
+      authRatelimit:
+        ip: 60/hour
+        ipv4Mask: 24
+        ipv6Mask: 56
+        user: 100/day
+        exemptionLength: 86400
+        exemption: ""
+      messageRatelimit:
+        value: 200/day
+        exemption: ""
+    customization:
+      siteName: Mailu
+      website: https://mail.hyde.services
+      logoUrl: none
+      logoBackground: none
+    externalDatabase:
+      enabled: true
+      type: mysql
+      host: mariadb.database.svc.cluster.local
+      port: 3306
+      existingSecret: mailu-secrets
+      existingSecretDatabaseKey: MAILU_DB
+      existingSecretUsernameKey: MAILU_DB_USER
+      existingSecretPasswordKey: MAILU_DB_PASS
+    persistence:
+      single_pvc: true
+      size: 1Gi
+      accessModes:
+        - ReadWriteOnce
+    ingress:
+      enabled: true
+      ingressClassName: external-nginx
+      pathType: ImplementationSpecific
+      path: /
+      existingSecret: wildcard.hyde.services
+      tls: true
+      realIpHeader: X-Forwarded-For
+      realIpFrom: 0.0.0.0/0
+    front:
+      logLevel: WARNING
+      hostPort:
+        enabled: false
+      externalService:
+        enabled: true
+        type: LoadBalancer
+        services:
+          smtp: true
+          smtps: true
+          submission: true
+          imap: true
+          imaps: true
+          pop3: true
+          pop3s: true
+      kind: Deployment
+      replicaCount: 1
+      updateStrategy:
+        type: Recreate
+    admin:
+      enabled: true
+      uri: /admin
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+      extraEnvVars:
+        - name: DB_APPENDIX
+          value: "?collation=utf8mb4_unicode_ci"
+    redis:
+      enabled: true
+      architecture: standalone
+      auth:
+        enabled: false
+      master:
+        enabled: true
+        count: 1
+        persistence:
+          enabled: false
+          size: 8Gi
+      replica:
+        count: 0
+    postfix:
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+    dovecot:
+      enabled: true
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+      compression: lz4
+      compressionLevel: 6
+    rspamd:
+      overrides: {}
+      antivirusAction: discard
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+    clamav:
+      enabled: true
+      logLevel: INFO
+      image:
+        repository: clamav/clamav-debian
+        tag: 1.4.2-42
+        pullPolicy: IfNotPresent
+    webmail:
+      enabled: true
+      uri: /webmail
+      type: roundcube
+      roundcubePlugins:
+        - archive
+        - zipdownload
+        - markasjunk
+        - managesieve
+        - enigma
+        - carddav
+        - vcard_attachments
+        - mailu
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+    webdav:
+      enabled: false
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+    fetchmail:
+      enabled: true
+      delay: 600
+      logLevel: INFO
+      updateStrategy:
+        type: Recreate
+    tika:
+      enabled: true
+      logLevel: INFO
+      languages:
+        - en
+      image:
+        repository: apache/tika
+        tag: 3.1.0.0-full
+        pullPolicy: IfNotPresent
+        registry: docker.io
