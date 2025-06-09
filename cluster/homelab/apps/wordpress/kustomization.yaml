@@ -1,9 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: wordpress
 resources:
+  - app/hca
+  - app/lmv
+  - app/memcached
   - limit-egress.yaml
-  - memcached.yaml
   - namespace.yaml
-  - overlays/livemusicvictoria-com-au
-  - overlays/staging
-  - overlays/wordpress1
+configMapGenerator:
+  - name: apache-config
+    files:
+      - values.yaml=resources/apache.yaml
+    options:
+      disableNameSuffixHash: true
