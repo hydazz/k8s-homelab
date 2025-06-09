@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -16,47 +17,67 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: unifi-protect-backup
-      version: 0.1.6
+      chart: app-template
+      version: 4.0.1
       interval: 5m
       sourceRef:
         kind: HelmRepository
-        name: hydaz
+        name: bjw-s
         namespace: flux-system
   values:
-    image:
-      repository: ghcr.io/ep1cman/unifi-protect-backup
-      tag: 0.13.0
-    upb:
-      ufp:
-        existingSecret:
-          name: unifi-protect-secrets
-          usernameKey: UFP_USERNAME
-          passwordKey: UFP_PASSWORD
-        address: "192.168.4.1"
-        sslVerify: "false"
-      rclone:
-        retention: 1d
-        destination: cloudflare:/unifi-protect
-        existingSecret:
-          name: unifi-protect-secrets
-          rcloneConfigKey: rclone.conf
-      detectionTypes: person,vehicle,ring
-      fileStructureFormat: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
-      purgeInterval: 1d
-      skipMissing: "false"
-    env:
-      TZ: Australia/Melbourne
-    tolerations:
-      - key: "node-role.kubernetes.io/control-plane"
-        operator: "Exists"
-        effect: "NoSchedule"
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
+    controllers:
+      unifi-protect-backup:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/ep1cman/unifi-protect-backup
+              tag: 0.13.0
+            env:
+              TZ: Australia/Melbourne
+              DETECTION_TYPES: person,vehicle,ring
+              DOWNLOAD_BUFFER_SIZE: 512MiB
+              FILE_STRUCTURE_FORMAT: "{camera_name}/{event.start:%d-%m-%Y}/{event.end:%I-%M-%S%p} {detection_type}.mp4"
+              MAX_EVENT_LENGTH: "7200"
+              PARALLEL_UPLOADS: "1"
+              PGID: "1001"
+              PUID: "1001"
+              PURGE_INTERVAL: 1d
+              RCLONE_DESTINATION: cloudflare:/unifi-protect
+              RCLONE_RETENTION: 1d
+              SKIP_MISSING: "false"
+              SQLITE_PATH: /config/events.sqlite
+              UFP_ADDRESS: 192.168.4.1
+              UFP_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    key: UFP_PASSWORD
+                    name: unifi-protect-secrets
+              UFP_PORT: "443"
+              UFP_SSL_VERIFY: "false"
+              UFP_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    key: UFP_USERNAME
+                    name: unifi-protect-secrets
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+    defaultPodOptions:
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
     persistence:
       data:
         enabled: true
         accessMode: ReadWriteOnce
         size: 256Mi
+      rclone-config:
+        type: secret
+        name: unifi-protect-secrets
+        globalMounts:
+          - path: /config/rclone/rclone.conf
+            subPath: rclone.conf
+            readOnly: true

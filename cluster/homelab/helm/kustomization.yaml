@@ -13,7 +13,6 @@ resources:
   - lwolf-charts
   - mailu
   - metallb
-  - metrics-server
   - minio
   - nextcloud
   - nvidia

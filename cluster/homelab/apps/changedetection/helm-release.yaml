@@ -127,3 +127,5 @@ spec:
                 subPath: downloads
               - path: /profile
                 subPath: profile
+              - path: /config
+                subPath: config
