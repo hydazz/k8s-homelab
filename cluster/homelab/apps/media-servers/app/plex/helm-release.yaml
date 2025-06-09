@@ -81,6 +81,7 @@ spec:
       app:
         controller: *app
         type: LoadBalancer
+        externalTrafficPolicy: Local
         annotations:
           metallb.io/loadBalancerIPs: 192.168.4.12
         ports:
