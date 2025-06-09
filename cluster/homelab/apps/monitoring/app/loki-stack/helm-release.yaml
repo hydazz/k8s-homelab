@@ -1,0 +1,442 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: loki-stack
+      version: 2.10.2
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+    # Loki configuration
+    loki:
+      enabled: true
+      isDefault: true
+      url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: http-metrics
+        initialDelaySeconds: 45
+      livenessProbe:
+        httpGet:
+          path: /ready
+          port: http-metrics
+        initialDelaySeconds: 45
+      datasource:
+        jsonData: "{}"
+        uid: ""
+      image:
+        repository: grafana/loki
+        tag: 3.3.1
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
+      config:
+        auth_enabled: false
+        server:
+          http_listen_port: 3100
+          grpc_listen_port: 9096
+          log_level: info
+        common:
+          instance_addr: 127.0.0.1
+          path_prefix: /var/loki
+          storage:
+            filesystem:
+              chunks_directory: /var/loki/chunks
+              rules_directory: /var/loki/rules
+          replication_factor: 1
+          ring:
+            kvstore:
+              store: inmemory
+        query_range:
+          results_cache:
+            cache:
+              embedded_cache:
+                enabled: true
+                max_size_mb: 100
+        schema_config:
+          configs:
+            - from: 2020-10-24
+              store: tsdb
+              object_store: filesystem
+              schema: v13
+              index:
+                prefix: index_
+                period: 24h
+        ruler:
+          alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
+        limits_config:
+          enforce_metric_name: false
+          reject_old_samples: true
+          reject_old_samples_max_age: 168h
+          max_cache_freshness_per_query: 10m
+          split_queries_by_interval: 15m
+          per_stream_rate_limit: 512M
+          per_stream_rate_limit_burst: 1024M
+          ingestion_rate_mb: 512
+          ingestion_burst_size_mb: 1024
+          max_streams_per_user: 0
+          max_line_size: 0
+        chunk_store_config:
+          max_look_back_period: 0s
+        table_manager:
+          retention_deletes_enabled: false
+          retention_period: 0s
+        compactor:
+          working_directory: /var/loki/boltdb-shipper-compactor
+          shared_store: filesystem
+          compaction_interval: 10m
+          retention_enabled: true
+          retention_delete_delay: 2h
+          retention_delete_worker_count: 150
+        analytics:
+          reporting_enabled: false
+
+    # Promtail configuration
+    promtail:
+      enabled: true
+      image:
+        repository: grafana/promtail
+        tag: 3.3.1
+      config:
+        # The Loki server URL
+        clients:
+          - url: http://{{ include "loki.fullname" . }}:3100/loki/api/v1/push
+            tenant_id: 1
+        positions:
+          filename: /run/promtail/positions.yaml
+        target_config:
+          sync_period: 10s
+        scrape_configs:
+          # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
+          # Pods with a label 'app.kubernetes.io/name'
+          - job_name: kubernetes-pods-name
+            pipeline_stages:
+              - cri: {}
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - source_labels:
+                  - __meta_kubernetes_pod_label_app_kubernetes_io_name
+                target_label: __service__
+              - source_labels:
+                  - __meta_kubernetes_pod_node_name
+                target_label: __host__
+              - action: drop
+                regex: ^$
+                source_labels:
+                  - __service__
+              - action: labelmap
+                regex: __meta_kubernetes_pod_label_(.+)
+              - action: replace
+                replacement: $1
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __service__
+                target_label: job
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                target_label: container
+              - replacement: /var/log/pods/*$1/*.log
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                target_label: __path__
+
+          # Pods with a label 'app'
+          - job_name: kubernetes-pods-app
+            pipeline_stages:
+              - cri: {}
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - action: drop
+                regex: .+
+                source_labels:
+                  - __meta_kubernetes_pod_label_app_kubernetes_io_name
+              - source_labels:
+                  - __meta_kubernetes_pod_label_app
+                target_label: __service__
+              - source_labels:
+                  - __meta_kubernetes_pod_node_name
+                target_label: __host__
+              - action: drop
+                regex: ^$
+                source_labels:
+                  - __service__
+              - action: labelmap
+                regex: __meta_kubernetes_pod_label_(.+)
+              - action: replace
+                replacement: $1
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __service__
+                target_label: job
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                target_label: container
+              - replacement: /var/log/pods/*$1/*.log
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                target_label: __path__
+
+          # Pods with direct controllers, such as StatefulSet
+          - job_name: kubernetes-pods-direct-controllers
+            pipeline_stages:
+              - cri: {}
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - action: drop
+                regex: .+
+                separator: ""
+                source_labels:
+                  - __meta_kubernetes_pod_label_app_kubernetes_io_name
+                  - __meta_kubernetes_pod_label_app
+              - action: drop
+                regex: ^([0-9a-z-.]+)(-[0-9a-f]{8,10})$
+                source_labels:
+                  - __meta_kubernetes_pod_controller_name
+              - source_labels:
+                  - __meta_kubernetes_pod_controller_name
+                target_label: __service__
+              - source_labels:
+                  - __meta_kubernetes_pod_node_name
+                target_label: __host__
+              - action: drop
+                regex: ^$
+                source_labels:
+                  - __service__
+              - action: labelmap
+                regex: __meta_kubernetes_pod_label_(.+)
+              - action: replace
+                replacement: $1
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __service__
+                target_label: job
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                target_label: container
+              - replacement: /var/log/pods/*$1/*.log
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                target_label: __path__
+
+          # Pods with indirect controllers, such as Deployment
+          - job_name: kubernetes-pods-indirect-controller
+            pipeline_stages:
+              - cri: {}
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - action: drop
+                regex: .+
+                separator: ""
+                source_labels:
+                  - __meta_kubernetes_pod_label_app_kubernetes_io_name
+                  - __meta_kubernetes_pod_label_app
+              - action: keep
+                regex: ^([0-9a-z-.]+)(-[0-9a-f]{8,10})$
+                source_labels:
+                  - __meta_kubernetes_pod_controller_name
+              - action: replace
+                regex: ^([0-9a-z-.]+)(-[0-9a-f]{8,10})$
+                source_labels:
+                  - __meta_kubernetes_pod_controller_name
+                target_label: __service__
+              - source_labels:
+                  - __meta_kubernetes_pod_node_name
+                target_label: __host__
+              - action: drop
+                regex: ^$
+                source_labels:
+                  - __service__
+              - action: labelmap
+                regex: __meta_kubernetes_pod_label_(.+)
+              - action: replace
+                replacement: $1
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __service__
+                target_label: job
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                target_label: container
+              - replacement: /var/log/pods/*$1/*.log
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                target_label: __path__
+
+          # All remaining pods not yet covered
+          - job_name: kubernetes-other
+            pipeline_stages:
+              - cri: {}
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - action: drop
+                regex: .+
+                separator: ""
+                source_labels:
+                  - __meta_kubernetes_pod_label_app_kubernetes_io_name
+                  - __meta_kubernetes_pod_label_app
+              - action: drop
+                regex: .+
+                source_labels:
+                  - __meta_kubernetes_pod_controller_name
+              - source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: __service__
+              - source_labels:
+                  - __meta_kubernetes_pod_node_name
+                target_label: __host__
+              - action: drop
+                regex: ^$
+                source_labels:
+                  - __service__
+              - action: labelmap
+                regex: __meta_kubernetes_pod_label_(.+)
+              - action: replace
+                replacement: $1
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_namespace
+                  - __service__
+                target_label: job
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_namespace
+                target_label: namespace
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_name
+                target_label: pod
+              - action: replace
+                source_labels:
+                  - __meta_kubernetes_pod_container_name
+                target_label: container
+              - replacement: /var/log/pods/*$1/*.log
+                separator: /
+                source_labels:
+                  - __meta_kubernetes_pod_uid
+                  - __meta_kubernetes_pod_container_name
+                target_label: __path__
+
+      # Extra volumes for log collection
+      extraVolumes:
+        - name: logs
+          hostPath:
+            path: /var/log
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+
+      extraVolumeMounts:
+        - name: logs
+          mountPath: /var/log
+          readOnly: true
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+
+      # Promtail needs to run as privileged to access host logs
+      securityContext:
+        privileged: true
+        runAsUser: 0
+
+      # Tolerations to run on all nodes
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+        - key: "CriticalAddonsOnly"
+          operator: "Equal"
+          effect: "NoSchedule"
+
+    # Fluent Bit is disabled (we're using Promtail)
+    fluent-bit:
+      enabled: false
+
+    # Grafana is disabled (managed by kube-prometheus-stack)
+    grafana:
+      enabled: false
+
+    # Prometheus is disabled (managed by kube-prometheus-stack)
+    prometheus:
+      enabled: false
+
+    # filebeat is disabled (we're using Promtail)
+    filebeat:
+      enabled: false
+
+    # logstash is disabled (we're using Promtail)
+    logstash:
+      enabled: false
