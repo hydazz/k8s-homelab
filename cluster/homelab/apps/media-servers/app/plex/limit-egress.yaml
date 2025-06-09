@@ -10,9 +10,11 @@ spec:
   policyTypes:
     - Egress
   egress:
+    # Allow HDHomeRun
     - to:
         - ipBlock:
             cidr: 192.168.100.15/32
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -25,6 +27,7 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Allow DNS
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -33,9 +36,4 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
-    - to:
-        - ipBlock:
-            cidr: 203.12.8.19/32
-      ports:
-        - protocol: TCP
-          port: 32400
+    # BLOCK ALL (implicit deny for all other egress traffic)

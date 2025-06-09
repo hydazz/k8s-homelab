@@ -6,10 +6,27 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: mailserver-docker-mailserver
+      app.kubernetes.io/name: mailu
   policyTypes:
     - Egress
   egress:
+    # Allow interpod communication
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: mailserver
+    # Allow MariaDB
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: database
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: mariadb
+      ports:
+        - protocol: TCP
+          port: 3306
+    # Allow DNS
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -18,6 +35,7 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -30,9 +48,15 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Allow outbound mail (SMTP, SMTPS, Submission)
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
         - protocol: TCP
-          port: 25
+          port: 25 # SMTP
         - protocol: TCP
-          port: 465
+          port: 465 # SMTPS
         - protocol: TCP
-          port: 587
+          port: 587 # Submission
+    # BLOCK ALL (implicit deny for all other egress traffic)

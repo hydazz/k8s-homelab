@@ -10,6 +10,7 @@ spec:
   policyTypes:
     - Egress
   egress:
+    # Allow Redis
     - to:
         - podSelector:
             matchLabels:
@@ -17,6 +18,7 @@ spec:
       ports:
         - protocol: TCP
           port: 6379
+    # Allow PostgreSQL
     - to:
         - namespaceSelector:
             matchLabels:
@@ -27,6 +29,7 @@ spec:
       ports:
         - protocol: TCP
           port: 5432
+    # Allow DNS
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -35,6 +38,7 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -47,17 +51,18 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
-    # Mail Server
+    # Allow SMTPS to mail relay
     - to:
         - ipBlock:
             cidr: 203.12.8.19/32
       ports:
         - protocol: TCP
           port: 465
-    # Control Pnae
+    # Allow Kubernetes API
     - to:
         - ipBlock:
             cidr: 192.168.4.5/32
       ports:
         - protocol: TCP
           port: 6443
+    # BLOCK ALL (implicit deny for all other egress traffic)

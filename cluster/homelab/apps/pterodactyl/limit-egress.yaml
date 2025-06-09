@@ -10,6 +10,7 @@ spec:
   policyTypes:
     - Egress
   egress:
+    # Allow Redis
     - to:
         - podSelector:
             matchLabels:
@@ -17,6 +18,7 @@ spec:
       ports:
         - protocol: TCP
           port: 6379
+    # Allow MariaDB
     - to:
         - namespaceSelector:
             matchLabels:
@@ -27,6 +29,7 @@ spec:
       ports:
         - protocol: TCP
           port: 3306
+    # Allow ingress-nginx
     - to:
         - namespaceSelector:
             matchLabels:
@@ -37,6 +40,7 @@ spec:
       ports:
         - protocol: TCP
           port: 443
+    # Allow DNS
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -45,6 +49,7 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -57,15 +62,18 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Allow SMTPS to mail relay
     - to:
         - ipBlock:
             cidr: 203.12.8.19/32
       ports:
         - protocol: TCP
           port: 465
+    # Allow SFTP to remote control host
     - to:
         - ipBlock:
-            cidr: 192.168.100.7/32
+            cidr: 192.168.100.7/32 # discovery.wing
       ports:
         - protocol: TCP
           port: 2022
+    # BLOCK ALL (implicit deny for all other egress traffic)

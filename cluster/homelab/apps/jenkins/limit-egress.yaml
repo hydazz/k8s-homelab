@@ -10,6 +10,7 @@ spec:
   policyTypes:
     - Egress
   egress:
+    # Allow SSH and build ports to X86-BUILDER-1
     - to:
         - ipBlock:
             cidr: 192.168.100.3/32
@@ -20,6 +21,7 @@ spec:
           port: 2223
         - protocol: TCP # X86-BUILDER-1b
           port: 2224
+    # Allow build ports to ARM64-BUILDER-1
     - to:
         - ipBlock:
             cidr: 192.168.100.4/32
@@ -28,6 +30,7 @@ spec:
           port: 2223
         - protocol: TCP # ARM64-BUILDER-1b
           port: 2224
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -40,6 +43,7 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Allow DNS
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -48,3 +52,4 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+    # BLOCK ALL (implicit deny for all other egress traffic)

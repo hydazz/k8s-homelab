@@ -10,14 +10,7 @@ spec:
   policyTypes:
     - Egress
   egress:
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-      ports:
-        - protocol: UDP
-          port: 53
-        - protocol: TCP
-          port: 53
+    # Allow HTTP/HTTPS to public internet
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
@@ -30,3 +23,13 @@ spec:
           port: 80
         - protocol: TCP
           port: 443
+    # Allow DNS
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # BLOCK ALL (implicit deny for all other egress traffic)
