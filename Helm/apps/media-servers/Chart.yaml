@@ -1,7 +1,0 @@
----
-apiVersion: v2
-appVersion: 1.0.0
-description: This chart is used to install different media servers and utilities
-name: media-servers
-type: application
-version: 1.0.0

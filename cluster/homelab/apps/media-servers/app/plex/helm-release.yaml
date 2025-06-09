@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app plex
+  namespace: media-servers
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      plex:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/plex
+              tag: 1.41.7.9823
+            env:
+              TZ: Australia/Melbourne
+              NVIDIA_DRIVER_CAPABILITIES: all
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /identity
+                    port: &port 32400
+                    scheme: HTTPS
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 1
+                memory: 1Gi
+              limits:
+                cpu: 6
+                memory: 4Gi
+                nvidia.com/gpu: 1
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+        pod:
+          annotations:
+            backup.velero.io/backup-volumes: config
+          runtimeClassName: nvidia
+          nodeSelector:
+            nvidia.com/gpu.present: "true"
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups: [44]
+    service:
+      app:
+        controller: *app
+        type: LoadBalancer
+        annotations:
+          metallb.io/loadBalancerIPs: 192.168.4.12
+        ports:
+          http:
+            port: *port
+          dlna-udp:
+            port: 1900
+            protocol: UDP
+          bonjour-udp:
+            port: 5353
+            protocol: UDP
+          roku-tcp:
+            port: 8324
+            protocol: TCP
+          gdm-udp:
+            port: 32410
+            protocol: UDP
+          gdm-udp-2:
+            port: 32412
+            protocol: UDP
+          gdm-udp-3:
+            port: 32413
+            protocol: UDP
+          gdm-udp-4:
+            port: 32414
+            protocol: UDP
+          dlna-tcp:
+            port: 32469
+            protocol: TCP
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        size: 24Gi
+      transcode:
+        type: emptyDir
+        globalMounts:
+          - path: /transcode
+      media:
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Slow/Media/Plex Media
+        globalMounts:
+          - path: /media

@@ -4,8 +4,7 @@ resources:
   - app/immich
   - app/private
   - app/tautulli
+  - app/plex
 # - app/wizarr
-  - helm-release.yaml
 # - ingress.sops.yaml
-  - limit-egress.yaml
   - namespace.yaml
