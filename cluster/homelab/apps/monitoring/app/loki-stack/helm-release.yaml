@@ -44,7 +44,7 @@ spec:
         uid: ""
       image:
         repository: grafana/loki
-        tag: 3.3.1
+        tag: 3.3.4
       persistence:
         enabled: true
         storageClassName: longhorn
