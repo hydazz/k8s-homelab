@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app storage-${D_HS//./-} # security over reliability
+  name: &app storage-${D_HCA//./-} # security over reliability
   namespace: nextcloud
 spec:
   interval: 5m
@@ -34,14 +34,14 @@ spec:
       backup.velero.io/backup-volumes: nextcloud-main,nextcloud-data
     fullnameOverride: *app
     nextcloud:
-      host: &host storage.${D_HS}
+      host: &host storage.${D_HCA}
       configs:
         custom.config.php: |-
           <?php
           $CONFIG = array(
             'overwriteprotocol' => 'https',
-            'overwrite.cli.url' => 'https://storage.${D_HS}',
-            'overewritehost' => 'storage.${D_HS}',
+            'overwrite.cli.url' => 'https://storage.${D_HCA}',
+            'overewritehost' => 'storage.${D_HCA}',
             'check_data_directory_permissions' => false,
             'default_phone_region' => '3166-2:AU',
             'enable_previews' => false,
@@ -51,7 +51,7 @@ spec:
             ),
             'trusted_domains' => array(
               0 => '127.0.0.1',
-              1 => 'storage.${D_HS}',
+              1 => 'storage.${D_HCA}',
             ),
             'filesystem_check_changes' => 1,
             'simpleSignUpLink.shown' => false,
@@ -72,7 +72,7 @@ spec:
       host: mariadb.database.svc.cluster.local
       existingSecret:
         enabled: true
-        secretName: shs-sectets
+        secretName: shca-sectets
         usernameKey: db-username
         passwordKey: db-password
         databaseKey: db-name
@@ -111,7 +111,7 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: wildcard.${D_HS}
+          secretName: wildcard.${D_HCA}
     persistence:
       enabled: true
       size: 2Gi
@@ -123,4 +123,4 @@ spec:
 
   valuesFrom:
     - kind: Secret
-      name: shs-values
+      name: shca-values
