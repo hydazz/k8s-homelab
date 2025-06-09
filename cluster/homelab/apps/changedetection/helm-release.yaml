@@ -38,7 +38,7 @@ spec:
               BASE_URL: &host changedetection.k8s.hyde.services
               USE_X_SETTINGS: "1"
               PORT: &port 5000
-              PLAYWRIGHT_DRIVER_URL: "ws://localhost:3000/?stealth=1&--disable-web-security=true&--user-data-dir=/config/browserless-cache"
+              PLAYWRIGHT_DRIVER_URL: "ws://localhost:3000?token=TESTING6R0W53R135510"
             probes:
               liveness: &probe
                 enabled: true
@@ -62,14 +62,15 @@ spec:
                   - ALL
           browserless:
             image:
-              repository: docker.io/browserless/chrome
-              tag: 1.61.1-chrome-stable
+              repository: ghcr.io/browserless/chromium
+              tag: v2.30.1
             env:
-              SCREEN_WIDTH: "1920"
-              SCREEN_HEIGHT: "1024"
-              SCREEN_DEPTH: "16"
-              MAX_CONCURRENT_CHROME_PROCESSES: "10"
-              STATS_REFRESH_SECONDS: "120"
+              CONCURRENT: "10"
+              DATA_DIR: /profile
+              DOWNLOAD_DIR: /downloads
+              TOKEN: TESTING6R0W53R135510
+            securityContext:
+              allowPrivilegeEscalation: false
         pod:
           annotations:
             backup.velero.io/backup-volumes: config
@@ -111,8 +112,18 @@ spec:
               - *host
     persistence:
       config:
-        enabled: true
         accessMode: ReadWriteOnce
         size: 128Mi
-        globalMounts:
-          - path: /datastore
+        advancedMounts:
+          changedetection:
+            changedetection:
+              - path: /datastore
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          changedetection:
+            browser:
+              - path: /downloads
+                subPath: downloads
+              - path: /profile
+                subPath: profile
