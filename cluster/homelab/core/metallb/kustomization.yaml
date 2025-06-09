@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
+  - resources/ip-pool.yaml
+  - resources/l2-advertisement.yaml

@@ -3,4 +3,6 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
+  - resources/restore-as-root.yaml
+  - resources/schedule.yaml
   - secret.sops.yaml

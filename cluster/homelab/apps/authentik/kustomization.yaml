@@ -6,7 +6,7 @@ resources:
   - ingress.sops.yaml
   - limit-egress.yaml
   - namespace.yaml
-  - pvc.yaml
+  - resources/pvc.yaml
 secretGenerator:
   - name: authentik-values
     files:

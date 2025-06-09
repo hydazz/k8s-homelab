@@ -19,5 +19,6 @@ resources:
   - open-webui
   - paperless-ngx
   - pterodactyl
+  - reverse-proxy
   - uptime-kuma
   - wordpress
