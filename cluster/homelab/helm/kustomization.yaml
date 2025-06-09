@@ -6,12 +6,11 @@ resources:
   - bjw-s
   - cert-manager
   - crowdsec
-  - mailu
   - ingress-nginx
   - jenkins
-  - kubereboot
   - longhorn-system
   - lwolf-charts
+  - mailu
   - metallb
   - metrics-server
   - minio

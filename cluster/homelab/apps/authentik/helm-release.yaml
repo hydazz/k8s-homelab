@@ -1,0 +1,81 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: authentik
+      version: 2025.6.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+  values:
+    global:
+      deploymentStrategy:
+        type: Recreate
+      priorityClassName: keep-alive
+    authentik:
+      postgresql:
+        host: postgresql-14.database.svc.cluster.local
+        user: authentik
+      email:
+        host: mail.hyde.services
+        port: "465"
+        username: no-reply@hyde.services
+        use_tls: true
+        timeout: "30"
+        from: no-reply@hyde.services
+      redis:
+        host: redis-master
+    server:
+      ingress:
+        enabled: true
+        ingressClassName: external-nginx
+        hosts:
+          - auth.hyde.services
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - auth.hyde.services
+      podAnnotations:
+        backup.velero.io/backup-volumes: media
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: authentik-media-pvc
+      volumeMounts:
+        - name: media
+          mountPath: /media
+    postgresql:
+      enabled: false
+    geoip:
+      enabled: true
+    redis:
+      enabled: true
+      fullnameOverride: redis
+      architecture: standalone
+      master:
+        persistence:
+          size: 128Mi
+        resourcesPreset: nano
+        priorityClassName: keep-alive
+      auth:
+        enabled: false
+
+  valuesFrom:
+    - kind: Secret
+      name: authentik-values
