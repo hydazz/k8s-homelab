@@ -1,17 +1,118 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: changedetection
+  name: &app changedetection
   namespace: changedetection
 spec:
   interval: 5m
   install:
     createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
-      chart: ./Helm/apps/changedetection
-      reconcileStrategy: Revision
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: bjw-s
         namespace: flux-system
+  values:
+    controllers:
+      changedetection:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/dgtlmoon/changedetection.io
+              tag: 0.50.2
+            env:
+              TZ: Australia/Melbourne
+              BASE_URL: &host changedetection.k8s.hyde.services
+              USE_X_SETTINGS: "1"
+              PORT: &port 5000
+              PLAYWRIGHT_DRIVER_URL: "ws://localhost:3000/?stealth=1&--disable-web-security=true&--user-data-dir=/config/browserless-cache"
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              requests:
+                cpu: 10m
+                memory: 125Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+          browserless:
+            image:
+              repository: docker.io/browserless/chrome
+              tag: 1.61.1-chrome-stable
+            env:
+              SCREEN_WIDTH: "1920"
+              SCREEN_HEIGHT: "1024"
+              SCREEN_DEPTH: "16"
+              MAX_CONCURRENT_CHROME_PROCESSES: "10"
+              STATS_REFRESH_SECONDS: "120"
+        pod:
+          annotations:
+            backup.velero.io/backup-volumes: config
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: internal-nginx
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Track Website Changes with Automated Monitoring and Alerts
+          gethomepage.dev/group: Web Applications
+          gethomepage.dev/icon: changedetection
+          gethomepage.dev/name: Changedetection
+          gethomepage.dev/namespace: changedetection
+          gethomepage.dev/app: changedetection
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 128Mi
+        globalMounts:
+          - path: /datastore
