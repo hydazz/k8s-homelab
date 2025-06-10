@@ -56,6 +56,9 @@ spec:
                 cpu: 10m
                 memory: 125Mi
             securityContext:
+              runAsUser: 1001
+              runAsGroup: 1001
+              runAsNonRoot: true
               allowPrivilegeEscalation: false
               capabilities:
                 drop:
@@ -76,9 +79,6 @@ spec:
             backup.velero.io/backup-volumes: config
     defaultPodOptions:
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
-        runAsNonRoot: true
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
     service:
@@ -116,13 +116,13 @@ spec:
         size: 128Mi
         advancedMounts:
           changedetection:
-            changedetection:
+            app:
               - path: /datastore
       tmpfs:
         type: emptyDir
         advancedMounts:
           changedetection:
-            browser:
+            browserless:
               - path: /downloads
                 subPath: downloads
               - path: /profile
