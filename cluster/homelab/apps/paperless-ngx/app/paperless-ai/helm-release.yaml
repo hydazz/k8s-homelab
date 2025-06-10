@@ -1,0 +1,102 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app paperless-ai
+  namespace: paperless-ngx
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      paperless-ai:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: clusterzx/paperless-ai
+              tag: 3.0.4
+            env:
+              ADD_AI_PROCESSED_TAG: "no"
+              AI_PROCESSED_TAG_NAME: ai-processed
+              AI_PROVIDER: openai
+              DISABLE_AUTOMATIC_PROCESSING: "no"
+              OPENAI_API_KEY:
+                secretKeyRef:
+                  name: paperless-ai-secrets
+                  key: openaiApiKey
+              OPENAI_MODEL: gpt-4o-mini
+              PAPERLESS_AI_PORT: "3000"
+              PAPERLESS_API_TOKEN:
+                secretKeyRef:
+                  name: paperless-ai-secrets
+                  key: PAPERLESS_API_TOKEN
+              PAPERLESS_API_URL: http://paperless-ngx:8000/api
+              PAPERLESS_USERNAME:
+                secretKeyRef:
+                  name: paperless-ai-secrets
+                  key: PAPERLESS_USERNAME
+              PROCESS_ONLY_NEW_DOCUMENTS: "yes"
+              PROCESS_PREDEFINED_DOCUMENTS: "no"
+              SCAN_INTERVAL: "*/30 * * * *"
+              USE_EXISTING_DATA: "no"
+              USE_PROMPT_TAGS: "no"
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: &port 3000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 30
+              readiness: *probe
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: paperless-ai.k8s.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - paperless-ai.k8s.hyde.services
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        size: 128Mi
+        globalMounts:
+          - path: /app/data
