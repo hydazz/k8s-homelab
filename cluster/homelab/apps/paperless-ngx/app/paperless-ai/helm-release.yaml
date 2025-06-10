@@ -49,10 +49,7 @@ spec:
                   name: paperless-ai-secrets
                   key: PAPERLESS_API_TOKEN
               PAPERLESS_API_URL: http://paperless-ngx:8000/api
-              PAPERLESS_USERNAME:
-                secretKeyRef:
-                  name: paperless-ai-secrets
-                  key: PAPERLESS_USERNAME
+              PAPERLESS_USERNAME: ai
               PROCESS_ONLY_NEW_DOCUMENTS: "yes"
               PROCESS_PREDEFINED_DOCUMENTS: "no"
               SCAN_INTERVAL: "*/30 * * * *"
@@ -70,7 +67,27 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 30
               readiness: *probe
+            resources:
+              requests:
+                cpu: 500m
+                memory: 512Mi
+              limits:
+                cpu: 700m
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
     defaultPodOptions:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      securityContext:
+#        runAsUser: 1001
+#        runAsGroup: 1001
+#        runAsNonRoot: true
+#        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
       nodeSelector:
         kubernetes.io/arch: amd64
     service:
@@ -84,7 +101,7 @@ spec:
         enabled: true
         className: internal-nginx
         hosts:
-          - host: paperless-ai.k8s.hyde.services
+          - host: &host paperless-ai.k8s.hyde.services
             paths:
               - path: /
                 service:
@@ -93,10 +110,11 @@ spec:
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - paperless-ai.k8s.hyde.services
+              - *host
     persistence:
       config:
         accessMode: ReadWriteOnce
         size: 128Mi
         globalMounts:
           - path: /app/data
+# logs
