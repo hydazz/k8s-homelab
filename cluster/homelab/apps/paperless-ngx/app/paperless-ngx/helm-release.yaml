@@ -1,0 +1,141 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app paperless-ngx
+  namespace: paperless-ngx
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 4.0.1
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      paperless-ngx:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.16.3
+            env:
+              EMPTY_TRASH_DELAY: "0 1 * * *"
+              PAPERLESS_BIND_ADDR: "0.0.0.0"
+              PAPERLESS_DBENGINE: mariadb
+              PAPERLESS_DBHOST: mariadb.database.svc.cluster.local
+              PAPERLESS_DBNAME:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBNAME
+              PAPERLESS_DBPASS:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBPASS
+              PAPERLESS_DBPORT: "3306"
+              PAPERLESS_DBSSLMODE: DISABLED
+              PAPERLESS_DBUSER:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_DBUSER
+              PAPERLESS_ENABLE_COMPRESSION: "1"
+              PAPERLESS_INDEX_TASK_CRON: "0 0 * * *"
+              PAPERLESS_PORT: "8000"
+              PAPERLESS_REDIS: redis://localhost:6379
+              PAPERLESS_SECRET_KEY:
+                secretKeyRef:
+                  name: paperless-ngx-secrets
+                  key: PAPERLESS_SECRET_KEY
+              PAPERLESS_TIKA_ENABLED: "1"
+              PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+              PAPERLESS_TIME_ZONE: Australia/Melbourne
+              PAPERLESS_URL: https://paperless.k8s.hyde.services
+              USERMAP_GID: "1001"
+              USERMAP_UID: "1001"
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: &port 8000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 30
+              readiness: *probe
+          redis:
+            image:
+              repository: redis
+              tag: 8.0.2
+            env:
+              REDIS_REPLICATION_MODE: master
+            command: ["redis-server"]
+          tika:
+            image:
+              repository: apache/tika
+              tag: 3.1.0.0
+          gotenberg:
+            image:
+              repository: gotenberg/gotenberg
+              tag: 8.21
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: internal-nginx
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Digital Document Management for Organizing and Archiving Your Files
+          gethomepage.dev/group: Storage & File Management
+          gethomepage.dev/icon: paperless-ngx
+          gethomepage.dev/name: Paperless-ngx
+          gethomepage.dev/namespace: paperless-ngx
+          gethomepage.dev/app: paperless-ngx
+        hosts:
+          - host: &host paperless.k8s.hyde.services
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: wildcard.hyde.services
+            hosts:
+              - *host
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        size: 128Mi
+        advancedMounts:
+          paperless-ngx:
+            app:
+              - path: /usr/src/paperless/data
+      media:
+        type: nfs
+        server: 10.0.3.7
+        path: /mnt/Fast/Public/Paperless/media
+        advancedMounts:
+          paperless-ngx:
+            app:
+              - path: /usr/src/paperless/media
