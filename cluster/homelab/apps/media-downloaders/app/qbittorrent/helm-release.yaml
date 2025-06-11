@@ -1,7 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qbittorrent
+  name: &app qbittorrent
   namespace: media-downloaders
 spec:
   interval: 5m
@@ -16,70 +17,133 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: qbittorrent
-      version: 0.1.7
+      chart: app-template
+      version: 4.0.1
       interval: 5m
       sourceRef:
         kind: HelmRepository
-        name: hydaz
+        name: bjw-s
         namespace: flux-system
   values:
-    image:
-      repository: ghcr.io/home-operations/qbittorrent
-      tag: 5.1.0
-    env:
-      TZ: Australia/Melbourne
-    nodeSelector:
-      kubernetes.io/hostname: "discovery"
-    podAnnotations:
-      backup.velero.io/backup-volumes: data
-    resources:
-      requests:
-        cpu: 250m
-        memory: 256Mi
-      #limits:
-      #  cpu: 8
-      #  memory: 2Gi
-    vuetorrent:
-      enabled: true
-    gluetun:
-      enabled: true
-      image:
-        repository: ghcr.io/qdm12/gluetun
-        tag: v3.40.0
-      env:
-        DNS_ADDRESS: 1.1.1.1
-        VPN_SERVICE_PROVIDER: custom
-        VPN_TYPE: wireguard
-        VPN_INTERFACE: wg0
-        WIREGUARD_ENDPOINT_PORT: 1443
-        FIREWALL_VPN_INPUT_PORTS: 54913
-        FIREWALL_INPUT_PORTS: 8080,54913
-        FIREWALL_OUTBOUND_SUBNETS: 10.233.64.0/18,10.233.0.0/18
-      secretRef: qbittorrent-secrets
-    portForward:
-      enabled: false
+    controllers:
+      qbittorrent:
+        strategy: Recreate
+        containers:
+          app:
+            dependsOn: vuetorrent
+            image:
+              repository: ghcr.io/home-operations/qbittorrent
+              tag: 5.1.0
+            env:
+              TZ: Australia/Melbourne
+            resources:
+              requests:
+                cpu: 250m
+                memory: 256Mi
+              #limits:
+              #  cpu: 8
+              #  memory: 2Gi
+            probes:
+              liveness: &probe
+                enabled: true
+              readiness: *probe
+            securityContext:
+              runAsUser: 1001
+              runAsGroup: 1001
+              runAsNonRoot: true
+              capabilities:
+                drop:
+                  - ALL
+              privileged: true
+          vuetorrent:
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.4.1
+            args:
+              - --repo=https://github.com/VueTorrent/VueTorrent.git
+              - --ref=latest-release
+              - --period=6h
+              - --root=/addons
+              - --link=vuetorrent
+            securityContext:
+              runAsUser: 1001
+              runAsGroup: 1001
+              runAsNonRoot: true
+              capabilities:
+                drop:
+                  - ALL
+          gluetun:
+            dependsOn: app
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.40.0
+            env:
+              DNS_ADDRESS: 1.1.1.1
+              VPN_SERVICE_PROVIDER: custom
+              VPN_TYPE: wireguard
+              VPN_INTERFACE: wg0
+              WIREGUARD_ENDPOINT_PORT: 1443
+              FIREWALL_VPN_INPUT_PORTS: 54913
+              FIREWALL_INPUT_PORTS: 8080,54913
+              FIREWALL_OUTBOUND_SUBNETS: 10.233.64.0/18,10.233.0.0/18
+            envFrom:
+              - secretRef:
+                  name: qbittorrent-secrets
+            securityContext:
+              privileged: true
+              #capabilities:
+              #  add:
+              #    - NET_ADMIN
+    defaultPodOptions:
+      annotations:
+        backup.velero.io/backup-volumes: data
+      nodeSelector:
+        kubernetes.io/hostname: "discovery"
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: &port 8080
     ingress:
-      main:
+      app:
         enabled: true
-        ingressClassName: internal-nginx
+        className: internal-nginx
         hosts:
-          - host: qbittorrent.k8s.hyde.services
+          - host: &host qbittorrent.k8s.hyde.services
             paths:
               - path: /
+                service:
+                  identifier: app
+                  port: *port
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - qbittorrent.k8s.hyde.services
+              - *host
     persistence:
-      data:
-        enabled: true
+      config:
         accessMode: ReadWriteOnce
         size: 256Mi
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /config
       media:
-        enabled: true
         type: nfs
         server: 10.0.3.7
         path: /mnt/Slow/Media
-        mountPath: /data
-        readOnly: false
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /data
+      addons:
+        type: emptyDir
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /addons
+            vuetorrent:
+              - path: /addons
