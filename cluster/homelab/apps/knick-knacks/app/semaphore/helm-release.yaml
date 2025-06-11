@@ -30,7 +30,7 @@ spec:
       tag: v2.14.12
     admin:
       create: true
-      existingSecret: "semaphore-secrets"
+      existingSecret: &secret "semaphore-secrets"
       emailKey: "adminemail"
       fullnameKey: "adminfullname"
       usernameKey: "adminusername"
@@ -42,7 +42,7 @@ spec:
       name: "semaphore"
       usernameFromSecret: false
       username: "semaphore"
-      existingSecret: "semaphore-secrets"
+      existingSecret: *secret
       passwordKey: "dbpassword"
     ingress:
       enabled: true
@@ -56,13 +56,13 @@ spec:
         gethomepage.dev/app: ansible-semaphore
       className: internal-nginx
       hosts:
-        - host: semaphore.k8s.hyde.services
+        - host: &host semaphore.k8s.hyde.services
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - semaphore.k8s.hyde.services
+            - *host
           secretName: wildcard.hyde.services
     persistence:
       enabled: true

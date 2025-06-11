@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: minio
-  namespace: minio
+  name: &app minio
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -40,11 +40,11 @@ spec:
       ingressClassName: internal-nginx
       path: /
       hosts:
-        - minio.k8s.hyde.services
+        - &host minio.k8s.hyde.services
       tls:
         - secretName: wildcard.hyde.services
           hosts:
-            - minio.k8s.hyde.services
+            - *host
     podAnnotations:
       backup.velero.io/backup-volumes: export
     resources:

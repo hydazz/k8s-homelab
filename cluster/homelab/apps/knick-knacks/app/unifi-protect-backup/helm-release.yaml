@@ -52,14 +52,14 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     key: UFP_PASSWORD
-                    name: unifi-protect-secrets
+                    name: &secret unifi-protect-secrets
               UFP_PORT: "443"
               UFP_SSL_VERIFY: "false"
               UFP_USERNAME:
                 valueFrom:
                   secretKeyRef:
                     key: UFP_USERNAME
-                    name: unifi-protect-secrets
+                    name: *secret
             resources:
               requests:
                 cpu: 100m
@@ -76,7 +76,7 @@ spec:
         size: 256Mi
       rclone-config:
         type: secret
-        name: unifi-protect-secrets
+        name: *secret
         globalMounts:
           - path: /config/rclone/rclone.conf
             subPath: rclone.conf

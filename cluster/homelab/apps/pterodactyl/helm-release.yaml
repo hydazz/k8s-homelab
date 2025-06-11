@@ -35,7 +35,7 @@ spec:
         port: 3306
         name: pterodactyl
         existingSecret:
-          name: pterodactyl-secrets
+          name: &secret pterodactyl-secrets
           usernameKey: dbUser
           passwordKey: dbPassword
       mail:
@@ -44,7 +44,7 @@ spec:
         host: mail.hyde.services
         port: 465
         existingSecret:
-          name: pterodactyl-secrets
+          name: *secret
           usernameKey: mailUser
           passwordKey: mailPassword
     lifecycle:
@@ -77,13 +77,13 @@ spec:
         enabled: true
         ingressClassName: external-nginx
         hosts:
-          - host: pterodactyl.hyde.services
+          - host: &host pterodactyl.hyde.services
             paths:
               - path: /
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - pterodactyl.hyde.services
+              - *host
     resources:
       requests:
         cpu: 300m

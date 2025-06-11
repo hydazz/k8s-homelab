@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: open-webui
-  namespace: open-webui
+  name: &app open-webui
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -36,14 +36,14 @@ spec:
         enabled: true
         className: internal-nginx
         hosts:
-          - host: ollama.k8s.hyde.services
+          - host: &ollamaHost ollama.k8s.hyde.services
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: wildcard.hyde.services
+          - secretName: &tlsSecret wildcard.hyde.services
             hosts:
-              - ollama.k8s.hyde.services
+              - *ollamaHost
       resources:
         requests:
           cpu: 10m
@@ -73,7 +73,7 @@ spec:
       class: external-nginx
       host: chat.hyde.services
       tls: true
-      existingSecret: wildcard.hyde.services
+      existingSecret: *tlsSecret
     persistence:
       enabled: true
       size: 2Gi

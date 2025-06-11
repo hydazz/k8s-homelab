@@ -38,16 +38,8 @@ spec:
               AI_PROCESSED_TAG_NAME: ai-processed
               AI_PROVIDER: openai
               DISABLE_AUTOMATIC_PROCESSING: "no"
-              OPENAI_API_KEY:
-                secretKeyRef:
-                  name: paperless-ai-secrets
-                  key: openaiApiKey
               OPENAI_MODEL: gpt-4o-mini
               PAPERLESS_AI_PORT: "3000"
-              PAPERLESS_API_TOKEN:
-                secretKeyRef:
-                  name: paperless-ai-secrets
-                  key: PAPERLESS_API_TOKEN
               PAPERLESS_API_URL: http://paperless-ngx:8000/api
               PAPERLESS_USERNAME: ai
               PROCESS_ONLY_NEW_DOCUMENTS: "yes"
@@ -55,6 +47,9 @@ spec:
               SCAN_INTERVAL: "*/30 * * * *"
               USE_EXISTING_DATA: "no"
               USE_PROMPT_TAGS: "no"
+            envFrom:
+              - secretRef:
+                  name: paperless-ai-secrets
             probes:
               liveness: &probe
                 enabled: true

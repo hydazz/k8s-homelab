@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: authentik
-  namespace: authentik
+  name: &app authentik
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -46,11 +46,11 @@ spec:
         enabled: true
         ingressClassName: external-nginx
         hosts:
-          - auth.hyde.services
+          - &host auth.hyde.services
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - auth.hyde.services
+              - *host
       podAnnotations:
         backup.velero.io/backup-volumes: media
       volumes:

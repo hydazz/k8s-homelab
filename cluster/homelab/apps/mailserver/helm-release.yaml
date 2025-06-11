@@ -29,18 +29,18 @@ spec:
         roundcube:
           database: roundcube
           username: roundcube
-          existingSecret: mailu-secrets
+          existingSecret: &secret mailu-secrets
           existingSecretPasswordKey: ROUNDCUBE_DB_PASS
     hostnames:
       - mail.hyde.services
-    domain: hyde.services
-    existingSecret: mailu-secrets
+    domain: &domain hyde.services
+    existingSecret: *secret
     timezone: Australia/Melbourne
     initialAccount:
       enabled: true
       username: alex
-      domain: hyde.services
-      existingSecret: mailu-secrets
+      domain: *domain
+      existingSecret: *secret
       existingSecretPasswordKey: INITIAL_ADMIN_PW
       mode: ifmissing
     subnet: 10.233.64.0/18
@@ -72,7 +72,7 @@ spec:
       type: mysql
       host: mariadb.database.svc.cluster.local
       port: 3306
-      existingSecret: mailu-secrets
+      existingSecret: *secret
       existingSecretDatabaseKey: MAILU_DB
       existingSecretUsernameKey: MAILU_DB_USER
       existingSecretPasswordKey: MAILU_DB_PASS

@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app paperless-ngx
-  namespace: paperless-ngx
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -38,28 +38,12 @@ spec:
               PAPERLESS_BIND_ADDR: "0.0.0.0"
               PAPERLESS_DBENGINE: mariadb
               PAPERLESS_DBHOST: mariadb.database.svc.cluster.local
-              PAPERLESS_DBNAME:
-                secretKeyRef:
-                  name: paperless-ngx-secrets
-                  key: PAPERLESS_DBNAME
-              PAPERLESS_DBPASS:
-                secretKeyRef:
-                  name: paperless-ngx-secrets
-                  key: PAPERLESS_DBPASS
               PAPERLESS_DBPORT: "3306"
               PAPERLESS_DBSSLMODE: DISABLED
-              PAPERLESS_DBUSER:
-                secretKeyRef:
-                  name: paperless-ngx-secrets
-                  key: PAPERLESS_DBUSER
               PAPERLESS_ENABLE_COMPRESSION: "1"
               PAPERLESS_INDEX_TASK_CRON: "0 0 * * *"
               PAPERLESS_PORT: "8000"
               PAPERLESS_REDIS: redis://localhost:6379
-              PAPERLESS_SECRET_KEY:
-                secretKeyRef:
-                  name: paperless-ngx-secrets
-                  key: PAPERLESS_SECRET_KEY
               PAPERLESS_TIKA_ENABLED: "1"
               PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
@@ -67,6 +51,9 @@ spec:
               PAPERLESS_URL: https://paperless.k8s.hyde.services
               USERMAP_GID: "1001"
               USERMAP_UID: "1001"
+            envFrom:
+              - secretRef:
+                  name: paperless-ngx-secrets
             probes:
               liveness: &probe
                 enabled: true
@@ -137,10 +124,10 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Digital Document Management for Organizing and Archiving Your Files
           gethomepage.dev/group: Storage & File Management
-          gethomepage.dev/icon: paperless-ngx
+          gethomepage.dev/icon: *app
           gethomepage.dev/name: Paperless-ngx
-          gethomepage.dev/namespace: paperless-ngx
-          gethomepage.dev/app: paperless-ngx
+          gethomepage.dev/namespace: *app
+          gethomepage.dev/app: *app
         hosts:
           - host: &host paperless.k8s.hyde.services
             paths:

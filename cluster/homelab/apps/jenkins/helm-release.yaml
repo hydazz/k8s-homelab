@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jenkins
-  namespace: jenkins
+  name: &app jenkins
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -47,11 +47,11 @@ spec:
           gethomepage.dev/namespace: jenkins
           gethomepage.dev/app: jenkins
         ingressClassName: external-nginx
-        hostName: ci.imagegenius.io
+        hostName: &host ci.imagegenius.io
         tls:
           - secretName: wildcard.imagegenius.io
             hosts:
-              - ci.imagegenius.io
+              - *host
       podSecurityContextOverride:
         fsGroup: 1000
         runAsNonRoot: false

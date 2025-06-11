@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: portainer
-  namespace: portainer
+  name: &app portainer
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -50,20 +50,20 @@ spec:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Container Management Simplified
         gethomepage.dev/group: Infrastructure Management
-        gethomepage.dev/icon: portainer
+        gethomepage.dev/icon: *app
         gethomepage.dev/name: Portainer
-        gethomepage.dev/namespace: portainer
-        gethomepage.dev/app: portainer
+        gethomepage.dev/namespace: *app
+        gethomepage.dev/app: *app
         gethomepage.dev/href: https://portainer.k8s.hyde.services
       hosts:
-        - host: portainer.k8s.hyde.services
+        - host: &host portainer.k8s.hyde.services
           paths:
             - path: /
               pathType: ImplementationSpecific
               port: 9443
       tls:
         - hosts:
-            - portainer.k8s.hyde.services
+            - *host
           secretName: wildcard.hyde.services
     persistence:
       size: 128Mi

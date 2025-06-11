@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: uptime-kuma
-  namespace: uptime-kuma
+  name: &app uptime-kuma
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -39,16 +39,16 @@ spec:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Real-Time Monitoring and Uptime Tracking for Your Services
         gethomepage.dev/group: Web Applications
-        gethomepage.dev/icon: uptime-kuma
+        gethomepage.dev/icon: *app
         gethomepage.dev/name: Uptime Kuma
-        gethomepage.dev/namespace: uptime-kuma
-        gethomepage.dev/app: uptime-kuma
+        gethomepage.dev/namespace: *app
+        gethomepage.dev/app: *app
       hosts:
-        - host: status.hyde.services
+        - host: &host status.hyde.services
           paths:
             - path: /
               pathType: ImplementationSpecific
       tls:
         - hosts:
-            - status.hyde.services
+            - *host
           secretName: wildcard.hyde.services

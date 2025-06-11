@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app adguard-home
-  namespace: adguard-home
+  namespace: *app
 spec:
   interval: 5m
   install:
@@ -80,7 +80,7 @@ spec:
         enabled: true
         className: internal-nginx
         hosts:
-          - host: adguard.k8s.hyde.services
+          - host: &host adguard.k8s.hyde.services
             paths:
               - path: /
                 service:
@@ -89,7 +89,7 @@ spec:
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - adguard.k8s.hyde.services
+              - *host
     persistence:
       config:
         globalMounts:

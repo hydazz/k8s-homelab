@@ -30,13 +30,13 @@ spec:
         enabled: true
         ingressClassName: internal-nginx
         hosts:
-          - grafana.k8s.hyde.services
+          - &grafanaHost grafana.k8s.hyde.services
         paths:
           - /
         tls:
-          - secretName: wildcard.hyde.services
+          - secretName: &tlsSecret wildcard.hyde.services
             hosts:
-              - grafana.k8s.hyde.services
+              - *grafanaHost
       persistence:
         enabled: true
         accessModes:
@@ -49,10 +49,10 @@ spec:
         enabled: true
         ingressClassName: internal-nginx
         hosts:
-          - prometheus.k8s.hyde.services
+          - &prometheusHost prometheus.k8s.hyde.services
         paths:
           - /
         tls:
-          - secretName: wildcard.hyde.services
+          - secretName: *tlsSecret
             hosts:
-              - prometheus.k8s.hyde.services
+              - *prometheusHost

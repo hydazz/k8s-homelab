@@ -28,11 +28,11 @@ spec:
     ingress:
       enabled: true
       ingressClassName: external-nginx
-      hostname: hyde.services
+      hostname: &host hyde.services
       tls: true
       extraTls:
         - hosts:
-            - hyde.services
+            - *host
           secretName: wildcard.hyde.services
     updateStrategy:
       type: Recreate
