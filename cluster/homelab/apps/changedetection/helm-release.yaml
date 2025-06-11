@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dgtlmoon/changedetection.io
-              tag: 0.50.2
+              tag: 0.50.3
             env:
               TZ: Australia/Melbourne
               BASE_URL: &host changedetection.k8s.hyde.services
