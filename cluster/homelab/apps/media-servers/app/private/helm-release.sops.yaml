@@ -40,26 +40,10 @@ spec:
                         probes:
                             liveness:
                                 enabled: ENC[AES256_GCM,data:QE4u5A==,iv:aJJnRMfoGd0jBatcgcMmC8Had28omHDU1+LzjfuCg5o=,tag:7n80Wi4PwsqK3EZIxhRGOw==,type:bool]
-                                custom: ENC[AES256_GCM,data:UlLx2g==,iv:n+m4agZ+kqkTX3tE+cM7mfOw54jY1VdT9Ipw/Fux+68=,tag:hhqzGdp4mVq/JyIjR1Di9w==,type:bool]
-                                spec:
-                                    httpGet:
-                                        path: ENC[AES256_GCM,data:Yg==,iv:HvzK4vg2ToiElLUUB/NxFTFPOeSTjZXlR1BjFdAYW84=,tag:ElZT+6+36LkHuQ+/zOfZBQ==,type:str]
-                                        port: ENC[AES256_GCM,data:NPZumw==,iv:1ptPCC4u+8yXfYRg60NDVhC6P1MlWX575qob9TjksEg=,tag:61NOWFycPzIlHlzVMHfPDA==,type:int]
-                                    initialDelaySeconds: ENC[AES256_GCM,data:Lw==,iv:eN124tcfLm4whSVc2yZvLuIe/muuGwJr3kGX1Ek751c=,tag:RfYe4+lFm9Z3jyxd6gdSBQ==,type:int]
-                                    periodSeconds: ENC[AES256_GCM,data:4Xg=,iv:/TENUeE9qO7u6Mpv2TY6a6GNmjCTD9hqS/GpMH0TWLE=,tag:9ktfYL8RKJoI7nsDj3vbKg==,type:int]
-                                    timeoutSeconds: ENC[AES256_GCM,data:bg==,iv:pytxs1ewvqBlFGdcbsc0iW4Golc4jHNODE4050twIQo=,tag:fCrv5lh+X3YtSZXmmo2Avw==,type:int]
-                                    failureThreshold: ENC[AES256_GCM,data:iQ==,iv:OeywHCH1TdgZDu7J3QucFSRnpE2ZJ8rFIhVD3Ta63bE=,tag:zHzpS2HSrK1cZOYov3v+7g==,type:int]
                             readiness:
                                 enabled: ENC[AES256_GCM,data:H8Fk2w==,iv:/LavG2Oh7K5H3lOK3Ugl8xAv4QsO9NDSimQUh0vJPJI=,tag:M1TChNJuD55kuP9F4CFb0g==,type:bool]
-                                custom: ENC[AES256_GCM,data:msrRzA==,iv:UMgBLnIXZlBVmVwAogTVKCXzdQEBaCgfv7OJPYMwPik=,tag:A9lvyUc5ltuqREJiLS4QTg==,type:bool]
-                                spec:
-                                    httpGet:
-                                        path: ENC[AES256_GCM,data:oQ==,iv:IpqlxETQRyrcBGvNw9jDGZGB0P05prv6TV1dPIEUJtw=,tag:FxqQpH0fjak3n/ms5idiCA==,type:str]
-                                        port: ENC[AES256_GCM,data:/Sa9ig==,iv:P/dEYXCf4mqUCfutY8gy2UR+xQye7xGCa+1uuysj00c=,tag:YndQJL4bhxbmtLQjPo1vRA==,type:int]
-                                    initialDelaySeconds: ENC[AES256_GCM,data:aA==,iv:JOewi3eoSvo2qGKanlxn7AVnG261Aw0HDJy9ssQbAGM=,tag:7sv05fYIWVfFWBh7Ns4kDQ==,type:int]
-                                    periodSeconds: ENC[AES256_GCM,data:0Uo=,iv:Da3rTFbHfQqKXZX+KSa9VtoxMapR40DtbgeeCFvNzEI=,tag:q923q/2tjaM/ql7O1sleUQ==,type:int]
-                                    timeoutSeconds: ENC[AES256_GCM,data:gg==,iv:8vJFB7xkkM6YLr/HqW7AP8W02l5NuMFa/uRsVz0vSzs=,tag:8UEK7XEyaJJQOY28Pit9xg==,type:int]
-                                    failureThreshold: ENC[AES256_GCM,data:CA==,iv:Rz0yMJ0W8CXO4K4Iu0wE5AyeBPB8X97TxLRMIgtv+7A=,tag:2D6iEfjXdd4QgJB7rM68Lw==,type:int]
+                            startup:
+                                enabled: ENC[AES256_GCM,data:xJbAcg==,iv:WYz8IIh0/lazfnpwQZh6IDSCwZubE0KA5r2oZ+Q4ZCo=,tag:jO+jQOs/ubbWs/UpTFSHHw==,type:bool]
                         resources:
                             requests:
                                 cpu: ENC[AES256_GCM,data:GIQX,iv:5sbzKKPd5Xmf97gdKLDJgHPt5NJD0WIYQT5xvZHOnQ4=,tag:9XY/3UnaRfN8/fxOo8AEcA==,type:str]
@@ -124,7 +108,7 @@ sops:
             YlZ0ZDdvcmI5QzNheEFKdk5pQWtHZncK3P2+vWqQooaU4WWMKw7nGtcnU2zL8N4h
             B1gtAPhr261+YSOvNEug2+wFACulyT/1MZ+dR14xJm+7PmpnMMF3Lg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-07T14:06:49Z"
-    mac: ENC[AES256_GCM,data:1YhAmulyZXo9vU3dsCNvATwA5F6ziPsHEd+rPERH1og0HIQ61J65bc6o13x1lzdijTHpMJdbwB8+bDkZM4MXLjD0yeK5Ui+w+YLHh27rkCzJeYpIe1XnUbpEC+jcIyIBvz8ikf+PKkEzGy+qQD/2o/s2vWcVvN2TjBxLTNmdGb4=,iv:BwbjR4xNsCV/uIqCGA7hKVDPnQxuoqg7XDXWf9IAAE8=,tag:pTPBfEUajGMNJaC311LSMQ==,type:str]
+    lastmodified: "2025-06-11T04:24:23Z"
+    mac: ENC[AES256_GCM,data:HiZTXEQ1U38tBKPVPwmwklCRuDhh1dLJqYgNkeQxTBjFzKMHHym3Mcs+gzHZPOoCTvJ9kKsCeEMmcDCi8ZsOSk07sY2ir/VRw5RGaIvlDPFVP3Dhdy7rvh15hs2aBiF8BIYjAupLcyD+DktgorT+h14EBwcbfahFWYeiP6+BHz8=,iv:wwlH6IW5KpS3i9NI9j7162jmeaF5XA/dLZa6nzaMQxs=,tag:pI+YQ58oVF12Ii/LLMFrDA==,type:str]
     encrypted_regex: (metadata|values)
     version: 3.10.2

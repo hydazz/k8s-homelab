@@ -56,15 +56,8 @@ spec:
             probes:
               liveness: &probe
                 enabled: true
-                custom: true
-                spec:
-                  tcpSocket:
-                    port: &port 8080
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probe
+              startup: *probe
           redis:
             image:
               repository: redis
@@ -77,7 +70,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: *port
+            port: &port 8080
     ingress:
       app:
         enabled: true

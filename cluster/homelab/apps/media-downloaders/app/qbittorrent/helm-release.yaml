@@ -47,6 +47,7 @@ spec:
               liveness: &probe
                 enabled: true
               readiness: *probe
+              startup: *probe
             securityContext:
               runAsUser: 1001
               runAsGroup: 1001

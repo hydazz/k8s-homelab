@@ -58,15 +58,8 @@ spec:
             probes:
               liveness: &probe
                 enabled: true
-                custom: true
-                spec:
-                  tcpSocket:
-                    port: &port 3000
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 30
               readiness: *probe
+              startup: *probe
             resources:
               requests:
                 cpu: 500m
@@ -95,7 +88,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: *port
+            port: &port 3000
     ingress:
       app:
         enabled: true
