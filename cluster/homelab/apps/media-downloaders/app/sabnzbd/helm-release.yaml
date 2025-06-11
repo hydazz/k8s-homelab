@@ -1,7 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: sabnzbd
+  name: &app sabnzbd
   namespace: media-downloaders
 spec:
   interval: 5m
@@ -16,51 +17,91 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: sabnzbd
-      version: 0.1.0
+      chart: app-template
+      version: 4.0.1
       interval: 5m
       sourceRef:
         kind: HelmRepository
-        name: hydaz
+        name: bjw-s
         namespace: flux-system
   values:
-    image:
-      repository: ghcr.io/home-operations/sabnzbd
-      tag: 4.5.1
-    env:
-      TZ: Australia/Melbourne
-    nodeSelector:
-      kubernetes.io/hostname: "discovery"
-    podAnnotations:
-      backup.velero.io/backup-volumes: data
-    resources:
-      requests:
-        cpu: 250m
-        memory: 256Mi
-      limits:
-        cpu: 8
-        memory: 2Gi
+    controllers:
+      sabnzbd:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/sabnzbd
+              tag: 4.5.1
+            env:
+              TZ: Australia/Melbourne
+              SABNZBD__PORT: &port 8080
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api?mode=version
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 250m
+                memory: 256Mi
+              limits:
+                cpu: 8
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      annotations:
+        backup.velero.io/backup-volumes: config
+      nodeSelector:
+        kubernetes.io/hostname: "discovery"
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
     ingress:
-      main:
+      app:
         enabled: true
-        ingressClassName: internal-nginx
+        className: internal-nginx
         hosts:
-          - host: sabnzbd.k8s.hyde.services
+          - host: &host sabnzbd.k8s.hyde.services
             paths:
               - path: /
+                service:
+                  identifier: app
+                  port: *port
         tls:
           - secretName: wildcard.hyde.services
             hosts:
-              - sabnzbd.k8s.hyde.services
+              - *host
     persistence:
-      data:
-        enabled: true
+      config:
         accessMode: ReadWriteOnce
         size: 128Mi
+        globalMounts:
+          - path: /config
       media:
-        enabled: true
         type: nfs
         server: 10.0.3.7
         path: /mnt/Slow/Media
-        mountPath: /data
-        readOnly: false
+        globalMounts:
+          - path: /data
