@@ -52,10 +52,10 @@ spec:
               runAsUser: 1001
               runAsGroup: 1001
               runAsNonRoot: true
+              allowPrivilegeEscalation: false
               capabilities:
                 drop:
                   - ALL
-              privileged: true
           vuetorrent:
             image:
               repository: registry.k8s.io/git-sync/git-sync
@@ -70,6 +70,7 @@ spec:
               runAsUser: 1001
               runAsGroup: 1001
               runAsNonRoot: true
+              allowPrivilegeEscalation: false
               capabilities:
                 drop:
                   - ALL
