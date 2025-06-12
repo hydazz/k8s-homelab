@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: portainer/portainer-ee
-      tag: 2.30.1
+      tag: 2.31.0
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
