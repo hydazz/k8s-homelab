@@ -27,7 +27,7 @@ spec:
     fullnameOverride: semaphore
     image:
       repository: semaphoreui/semaphore
-      tag: v2.14.12
+      tag: v2.15.0
     admin:
       create: true
       existingSecret: &secret "semaphore-secrets"
