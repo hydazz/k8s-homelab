@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: ansible-semaphore
-      version: 12.16.0
+      version: 12.16.1
       interval: 5m
       sourceRef:
         kind: HelmRepository
