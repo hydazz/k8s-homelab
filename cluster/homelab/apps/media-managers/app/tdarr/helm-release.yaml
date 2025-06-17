@@ -55,11 +55,7 @@ spec:
               limits:
                 cpu: 1
                 memory: 3Gi
-                nvidia.com/gpu: 1
     defaultPodOptions:
-      runtimeClassName: nvidia
-      nodeSelector:
-        nvidia.com/gpu.present: "true"
       annotations:
         backup.velero.io/backup-volumes: config
     service:

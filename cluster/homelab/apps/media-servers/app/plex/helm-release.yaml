@@ -35,7 +35,6 @@ spec:
               tag: 1.41.8.9834
             env:
               TZ: Australia/Melbourne
-              NVIDIA_DRIVER_CAPABILITIES: all
             probes:
               liveness: &probe
                 enabled: true
@@ -57,7 +56,6 @@ spec:
               limits:
                 cpu: 6
                 memory: 4Gi
-                nvidia.com/gpu: 1
             securityContext:
               allowPrivilegeEscalation: false
               capabilities:
@@ -66,9 +64,6 @@ spec:
         pod:
           annotations:
             backup.velero.io/backup-volumes: config
-          runtimeClassName: nvidia
-          nodeSelector:
-            nvidia.com/gpu.present: "true"
     defaultPodOptions:
       securityContext:
         runAsUser: 1001
