@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: ghcr.io/pterodactyl/panel
-      tag: v1.11.10
+      tag: v1.11.11
     panel:
       app:
         timezone: Australia/Melbourne
