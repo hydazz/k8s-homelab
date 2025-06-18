@@ -4,7 +4,7 @@ resources:
   - app/immich
 #  - app/plex
   - app/private
-  - app/tautulli
+#  - app/tautulli
   # - app/wizarr
  # - ingress.sops.yaml
   - namespace.yaml
