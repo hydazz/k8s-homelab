@@ -113,14 +113,6 @@ spec:
             - *host
           secretName: wildcard.${D_HS}
     persistence:
-      enabled: true
-      size: 2Gi
-      nextcloudData:
-        enabled: true
-        size: 512Mi
+      enabled: false
     cronjob:
       enabled: true
-
-  valuesFrom:
-    - kind: Secret
-      name: shs-values

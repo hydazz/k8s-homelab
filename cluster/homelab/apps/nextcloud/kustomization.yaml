@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - app/shca
   - app/shs
-  - limit-egress.yaml
   - namespace.yaml
