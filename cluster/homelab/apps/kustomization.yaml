@@ -15,7 +15,7 @@ resources:
   - media-servers
   - minio
 # - monitoring # migrated
-  - nextcloud
+# - nextcloud # migrated
   - open-webui
 # - paperless-ngx # migrated (-ai)
   - pterodactyl
