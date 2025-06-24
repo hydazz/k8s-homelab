@@ -21,4 +21,4 @@ resources:
   - pterodactyl
   - reverse-proxy
 # - uptime-kuma # migrated
-  - wordpress
+# - wordpress # migrated
