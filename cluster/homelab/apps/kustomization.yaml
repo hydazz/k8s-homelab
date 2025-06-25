@@ -9,7 +9,7 @@ resources:
   - homepage
 # - jenkins # migrated
   - knick-knacks
-  - mailserver
+# - mailserver # migrated
 # - media-downloaders # migrated
   - media-managers
   - media-servers
